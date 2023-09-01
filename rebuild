@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+NIXOS_LABEL_VERSION="$(git rev-parse --short HEAD)"
+if [[ -n $(git status -s) ]]
+then
+    NIXOS_LABEL_VERSION="${NIXOS_LABEL_VERSION}-dirty"
+fi
+export NIXOS_LABEL_VERSION
+
+sudo nixos-rebuild "$@"

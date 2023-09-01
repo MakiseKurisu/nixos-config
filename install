@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -e
+
+if [ -z "$1" ]
+then
+    echo "Profile is needed:" >&2
+    ls machines >&2
+    exit 1
+fi
+
+if [ -f /etc/nixos/configuration.nix ] || [ -L /etc/nixos/configuration.nix ]
+then
+    echo "Back up existing configuration..."
+    sudo mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.bak
+fi
+
+sudo ln -s /home/excalibur/nixos-config/machines/$1/configuration.nix /etc/nixos/configuration.nix
+echo "Install profile $1 completed!"

@@ -1,0 +1,162 @@
+{ config, pkgs, lib, ... }:
+
+{
+  imports = [
+    ../../modules/base.nix
+    ../../modules/file-share.nix
+    #../../modules/desktop.nix
+    ../../modules/podman.nix
+    #../../modules/intel.nix
+    ../../modules/kernel.nix
+    ../../modules/network.nix
+    #../../modules/nvidia.nix
+    ../../modules/packages-base.nix
+    ../../modules/services.nix
+    ../../modules/users-base.nix
+    #../../modules/vfio.nix
+    #../../modules/virtualization.nix
+
+    ../../modules/nfs-nas.nix
+    #../../modules/nfs-app01.nix
+    #../../modules/wireguard.nix
+
+    /etc/nixos/hardware-configuration.nix
+  ];
+
+  boot = {
+    kernelParams = [
+      "console=ttyS0"
+    ];
+  };
+
+  services = {
+    nfs.server = {
+      exports = ''
+        /media              192.168.9.0/24(rw,fsid=0,no_subtree_check)
+        /media/qbittorrent  192.168.9.0/24(rw,nohide,insecure,no_subtree_check)
+      '';
+    };
+
+    samba-wsdd.enable = true;
+    samba = {
+      shares = {
+        qbittorrent = {
+          path = "/media/qbittorrent";
+          browseable = "yes";
+          "read only" = "no";
+          "guest ok" = "no";
+          "create mask" = "0644";
+          "directory mask" = "0755";
+          "force user" = "excalibur";
+          "force group" = "users";
+        };
+      };
+    };
+  };
+
+  virtualisation = {
+    oci-containers = {
+      backend = "podman";
+      containers = {
+        clash = {
+          image = "docker.io/dreamacro/clash-premium";
+          autoStart = true;
+          ports = [ 
+            "7890:7890"
+            "7891:7891"
+            "9090:9090"
+          ];
+          volumes = [
+            "/home/excalibur/containers/clash.yml:/root/.config/clash/config.yaml"
+          ];
+          environment = {
+            PUID = "1000";
+            PGID = "1000";
+            TZ = "Asia/Shanghai";
+          };
+        };
+        yacd = {
+          image = "docker.io/haishanh/yacd";
+          autoStart = true;
+          ports = [ 
+            "8080:80"
+          ];
+          environment = {
+            PUID = "1000";
+            PGID = "1000";
+            TZ = "Asia/Shanghai";
+            YACD_DEFAULT_BACKEND = "http://app01.protoducer.com:9090";
+          };
+        };
+        acng = {
+          image = "docker.io/mbentley/apt-cacher-ng";
+          autoStart = true;
+          ports = [ 
+            "3142:3142"
+          ];
+          volumes = [
+            "/home/excalibur/containers/acng.conf:/etc/apt-cacher-ng/acng.conf"
+            "/home/excalibur/containers/acng/:/var/cache/apt-cacher-ng/"
+          ];
+          environment = {
+            PUID = "1000";
+            PGID = "1000";
+            TZ = "Asia/Shanghai";
+          };
+        };
+        vlmcsd = {
+          image = "docker.io/mikolatero/vlmcsd";
+          autoStart = true;
+          ports = [ 
+            "1688:1688"
+          ];
+          environment = {
+            PUID = "1000";
+            PGID = "1000";
+            TZ = "Asia/Shanghai";
+          };
+        };
+        npm = {
+          image = "docker.io/jc21/nginx-proxy-manager";
+          autoStart = true;
+          ports = [ 
+            "80:80"
+            "81:81"
+            "443:443"
+          ];
+          volumes = [
+            "/home/excalibur/containers/npm/:/data/"
+            "/home/excalibur/containers/npm-letsencrypt/:/etc/letsencrypt/"
+          ];
+          environment = {
+            PUID = "1000";
+            PGID = "1000";
+            TZ = "Asia/Shanghai";
+          };
+        };
+        qbittorrent = {
+          image = "docker.io/linuxserver/qbittorrent";
+          autoStart = true;
+          ports = [ 
+            "8081:8081"
+            "6881:6881"
+            "6881:6881/udp"
+          ];
+          volumes = [
+            "/home/excalibur/containers/qbittorrent/:/config/"
+            "/media/qbittorrent/:/downloads/"
+          ];
+          environment = {
+            PUID = "1000";
+            PGID = "1000";
+            TZ = "Asia/Shanghai";
+            WEBUI_PORT = "8081";
+          };
+        };
+      };
+    };
+  };
+
+  networking.hostName = "app01";
+  system.stateVersion = "22.11";
+}
