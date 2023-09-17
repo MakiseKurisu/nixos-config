@@ -10,7 +10,7 @@
     useGlobalPkgs = true;
     users.excalibur = { pkgs, ... }: {
       imports = [
-        "${fetchTarball "https://github.com/msteen/nixos-vscode-server/tarball/master"}/modules/vscode-server/home.nix"
+        <nixos-vscode-server/modules/vscode-server/home.nix>
       ];
       xdg.configFile = {
         "hypr" = {

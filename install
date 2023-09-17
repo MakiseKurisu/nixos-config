@@ -17,3 +17,11 @@ fi
 
 sudo ln -s /home/excalibur/nixos-config/machines/$1/configuration.nix /etc/nixos/configuration.nix
 echo "Install profile $1 completed!"
+
+RELEASE="23.05"
+sudo nix-channel --add https://github.com/nix-community/nixos-vscode-server/archive/master.tar.gz nixos-vscode-server
+sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-${RELEASE}.tar.gz home-manager
+sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixos
+sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixos-unstable
+
+echo "Update channel completed!"
