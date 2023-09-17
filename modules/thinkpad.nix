@@ -19,5 +19,14 @@
     '';
   };
 
-  services.thinkfan.enable = true;
+  services.thinkfan = {
+    enable = true;
+    sensors = [
+      {
+        query = "/proc/acpi/ibm/thermal";
+        type = "tpacpi";
+        indices = [ 1 2 ];
+      }
+    ];
+  };
 }
