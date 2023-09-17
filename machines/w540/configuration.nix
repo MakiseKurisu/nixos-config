@@ -16,30 +16,22 @@
 
     #../../modules/nfs-nas.nix
     #../../modules/nfs-app01.nix
-    #../../modules/wireguard.nix
+    ../../modules/wireguard.nix
+
+    ../../modules/thinkpad.nix
 
     /etc/nixos/hardware-configuration.nix
   ];
 
-/*
-  hardware = {
-    nvidia = {
-      package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.legacy_470;
-    };
-  };
-*/
-
   boot = {
-    blacklistedKernelModules = [ "nouveau" ];
     kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_testing_bcachefs;
   };
 
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
-      "hypr/machine.conf" = {
-        source = pkgs.writeText "hyprland-machine.conf" ''
+      "hypr/thinkpad.conf" = {
+        source = pkgs.writeText "hyprland-thinkpad.conf" ''
           monitor=eDP-1, highres, auto, 1.5
-          exec-once=[workspace 1 silent] firefox
         '';
       };
     };
