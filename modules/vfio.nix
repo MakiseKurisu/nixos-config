@@ -8,7 +8,7 @@
     kernelModules = [
       "kvmfr"
     ];
-    blacklistedKernelModules = [ "nouveau" "nvidiafb" "nvidia" "nvidia-uvm" "nvidia-drm" "nvidia-modeset" ];
+    blacklistedKernelModules = [ "nouveau" "nvidiafb" "nvidia" "nvidia-uvm" "nvidia-drm" "nvidia-modeset" "nvidia-gpu" ];
     extraModprobeConfig = ''
       options kvmfr static_size_mb=128
     '';
