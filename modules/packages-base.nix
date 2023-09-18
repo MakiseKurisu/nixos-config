@@ -15,6 +15,9 @@
   programs.git = {
     enable = true;
     config = {
+      init = {
+        defaultBranch = "main";
+      };
       pull.rebase = true;
       user = {
         name = "MakiseKurisu";
