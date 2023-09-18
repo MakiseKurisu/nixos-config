@@ -30,7 +30,7 @@
       {
         query = "/proc/acpi/ibm/thermal";
         type = "tpacpi";
-        indices = [ 1 2 ];
+        indices = [ 0 1 ];
       }
     ];
   };
