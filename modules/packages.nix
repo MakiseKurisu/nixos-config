@@ -43,6 +43,7 @@
         libhugetlbfs
         libnotify
         linux.dev
+        lm_sensors
         minicom
         multipath-tools
         neovim
@@ -65,6 +66,7 @@
         shellcheck
         speechd
         ssh-copy-id
+        smartmontools
         unzip
         usbutils
       ];
