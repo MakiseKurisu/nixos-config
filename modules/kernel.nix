@@ -6,6 +6,9 @@
     kernelParams = [
       "console=tty0"
     ];
+    kernel.sysctl = {
+      "kernel.dmesg_restrict" = 1;
+    };      
     loader = {
       efi = {
         canTouchEfiVariables = true;
