@@ -19,6 +19,8 @@
         defaultBranch = "main";
       };
       pull.rebase = true;
+      rebase.autoStash = true;
+      credential.helper = "store";
       user = {
         name = "MakiseKurisu";
         email = "MakiseKurisu@users.noreply.github.com";
