@@ -57,10 +57,6 @@
     xdg.configFile = {
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''
-          #monitor=DP-1, 3440x1440@144, auto, 1
-          monitor=DP-1, highres, auto, 1
-          exec-once=[workspace 1 silent] looking-glass-client
-          exec-once=[workspace 2 silent] firefox
           workspace=DP-1, 2
         '';
       };

@@ -5,7 +5,7 @@
     xdg.configFile = {
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''
-          exec-once=[workspace 1 silent] firefox
+          workspace=eDP-1, 2
           exec-once=brightnessctl --device "tpacpi::kbd_backlight" set 100%
           bindl=,switch:off:Lid Switch,exec,brightnessctl --device "tpacpi::kbd_backlight" set 100%
           source = ~/.config/hypr/thinkpad.conf
