@@ -59,6 +59,7 @@
       guvcview
       helvum
       hyprpaper
+      imv
       kicad
       libreoffice-qt
       libsForQt5.ark
