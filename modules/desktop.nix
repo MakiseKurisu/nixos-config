@@ -109,6 +109,7 @@
       wev
       xdg-user-dirs
       xdg-utils
+      yesplaymusic
     ];
   };
 
@@ -134,6 +135,7 @@
       proggyfonts
       font-awesome
       wqy_zenhei
+      wqy_microhei
     ];
     enableDefaultFonts = true;
     fontconfig = {
