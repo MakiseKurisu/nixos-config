@@ -1,15 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./dolphin.nix
+  ];
+
   boot = {
     extraModulePackages = with config.boot.kernelPackages; [
       ch9344
     ];
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "kde";
   };
 
   environment = {
@@ -17,9 +16,6 @@
       hyprland
       bash
     '';
-    pathsToLink = [
-      "/share/konsole"
-    ];
     variables = {
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_WEBRENDER = "1";
@@ -28,7 +24,6 @@
       XDG_CURRENT_DESKTOP = "hyprland";
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland";
-      QT_STYLE_OVERRIDE = "breeze";
       CLUTTER_BACKEND = "wayland";
       SDL_VIDEODRIVER = "wayland";
     };
@@ -64,11 +59,7 @@
       libreoffice-qt
       libsForQt5.ark
       libsForQt5.breeze-gtk
-      libsForQt5.breeze-icons
-      libsForQt5.breeze-qt5
-      libsForQt5.dolphin
       libsForQt5.kcalc
-      libsForQt5.konsole
       lingot
       lutris
       mako
@@ -162,6 +153,7 @@
 
   programs = {
     dconf.enable = true;
+    dolphin.enable = true;
     regreet.enable = true; 
     hyprland = {
       enable = true;
@@ -233,7 +225,6 @@
     };
     ratbagd.enable = true;
     rpcbind.enable = true; # needed for NFS
-    udisks2.enable = true;
   };
 
   xdg = {
