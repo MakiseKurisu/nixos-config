@@ -44,7 +44,7 @@
         };
       };
       permittedInsecurePackages = [
-        "openssl-1.1.1v"
+        "openssl-1.1.1w"
         "python3.10-requests-2.29.0"
         "python3.10-cryptography-40.0.1"
         "python3.10-cryptography-40.0.2"
