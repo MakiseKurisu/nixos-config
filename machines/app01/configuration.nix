@@ -71,7 +71,7 @@
           ];
           environment = {
             PUID = "1000";
-            PGID = "1000";
+            PGID = "100";
             TZ = "Asia/Shanghai";
           };
         };
@@ -83,7 +83,7 @@
           ];
           environment = {
             PUID = "1000";
-            PGID = "1000";
+            PGID = "100";
             TZ = "Asia/Shanghai";
             YACD_DEFAULT_BACKEND = "http://app01.protoducer.com:9090";
           };
@@ -100,7 +100,7 @@
           ];
           environment = {
             PUID = "1000";
-            PGID = "1000";
+            PGID = "100";
             TZ = "Asia/Shanghai";
           };
         };
@@ -112,7 +112,7 @@
           ];
           environment = {
             PUID = "1000";
-            PGID = "1000";
+            PGID = "100";
             TZ = "Asia/Shanghai";
           };
         };
@@ -130,7 +130,7 @@
           ];
           environment = {
             PUID = "1000";
-            PGID = "1000";
+            PGID = "100";
             TZ = "Asia/Shanghai";
           };
         };
@@ -148,7 +148,7 @@
           ];
           environment = {
             PUID = "1000";
-            PGID = "1000";
+            PGID = "100";
             TZ = "Asia/Shanghai";
             WEBUI_PORT = "8081";
           };
