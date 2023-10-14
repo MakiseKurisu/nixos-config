@@ -166,8 +166,8 @@
           environment = {
             TZ = "Asia/Shanghai";
             DLS_URL = "192.168.9.2";
-            DLS_PORT = 8443;
-            LEASE_EXPIRE_DAYS = 90;
+            DLS_PORT = "8443";
+            LEASE_EXPIRE_DAYS = "90";
             DATABASE = "sqlite:////app/database/db.sqlite";
             DEBUG = "false";
           };
@@ -185,12 +185,12 @@
             "/media/qbittorrent/:/downloads/"
           ];
           environment = {
-            PUID = 1000;
-            PGID = 100;
+            PUID = "1000";
+            PGID = "100";
             UMASK_SET = "022";
             RPC_SECRET = "P3TERX";
-            RPC_PORT = 6800;
-            LISTEN_PORT = 6888;
+            RPC_PORT = "6800";
+            LISTEN_PORT = "6888";
             DISK_CACHE = "64M";
             IPV6_MODE = "false";
             UPDATE_TRACKERS = "true";
