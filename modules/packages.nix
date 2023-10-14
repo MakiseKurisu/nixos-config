@@ -49,6 +49,7 @@
         neovim
         nfs-utils
         unstable.nixops_unstable
+        nix-index
         nixos-generators
         nixos-option
         nmap

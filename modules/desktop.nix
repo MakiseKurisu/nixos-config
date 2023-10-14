@@ -3,6 +3,7 @@
 {
   imports = [
     ./dolphin.nix
+    ./plasma-systemsettings.nix
   ];
 
   boot = {
