@@ -209,6 +209,10 @@
     logind = {
       lidSwitch = "ignore";
     };
+    mpd = {
+      enable = true;
+      startWhenNeeded = true;
+    };
     pipewire = {
       enable = true;
       alsa.enable = true;
