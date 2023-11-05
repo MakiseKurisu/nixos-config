@@ -33,15 +33,16 @@
       VISUAL = "nano";
       BROWSER = "firefox";
       TERMINAL = "kitty";
+      DOTNET_ROOT = "${pkgs.unstable.dotnet-sdk_8}";
     };
     systemPackages = with pkgs; [
       blueberry
       bottles
       brightnessctl
-      discord
+      calibre
+      unstable.discord
       dunst
       element-desktop-wayland
-      firefox-wayland
       font-manager
       fsearch
       freecad
@@ -56,17 +57,21 @@
       helvum
       hyprpaper
       imv
+      jq
       kicad
       libreoffice-qt
       libsForQt5.ark
       libsForQt5.breeze-gtk
       libsForQt5.kcalc
+      libwebp
       lingot
       lutris
       mako
       mattermost-desktop
       moonlight-qt
       networkmanagerapplet
+      nixpkgs-review
+      nss
       nwg-bar
       nwg-menu
       nwg-dock
@@ -76,13 +81,15 @@
       pavucontrol
       pinentry-qt
       piper
+      pre-commit
       unstable.qq
       remmina
       rstudio
-      skypeforlinux
+      unstable.skypeforlinux
       slack
       slurp
       solaar
+      sunshine
       swayidle
       swaylock
       tdesktop
@@ -96,6 +103,15 @@
         vscodeExtensions = with vscode-extensions; [
           bbenoist.nix
           ms-vscode-remote.remote-ssh
+          ms-dotnettools.csharp
+          ms-vscode.cpptools
+          ms-vsliveshare.vsliveshare
+          ms-python.python
+          ms-vscode.hexeditor
+          ms-vscode.powershell
+          ms-vscode.cmake-tools
+          ms-vscode.makefile-tools
+          ms-azuretools.vscode-docker
         ];
       })
       wev
@@ -146,6 +162,7 @@
       fcitx5.addons = with pkgs; [
         fcitx5-gtk
         fcitx5-chinese-addons
+        libsForQt5.fcitx5-qt
       ];
     };
   };
@@ -153,8 +170,19 @@
   security.pam.services.swaylock = {};
 
   programs = {
+    bash = {
+      undistractMe = {
+        enable = true;
+        playSound = true;
+        timeout = 60;
+      };
+    };
     dconf.enable = true;
     dolphin.enable = true;
+    firefox = {
+      enable = true;
+      package = pkgs.firefox-wayland;
+    };
     regreet.enable = true; 
     hyprland = {
       enable = true;

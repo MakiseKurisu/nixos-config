@@ -56,7 +56,8 @@
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
       "hypr/machine.conf" = {
-        source = pkgs.writeText "hyprland-machine.conf" ''
+        source = pkgs.writeText "hyprland-machine.conf" ''+
+          monitor=DP-1, highrr, auto, 1
           workspace=DP-1, 2
         '';
       };
@@ -71,6 +72,17 @@
       };
     };
   };
+
+  programs = {
+    firefox = {
+      policies = {
+        Certificates.Install = [
+          "/home/excalibur/dotnet.crt"
+        ];
+      };
+    };
+  };
+
   networking.hostName = "nixos";
   system.stateVersion = "22.11";
 }

@@ -25,6 +25,10 @@
         name = "MakiseKurisu";
         email = "MakiseKurisu@users.noreply.github.com";
       };
+      http = {
+        version = "HTTP/1.1";
+        postBuffer = 524288000;
+      };
     };
   };
 }

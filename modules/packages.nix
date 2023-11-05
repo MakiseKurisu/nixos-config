@@ -24,7 +24,7 @@
         duplicacy
         unstable.distrobox
         dmidecode
-        dotnet-sdk
+        unstable.dotnet-sdk_8
         dpkg
         dtc
         efitools
