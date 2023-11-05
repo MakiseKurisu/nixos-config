@@ -29,6 +29,10 @@
           source = ../configs/swayidle;
           recursive = true;
         };
+        "discord" = {
+          source = ../configs/discord;
+          recursive = true;
+        };
       };
       home = {
         username = "excalibur";
