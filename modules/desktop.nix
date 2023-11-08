@@ -33,7 +33,6 @@
       VISUAL = "nano";
       BROWSER = "firefox";
       TERMINAL = "kitty";
-      DOTNET_ROOT = "${pkgs.unstable.dotnet-sdk_8}";
     };
     systemPackages = with pkgs; [
       blueberry

@@ -5,73 +5,95 @@
     ./packages-base.nix
   ];
 
-  environment = {
-    systemPackages = let
-      python-packages = p: with p; [
-        dbus-python
-        requests
-        servefile
-        tqdm
-      ];
+  environment = let 
+      dotnet-combined = (with pkgs.unstable.dotnetCorePackages; combinePackages [
+        sdk_8_0
+        sdk_7_0
+      ]).overrideAttrs (finalAttrs: previousAttrs: {
+        # This is needed to install workload in $HOME
+        # https://discourse.nixos.org/t/dotnet-maui-workload/20370/2
+
+        postBuild = (previousAttrs.postBuild or '''') + ''
+
+          for i in $out/sdk/*
+          do
+            i=$(basename $i)
+            mkdir -p $out/metadata/workloads/''${i/-*}
+            touch $out/metadata/workloads/''${i/-*}/userlocal
+          done
+        '';
+      });
     in
-      with pkgs; [
-        android-tools
-        asciinema
-        binutils
-        brightnessctl
-        cmake
-        debian-devscripts
-        duplicacy
-        unstable.distrobox
-        dmidecode
-        unstable.dotnet-sdk_8
-        dpkg
-        dtc
-        efitools
-        fakeroot
-        file
-        gcc
-        gh
-        git
-        glib
-        gnupg
-        gnumake
-        gptfdisk
-        inetutils
-        iperf
-        ldns
-        libhugetlbfs
-        libnotify
-        linux.dev
-        lm_sensors
-        minicom
-        multipath-tools
-        neovim
-        nfs-utils
-        unstable.nixops_unstable
-        nix-index
-        nixos-generators
-        nixos-option
-        nmap
-        oci-cli
-        oil
-        openssl
-        pciutils
-        picocom
-        playerctl
-        podman-compose
-        (python3.withPackages python-packages)
-        rar
-        rkdeveloptool
-        rPackages.glmnet
-        shellcheck
-        speechd
-        ssh-copy-id
-        smartmontools
-        unzip
-        usbutils
-      ];
-  };
+    {
+      sessionVariables = {
+        DOTNET_ROOT = "${dotnet-combined}";
+      };
+      systemPackages = let
+        python-packages = p: with p; [
+          dbus-python
+          requests
+          servefile
+          tqdm
+        ];
+      in
+        with pkgs; [
+          android-tools
+          asciinema
+          binutils
+          brightnessctl
+          cmake
+          debian-devscripts
+          duplicacy
+          unstable.distrobox
+          dmidecode
+          dotnet-combined
+          dpkg
+          dtc
+          efitools
+          fakeroot
+          file
+          gcc
+          gh
+          git
+          glib
+          gnupg
+          gnumake
+          gptfdisk
+          inetutils
+          iperf
+          ldns
+          libhugetlbfs
+          libnotify
+          linux.dev
+          lm_sensors
+          minicom
+          multipath-tools
+          neovim
+          nfs-utils
+          unstable.nixops_unstable
+          nix-index
+          nixos-generators
+          nixos-option
+          nmap
+          oci-cli
+          oil
+          openssl
+          pciutils
+          picocom
+          playerctl
+          podman-compose
+          (python3.withPackages python-packages)
+          rar
+          rkdeveloptool
+          rPackages.glmnet
+          shellcheck
+          speechd
+          ssh-copy-id
+          smartmontools
+          unzip
+          usbutils
+        ];
+    };
 
   programs = {
     htop = {
