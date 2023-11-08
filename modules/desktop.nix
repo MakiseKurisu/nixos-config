@@ -115,7 +115,6 @@
         ];
       })
       wev
-      xdg-user-dirs
       xdg-utils
       yesplaymusic
     ];

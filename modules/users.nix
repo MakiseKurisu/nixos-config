@@ -12,26 +12,32 @@
       imports = [
         <nixos-vscode-server/modules/vscode-server/home.nix>
       ];
-      xdg.configFile = {
-        "hypr" = {
-          source = ../configs/hypr;
-          recursive = true;
+      xdg = {
+        configFile = {
+          "hypr" = {
+            source = ../configs/hypr;
+            recursive = true;
+          };
+          "waybar" = {
+            source = ../configs/waybar;
+            recursive = true;
+          };
+          "kitty" = {
+            source = ../configs/kitty;
+            recursive = true;
+          };
+          "swayidle" = {
+            source = ../configs/swayidle;
+            recursive = true;
+          };
+          "discord" = {
+            source = ../configs/discord;
+            recursive = true;
+          };
         };
-        "waybar" = {
-          source = ../configs/waybar;
-          recursive = true;
-        };
-        "kitty" = {
-          source = ../configs/kitty;
-          recursive = true;
-        };
-        "swayidle" = {
-          source = ../configs/swayidle;
-          recursive = true;
-        };
-        "discord" = {
-          source = ../configs/discord;
-          recursive = true;
+        userDirs = {
+          enable = true;
+          createDirectories = true;
         };
       };
       home = {
