@@ -23,5 +23,6 @@ sudo nix-channel --add https://github.com/nix-community/nixos-vscode-server/arch
 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-${RELEASE}.tar.gz home-manager
 sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixos
 sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixos-unstable
+sudo nix-channel --add https://github.com/nix-community/NUR/archive/master.tar.gz nur
 
 echo "Update channel completed!"

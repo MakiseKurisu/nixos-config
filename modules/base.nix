@@ -42,6 +42,9 @@
         unstable = import <nixos-unstable> {
           config = config.nixpkgs.config;
         };
+        nur = import <nur> {
+          config = config.nixpkgs.config;
+        };
       };
       permittedInsecurePackages = [
         "electron-24.8.6"
