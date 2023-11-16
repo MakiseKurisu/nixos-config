@@ -47,7 +47,7 @@
         commandLineArgs = (previous.commandLineArgs or "") +
           " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
       }))
-      #devenv.devenv
+      (import <devenv>).default
       unstable.discord
       dunst
       element-desktop-wayland
