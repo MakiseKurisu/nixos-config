@@ -73,16 +73,6 @@
     };
   };
 
-  programs = {
-    firefox = {
-      policies = {
-        Certificates.Install = [
-          "/home/excalibur/dotnet.crt"
-        ];
-      };
-    };
-  };
-
   networking.hostName = "nixos";
   system.stateVersion = "22.11";
 }
