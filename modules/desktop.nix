@@ -27,6 +27,9 @@
       QT_QPA_PLATFORM = "wayland";
       CLUTTER_BACKEND = "wayland";
       SDL_VIDEODRIVER = "wayland";
+      XMODIFIERS = "@im=fcitx";
+      QT_IM_MODULE = "fcitx";
+      GTK_IM_MODULE = "fcitx";
     };
     sessionVariables = {
       EDITOR = "nano";
@@ -38,7 +41,13 @@
       blueberry
       bottles
       brightnessctl
+      cachix
       calibre
+      (chromium.override (previous: {
+        commandLineArgs = (previous.commandLineArgs or "") +
+          " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
+      }))
+      #devenv.devenv
       unstable.discord
       dunst
       element-desktop-wayland
@@ -94,13 +103,18 @@
       tdesktop
       unstable.teams-for-linux
       thunderbird
-      ungoogled-chromium
       ventoy-bin-full
       vlc
       virt-viewer
-      (vscode-with-extensions.override {
+      (vscode-with-extensions.override (previous: {
+        vscode = (previous.vscode.override (p: {
+          commandLineArgs = (p.commandLineArgs or "") +
+            " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
+        }));
         vscodeExtensions = with vscode-extensions; [
           bbenoist.nix
+          github.vscode-github-actions
+          github.vscode-pull-request-github
           ms-vscode-remote.remote-ssh
           ms-dotnettools.csharp
           ms-vscode.cpptools
@@ -112,7 +126,8 @@
           ms-vscode.makefile-tools
           ms-azuretools.vscode-docker
         ];
-      })
+      }))
+      nur.repos.xddxdd.wechat-uos
       wev
       xdg-utils
       yesplaymusic
@@ -192,6 +207,9 @@
     waybar = {
       enable = true;
       package = pkgs.unstable.waybar;
+    };
+    starship = {
+      enable = true;
     };
     steam = {
       enable = true;

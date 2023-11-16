@@ -43,10 +43,11 @@
           config = config.nixpkgs.config;
         };
         nur = import <nur> {
-          config = config.nixpkgs.config;
+          inherit pkgs;
         };
       };
       permittedInsecurePackages = [
+        "electron-19.1.9"
         "electron-24.8.6"
         "openssl-1.1.1w"
         "python3.10-cryptography-40.0.1"
