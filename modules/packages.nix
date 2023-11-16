@@ -34,6 +34,7 @@
           requests
           servefile
           tqdm
+          pre-commit-hooks
         ];
       in
         with pkgs; [
