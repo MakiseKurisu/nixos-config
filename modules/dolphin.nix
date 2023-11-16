@@ -5,11 +5,21 @@ with lib;
 let
   cfg = config.programs.dolphin;
 
-  # This is needed to select the Breeze theme
-  dolphin-stylized = pkgs.writeShellScriptBin "dolphin" ''
-    export QT_STYLE_OVERRIDE="${cfg.style}"
-    exec ${pkgs.libsForQt5.dolphin}/bin/dolphin
-  '';
+  dolphin-stylized = pkgs.libsForQt5.dolphin.overrideAttrs (finalAttrs: previousAttrs: {
+    buildInputs = (previousAttrs.buildInputs or []) ++ [
+      pkgs.libsForQt5.konsole # for terminal panel
+    ] ++ cfg.extraPackages
+    ++ cfg.stylePackages;
+
+    nativeBuildInputs = (previousAttrs.nativeBuildInputs or []) ++ [
+      pkgs.makeBinaryWrapper
+    ];
+
+    # This is needed to select the custom theme
+    postInstall = ''
+      wrapProgram $out/bin/dolphin --set-default QT_STYLE_OVERRIDE "${cfg.style}"
+    '';
+  });
 in
 {
   meta.maintainers = with maintainers; [ MakiseKurisu ];
@@ -26,11 +36,10 @@ in
     style = mkOption {
       type = types.str;
       default = "breeze";
-      example = "breeze";
       description = mdDoc ''
         Set the style for Dolphin.
 
-        This option should be used with `stylePackages` together.
+        This option should be used together with {option}`stylePackages`.
       '';
     };
 
@@ -49,13 +58,7 @@ in
       description = mdDoc ''
         Style packages for Dolphin.
 
-        This option should be used with `style` together.
-      '';
-      example = literalExpression ''
-        with pkgs.libsForQt5; [
-          breeze-qt5
-          breeze-icons
-        ];
+        This option should be used together with {option}`style`.
       '';
     };
 
@@ -80,36 +83,16 @@ in
         but add useful features such as thumbnails, network/device filesystem
         access, and similar.
       '';
-      example = literalExpression ''
-        with pkgs.libsForQt5; [
-          dolphin-plugins
-          kio-extras
-          kdegraphics-thumbnailers
-        ];
-      '';
     };
   };
 
-  # implementation
   config = mkIf cfg.enable {
 
-    environment = {
+    environment.systemPackages = [
+      dolphin-stylized
+    ];
 
-      # This is needed to have Konsole colorscheme files available in Dolphin
-      pathsToLink = [
-        "/share/konsole"
-      ];
-
-      systemPackages = with pkgs; with libsForQt5; [
-        dolphin-stylized
-        konsole # for terminal panel
-      ] ++ cfg.extraPackages
-      ++ cfg.stylePackages;
-    };
-
-    services = {
-      udisks2.enable = true; # for mounting hard drives
-    };
-
+    # for mounting hard drives
+    services.udisks2.enable = lib.mkDefault true;
   };
 }
