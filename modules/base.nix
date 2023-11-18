@@ -26,6 +26,11 @@
   };
 
   nix = {
+    gc = {
+      automatic = true;
+      persistent = true;
+      options = "--delete-older-than 30d";
+    };
     settings = {
       experimental-features = "nix-command flakes";
       substituters = lib.mkBefore [
@@ -58,6 +63,17 @@
   };
 
   time.timeZone = "Asia/Shanghai";
+
+  system = {
+    autoUpgrade ={
+      enable = true;
+      persistent = true;
+      operation = "boot";
+      flags = [
+        "--upgrade-all"
+      ];
+    };
+  };
 
   systemd = {
     enableUnifiedCgroupHierarchy = true;
