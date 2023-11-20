@@ -9,6 +9,13 @@ then
     exit 1
 fi
 
+if [ ! -e "/home/excalibur/nixos-config/machines/$1/configuration.nix" ]
+then
+    echo "'$1' is not a valid profile. Please use one of the below profiles:" >&2
+    ls machines >&2
+    exit 1
+fi
+
 if [ -f /etc/nixos/configuration.nix ] || [ -L /etc/nixos/configuration.nix ]
 then
     echo "Back up existing configuration..."
