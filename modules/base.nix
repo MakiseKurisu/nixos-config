@@ -62,8 +62,6 @@
     };
   };
 
-  time.timeZone = "Asia/Shanghai";
-
   system = {
     autoUpgrade ={
       enable = true;
