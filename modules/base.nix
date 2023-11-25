@@ -5,6 +5,12 @@
     ./services.nix
   ];
 
+  console = {
+    earlySetup = true;
+  };
+
+  documentation.man.generateCaches = true;
+
   hardware = {
     enableAllFirmware = true;
     bluetooth.enable = true;
@@ -32,6 +38,7 @@
       options = "--delete-older-than 30d";
     };
     settings = {
+      auto-optimise-store = true;
       experimental-features = "nix-command flakes";
       substituters = lib.mkBefore [
         "https://mirrors.ustc.edu.cn/nix-channels/store"

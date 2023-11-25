@@ -38,6 +38,7 @@
       TERMINAL = "kitty";
     };
     systemPackages = with pkgs; [
+      amtterm
       blueberry
       bottles
       brightnessctl
@@ -51,6 +52,7 @@
       unstable.discord
       dunst
       element-desktop-wayland
+      feishu
       font-manager
       fsearch
       freecad
@@ -129,6 +131,7 @@
       }))
       nur.repos.xddxdd.wechat-uos
       wev
+      wsmancli
       xdg-utils
       yesplaymusic
     ];
@@ -183,6 +186,7 @@
   security.pam.services.swaylock = {};
 
   programs = {
+    adb.enable = true;
     /*
     # Conflict with starship
     # https://github.com/NixOS/nixpkgs/issues/257720
@@ -196,6 +200,7 @@
     };
     */
     dconf.enable = true;
+    direnv.enable = true;
     dolphin.enable = true;
     firefox = {
       enable = true;
@@ -229,11 +234,14 @@
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
+    system-config-printer.enable = true;
+    wireshark.enable = true;
   };
 
   security = {
     polkit.enable = true;
     rtkit.enable = true;
+    sudo.execWheelOnly = true;
   };
 
   services = {
@@ -243,6 +251,7 @@
       openFirewall = true;
     };
     dbus.enable = true;
+    fwupd.enable = true;
     greetd = {
       enable = true;
       settings = {
@@ -263,6 +272,7 @@
     };
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
+    locate.enable = true;
     logind = {
       lidSwitch = "ignore";
     };
@@ -272,8 +282,10 @@
     };
     pipewire = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
       pulse.enable = true;
       jack.enable = true;
     };
