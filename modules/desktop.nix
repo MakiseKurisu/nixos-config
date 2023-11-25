@@ -183,13 +183,18 @@
   security.pam.services.swaylock = {};
 
   programs = {
+    /*
+    # Conflict with starship
+    # https://github.com/NixOS/nixpkgs/issues/257720
+    # Waiting for https://github.com/starship/starship/commit/8168c21293de8118af1e95778b1eee8f26cd6d6a
     bash = {
       undistractMe = {
         enable = true;
         playSound = true;
-        timeout = 60;
+        timeout = 45;
       };
     };
+    */
     dconf.enable = true;
     dolphin.enable = true;
     firefox = {
@@ -210,6 +215,14 @@
     };
     starship = {
       enable = true;
+      settings = {
+        shlvl = {
+          disabled = false;
+          threshold = 1;
+        };
+        cmd_duration.show_notifications = true;
+        status.disabled = false;
+      };
     };
     steam = {
       enable = true;
