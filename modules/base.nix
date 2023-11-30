@@ -69,6 +69,11 @@
     };
   };
 
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "";
+  };
+
   system = {
     autoUpgrade ={
       enable = true;
