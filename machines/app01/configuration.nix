@@ -27,21 +27,22 @@
     kernelParams = [
       "console=ttyS0"
     ];
+    loader.efi.efiSysMountPoint = lib.mkForce "/boot";
   };
 
   services = {
     nfs.server = {
       exports = ''
-        /media              192.168.9.0/24(rw,fsid=0,no_subtree_check)
-        /media/qbittorrent  192.168.9.0/24(rw,nohide,insecure,no_subtree_check)
+        /media        192.168.9.0/24(rw,fsid=0,no_subtree_check)
+        /media/aria2  192.168.9.0/24(rw,nohide,insecure,no_subtree_check)
       '';
     };
 
     samba-wsdd.enable = true;
     samba = {
       shares = {
-        qbittorrent = {
-          path = "/media/qbittorrent";
+        aria2 = {
+          path = "/media/aria2";
           browseable = "yes";
           "read only" = "no";
           "guest ok" = "no";
@@ -134,25 +135,6 @@
             TZ = "Asia/Shanghai";
           };
         };
-        qbittorrent = {
-          image = "docker.io/linuxserver/qbittorrent";
-          autoStart = true;
-          ports = [ 
-            "8081:8081"
-            "6881:6881"
-            "6881:6881/udp"
-          ];
-          volumes = [
-            "/home/excalibur/containers/qbittorrent/:/config/"
-            "/media/qbittorrent/:/downloads/"
-          ];
-          environment = {
-            PUID = "1000";
-            PGID = "100";
-            TZ = "Asia/Shanghai";
-            WEBUI_PORT = "8081";
-          };
-        };
         dls = {
           image = "docker.io/collinwebdesigns/fastapi-dls";
           autoStart = true;
@@ -182,7 +164,7 @@
           ];
           volumes = [
             "/home/excalibur/containers/aria2-pro/:/config/"
-            "/media/qbittorrent/:/downloads/"
+            "/media/aria2/:/downloads/"
           ];
           environment = {
             PUID = "1000";
@@ -213,5 +195,5 @@
   };
 
   networking.hostName = "app01";
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.11";
 }
