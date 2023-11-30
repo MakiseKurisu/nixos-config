@@ -78,6 +78,7 @@
       lutris
       mako
       mattermost-desktop
+      mob
       moonlight-qt
       networkmanagerapplet
       nixpkgs-review
