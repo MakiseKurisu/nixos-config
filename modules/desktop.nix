@@ -139,7 +139,7 @@
 
   fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       cantarell-fonts
       twitter-color-emoji
       meslo-lgs-nf
@@ -161,7 +161,7 @@
       wqy_zenhei
       wqy_microhei
     ];
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontconfig = {
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
