@@ -49,8 +49,7 @@
         home-manager.enable = true;
         obs-studio = {
           enable = true;
-          package = pkgs.unstable.obs-studio;
-          plugins = with pkgs.unstable.obs-studio-plugins; [
+          plugins = with pkgs.obs-studio-plugins; [
             input-overlay
             looking-glass-obs
             obs-pipewire-audio-capture

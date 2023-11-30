@@ -6,7 +6,7 @@
   ];
 
   environment = let 
-      dotnet-combined = (with pkgs.unstable.dotnetCorePackages; combinePackages [
+      dotnet-combined = (with pkgs.dotnetCorePackages; combinePackages [
         sdk_8_0
         sdk_7_0
       ]).overrideAttrs (finalAttrs: previousAttrs: {
@@ -45,7 +45,7 @@
           cmake
           debian-devscripts
           duplicacy
-          unstable.distrobox
+          distrobox
           dmidecode
           dotnet-combined
           dpkg
@@ -71,7 +71,7 @@
           multipath-tools
           neovim
           nfs-utils
-          unstable.nixops_unstable
+          nixops_unstable
           nix-index
           nixos-generators
           nixos-option

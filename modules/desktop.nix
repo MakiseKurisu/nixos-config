@@ -49,7 +49,7 @@
           " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
       }))
       (import <devenv>).default
-      unstable.discord
+      discord
       dunst
       element-desktop-wayland
       feishu
@@ -93,10 +93,10 @@
       pinentry-qt
       piper
       pre-commit
-      unstable.qq
+      qq
       remmina
       rstudio
-      unstable.skypeforlinux
+      skypeforlinux
       slack
       slurp
       solaar
@@ -104,7 +104,7 @@
       swayidle
       swaylock
       tdesktop
-      unstable.teams-for-linux
+      teams-for-linux
       thunderbird
       ventoy-bin-full
       vlc
@@ -211,13 +211,11 @@
     hyprland = {
       enable = true;
       xwayland.enable = true;
-      #nvidiaPatches = true;
-      package = pkgs.unstable.hyprland;
-      #portalPackage = pkgs.unstable.xdg-desktop-portal-hyprland;
+      enableNvidiaPatches = true;
     };
     waybar = {
       enable = true;
-      package = pkgs.unstable.waybar;
+      package = pkgs.waybar;
     };
     starship = {
       enable = true;
@@ -267,7 +265,7 @@
               }
             '';
         in {
-          command = "${pkgs.unstable.hyprland}/bin/Hyprland --config ${greetdConfig} >/dev/null 2>/dev/null";
+          command = "${pkgs.hyprland}/bin/Hyprland --config ${greetdConfig} >/dev/null 2>/dev/null";
         };
       };
     };
@@ -306,11 +304,6 @@
     portal = {
       enable = true;
       wlr.enable = true;
-      # gtk portal needed to make firefox happy
-      extraPortals = with pkgs; [ 
-        xdg-desktop-portal-gtk
-        #unstable.xdg-desktop-portal-hyprland
-      ];
     };
     mime.defaultApplications = {
       "text/html" = "firefox.desktop";

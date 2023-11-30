@@ -17,7 +17,7 @@
   environment = {
     systemPackages =
       with pkgs; [
-        unstable.looking-glass-client
+        looking-glass-client
       ];
   };
 

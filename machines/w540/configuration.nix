@@ -24,7 +24,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_testing_bcachefs;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_6_7;
   };
 
   home-manager.users.excalibur = { pkgs, ... }: {
