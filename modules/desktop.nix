@@ -184,8 +184,6 @@
     };
   };
 
-  security.pam.services.swaylock = {};
-
   programs = {
     adb.enable = true;
     /*
@@ -238,9 +236,15 @@
   };
 
   security = {
+    pam.services.swaylock = {};
     polkit.enable = true;
     rtkit.enable = true;
-    sudo.execWheelOnly = true;
+    sudo = {
+      execWheelOnly = true;
+      extraConfig = ''
+        Defaults insults
+      '';
+    };
   };
 
   services = {
