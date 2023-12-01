@@ -27,9 +27,7 @@
       QT_QPA_PLATFORM = "wayland";
       CLUTTER_BACKEND = "wayland";
       SDL_VIDEODRIVER = "wayland";
-      XMODIFIERS = "@im=fcitx";
-      QT_IM_MODULE = "fcitx";
-      GTK_IM_MODULE = "fcitx";
+      GTK_IM_MODULE = lib.mkForce "wayland";
     };
     sessionVariables = {
       EDITOR = "nano";
