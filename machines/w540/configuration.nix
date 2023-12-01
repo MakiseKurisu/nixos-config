@@ -25,6 +25,7 @@
 
   boot = {
     kernelPackages = lib.mkForce pkgs.linuxPackages_6_7;
+    loader.efi.efiSysMountPoint = "/boot/efi";
   };
 
   home-manager.users.excalibur = { pkgs, ... }: {

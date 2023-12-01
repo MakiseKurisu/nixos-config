@@ -23,13 +23,6 @@
     /etc/nixos/hardware-configuration.nix
   ];
 
-  boot = {
-    kernelParams = [
-      "console=ttyS0"
-    ];
-    loader.efi.efiSysMountPoint = lib.mkForce "/boot";
-  };
-
   services = {
     nfs.server = {
       exports = ''

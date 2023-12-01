@@ -25,6 +25,7 @@
     kernelParams = [
       "console=ttyS0"
     ];
+    loader.efi.efiSysMountPoint = "/boot/efi";
   };
 
   virtualisation = {

@@ -23,6 +23,8 @@
     /etc/nixos/hardware-configuration.nix
   ];
 
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
       "hypr/thinkpad.conf" = {

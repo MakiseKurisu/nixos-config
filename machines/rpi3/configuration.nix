@@ -27,6 +27,7 @@
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
+      efi.efiSysMountPoint = "/boot/efi";
     };
     kernelParams = [
       "console=ttyS1,115200n8"
