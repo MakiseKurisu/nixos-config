@@ -15,6 +15,10 @@
       };
       systemd-boot.enable = true;
     };
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    binfmt.emulatedSystems = [
+      "aarch64-linux"
+      "riscv64-linux"
+      "x86_64-windows"
+    ];
   };
 }
