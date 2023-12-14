@@ -52,6 +52,7 @@
       dunst
       element-desktop-wayland
       feishu
+      filezilla
       font-manager
       fsearch
       freecad
@@ -93,6 +94,7 @@
       piper
       pre-commit
       qq
+      qrencode
       remmina
       rstudio
       skypeforlinux
@@ -110,6 +112,7 @@
       virt-viewer
       nur.repos.xddxdd.wechat-uos
       wev
+      wlr-randr
       wsmancli
       xdg-utils
       yesplaymusic
