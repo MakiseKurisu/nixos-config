@@ -107,27 +107,6 @@
       ventoy-bin-full
       vlc
       virt-viewer
-      (vscode-with-extensions.override (previous: {
-        vscode = (previous.vscode.override (p: {
-          commandLineArgs = (p.commandLineArgs or "") +
-            " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
-        }));
-        vscodeExtensions = with vscode-extensions; [
-          bbenoist.nix
-          github.vscode-github-actions
-          github.vscode-pull-request-github
-          ms-vscode-remote.remote-ssh
-          ms-dotnettools.csharp
-          ms-vscode.cpptools
-          ms-vsliveshare.vsliveshare
-          ms-python.python
-          ms-vscode.hexeditor
-          ms-vscode.powershell
-          ms-vscode.cmake-tools
-          ms-vscode.makefile-tools
-          ms-azuretools.vscode-docker
-        ];
-      }))
       nur.repos.xddxdd.wechat-uos
       wev
       wsmancli

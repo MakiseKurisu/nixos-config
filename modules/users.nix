@@ -56,6 +56,44 @@
             wlrobs
           ];
         };
+        vscode = {
+          enable = true;
+          enableExtensionUpdateCheck = false;
+          enableUpdateCheck = false;
+          package = pkgs.vscode.override (previous: {
+            commandLineArgs = (previous.commandLineArgs or "") +
+              " --enable-features=UseOzonePlatform,WaylandWindowDecorations --password-store=gnomedotnet tool install  --ozone-platform=wayland --disable-gpu-sandbox --enable-wayland-ime";
+          });
+          extensions = with pkgs.vscode-extensions; [
+            bbenoist.nix
+            github.vscode-github-actions
+            github.vscode-pull-request-github
+            ms-vscode-remote.remote-ssh
+            ms-dotnettools.csharp
+            ms-vscode.cpptools
+            ms-vsliveshare.vsliveshare
+            ms-python.python
+            ms-vscode.hexeditor
+            ms-vscode.powershell
+            ms-vscode.cmake-tools
+            ms-vscode.makefile-tools
+            ms-azuretools.vscode-docker
+          ];
+          userSettings = {
+            "editor.selectionClipboard" = false;
+            "git.autofetch" = true;
+            "git.confirmSync" = false;
+            "git.enableSmartCommit" = true;
+            "editor.rulers" = [
+                80
+            ];
+            "diffEditor.ignoreTrimWhitespace" = false;
+            "debug.javascript.unmapMissingSources" = true;
+            "editor.stickyScroll.enabled" = true;
+            "files.autoSave" = "afterDelay";
+            "window.titleBarStyle" = "custom";
+          };
+        };
       };
       services.vscode-server.enable = true;
     };
