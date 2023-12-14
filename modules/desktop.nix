@@ -34,6 +34,7 @@
       VISUAL = "nano";
       BROWSER = "firefox";
       TERMINAL = "kitty";
+      NIX_AUTO_RUN = "1";
     };
     systemPackages = with pkgs; [
       amtterm
