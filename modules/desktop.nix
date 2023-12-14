@@ -288,7 +288,7 @@
   xdg = {
     portal = {
       enable = true;
-      wlr.enable = true;
+      xdgOpenUsePortal = true;
     };
     mime.defaultApplications = {
       "text/html" = "firefox.desktop";
