@@ -58,8 +58,10 @@
     xdg.configFile = {
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''+
-          monitor=DP-1, highrr, auto, 1
+          monitor=DP-1, highrr, 0x0, 1
+          monitor=HDMI-A-1, 1920x1080@100, 3440x0, auto, transform, 1
           workspace=DP-1, 2
+          workspace=HDMI-A-1, 30
         '';
       };
       "looking-glass/client.ini" = {
