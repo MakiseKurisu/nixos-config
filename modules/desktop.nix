@@ -80,9 +80,11 @@
       mattermost-desktop
       mob
       moonlight-qt
+      netease-cloud-music-gtk
       networkmanagerapplet
       nixpkgs-review
       nss
+      nuclear
       nwg-bar
       nwg-menu
       nwg-dock
@@ -97,6 +99,7 @@
       qrencode
       remmina
       rstudio
+      selectdefaultapplication
       skypeforlinux
       slack
       slurp
