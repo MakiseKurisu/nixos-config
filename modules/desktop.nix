@@ -292,6 +292,9 @@
     portal = {
       enable = true;
       xdgOpenUsePortal = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
     };
     mime.defaultApplications = {
       "text/html" = "firefox.desktop";
