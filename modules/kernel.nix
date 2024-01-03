@@ -4,7 +4,7 @@
   boot = {
     #kernelPackages = pkgs.local.linuxPackages;
     kernelParams = [
-      "console=tty0"
+      "console=tty1"
     ];
     kernel.sysctl = {
       "kernel.dmesg_restrict" = 1;

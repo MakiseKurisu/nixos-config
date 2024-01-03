@@ -31,7 +31,7 @@
     };
     kernelParams = [
       "console=ttyS1,115200n8"
-      "console=tty0"
+      "console=tty1"
     ];
   };
 
