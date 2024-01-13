@@ -291,7 +291,8 @@
   xdg = {
     portal = {
       enable = true;
-      xdgOpenUsePortal = true;
+      # xdg-open is broken and cannot open link from discord
+      # xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
       ];
