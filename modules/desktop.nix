@@ -47,6 +47,7 @@
         commandLineArgs = (previous.commandLineArgs or "") +
           " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
       }))
+      colmena
       (import <devenv>).default
       discord
       dunst

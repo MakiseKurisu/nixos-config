@@ -70,7 +70,6 @@
           multipath-tools
           neovim
           nfs-utils
-          nixops_unstable
           nix-index
           nixos-generators
           nixos-option
