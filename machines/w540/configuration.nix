@@ -38,6 +38,6 @@
     };
   };
 
-  networking.hostName = "W540";
+  networking.hostName = "w540";
   system.stateVersion = "23.05";
 }

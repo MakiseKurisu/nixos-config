@@ -76,6 +76,6 @@
     };
   };
 
-  networking.hostName = "nixos";
+  networking.hostName = "main";
   system.stateVersion = "22.11";
 }

@@ -35,6 +35,6 @@
     };
   };
 
-  networking.hostName = "P15";
+  networking.hostName = "p15";
   system.stateVersion = "23.05";
 }
