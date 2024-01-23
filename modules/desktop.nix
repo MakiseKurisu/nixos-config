@@ -38,6 +38,7 @@
     };
     systemPackages = with pkgs; [
       amtterm
+      audacity
       blueberry
       bottles
       brightnessctl
@@ -76,11 +77,13 @@
       libsForQt5.kcalc
       libwebp
       lingot
+      lmms
       lutris
       mako
       mattermost-desktop
       mob
       moonlight-qt
+      musescore
       netease-cloud-music-gtk
       networkmanagerapplet
       nixpkgs-review
