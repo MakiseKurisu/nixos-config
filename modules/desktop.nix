@@ -95,10 +95,10 @@
       nwg-panel
       nwg-drawer
       nwg-launchers
-      pavucontrol
       pinentry-qt
       piper
       pre-commit
+      pwvucontrol
       qq
       qrencode
       remmina

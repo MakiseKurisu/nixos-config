@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "custom/media"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "bluetooth", "cpu", "memory", "temperature", "backlight", "keyboard-state", "battery", "battery#bat2", "clock", "tray", "custom/power-off"],
+    "modules-right": ["mpd", "idle_inhibitor", "wireplumber", "network", "bluetooth", "cpu", "memory", "temperature", "backlight", "keyboard-state", "battery", "battery#bat2", "clock", "tray", "custom/power-off"],
     // Modules configuration
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -75,7 +75,7 @@
     "wireplumber": {
         "format": "{volume}%  {node_name}",
         "format-muted": "",
-        "on-click": "pavucontrol"
+        "on-click": "pwvucontrol"
     },
     "tray": {
         // "icon-size": 21,
