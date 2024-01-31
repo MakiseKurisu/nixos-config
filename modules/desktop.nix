@@ -123,6 +123,7 @@
       wsmancli
       xdg-utils
       yesplaymusic
+      yarn
     ];
   };
 
