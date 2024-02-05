@@ -35,7 +35,7 @@
     gc = {
       automatic = true;
       persistent = true;
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 7d";
     };
     settings = {
       auto-optimise-store = true;
