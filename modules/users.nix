@@ -1,16 +1,16 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
     ./users-base.nix
-    <home-manager/nixos>
   ];
 
   home-manager = {
     useGlobalPkgs = true;
+    useUserPackages = true;
     users.excalibur = { pkgs, ... }: {
       imports = [
-        <nixos-vscode-server/modules/vscode-server/home.nix>
+        inputs.nixos-vscode-server.homeModules.default
       ];
       xdg = {
         configFile = {

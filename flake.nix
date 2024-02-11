@@ -45,36 +45,42 @@
     }: {
     nixosConfigurations = {
         app01 = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
               ./machines/app01/configuration.nix
             ];
         };
         main = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
               ./machines/main/configuration.nix
             ];
         };
         nas = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
               ./machines/nas/configuration.nix
             ];
         };
         p15 = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
               ./machines/p15/configuration.nix
             ];
         };
         rpi3 = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
               ./machines/rpi3/configuration.nix
             ];
         };
         w540 = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
               ./machines/w540/configuration.nix

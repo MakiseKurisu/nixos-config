@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -49,7 +49,7 @@
           " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
       }))
       colmena
-      (import <devenv>).default
+      inputs.devenv.packages.${pkgs.system}.devenv
       discord
       dunst
       element-desktop-wayland

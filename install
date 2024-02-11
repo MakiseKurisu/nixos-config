@@ -2,35 +2,11 @@
 
 set -e
 
-if [ -z "$1" ]
-then
-    echo "Profile is needed:" >&2
-    ls machines >&2
-    exit 1
-fi
-
-if [ ! -e "/home/excalibur/nixos-config/machines/$1/configuration.nix" ]
-then
-    echo "'$1' is not a valid profile. Please use one of the below profiles:" >&2
-    ls machines >&2
-    exit 1
-fi
-
 if [ -f /etc/nixos/configuration.nix ] || [ -L /etc/nixos/configuration.nix ]
 then
     echo "Back up existing configuration..."
     sudo mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.bak
 fi
 
-sudo ln -s /home/excalibur/nixos-config/machines/$1/configuration.nix /etc/nixos/configuration.nix
+sudo ln -s /home/excalibur/nixos-config/flake.nix /etc/nixos/flake.nix
 echo "Install profile $1 completed!"
-
-RELEASE="23.11"
-sudo nix-channel --add https://github.com/cachix/devenv/archive/refs/tags/latest.tar.gz devenv
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/refs/heads/release-${RELEASE}.tar.gz home-manager
-sudo nix-channel --add https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixos-${RELEASE} nixos
-sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixos-unstable
-sudo nix-channel --add https://github.com/nix-community/nixos-vscode-server/archive/master.tar.gz nixos-vscode-server
-sudo nix-channel --add https://github.com/nix-community/NUR/archive/master.tar.gz nur
-
-echo "Update channel completed!"

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -51,11 +51,12 @@
     config = {
       allowUnfree = true;
       packageOverrides = pkgs: {
-        unstable = import <nixos-unstable> {
+        unstable = import inputs.nixos-unstable {
           config = config.nixpkgs.config;
         };
-        nur = import <nur> {
+        nur = import inputs.NUR {
           inherit pkgs;
+          nurpkgs = pkgs;
         };
       };
       permittedInsecurePackages = [
