@@ -4,20 +4,44 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    devenv.url = "github:cachix/devenv";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
-    nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
+    devenv = {
+        url = "github:cachix/devenv";
+        inputs.flake-compat.follows = "flake-compat";
+        inputs.nixpkgs.follows = "nixpkgs";
+        inputs.pre-commit-hooks.follows = "pre-commit-hooks";
+    };
+    flake-compat.url = "github:edolstra/flake-compat";
+    flake-utils.url = "github:numtide/flake-utils";
+    home-manager = {
+        url = "github:nix-community/home-manager/release-23.11";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-vscode-server = {
+        url = "github:nix-community/nixos-vscode-server";
+        inputs.flake-utils.follows = "flake-utils";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
     NUR.url = "github:nix-community/NUR";
+    pre-commit-hooks = {
+        url = "github:cachix/pre-commit-hooks.nix";
+        inputs.flake-compat.follows = "flake-compat";
+        inputs.flake-utils.follows = "flake-utils";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
+  outputs = inputs@{
     self,
     nixpkgs,
     nixpkgs-unstable,
     devenv,
+    flake-compat,
+    flake-utils,
     home-manager,
     nixos-vscode-server,
     NUR,
+    pre-commit-hooks,
+    ...
     }: {
     nixosConfigurations = {
         app01 = nixpkgs.lib.nixosSystem {
