@@ -68,16 +68,17 @@
             bbenoist.nix
             github.vscode-github-actions
             github.vscode-pull-request-github
-            ms-vscode-remote.remote-ssh
-            ms-dotnettools.csharp
-            ms-vscode.cpptools
-            ms-vsliveshare.vsliveshare
-            ms-python.python
-            ms-vscode.hexeditor
-            ms-vscode.powershell
-            ms-vscode.cmake-tools
-            ms-vscode.makefile-tools
             ms-azuretools.vscode-docker
+            ms-dotnettools.csharp
+            ms-python.python
+            ms-vscode.cmake-tools
+            ms-vscode.cpptools
+            ms-vscode.hexeditor
+            ms-vscode.makefile-tools
+            ms-vscode.powershell
+            ms-vscode-remote.remote-ssh
+            ms-vsliveshare.vsliveshare
+            unifiedjs.vscode-mdx
           ];
           userSettings = {
             "editor.selectionClipboard" = false;
