@@ -1,7 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
+    inputs.home-manager.nixosModules.home-manager
     ../../modules/base.nix
     ../../modules/desktop.nix
     ../../modules/podman.nix
