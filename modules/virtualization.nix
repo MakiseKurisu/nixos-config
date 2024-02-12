@@ -21,12 +21,12 @@
     systemPackages =
       with pkgs; [
         virt-manager
-        wl-clipboard  # used by waydroid
+        wl-clipboard # used by waydroid
       ];
   };
 
   virtualisation = {
-    lxc.enable = true;  # waydroid uses lxc
+    lxc.enable = true; # waydroid uses lxc
     libvirtd = {
       enable = true;
       onBoot = "ignore";

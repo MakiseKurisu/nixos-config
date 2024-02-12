@@ -86,7 +86,7 @@
             "git.confirmSync" = false;
             "git.enableSmartCommit" = true;
             "editor.rulers" = [
-                80
+              80
             ];
             "diffEditor.ignoreTrimWhitespace" = false;
             "debug.javascript.unmapMissingSources" = true;

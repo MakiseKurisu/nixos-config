@@ -6,12 +6,12 @@ let
   cfg = config.programs.dolphin;
 
   dolphin-stylized = pkgs.libsForQt5.dolphin.overrideAttrs (finalAttrs: previousAttrs: {
-    buildInputs = (previousAttrs.buildInputs or []) ++ [
+    buildInputs = (previousAttrs.buildInputs or [ ]) ++ [
       pkgs.libsForQt5.konsole # for terminal panel
     ] ++ cfg.extraPackages
-    ++ cfg.stylePackages;
+      ++ cfg.stylePackages;
 
-    nativeBuildInputs = (previousAttrs.nativeBuildInputs or []) ++ [
+    nativeBuildInputs = (previousAttrs.nativeBuildInputs or [ ]) ++ [
       pkgs.makeBinaryWrapper
     ];
 
@@ -46,8 +46,8 @@ in
     stylePackages = mkOption {
       type = with types; listOf package;
       default = with pkgs.libsForQt5; [
-          breeze-qt5
-          breeze-icons
+        breeze-qt5
+        breeze-icons
       ];
       defaultText = literalExpression ''
         with pkgs.libsForQt5; [

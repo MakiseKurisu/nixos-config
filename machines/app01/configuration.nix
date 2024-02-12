@@ -55,7 +55,7 @@
         clash = {
           image = "docker.io/dreamacro/clash-premium";
           autoStart = true;
-          ports = [ 
+          ports = [
             "7890:7890"
             "7891:7891"
             "9090:9090"
@@ -72,7 +72,7 @@
         yacd = {
           image = "docker.io/haishanh/yacd";
           autoStart = true;
-          ports = [ 
+          ports = [
             "8080:80"
           ];
           environment = {
@@ -85,7 +85,7 @@
         acng = {
           image = "docker.io/mbentley/apt-cacher-ng";
           autoStart = true;
-          ports = [ 
+          ports = [
             "3142:3142"
           ];
           volumes = [
@@ -101,7 +101,7 @@
         vlmcsd = {
           image = "docker.io/mikolatero/vlmcsd";
           autoStart = true;
-          ports = [ 
+          ports = [
             "1688:1688"
           ];
           environment = {
@@ -113,7 +113,7 @@
         npm = {
           image = "docker.io/jc21/nginx-proxy-manager";
           autoStart = true;
-          ports = [ 
+          ports = [
             "80:80"
             "81:81"
             "443:443"
@@ -131,7 +131,7 @@
         dls = {
           image = "docker.io/collinwebdesigns/fastapi-dls";
           autoStart = true;
-          ports = [ 
+          ports = [
             "8443:443"
           ];
           volumes = [
@@ -150,7 +150,7 @@
         aria2-pro = {
           image = "docker.io/p3terx/aria2-pro";
           autoStart = true;
-          ports = [ 
+          ports = [
             "6800:6800"
             "6888:6888"
             "6888:6888/udp"
@@ -176,7 +176,7 @@
         ariang = {
           image = "docker.io/p3terx/ariang";
           autoStart = true;
-          ports = [ 
+          ports = [
             "6880:6880"
           ];
           environment = {

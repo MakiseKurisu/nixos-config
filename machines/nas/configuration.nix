@@ -87,7 +87,7 @@
       Group = "users";
       WorkingDirectory = "~";
     };
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
   };
 
   networking.hostName = "nas";

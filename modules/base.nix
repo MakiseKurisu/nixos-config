@@ -76,7 +76,7 @@
   };
 
   system = {
-    autoUpgrade ={
+    autoUpgrade = {
       enable = true;
       persistent = true;
       operation = "boot";

@@ -176,16 +176,16 @@
   programs = {
     adb.enable = true;
     /*
-    # Conflict with starship
-    # https://github.com/NixOS/nixpkgs/issues/257720
-    # Waiting for https://github.com/starship/starship/commit/8168c21293de8118af1e95778b1eee8f26cd6d6a
-    bash = {
+      # Conflict with starship
+      # https://github.com/NixOS/nixpkgs/issues/257720
+      # Waiting for https://github.com/starship/starship/commit/8168c21293de8118af1e95778b1eee8f26cd6d6a
+      bash = {
       undistractMe = {
         enable = true;
         playSound = true;
         timeout = 45;
       };
-    };
+      };
     */
     dconf.enable = true;
     direnv.enable = true;
@@ -194,7 +194,7 @@
       enable = true;
       package = pkgs.firefox-wayland;
     };
-    regreet.enable = true; 
+    regreet.enable = true;
     hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -225,7 +225,7 @@
   };
 
   security = {
-    pam.services.swaylock = {};
+    pam.services.swaylock = { };
     polkit.enable = true;
     rtkit.enable = true;
     sudo = {
@@ -247,8 +247,9 @@
     greetd = {
       enable = true;
       settings = {
-        default_session = let
-          greetdConfig = pkgs.writeText "greetd-config" ''
+        default_session =
+          let
+            greetdConfig = pkgs.writeText "greetd-config" ''
               exec-once = ${pkgs.greetd.regreet}/bin/regreet; hyprctl dispatch exit
               animations {
                   enabled = off
@@ -257,9 +258,10 @@
                   force_hypr_chan = on
               }
             '';
-        in {
-          command = "${pkgs.hyprland}/bin/Hyprland --config ${greetdConfig} >/dev/null 2>/dev/null";
-        };
+          in
+          {
+            command = "${pkgs.hyprland}/bin/Hyprland --config ${greetdConfig} >/dev/null 2>/dev/null";
+          };
       };
     };
     gvfs.enable = true;

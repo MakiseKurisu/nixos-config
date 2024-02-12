@@ -5,7 +5,8 @@
     ./packages-base.nix
   ];
 
-  environment = let 
+  environment =
+    let
       dotnet-combined = (with pkgs.dotnetCorePackages; combinePackages [
         sdk_8_0
       ]).overrideAttrs (finalAttrs: previousAttrs: {
@@ -27,15 +28,16 @@
       sessionVariables = {
         DOTNET_ROOT = "${dotnet-combined}";
       };
-      systemPackages = let
-        python-packages = p: with p; [
-          dbus-python
-          requests
-          servefile
-          tqdm
-          pre-commit-hooks
-        ];
-      in
+      systemPackages =
+        let
+          python-packages = p: with p; [
+            dbus-python
+            requests
+            servefile
+            tqdm
+            pre-commit-hooks
+          ];
+        in
         with pkgs; [
           android-tools
           asciinema

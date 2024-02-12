@@ -42,7 +42,7 @@
         clash = {
           image = "docker.io/dreamacro/clash-premium";
           autoStart = true;
-          ports = [ 
+          ports = [
             "7890:7890"
             "7891:7891"
             "9090:9090"
@@ -59,7 +59,7 @@
         yacd = {
           image = "docker.io/haishanh/yacd";
           autoStart = true;
-          ports = [ 
+          ports = [
             "8080:80"
           ];
           environment = {
@@ -72,7 +72,7 @@
         vlmcsd = {
           image = "docker.io/mikolatero/vlmcsd";
           autoStart = true;
-          ports = [ 
+          ports = [
             "1688:1688"
           ];
           environment = {

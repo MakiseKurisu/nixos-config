@@ -36,7 +36,7 @@
         jellyfin = {
           image = "docker.io/jellyfin/jellyfin";
           autoStart = true;
-          ports = [ 
+          ports = [
             "8096:8096"
           ];
           volumes = [
