@@ -6,6 +6,7 @@
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''
           workspace=eDP-1, 2
+          workspace=HDMI-A-3, 30
           exec-once=brightnessctl --device "tpacpi::kbd_backlight" set 100%
           bindl=,switch:off:Lid Switch,exec,brightnessctl --device "tpacpi::kbd_backlight" set 100%
           source = ~/.config/hypr/thinkpad.conf
