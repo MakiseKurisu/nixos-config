@@ -53,7 +53,10 @@
       discord
       dunst
       element-desktop-wayland
-      feishu
+      (feishu.override (previous: {
+        commandLineArgs = (previous.commandLineArgs or "") +
+          " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
+      }))
       filezilla
       font-manager
       fsearch

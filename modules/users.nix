@@ -62,7 +62,7 @@
           enableUpdateCheck = false;
           package = pkgs.vscode.override (previous: {
             commandLineArgs = (previous.commandLineArgs or "") +
-              " --enable-features=UseOzonePlatform,WaylandWindowDecorations --password-store=gnome --ozone-platform=wayland --disable-gpu-sandbox --enable-wayland-ime";
+              " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime --password-store=gnome --disable-gpu-sandbox";
           });
           extensions = with pkgs.vscode-extensions; [
             bbenoist.nix
