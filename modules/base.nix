@@ -78,11 +78,13 @@
   system = {
     autoUpgrade = {
       enable = true;
-      persistent = true;
-      operation = "boot";
       flags = [
         "--upgrade-all"
       ];
+      flake = "github:MakiseKurisu/nixos-config";
+      operation = "boot";
+      persistent = true;
+      randomizedDelaySec = "30min";
     };
   };
 
