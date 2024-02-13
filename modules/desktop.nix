@@ -8,7 +8,7 @@
 
   boot = {
     extraModulePackages = with config.boot.kernelPackages; [
-      ch9344
+      #ch9344
     ];
   };
 
