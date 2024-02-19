@@ -34,6 +34,10 @@
             source = ../configs/discord;
             recursive = true;
           };
+          "LarkShell" = {
+            source = ../configs/LarkShell;
+            recursive = true;
+          };
         };
         userDirs = {
           enable = true;
