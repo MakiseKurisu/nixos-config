@@ -21,7 +21,7 @@
 
     ../../modules/thinkpad.nix
 
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   boot = {
