@@ -85,6 +85,7 @@
             unifiedjs.vscode-mdx
           ];
           userSettings = {
+            "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace, 'NotoSans Nerd Font', 'Font Awesome 6 Free', 'RobotoMono Nerd Font'";
             "editor.selectionClipboard" = false;
             "git.autofetch" = true;
             "git.confirmSync" = false;
