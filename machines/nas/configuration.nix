@@ -20,7 +20,7 @@
     ../../modules/nfs-app01.nix
     #../../modules/wireguard.nix
 
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   boot = {
