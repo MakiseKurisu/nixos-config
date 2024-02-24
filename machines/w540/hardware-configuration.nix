@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci" "bcache" ];
@@ -14,12 +15,14 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-partuuid/60416bf5-0305-5f4c-b4f3-e543bd209e0b:/dev/disk/by-partuuid/4bc27b32-07f3-384c-b95a-24e110149484";
+    {
+      device = "/dev/disk/by-partuuid/60416bf5-0305-5f4c-b4f3-e543bd209e0b:/dev/disk/by-partuuid/4bc27b32-07f3-384c-b95a-24e110149484";
       fsType = "bcachefs";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/BA51-F72A";
+    {
+      device = "/dev/disk/by-uuid/BA51-F72A";
       fsType = "vfat";
     };
 
