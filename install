@@ -10,3 +10,8 @@ fi
 
 sudo ln -s /home/excalibur/nixos-config/flake.nix /etc/nixos/flake.nix
 echo "Install profile $1 completed!"
+
+RELEASE="23.11"
+sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixos
+sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixos-unstable
+echo "Update channel completed!"
