@@ -280,6 +280,22 @@
         "type": "github"
       }
     },
+    "pr-dolphin": {
+      "locked": {
+        "lastModified": 1708837548,
+        "narHash": "sha256-Zp1UflhLeeoTUeN+pMqRVZx+pvpGbPBDM8hnRr+gmBM=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "16b907f242b5396c809439dd4dea788a4f607487",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "dolphin",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": [
@@ -319,6 +335,7 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "pr-dolphin": "pr-dolphin",
         "pre-commit-hooks": "pre-commit-hooks"
       }
     },

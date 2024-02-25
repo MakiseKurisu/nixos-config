@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./dolphin.nix
+    ./pr/dolphin.nix
     ./plasma-systemsettings.nix
   ];
 

@@ -29,6 +29,8 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Work In Progress PRs
+    pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
   };
 
   outputs =
@@ -43,6 +45,7 @@
     , nixos-vscode-server
     , NUR
     , pre-commit-hooks
+    , pr-dolphin
     , ...
     }: flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
