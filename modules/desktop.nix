@@ -3,6 +3,7 @@
 {
   imports = [
     ./pr/dolphin.nix
+    ./pr/mmdebstrap.nix
     ./plasma-systemsettings.nix
   ];
 
@@ -84,6 +85,7 @@
       lutris
       mako
       mattermost-desktop
+      pr-mmdebstrap.mmdebstrap
       mob
       moonlight-qt
       musescore
@@ -178,6 +180,13 @@
 
   programs = {
     adb.enable = true;
+    apt = {
+      enable = true;
+      package = pkgs.pr-mmdebstrap.apt;
+      keyringPackages = with pkgs; [
+        pr-mmdebstrap.debian-archive-keyring
+      ];
+    };
     /*
       # Conflict with starship
       # https://github.com/NixOS/nixpkgs/issues/257720

@@ -31,6 +31,7 @@
     };
     # Work In Progress PRs
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
+    pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
   };
 
   outputs =
@@ -46,6 +47,7 @@
     , NUR
     , pre-commit-hooks
     , pr-dolphin
+    , pr-mmdebstrap
     , ...
     }: flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [

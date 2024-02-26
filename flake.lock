@@ -296,6 +296,22 @@
         "type": "github"
       }
     },
+    "pr-mmdebstrap": {
+      "locked": {
+        "lastModified": 1708840397,
+        "narHash": "sha256-LvtF4JkaiHLedazennREaCIQ8DzzHkgwqYiPIoj9//Q=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "1523a9e5224588d40e1422bfb05a405f58bcaba0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "mmdebstrap",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": [
@@ -336,6 +352,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pr-dolphin": "pr-dolphin",
+        "pr-mmdebstrap": "pr-mmdebstrap",
         "pre-commit-hooks": "pre-commit-hooks"
       }
     },
