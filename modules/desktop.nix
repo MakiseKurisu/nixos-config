@@ -119,7 +119,7 @@
       tdesktop
       teams-for-linux
       thunderbird
-      ventoy-bin-full
+      ventoy-full
       vlc
       virt-viewer
       nur.repos.xddxdd.wechat-uos
