@@ -280,6 +280,22 @@
         "type": "github"
       }
     },
+    "pr-ch9344": {
+      "locked": {
+        "lastModified": 1708794091,
+        "narHash": "sha256-b/LJj3Ndbx9pSgmsM0EMoTOTn0jAY3hKPcnT310CJfY=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "5068ae6e15cdc0af9359969f9d22dec89b4ae9e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "ch9344-2.0",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pr-dolphin": {
       "locked": {
         "lastModified": 1708837548,
@@ -351,6 +367,7 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "pr-ch9344": "pr-ch9344",
         "pr-dolphin": "pr-dolphin",
         "pr-mmdebstrap": "pr-mmdebstrap",
         "pre-commit-hooks": "pre-commit-hooks"

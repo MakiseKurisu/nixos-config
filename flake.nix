@@ -30,6 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Work In Progress PRs
+    pr-ch9344.url = "github:MakiseKurisu/nixpkgs/ch9344-2.0";
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
   };
@@ -46,6 +47,7 @@
     , nixos-vscode-server
     , NUR
     , pre-commit-hooks
+    , pr-ch9344
     , pr-dolphin
     , pr-mmdebstrap
     , ...
