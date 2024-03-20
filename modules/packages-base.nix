@@ -28,6 +28,7 @@
       http = {
         version = "HTTP/1.1";
         postBuffer = 524288000;
+        maxRequestBuffer = 524288000;
       };
     };
   };
