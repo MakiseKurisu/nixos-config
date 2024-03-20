@@ -126,6 +126,7 @@
       nur.repos.xddxdd.wechat-uos
       wev
       wlr-randr
+      wireguard-tools
       wsmancli
       xdg-utils
       yesplaymusic
