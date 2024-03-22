@@ -101,7 +101,17 @@
           };
         };
       };
-      services.vscode-server.enable = true;
+      services = {
+        dunst = {
+          enable = true;
+          settings = {
+            global = {
+              monitor = "0";
+            };
+          };
+        };
+        vscode-server.enable = true;
+      };
     };
   };
 }
