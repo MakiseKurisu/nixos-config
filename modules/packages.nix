@@ -79,6 +79,7 @@
           nixos-generators
           nixos-option
           nmap
+          ntfs3g
           oci-cli
           oil
           openssl
