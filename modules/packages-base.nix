@@ -5,7 +5,6 @@
     systemPackages =
       with pkgs; [
         git-crypt
-        kitty
         parted
         tmux
         wget

@@ -22,10 +22,6 @@
             source = ../configs/waybar;
             recursive = true;
           };
-          "kitty" = {
-            source = ../configs/kitty;
-            recursive = true;
-          };
           "swayidle" = {
             source = ../configs/swayidle;
             recursive = true;
@@ -51,6 +47,13 @@
       };
       programs = {
         home-manager.enable = true;
+        kitty = {
+          enable = true;
+          settings = {
+            confirm_os_window_close = 0;
+          };
+          shellIntegration.enableBashIntegration = true;
+        };
         obs-studio = {
           enable = true;
           plugins = with pkgs.obs-studio-plugins; [
