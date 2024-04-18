@@ -53,6 +53,7 @@
       colmena
       inputs.devenv.packages.${pkgs.system}.devenv
       discord
+      element-desktop
       element-desktop-wayland
       (feishu.override (previous: {
         commandLineArgs = (previous.commandLineArgs or "") +

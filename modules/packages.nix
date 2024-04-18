@@ -80,6 +80,7 @@
           nixos-option
           nmap
           ntfs3g
+          nvme-cli
           oci-cli
           oil
           openssl
