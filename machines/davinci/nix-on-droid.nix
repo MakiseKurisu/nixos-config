@@ -34,6 +34,8 @@
   
         home.packages = with pkgs; [
           curl
+          findutils
+          gnugrep
           iperf
           ldns
           nmap
