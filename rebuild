@@ -2,11 +2,25 @@
 
 set -e
 
-NIXOS_LABEL_VERSION="$(git rev-parse --short HEAD)"
-if [[ -n $(git status -s) ]]
-then
-    NIXOS_LABEL_VERSION="${NIXOS_LABEL_VERSION}-dirty"
-fi
-export NIXOS_LABEL_VERSION
+rebuild_nixos() {
+    NIXOS_LABEL_VERSION="$(git rev-parse --short HEAD)"
+    if [[ -n $(git status -s) ]]
+    then
+        NIXOS_LABEL_VERSION="${NIXOS_LABEL_VERSION}-dirty"
+    fi
+    export NIXOS_LABEL_VERSION
 
-sudo nixos-rebuild "$@"
+    sudo nixos-rebuild "$@"
+}
+
+rebuild_nixOnDroid() {
+    device="$1"
+    shift
+    nix-on-droid --flake "$HOME/.config/nixpkgs#$1" switch
+}
+
+if [ -d /data/data/com.termux.nix/files/home ]; then
+    rebuild_nixOnDroid
+else
+    rebuild_nixos "$@"
+fi
