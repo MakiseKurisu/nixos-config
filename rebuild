@@ -15,11 +15,11 @@ rebuild_nixos() {
 
 rebuild_nixOnDroid() {
     device="$1"
-    nix-on-droid --flake "$HOME/.config/nixpkgs#$1" switch
+    nix-on-droid --flake "$HOME/.config/nixpkgs#$device" switch
 }
 
 if [ -d /data/data/com.termux.nix/files/home ]; then
-    rebuild_nixOnDroid
+    rebuild_nixOnDroid "$@"
 else
     rebuild_nixos "$@"
 fi
