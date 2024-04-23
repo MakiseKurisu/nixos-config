@@ -32,6 +32,9 @@ install_nixOnDroid() {
     nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixpkgs
     nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixpkgs-unstable
     echo "Update channel completed!"
+
+    cachix use nix-on-droid
+    echo "proot cachix configured!"
 }
 
 if [ -d /data/data/com.termux.nix/files/home ]; then

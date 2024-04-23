@@ -33,6 +33,7 @@
         home.stateVersion = "23.05";
   
         home.packages = with pkgs; [
+          cachix
           curl
           findutils
           gnugrep
