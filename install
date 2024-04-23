@@ -2,16 +2,40 @@
 
 set -e
 
-if [ -f /etc/nixos/configuration.nix ] || [ -L /etc/nixos/configuration.nix ]
-then
-    echo "Back up existing configuration..."
-    sudo mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.bak
+install_nixos() {
+    if [ -f /etc/nixos/configuration.nix ] || [ -L /etc/nixos/configuration.nix ]
+    then
+        echo "Back up existing configuration..."
+        sudo mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.bak
+    fi
+
+    sudo ln -s /home/excalibur/nixos-config/flake.nix /etc/nixos/flake.nix
+    echo "Install profile completed!"
+
+    RELEASE="23.11"
+    sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixos
+    sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixos-unstable
+    echo "Update channel completed!"
+}
+
+install_nixOnDroid() {
+    if [ -f "$HOME/.config/nixpkgs/nix-on-droid.nix" ] || [ -L "$HOME/.config/nixpkgs/nix-on-droid.nix" ]
+    then
+        echo "Back up existing configuration..."
+        mv "$HOME/.config/nixpkgs/nix-on-droid.nix" "$HOME/.config/nixpkgs/nix-on-droid.nix.bak"
+    fi
+
+    ln -s "$(dirname "$0")/flake.nix" "$HOME/.config/nix-on-droid/flake.nix"
+    echo "Install profile completed!"
+
+    RELEASE="23.11"
+    nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixpkgs
+    nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixpkgs-unstable
+    echo "Update channel completed!"
+}
+
+if [ -d /data/data/com.termux.nix/files/home ]; then
+    install_nixOnDroid
+else
+    install_nixos
 fi
-
-sudo ln -s /home/excalibur/nixos-config/flake.nix /etc/nixos/flake.nix
-echo "Install profile $1 completed!"
-
-RELEASE="23.11"
-sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixos
-sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixos-unstable
-echo "Update channel completed!"

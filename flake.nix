@@ -17,6 +17,11 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     nixos-vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
       inputs.flake-utils.follows = "flake-utils";
@@ -44,6 +49,7 @@
     , flake-parts
     , flake-utils
     , home-manager
+    , nix-on-droid
     , nixos-vscode-server
     , NUR
     , pre-commit-hooks
@@ -72,8 +78,6 @@
         # The usual flake attributes can be defined here, including system-
         # agnostic ones like nixosModule and system-enumerating ones, although
         # those are more easily expressed in perSystem.
-
-
         nixosConfigurations = {
           app01 = nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
@@ -115,6 +119,16 @@
             system = "x86_64-linux";
             modules = [
               ./machines/w540/configuration.nix
+            ];
+          };
+        };
+
+        nixOnDroidConfigurations= {
+          davinci = nix-on-droid.lib.nixOnDroidConfiguration {
+            specialArgs = { inherit inputs; };
+            system = "aarch64-linux";
+            modules = [
+              ./machines/davinci/nix-on-droid.nix
             ];
           };
         };
