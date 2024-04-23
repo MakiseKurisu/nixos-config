@@ -43,8 +43,10 @@
           wget
           which
           (writeShellScriptBin "start_sshd" ''
+            set -e
             "${lib.getBin pkgs.openssh}/bin/sshd" \
               -f /data/data/com.termux.nix/files/home/.ssh/sshd_config "$@"
+            echo "sshd is now listening..."
           '')
           (writeShellScriptBin "ping" ''
             /android/system/bin/linker64 /android/system/bin/ping "$@"
