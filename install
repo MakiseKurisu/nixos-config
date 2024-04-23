@@ -24,8 +24,13 @@ install_nixOnDroid() {
         echo "Back up existing configuration..."
         mv "$HOME/.config/nixpkgs/nix-on-droid.nix" "$HOME/.config/nixpkgs/nix-on-droid.nix.bak"
     fi
+    if [ -d "$HOME/.config/nix-on-droid" ] || [ -d "$HOME/.config/nix-on-droid" ]
+    then
+        echo "Back up existing configuration..."
+        mv "$HOME/.config/nix-on-droid" "$HOME/.config/nix-on-droid.bak"
+    fi
 
-    ln -s "$(dirname "$(realpath "$0")")/flake.nix" "$HOME/.config/nixpkgs/flake.nix"
+    ln -s "$(dirname "$(realpath "$0")")" "$HOME/.config/nix-on-droid"
     echo "Install profile completed!"
 
     RELEASE="23.11"
