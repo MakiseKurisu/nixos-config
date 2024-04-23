@@ -25,7 +25,7 @@ install_nixOnDroid() {
         mv "$HOME/.config/nixpkgs/nix-on-droid.nix" "$HOME/.config/nixpkgs/nix-on-droid.nix.bak"
     fi
 
-    ln -s "$(dirname "$0")/flake.nix" "$HOME/.config/nix-on-droid/flake.nix"
+    ln -s "$(dirname "$0")/flake.nix" "$HOME/.config/nixpkgs/flake.nix"
     echo "Install profile completed!"
 
     RELEASE="23.11"
