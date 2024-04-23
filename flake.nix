@@ -125,7 +125,6 @@
 
         nixOnDroidConfigurations= {
           davinci = nix-on-droid.lib.nixOnDroidConfiguration {
-            specialArgs = { inherit inputs; };
             system = "aarch64-linux";
             modules = [
               ./machines/davinci/nix-on-droid.nix
