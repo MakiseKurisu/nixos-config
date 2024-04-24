@@ -58,12 +58,7 @@
                 "$@"
               echo "sshd is now listening."
             '')
-            (writeShellScriptBin "ping" ''
-              /android/system/bin/linker64 /android/system/bin/ping "$@"
-            '')
-            (writeShellScriptBin "ping6" ''
-              /android/system/bin/linker64 /android/system/bin/ping6 "$@"
-            '')
+            (callPackage ./android-system-bin-wrapper.nix {})
             (writeShellScriptBin "postinstall_setup" ''
               cachix use nix-on-droid
               echo "proot cachix configured."
