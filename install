@@ -30,7 +30,10 @@ install_nixOnDroid() {
         mv "$HOME/.config/nix-on-droid" "$HOME/.config/nix-on-droid.bak"
     fi
 
-    ln -s "$(dirname "$(realpath "$0")")" "$HOME/.config/nix-on-droid"
+    cd "$HOME"
+    mv "$(dirname "$(realpath "$0")")" "$HOME/.config/nix-on-droid"
+    ln -s "$HOME/.config/nix-on-droid" "$HOME/nixos-config"
+    cd "$HOME/nixos-config"
     echo "Install profile completed!"
 
     RELEASE="23.11"
