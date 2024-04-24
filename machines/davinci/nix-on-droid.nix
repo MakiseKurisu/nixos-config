@@ -86,6 +86,7 @@
           gh.enable = true;
           git.enable = true;
           home-manager.enable = true;
+          kitty.enable = true;
           less.enable = true;
           man.enable = true;
           ssh.enable = true;
