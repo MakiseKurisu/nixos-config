@@ -29,56 +29,58 @@
     config =
       { config, lib, pkgs, ... }:
       {
-        # Read the changelog before changing this value
-        home.stateVersion = "23.11";
-  
-        home.packages = with pkgs; [
-          cachix
-          curl
-          findutils
-          gnugrep
-          iperf
-          ldns
-          nmap
-          openssh
-          wget
-          which
-          (writeShellScriptBin "start_sshd" ''
-            set -e
-            if [ ! -f /data/data/com.termux.nix/files/home/.ssh/id_ed25519 ]; then
-              echo "HostKey missing. Please run 'postinstall_setup' and try again." >&2
-              exit 1
-            fi
-            "${lib.getBin pkgs.openssh}/bin/sshd" \
-              -f "${pkgs.writeText "sshd_config" ''
-                HostKey /data/data/com.termux.nix/files/home/.ssh/id_ed25519
-                Port 2222
-              ''}" \
-              "$@"
-            echo "sshd is now listening."
-          '')
-          (writeShellScriptBin "ping" ''
-            /android/system/bin/linker64 /android/system/bin/ping "$@"
-          '')
-          (writeShellScriptBin "ping6" ''
-            /android/system/bin/linker64 /android/system/bin/ping6 "$@"
-          '')
-          (writeShellScriptBin "postinstall_setup" ''
-            cachix use nix-on-droid
-            echo "proot cachix configured."
+        home = {
+          # Read the changelog before changing this value
+          stateVersion = "23.11";
+    
+          packages = with pkgs; [
+            cachix
+            curl
+            findutils
+            gnugrep
+            iperf
+            ldns
+            nmap
+            openssh
+            wget
+            which
+            (writeShellScriptBin "start_sshd" ''
+              set -e
+              if [ ! -f /data/data/com.termux.nix/files/home/.ssh/id_ed25519 ]; then
+                echo "HostKey missing. Please run 'postinstall_setup' and try again." >&2
+                exit 1
+              fi
+              "${lib.getBin pkgs.openssh}/bin/sshd" \
+                -f "${pkgs.writeText "sshd_config" ''
+                  HostKey /data/data/com.termux.nix/files/home/.ssh/id_ed25519
+                  Port 2222
+                ''}" \
+                "$@"
+              echo "sshd is now listening."
+            '')
+            (writeShellScriptBin "ping" ''
+              /android/system/bin/linker64 /android/system/bin/ping "$@"
+            '')
+            (writeShellScriptBin "ping6" ''
+              /android/system/bin/linker64 /android/system/bin/ping6 "$@"
+            '')
+            (writeShellScriptBin "postinstall_setup" ''
+              cachix use nix-on-droid
+              echo "proot cachix configured."
 
-            mkdir -p "$HOME/.ssh"
-            ssh-keygen -q -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
-            echo "sshd HostKey generated."
+              mkdir -p "$HOME/.ssh"
+              ssh-keygen -q -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
+              echo "sshd HostKey generated."
 
-            if [[ ! -e "$HOME/.ssh/authorized_keys" ]]; then
-              echo "Missing .ssh/authorized_keys! The sshd HostKey will be enabled by default." >&2
-              cp "$HOME/.ssh/id_ed25519.pub" "$HOME/.ssh/authorized_keys"
-            fi
+              if [[ ! -e "$HOME/.ssh/authorized_keys" ]]; then
+                echo "Missing .ssh/authorized_keys! The sshd HostKey will be enabled by default." >&2
+                cp "$HOME/.ssh/id_ed25519.pub" "$HOME/.ssh/authorized_keys"
+              fi
 
-            echo "Post install setup completed."
-          '')
-        ];
+              echo "Post install setup completed."
+            '')
+          ];
+        };
 
         # insert home-manager config
         programs = {
