@@ -1,11 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Simply install just the packages
-  environment.packages = with pkgs; [
-    nano
-  ];
-
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
   environment.etcBackupExtension = ".bak";
 
@@ -34,6 +29,7 @@
           stateVersion = "23.11";
           sessionVariables = {
             NOD_FLAKE_DEFAULT_DEVICE = "davinci";
+            TERM = "linux";
           };
           packages = with pkgs; [
             cachix
@@ -42,6 +38,7 @@
             gnugrep
             iperf
             ldns
+            nano
             nmap
             openssh
             wget
@@ -90,7 +87,6 @@
           gh.enable = true;
           git.enable = true;
           home-manager.enable = true;
-          kitty.enable = true;
           less.enable = true;
           man.enable = true;
           ssh.enable = true;
