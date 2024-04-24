@@ -7,13 +7,13 @@ stdenvNoCC.mkDerivation rec {
   name = "android-system-bin-wrapper";
   installPhase = ''
     mkdir -p "$out/bin"
-    mapfile android_bin <"${./android-system-bin.list}"
+    mapfile -t android_bin <"${./android-system-bin.list}"
     for i in "''${android_bin[@]}"; do
       cat <<EOF >"$out/bin/$i"
-      #!${lib.getBin bash}/bin/bash
+    #!${lib.getBin bash}/bin/bash
 
-      /android/system/bin/linker64 "/android/system/bin/$i" "$@"
-      EOF
+    /android/system/bin/linker64 "/android/system/bin/$i" "$@"
+    EOF
     done
   '';
   dontUnpack = true;
