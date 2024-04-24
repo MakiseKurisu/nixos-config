@@ -85,9 +85,9 @@
             "bin/termux-file-editor" = {
               executable = true;
               text = ''
-                #!${lib.getBin pkgs.bash}
+                #!${lib.getBin pkgs.bash}/bin/bash
 
-                "${lib.getBin pkgs.nano}" "$@"
+                "${lib.getBin pkgs.nano}/bin/nano" "$@"
               '';
             };
           };
