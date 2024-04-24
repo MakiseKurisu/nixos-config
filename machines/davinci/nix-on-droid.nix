@@ -33,7 +33,7 @@
           # Read the changelog before changing this value
           stateVersion = "23.11";
           sessionVariables = {
-            NOD_FLAKE_CONFIG_URI = "$HOME/.config/nix-on-droid#davinci";
+            NOD_FLAKE_DEFAULT_DEVICE = "davinci";
           };
           packages = with pkgs; [
             cachix
