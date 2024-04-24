@@ -10,7 +10,7 @@ stdenvNoCC.mkDerivation rec {
     mapfile android_bin <"${./android-system-bin.list}"
     for i in "''${android_bin[@]}"; do
       cat <<EOF >"$out/bin/$i"
-      #!${lib.getBin pkgs.bash}/bin/bash
+      #!${lib.getBin bash}/bin/bash
 
       /android/system/bin/linker64 "/android/system/bin/$i" "$@"
       EOF
