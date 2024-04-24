@@ -67,8 +67,14 @@
             cachix use nix-on-droid
             echo "proot cachix configured."
 
-            ssh-keygen -q -t ed25519 -f /data/data/com.termux.nix/files/home/.ssh/id_ed25519 -N ""
+            mkdir -p "$HOME/.ssh"
+            ssh-keygen -q -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
             echo "sshd HostKey generated."
+
+            if [[ ! -e "$HOME/.ssh/authorized_keys" ]]; then
+              echo "Missing .ssh/authorized_keys! The sshd HostKey will be enabled by default." >&2
+              cp "$HOME/.ssh/id_ed25519.pub" "$HOME/.ssh/authorized_keys"
+            fi
 
             echo "Post install setup completed."
           '')
