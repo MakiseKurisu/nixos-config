@@ -31,9 +31,9 @@ install_nixOnDroid() {
     fi
 
     cd "$HOME"
-    mv "$(dirname "$(realpath "$0")")" "$HOME/.config/nix-on-droid"
-    ln -s "$HOME/.config/nix-on-droid" "$HOME/nixos-config"
-    cd "$HOME/nixos-config"
+    mv "$SCRIPT_DIR" "$HOME/.config/nix-on-droid"
+    ln -s "$HOME/.config/nix-on-droid" "$HOME/$(basename "$SCRIPT_DIR")"
+    cd "$HOME/$(basename "$SCRIPT_DIR")"
     echo "Install profile completed!"
 
     RELEASE="23.11"
@@ -43,6 +43,8 @@ install_nixOnDroid() {
 
     echo "Install completed! Please run 'postinstall_setup' after you rebuild the system."
 }
+
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 if [ -d /data/data/com.termux.nix/files/home ]; then
     install_nixOnDroid
