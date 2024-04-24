@@ -32,7 +32,8 @@ install_nixOnDroid() {
 
     cd "$HOME"
     mv "$SCRIPT_DIR" "$HOME/.config/nix-on-droid"
-    cd "$HOME/.config/nix-on-droid"
+    ln -s "$HOME/.config/nix-on-droid" "$HOME/$(basename "$SCRIPT_DIR")"
+    cd "$HOME/$(basename "$SCRIPT_DIR")"
     echo "Install profile completed!"
 
     RELEASE="23.11"

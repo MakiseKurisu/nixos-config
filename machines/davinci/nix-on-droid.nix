@@ -90,9 +90,6 @@
                 "${lib.getBin pkgs.nano}" "$@"
               '';
             };
-            "nixos-config" = {
-              target = ".config/nix-on-droid";
-            };
           };
         };
 
