@@ -80,19 +80,19 @@
               echo "Post install setup completed."
             '')
           ];
-        };
 
-        file = {
-          "bin/termux-file-editor" = {
-            executable = true;
-            text = ''
-              #!${lib.getBin pkgs.bash}
+          file = {
+            "bin/termux-file-editor" = {
+              executable = true;
+              text = ''
+                #!${lib.getBin pkgs.bash}
 
-              "${lib.getBin pkgs.nano}" "$@"
-            '';
-          };
-          "nixos-config" = {
-            target = ".config/nix-on-droid";
+                "${lib.getBin pkgs.nano}" "$@"
+              '';
+            };
+            "nixos-config" = {
+              target = ".config/nix-on-droid";
+            };
           };
         };
 
