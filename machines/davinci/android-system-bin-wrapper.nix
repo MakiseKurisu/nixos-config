@@ -9,16 +9,35 @@ stdenvNoCC.mkDerivation rec {
   installPhase = ''
     mkdir -p "$out/bin"
 
-    cat <<EOF >"$out/bin/android-system-bin-wrapper"
+    cat <<EOF >"$out/bin/${name}"
     #!${lib.getBin bash}/bin/bash
 
-    /android/system/bin/linker64 "/android/system/bin/\$(${lib.getBin coreutils}/bin/basename "\$0")" "\$@"
+    __help() {
+      cat <<HELP >&2
+    Usage: \$0 COMMAND [COMMAND OPTIONS]
+    HELP
+    }
+
+    CMD_NAME="\$(${lib.getBin coreutils}/bin/basename "\$0")"
+
+    if [[ \$CMD_NAME == "${name}"]]; then
+      case \$# in 
+      0)
+        __help
+        exit 1
+      *)
+        CMD_NAME="\$1"
+        shift
+      esac
+    fi
+
+    /android/system/bin/linker64 "/android/system/bin/\$CMD_NAME" "\$@"
     EOF
-    chmod +x "$out/bin/android-system-bin-wrapper"
+    chmod +x "$out/bin/${name}"
 
     mapfile -t android_bin <"${./android-system-bin.list}"
     for i in "''${android_bin[@]}"; do
-      ln -s android-system-bin-wrapper "$out/bin/$i"
+      ln -s "${name}" "$out/bin/$i"
     done
   '';
   dontUnpack = true;
