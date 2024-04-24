@@ -45,15 +45,32 @@
           which
           (writeShellScriptBin "start_sshd" ''
             set -e
+            if [ ! -f /data/data/com.termux.nix/files/home/.ssh/id_ed25519 ]; then
+              echo "HostKey missing. Please run 'postinstall_setup' and try again." >&2
+              exit 1
+            fi
             "${lib.getBin pkgs.openssh}/bin/sshd" \
-              -f /data/data/com.termux.nix/files/home/.ssh/sshd_config "$@"
-            echo "sshd is now listening..."
+              -f "${pkgs.writeText "sshd_config" ''
+                HostKey /data/data/com.termux.nix/files/home/.ssh/id_ed25519
+                Port 2222
+              ''}" \
+              "$@"
+            echo "sshd is now listening."
           '')
           (writeShellScriptBin "ping" ''
             /android/system/bin/linker64 /android/system/bin/ping "$@"
           '')
           (writeShellScriptBin "ping6" ''
             /android/system/bin/linker64 /android/system/bin/ping6 "$@"
+          '')
+          (writeShellScriptBin "postinstall_setup" ''
+            cachix use nix-on-droid
+            echo "proot cachix configured."
+
+            ssh-keygen -q -t ed25519 -f /data/data/com.termux.nix/files/home/.ssh/id_ed25519 -N ""
+            echo "sshd HostKey generated."
+
+            echo "Post install setup completed."
           '')
         ];
 
