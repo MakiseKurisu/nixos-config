@@ -34,7 +34,6 @@
 
           packages = with pkgs; [
             cachix
-            curl
             findutils
             gnugrep
             iperf
