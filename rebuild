@@ -15,7 +15,7 @@ rebuild_nixos() {
 
 rebuild_nixOnDroid() {
     device="${1:-$NOD_FLAKE_DEFAULT_DEVICE}"
-    SHELL=linux nix-on-droid --flake "$HOME/.config/nix-on-droid#$device" switch
+    TERM=linux nix-on-droid --flake "$HOME/.config/nix-on-droid#$device" switch
 }
 
 if [ -d /data/data/com.termux.nix/files/home ]; then
