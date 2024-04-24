@@ -20,14 +20,16 @@ stdenvNoCC.mkDerivation rec {
 
     CMD_NAME="\$(${lib.getBin coreutils}/bin/basename "\$0")"
 
-    if [[ \$CMD_NAME == "${name}"]]; then
+    if [[ \$CMD_NAME == "${name}" ]]; then
       case \$# in 
       0)
         __help
         exit 1
+        ;;
       *)
         CMD_NAME="\$1"
         shift
+        ;;
       esac
     fi
 
