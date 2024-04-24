@@ -12,8 +12,9 @@ stdenvNoCC.mkDerivation rec {
       cat <<EOF >"$out/bin/$i"
     #!${lib.getBin bash}/bin/bash
 
-    /android/system/bin/linker64 "/android/system/bin/$i" "$@"
+    /android/system/bin/linker64 "/android/system/bin/$i" "\$@"
     EOF
+      chmod +x "$out/bin/$i"
     done
   '';
   dontUnpack = true;
