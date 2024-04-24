@@ -32,8 +32,13 @@
             TERM = "linux";
           };
 
+          sessionPath = [
+            "${lib.getBin (pkgs.callPackage ./android-system-bin-wrapper.nix {})}/bin"
+          ];
+
           packages = with pkgs; [
             cachix
+            curl
             findutils
             gnugrep
             iperf
@@ -57,7 +62,6 @@
                 "$@"
               echo "sshd is now listening."
             '')
-            (callPackage ./android-system-bin-wrapper.nix {})
             (writeShellScriptBin "postinstall_setup" ''
               cachix use nix-on-droid
               echo "proot cachix configured."
