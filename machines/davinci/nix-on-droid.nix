@@ -22,15 +22,16 @@
     useGlobalPkgs = true;
   
     config =
-      { config, lib, pkgs, ... }:
-      {
+      { config, lib, pkgs, ... }: {
         home = {
           # Read the changelog before changing this value
           stateVersion = "23.11";
+
           sessionVariables = {
             NOD_FLAKE_DEFAULT_DEVICE = "davinci";
             TERM = "linux";
           };
+
           packages = with pkgs; [
             cachix
             curl
@@ -81,7 +82,20 @@
           ];
         };
 
-        # insert home-manager config
+        file = {
+          "bin/termux-file-editor" = {
+            executable = true;
+            text = ''
+              #!${lib.getBin pkgs.bash}
+
+              "${lib.getBin pkgs.nano}" "$@"
+            '';
+          };
+          "nixos-config" = {
+            target = ".config/nix-on-droid";
+          };
+        };
+
         programs = {
           bash.enable = true;
           gh.enable = true;
