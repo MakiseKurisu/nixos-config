@@ -48,7 +48,7 @@
             openssh
             wget
             which
-            (writeShellScriptBin "start_sshd" ''
+            (writeShellScriptBin "sshd_start" ''
               set -e
               if [ ! -f /data/data/com.termux.nix/files/home/.ssh/id_ed25519 ]; then
                 echo "HostKey missing. Please run 'postinstall_setup' and try again." >&2
@@ -57,6 +57,7 @@
               "${lib.getBin pkgs.openssh}/bin/sshd" \
                 -f "${pkgs.writeText "sshd_config" ''
                   HostKey /data/data/com.termux.nix/files/home/.ssh/id_ed25519
+                  PidFile /tmp/sshd.pid
                   Port 2222
                 ''}" \
                 "$@"
