@@ -21,7 +21,6 @@ bcc
 blockdev
 bm
 bmgr
-bootstrap
 bu
 bugreport
 bugreportz
@@ -99,7 +98,6 @@ hid
 hidumper
 hilogcat
 hostname
-hw
 hwclock
 hwnff
 i2cdetect
@@ -170,7 +168,6 @@ mkswap
 mktemp
 modinfo
 modprobe
-monkey
 more
 mount
 mountpoint
