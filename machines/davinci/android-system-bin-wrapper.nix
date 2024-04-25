@@ -58,7 +58,7 @@ stdenvNoCC.mkDerivation rec {
     */system/bin/sh*)
       __sh "\$@"
       ;;
-    *ASCII text*)
+    *"ASCII text"*)
       echo "Cannot execute '/android/system/bin/\$1' which is a plain text file." >&2
       exit 1
       ;;
