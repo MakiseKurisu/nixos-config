@@ -54,6 +54,11 @@
                 echo "HostKey is missing. Please run 'postinstall-setup' and try again." >&2
                 exit 1
               fi
+              PID_FILE="/tmp/sshd.pid"
+              if [[ -f $PID_FILE ]]; then
+                echo "sshd is already running." >&2
+                exit 1
+              fi
               "${lib.getBin pkgs.openssh}/bin/sshd" \
                 -f "${pkgs.writeText "sshd_config" ''
                   HostKey /data/data/com.termux.nix/files/home/.ssh/id_ed25519
@@ -67,11 +72,10 @@
               set -e
               PID_FILE="/tmp/sshd.pid"
               if [[ ! -f $PID_FILE ]]; then
-                echo "$PID_FILE is missing. sshd not running?" >&2
+                echo "sshd is not running." >&2
                 exit 1
               fi
               kill "$("${lib.getBin pkgs.coreutils}/bin/cat" "$PID_FILE")"
-              rm "$PID_FILE"
               echo "sshd is now stopped."
             '')
             (writeShellScriptBin "postinstall-setup" ''
