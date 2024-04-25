@@ -48,10 +48,10 @@
             openssh
             wget
             which
-            (writeShellScriptBin "sshd_start" ''
+            (writeShellScriptBin "sshd-start" ''
               set -e
-              if [ ! -f /data/data/com.termux.nix/files/home/.ssh/id_ed25519 ]; then
-                echo "HostKey missing. Please run 'postinstall_setup' and try again." >&2
+              if [[ ! -f /data/data/com.termux.nix/files/home/.ssh/id_ed25519 ]]; then
+                echo "HostKey is missing. Please run 'postinstall-setup' and try again." >&2
                 exit 1
               fi
               "${lib.getBin pkgs.openssh}/bin/sshd" \
@@ -63,7 +63,7 @@
                 "$@"
               echo "sshd is now listening."
             '')
-            (writeShellScriptBin "postinstall_setup" ''
+            (writeShellScriptBin "postinstall-setup" ''
               cachix use nix-on-droid
               echo "proot cachix configured."
 
