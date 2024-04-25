@@ -34,6 +34,9 @@
       "hypr/thinkpad.conf" = {
         source = pkgs.writeText "hyprland-thinkpad.conf" ''
           monitor=eDP-1, highres, auto, 1.5
+          monitor=DP-1, highres, auto, 2
+          workspace=eDP-1, 2
+          workspace=DP-1, 30
         '';
       };
     };
