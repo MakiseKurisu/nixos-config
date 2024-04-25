@@ -19,15 +19,19 @@ stdenvNoCC.mkDerivation rec {
     }
 
     __linker() {
-      LD_LIBRARY_PATH=/apex/com.android.runtime/lib/ /android/system/bin/linker "/android/system/bin/\$CMD_NAME" "\$@"
+      local CMD_PATH="\$1"
+      shift
+      LD_LIBRARY_PATH=/apex/com.android.runtime/lib/ /android/system/bin/linker "\$CMD_PATH" "\$@"
     }
 
     __linker64() {
-      LD_LIBRARY_PATH=/apex/com.android.runtime/lib64/ /android/system/bin/linker64 "/android/system/bin/\$CMD_NAME" "\$@"
+      local CMD_PATH="\$1"
+      shift
+      LD_LIBRARY_PATH=/apex/com.android.runtime/lib64/ /android/system/bin/linker64 "\$CMD_PATH" "\$@"
     }
 
     __sh() {
-      __linker64 sh "\$@"
+      __linker64 /android/system/bin/sh "\$@"
     }
 
     CMD_NAME="\$("${lib.getBin coreutils}/bin/basename" "\$0")"
@@ -45,32 +49,36 @@ stdenvNoCC.mkDerivation rec {
       esac
     fi
 
-    if [[ ! -e "/android/system/bin/\$CMD_NAME" ]]; then
-      echo "Cannot execute '/android/system/bin/\$CMD_NAME' which does not exist." >&2
+    CMD_PATH="/android/system/bin/\$CMD_NAME"
+    if [[ ! -e "\$CMD_PATH" ]]; then
+      echo "Cannot execute '\$CMD_PATH' which does not exist." >&2
       exit 1
     fi
 
-    REAL_PATH="\$("${lib.getBin coreutils}/bin/realpath" "/android/system/bin/\$CMD_NAME")"
-    case "\$(__linker64 file "\$REAL_PATH")" in
+    REAL_PATH="\$("${lib.getBin coreutils}/bin/realpath" "\$CMD_PATH")"
+    case "\$(__linker64 /android/system/bin/file "\$REAL_PATH")" in
+    *stripped*)
+      "\$CMD_PATH" "\$@"
+      ;;
     */system/bin/linker64*)
-      __linker64 "\$@"
+      __linker64 "\$CMD_PATH" "\$@"
       ;;
     */system/bin/linker*)
-      __linker "\$@"
+      __linker "\$CMD_PATH" "\$@"
       ;;
     */system/bin/sh*)
-      __sh "\$@"
+      __sh "\$CMD_PATH" "\$@"
       ;;
     *"ASCII text"*)
-      echo "Cannot execute '/android/system/bin/\$CMD_NAME' which is a plain text file." >&2
+      echo "Cannot execute '\$CMD_PATH' which is a plain text file." >&2
       exit 1
       ;;
     *directory*)
-      echo "Cannot execute '/android/system/bin/\$CMD_NAME' which is a directory." >&2
+      echo "Cannot execute '\$CMD_PATH' which is a directory." >&2
       exit 1
       ;;
     *)
-      echo "Cannot execute '/android/system/bin/\$CMD_NAME' which is an unknown type of file." >&2
+      echo "Cannot execute '\$CMD_PATH' which is an unknown type of file." >&2
       exit 1
       ;;
     esac
