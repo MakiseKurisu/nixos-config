@@ -38,13 +38,12 @@ stdenvNoCC.mkDerivation rec {
 
     CMD_NAME="\$("${lib.getBin coreutils}/bin/basename" "\$0")"
 
-    if [[ \$CMD_NAME == "${name}" ]]; then
-      case \$# in 
-      0)
-        __help
-        exit 1
-        ;;
-      esac
+    if [[ \$CMD_NAME == "${name}" ]] && (( \$# == 0 )); then
+      __help
+      exit 1
+    elif [[ ! -e "/android/system/bin/\$1" ]]; then
+      echo "Cannot execute '/android/system/bin/\$1' which does not exist." >&2
+      exit 1
     fi
 
     REAL_PATH="\$("${lib.getBin coreutils}/bin/realpath" "/android/system/bin/\$1")"
