@@ -21,13 +21,13 @@ stdenvNoCC.mkDerivation rec {
     __linker() {
       local CMD_NAME="\$1"
       shift
-      /android/system/bin/linker "/android/system/bin/\$CMD_NAME" "\$@"
+      LD_LIBRARY_PATH=/apex/com.android.runtime/lib/ /android/system/bin/linker "/android/system/bin/\$CMD_NAME" "\$@"
     }
 
     __linker64() {
       local CMD_NAME="\$1"
       shift
-      /android/system/bin/linker64 "/android/system/bin/\$CMD_NAME" "\$@"
+      LD_LIBRARY_PATH=/apex/com.android.runtime/lib64/ /android/system/bin/linker64 "/android/system/bin/\$CMD_NAME" "\$@"
     }
 
     __sh() {
@@ -67,7 +67,7 @@ stdenvNoCC.mkDerivation rec {
       exit 1
       ;;
     *)
-      echo "Unknown command type!" >&2
+      echo "Cannot execute '/android/system/bin/\$1' which is an unknown type of file." >&2
       exit 1
       ;;
     esac
