@@ -18,7 +18,25 @@ stdenvNoCC.mkDerivation rec {
     HELP
     }
 
-    CMD_NAME="\$(${lib.getBin coreutils}/bin/basename "\$0")"
+    __linker() {
+      local CMD_NAME="\$1"
+      shift
+      /android/system/bin/linker "/android/system/bin/\$CMD_NAME" "\$@"
+    }
+
+    __linker64() {
+      local CMD_NAME="\$1"
+      shift
+      /android/system/bin/linker64 "/android/system/bin/\$CMD_NAME" "\$@"
+    }
+
+    __sh() {
+      local CMD_NAME="\$1"
+      shift
+      __linker64 sh "\$@"
+    }
+
+    CMD_NAME="\$("${lib.getBin coreutils}/bin/basename" "\$0")"
 
     if [[ \$CMD_NAME == "${name}" ]]; then
       case \$# in 
@@ -26,14 +44,33 @@ stdenvNoCC.mkDerivation rec {
         __help
         exit 1
         ;;
-      *)
-        CMD_NAME="\$1"
-        shift
-        ;;
       esac
     fi
 
-    /android/system/bin/linker64 "/android/system/bin/\$CMD_NAME" "\$@"
+    REAL_PATH="\$("${lib.getBin coreutils}/bin/realpath" "/android/system/bin/\$1")"
+    case "\$(__linker64 file "\$REAL_PATH") in
+    */system/bin/linker64*)
+      __linker64 "\$@"
+      ;;
+    */system/bin/linker*)
+      __linker "\$@"
+      ;;
+    */system/bin/sh*)
+      __sh "\$@"
+      ;;
+    *ASCII text*)
+      echo "Cannot execute '/android/system/bin/\$1' which is a plain text file." >&2
+      exit 1
+      ;;
+    *directory*)
+      echo "Cannot execute '/android/system/bin/\$1' which is a directory." >&2
+      exit 1
+      ;;
+    *)
+      echo "Unknown command type!" >&2
+      exit 1
+      ;;
+    esac
     EOF
     chmod +x "$out/bin/${name}"
 
