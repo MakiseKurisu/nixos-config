@@ -63,6 +63,17 @@
                 "$@"
               echo "sshd is now listening."
             '')
+            (writeShellScriptBin "sshd-stop" ''
+              set -e
+              PID_FILE="/tmp/sshd.pid"
+              if [[ ! -f $PID_FILE ]]; then
+                echo "$PID_FILE is missing. sshd not running?" >&2
+                exit 1
+              fi
+              kill "$("${lib.getBin pkgs.coreutils}/bin/cat" "$PID_FILE")"
+              rm "$PID_FILE"
+              echo "sshd is now stopped."
+            '')
             (writeShellScriptBin "postinstall-setup" ''
               cachix use nix-on-droid
               echo "proot cachix configured."
