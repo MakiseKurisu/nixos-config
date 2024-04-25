@@ -15,6 +15,7 @@ install_nixos() {
     RELEASE="23.11"
     sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixos
     sudo nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixos-unstable
+    sudo nix-channel --update
     echo "Update channel completed!"
 }
 
@@ -39,6 +40,7 @@ install_nixOnDroid() {
     RELEASE="23.11"
     nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixpkgs
     nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixpkgs-unstable
+    nix-channel --update
     echo "Update channel completed!"
 
     echo "Install completed! Please run 'postinstall_setup' after you rebuild the system."
