@@ -48,7 +48,7 @@ stdenvNoCC.mkDerivation rec {
     fi
 
     REAL_PATH="\$("${lib.getBin coreutils}/bin/realpath" "/android/system/bin/\$1")"
-    case "\$(__linker64 file "\$REAL_PATH") in
+    case "\$(__linker64 file "\$REAL_PATH")" in
     */system/bin/linker64*)
       __linker64 "\$@"
       ;;
