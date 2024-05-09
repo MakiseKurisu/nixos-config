@@ -76,6 +76,7 @@
       imv
       jq
       kicad
+      krita
       libreoffice-qt
       libsForQt5.ark
       libsForQt5.breeze-gtk
