@@ -99,6 +99,7 @@
             "diffEditor.ignoreTrimWhitespace" = false;
             "debug.javascript.unmapMissingSources" = true;
             "editor.stickyScroll.enabled" = true;
+            "files.autoGuessEncoding" = true;
             "files.autoSave" = "afterDelay";
             "window.titleBarStyle" = "custom";
           };
