@@ -2,7 +2,7 @@
 
 {
   imports = [
-    #./pr/ch9344.nix
+    # ./pr/ch9344.nix
     ./pr/dolphin.nix
     ./pr/mmdebstrap.nix
     ./plasma-systemsettings.nix
@@ -46,16 +46,13 @@
       brightnessctl
       cachix
       calibre
-      (chromium.override (previous: {
-        commandLineArgs = (previous.commandLineArgs or "") +
-          " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
-      }))
+      chromium
       colmena
       inputs.devenv.packages.${pkgs.system}.devenv
       discord
       element-desktop
       element-desktop-wayland
-      (feishu.override (previous: {
+      (master.feishu.override (previous: {
         commandLineArgs = (previous.commandLineArgs or "") +
           " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
       }))
@@ -78,9 +75,9 @@
       kicad
       krita
       libreoffice-qt
-      libsForQt5.ark
-      libsForQt5.breeze-gtk
-      libsForQt5.kcalc
+      kdePackages.ark
+      kdePackages.breeze-gtk
+      kdePackages.kcalc
       libwebp
       lingot
       lmms
@@ -116,8 +113,6 @@
       slurp
       solaar
       sunshine
-      swayidle
-      swaylock
       tdesktop
       teams-for-linux
       thunderbird
@@ -130,7 +125,17 @@
       wireguard-tools
       wsmancli
       xdg-utils
-      yesplaymusic
+      (yesplaymusic.overrideAttrs ({
+        postInstall = ''
+          rm $out/bin/yesplaymusic
+          makeWrapper $out/opt/YesPlayMusic/yesplaymusic $out/bin/yesplaymusic \
+            --argv0 "yesplaymusic" \
+            --add-flags "$out/opt/YesPlayMusic/resources/app.asar" \
+            --add-flags "--enable-features=UseOzonePlatform,WaylandWindowDecorations" \
+            --add-flags "--ozone-platform=wayland" \
+            --add-flags "--enable-wayland-ime"
+        '';
+      }))
       yarn
     ];
   };
@@ -176,7 +181,7 @@
       fcitx5.addons = with pkgs; [
         fcitx5-gtk
         fcitx5-chinese-addons
-        libsForQt5.fcitx5-qt
+        kdePackages.fcitx5-qt
       ];
     };
   };
@@ -190,18 +195,13 @@
         pr-mmdebstrap.debian-archive-keyring
       ];
     };
-    /*
-      # Conflict with starship
-      # https://github.com/NixOS/nixpkgs/issues/257720
-      # Waiting for https://github.com/starship/starship/commit/8168c21293de8118af1e95778b1eee8f26cd6d6a
-      bash = {
+    bash = {
       undistractMe = {
         enable = true;
         playSound = true;
         timeout = 45;
       };
-      };
-    */
+    };
     dconf.enable = true;
     direnv.enable = true;
     dolphin.enable = true;
@@ -210,11 +210,8 @@
       package = pkgs.firefox-wayland;
     };
     regreet.enable = true;
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      enableNvidiaPatches = true;
-    };
+    hyprland.enable = true;
+    hyprlock.enable = true;
     waybar = {
       enable = true;
       package = pkgs.waybar;
@@ -240,7 +237,6 @@
   };
 
   security = {
-    pam.services.swaylock = { };
     polkit.enable = true;
     rtkit.enable = true;
     sudo = {
@@ -255,7 +251,8 @@
     ananicy.enable = true;
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
+      nssmdns6 = true;
       openFirewall = true;
     };
     dbus.enable = true;
@@ -271,7 +268,7 @@
                   enabled = off
               }
               misc {
-                  force_hypr_chan = on
+                  force_default_wallpaper = 2
               }
             '';
           in
@@ -282,6 +279,7 @@
     };
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
+    hypridle.enable = true;
     locate.enable = true;
     logind = {
       lidSwitch = "ignore";

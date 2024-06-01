@@ -2,38 +2,15 @@
   description = "NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    devenv = {
-      url = "github:cachix/devenv";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.pre-commit-hooks.follows = "pre-commit-hooks";
-    };
-    flake-compat.url = "github:edolstra/flake-compat";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    devenv.url = "github:cachix/devenv";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-utils.url = "github:numtide/flake-utils";
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-    nixos-vscode-server = {
-      url = "github:nix-community/nixos-vscode-server";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    nix-on-droid.url = "github:nix-community/nix-on-droid/release-23.11";
+    nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     NUR.url = "github:nix-community/NUR";
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # Work In Progress PRs
     pr-ch9344.url = "github:MakiseKurisu/nixpkgs/ch9344-2.0";
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
@@ -45,14 +22,11 @@
     , nixpkgs
     , nixpkgs-unstable
     , devenv
-    , flake-compat
     , flake-parts
-    , flake-utils
     , home-manager
     , nix-on-droid
     , nixos-vscode-server
     , NUR
-    , pre-commit-hooks
     , pr-ch9344
     , pr-dolphin
     , pr-mmdebstrap

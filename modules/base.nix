@@ -51,8 +51,13 @@
     config = {
       allowUnfree = true;
       packageOverrides = pkgs: {
-        unstable = import inputs.nixos-unstable {
+        unstable = import inputs.nixpkgs-unstable {
           config = config.nixpkgs.config;
+          system = pkgs.system;
+        };
+        master = import inputs.nixpkgs-master {
+          config = config.nixpkgs.config;
+          system = pkgs.system;
         };
         nur = import inputs.NUR {
           inherit pkgs;
@@ -71,8 +76,10 @@
   };
 
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
 
   system = {

@@ -22,10 +22,6 @@
             source = ../configs/waybar;
             recursive = true;
           };
-          "swayidle" = {
-            source = ../configs/swayidle;
-            recursive = true;
-          };
           "discord" = {
             source = ../configs/discord;
             recursive = true;
@@ -67,10 +63,6 @@
           enable = true;
           enableExtensionUpdateCheck = false;
           enableUpdateCheck = false;
-          package = pkgs.vscode.override (previous: {
-            commandLineArgs = (previous.commandLineArgs or "") +
-              " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime --password-store=gnome --disable-gpu-sandbox";
-          });
           extensions = with pkgs.vscode-extensions; [
             bbenoist.nix
             github.vscode-github-actions

@@ -58,11 +58,11 @@
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
       "hypr/machine.conf" = {
-        source = pkgs.writeText "hyprland-machine.conf" ''+
+        source = pkgs.writeText "hyprland-machine.conf" ''
           monitor=DP-1, highrr, 0x0, 1
           monitor=HDMI-A-1, 1920x1080@60, 3440x0, auto, transform, 1
-          workspace=DP-1, 2
-          workspace=HDMI-A-1, 30
+          workspace=2, monitor:DP-1, default:yes
+          workspace=30, monitor:HDMI-A-1, default:yes
         '';
       };
       "looking-glass/client.ini" = {

@@ -25,7 +25,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_6_7;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_6_9;
     loader.efi.efiSysMountPoint = "/boot/efi";
   };
 
@@ -37,10 +37,11 @@
           monitor=DP-1, highres, auto, 2 # Body: mini DisplayPort
           monitor=DP-2, highres, auto, 2 # Unknown:
           monitor=DP-3, highres, auto, 2 # Dock: HDMI
-          workspace=eDP-1, 2
-          workspace=DP-1, 30
-          workspace=DP-2, 40
-          workspace=DP-3, 50
+          workspace=r[1-20], monitor:eDP-1
+          workspace=2, monitor:eDP-1, default:yes
+          workspace=30, monitor:DP-1, default:yes
+          workspace=40, monitor:DP-2, default:yes
+          workspace=50, monitor:DP-3, default:yes
         '';
       };
     };
