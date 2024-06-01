@@ -68,6 +68,7 @@
             github.vscode-github-actions
             github.vscode-pull-request-github
             ms-azuretools.vscode-docker
+            ms-dotnettools.csdevkit
             ms-dotnettools.csharp
             ms-python.python
             ms-vscode.cmake-tools
