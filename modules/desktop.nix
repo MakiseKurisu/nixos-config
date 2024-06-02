@@ -46,7 +46,10 @@
       brightnessctl
       cachix
       calibre
-      chromium
+      (chromium.override (previous: {
+        commandLineArgs = (previous.commandLineArgs or "") +
+          " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
+      }))
       colmena
       inputs.devenv.packages.${pkgs.system}.devenv
       discord
