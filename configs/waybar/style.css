@@ -4,6 +4,15 @@
     font-size: 13px;
 }
 
+tooltip {
+	background: #282828;
+	border: 1px solid #a9b665;
+}
+
+tooltip label {
+	color: #d4be98;
+}
+
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
@@ -14,24 +23,6 @@ window#waybar {
 
 window#waybar.hidden {
     opacity: 0.2;
-}
-
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
 }
 
 button {
@@ -80,13 +71,16 @@ button:hover {
 #temperature,
 #backlight,
 #network,
+#bluetooth,
 #pulseaudio,
 #wireplumber,
-#custom-media,
+#custom-power-off,
 #tray,
 #mode,
 #idle_inhibitor,
 #scratchpad,
+#mpris,
+#window,
 #mpd {
     padding: 0 10px;
     color: #ffffff;
@@ -167,14 +161,12 @@ label:focus {
     background-color: #f53c3c;
 }
 
-#pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+#mpris {
+    background-color: #46c5bf;
 }
 
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+#mpris.paused {
+    background-color: #f53c3c;
 }
 
 #wireplumber {
@@ -186,18 +178,8 @@ label:focus {
     background-color: #f53c3c;
 }
 
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
+#custom-power-off {
+    background-color: #be2c2c;
 }
 
 #temperature {
