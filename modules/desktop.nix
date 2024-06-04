@@ -55,7 +55,7 @@
       discord
       element-desktop
       element-desktop-wayland
-      (master.feishu.override (previous: {
+      (feishu.override (previous: {
         commandLineArgs = (previous.commandLineArgs or "") +
           " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
       }))
