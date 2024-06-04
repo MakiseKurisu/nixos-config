@@ -65,6 +65,9 @@
       freecad
       gimp
       github-desktop
+      ghidra
+      ghidra-extensions.machinelearning
+      ghidra-extensions.gnudisassembler
       gnome3.adwaita-icon-theme
       greetd.wlgreet
       grim
