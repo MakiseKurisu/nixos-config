@@ -84,6 +84,7 @@
       kdePackages.ark
       kdePackages.breeze-gtk
       kdePackages.kcalc
+      kdePackages.qtwayland
       libwebp
       lingot
       lmms
