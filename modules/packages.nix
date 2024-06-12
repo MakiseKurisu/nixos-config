@@ -7,7 +7,7 @@
 
   environment =
     let
-      dotnet-combined = (with pkgs.dotnetCorePackages; combinePackages [
+      dotnet-combined = (with pkgs.unstable.dotnetCorePackages; combinePackages [
         sdk_8_0
       ]).overrideAttrs (finalAttrs: previousAttrs: {
         # This is needed to install workload in $HOME
