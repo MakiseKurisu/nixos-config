@@ -52,6 +52,7 @@
           distrobox
           dmidecode
           dotnet-combined
+          dotnet-outdated
           dpkg
           dtc
           efitools
