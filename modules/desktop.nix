@@ -118,6 +118,7 @@
       qq
       qrencode
       remmina
+      rs-tftpd
       rstudio
       selectdefaultapplication
       skypeforlinux
