@@ -85,6 +85,7 @@
           oci-cli
           oil
           openssl
+          p7zip
           pciutils
           picocom
           playerctl

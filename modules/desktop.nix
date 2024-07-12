@@ -126,6 +126,7 @@
       slurp
       solaar
       sunshine
+      sweethome3d.application
       tdesktop
       teams-for-linux
       thunderbird
