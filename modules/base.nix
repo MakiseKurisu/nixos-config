@@ -3,6 +3,7 @@
 {
   imports = [
     ./services.nix
+    inputs.lix-module.nixosModules.default
   ];
 
   console = {

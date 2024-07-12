@@ -8,6 +8,10 @@
     devenv.url = "github:cachix/devenv";
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     NUR.url = "github:nix-community/NUR";
@@ -24,6 +28,7 @@
     , devenv
     , flake-parts
     , home-manager
+    , lix-module
     , nix-on-droid
     , nixos-vscode-server
     , NUR
