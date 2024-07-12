@@ -37,7 +37,7 @@ install_nixOnDroid() {
     cd "$HOME/$(basename "$SCRIPT_DIR")"
     echo "Install profile completed!"
 
-    RELEASE="23.11"
+    RELEASE="24.05"
     nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-${RELEASE} nixpkgs
     nix-channel --add https://mirrors.ustc.edu.cn/nix-channels/nixos-unstable nixpkgs-unstable
     nix-channel --update
