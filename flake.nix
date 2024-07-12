@@ -8,7 +8,7 @@
     devenv.url = "github:cachix/devenv";
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
-    nix-on-droid.url = "github:nix-community/nix-on-droid/release-23.11";
+    nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     NUR.url = "github:nix-community/NUR";
     # Work In Progress PRs
