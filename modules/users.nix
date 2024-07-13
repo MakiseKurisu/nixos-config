@@ -47,6 +47,7 @@
           enable = true;
           settings = {
             confirm_os_window_close = 0;
+            paste_actions = "quote-urls-at-prompt";
           };
           shellIntegration.enableBashIntegration = true;
         };
