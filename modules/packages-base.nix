@@ -19,7 +19,10 @@
           defaultBranch = "main";
         };
         pull.rebase = true;
-        rebase.autoStash = true;
+        rebase = {
+          autoStash = true;
+          autoSquash = true;
+        }
         credential.helper = "store";
         user = {
           name = "MakiseKurisu";
