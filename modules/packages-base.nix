@@ -27,12 +27,17 @@
         user = {
           name = "MakiseKurisu";
           email = "MakiseKurisu@users.noreply.github.com";
+          signingkey = "~/.ssh/id_rsa.pub";
         };
         http = {
           version = "HTTP/1.1";
           postBuffer = 524288000;
           maxRequestBuffer = 524288000;
         };
+        gpg.format = "ssh";
+        commit.gpgSign = true;
+        tag.gpgSign = true;
+        push.gpgSign = "if-asked";
       };
     };
     ssh = {
