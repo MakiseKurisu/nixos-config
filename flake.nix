@@ -15,6 +15,11 @@
     nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     NUR.url = "github:nix-community/NUR";
+    dewclaw.url = "github:MakiseKurisu/dewclaw";
+    gfwlist2dnsmasq = {
+      url = "github:docker-geph/gfwlist2dnsmasq";
+      flake = false;
+    };
     # Work In Progress PRs
     pr-ch9344.url = "github:MakiseKurisu/nixpkgs/ch9344-2.0";
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
@@ -32,6 +37,8 @@
     , nix-on-droid
     , nixos-vscode-server
     , NUR
+    , dewclaw
+    , gfwlist2dnsmasq
     , pr-ch9344
     , pr-dolphin
     , pr-mmdebstrap
@@ -45,13 +52,18 @@
 
       ];
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
-        # Per-system attributes can be defined here. The self' and inputs'
-        # module parameters provide easy access to attributes of the same
-        # system.
-
-        # Run `nix fmt` to use this command
+      perSystem = { config, self', inputs', pkgs, lib, system, ... }: {
         formatter = pkgs.nixpkgs-fmt;
+        packages = {
+          dewclaw-env = pkgs.callPackage dewclaw {
+            configuration = {
+              openwrt = {
+                openwrt = import machines/openwrt {inherit lib inputs;};
+              };
+            };
+          };
+          default = self.packages.x86_64-linux.dewclaw-env;
+        };
       };
       flake = {
         # The usual flake attributes can be defined here, including system-
