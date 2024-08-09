@@ -22,7 +22,7 @@
         rebase = {
           autoStash = true;
           autoSquash = true;
-        }
+        };
         credential.helper = "store";
         user = {
           name = "MakiseKurisu";
