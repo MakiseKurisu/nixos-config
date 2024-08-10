@@ -25,7 +25,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_6_9;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_6_10;
     loader.efi.efiSysMountPoint = "/boot/efi";
   };
 
