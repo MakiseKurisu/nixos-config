@@ -95,8 +95,8 @@
       ];
       flake = "github:MakiseKurisu/nixos-config";
       operation = "boot";
-      persistent = true;
-      randomizedDelaySec = "30min";
+      randomizedDelaySec = "5min";
+      dates = "*-*~01 23:00:00";
     };
   };
 
