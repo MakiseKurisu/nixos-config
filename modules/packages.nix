@@ -98,7 +98,7 @@
           speechd
           ssh-copy-id
           smartmontools
-          unzip
+          unzipNLS
           usbutils
         ];
     };
