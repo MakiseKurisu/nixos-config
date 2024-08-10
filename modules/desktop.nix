@@ -50,6 +50,7 @@
         commandLineArgs = (previous.commandLineArgs or "") +
           " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
       }))
+      cliphist
       colmena
       inputs.devenv.packages.${pkgs.system}.devenv
       discord
@@ -137,6 +138,7 @@
       wev
       wlr-randr
       wireguard-tools
+      wofi
       wsmancli
       xdg-utils
       (yesplaymusic.overrideAttrs ({
