@@ -62,7 +62,6 @@
           gh
           git
           glib
-          gnupg
           gnumake
           gptfdisk
           inetutils
@@ -117,5 +116,10 @@
       };
     };
     nix-ld.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
+  services.pcscd.enable = true;
 }

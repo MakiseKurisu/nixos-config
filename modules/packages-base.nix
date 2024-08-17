@@ -41,7 +41,6 @@
       };
     };
     ssh = {
-      startAgent = true;
       extraConfig = ''
         StrictHostKeyChecking accept-new
       '';
