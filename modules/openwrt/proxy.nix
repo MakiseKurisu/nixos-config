@@ -69,18 +69,12 @@
       # add telegram ip
       nft "add element inet fw4 gfwlist { 91.108.4.0/22, 91.108.8.0/22, 91.108.56.0/22, 109.239.140.0/24, 149.154.160.0/20 }"
       # add routing rules
+      nft "add chain inet fw4 dstnat_lan"
       nft "add rule inet fw4 dstnat iifname { br-lan.20 } jump dstnat_lan comment \"!fw4: Handle guest IPv4/IPv6 dstnat traffic\""
       nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_bypass accept"
       nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_force dnat ip to 192.168.9.1:20000"
       nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip daddr @gfwlist dnat ip to 192.168.9.1:20000"
       nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip6 daddr @gfwlist6 dnat ip6 to [fd09::1]:20000"
-
-      nft "add chain inet fw4 dstnat_guest"
-      nft "add rule inet fw4 dstnat iifname { br-lan.30 } jump dstnat_guest comment \"!fw4: Handle guest IPv4/IPv6 dstnat traffic\""
-      nft "add rule inet fw4 dstnat_guest meta l4proto tcp ip saddr @proxy_bypass accept"
-      nft "add rule inet fw4 dstnat_guest meta l4proto tcp ip saddr @proxy_force dnat ip to 192.168.9.1:20000"
-      nft "add rule inet fw4 dstnat_guest meta l4proto tcp ip daddr @gfwlist dnat ip to 192.168.9.1:20000"
-      nft "add rule inet fw4 dstnat_guest meta l4proto tcp ip6 daddr @gfwlist6 dnat ip6 to [fd09::1]:20000"
 
       nft "add chain inet fw4 dstnat_output { type nat hook output priority -100; policy accept; }"
       nft "add rule inet fw4 dstnat_output meta l4proto tcp ip daddr @gfwlist dnat ip to 192.168.9.1:20000"
