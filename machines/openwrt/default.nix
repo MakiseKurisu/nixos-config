@@ -46,14 +46,14 @@
             name = "Receive";
             sysfs = "red:status";
             trigger = "netdev";
-            dev = "br-lan.10";
+            dev = "wwan0";
             mode = "rx";
           }
           {
             name = "Transmit";
             sysfs = "green:status";
             trigger = "netdev";
-            dev = "br-lan.10";
+            dev = "wwan0";
             mode = "tx";
           }
         ];
