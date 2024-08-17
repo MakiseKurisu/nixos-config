@@ -10,7 +10,7 @@
     settings = {
       network = {
         interface = {
-          wwan = {
+          wwan0 = {
             device = "/sys/devices/platform/11200000.usb/usb1/1-1";
             proto = "modemmanager";
             apn = "CBNET";
@@ -22,4 +22,5 @@
       };
     };
   };
+  services.statistics.monitors.interfaces.targets = [ "wwan0" ];
 }

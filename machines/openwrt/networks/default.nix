@@ -3,7 +3,7 @@
     ./lan.nix
     ./guest.nix
     ./wan.nix
-    ./wwan.nix
+    ./wwan0.nix
     # ./wg0.nix
     ./wg1.nix
     # ./wg2.nix
@@ -49,7 +49,7 @@
           }
           {
             name = "wan";
-            network = [ "wan" "wan6" "wwan" ];
+            network = [ "wan" "wan6" "wwan0" ];
             input = "DROP";
             output = "ACCEPT";
             forward = "DROP";
