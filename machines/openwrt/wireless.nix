@@ -8,7 +8,7 @@
             path = "platform/18000000.wifi";
             channel = "auto";
             band = "2g";
-            htmode = "HE40";
+            htmode = "HE20";
             country = "CN";
             cell_density = 0;
           };
@@ -17,7 +17,7 @@
             path = "platform/18000000.wifi+1";
             channel = "auto";
             band = "5g";
-            htmode = "HE80";
+            htmode = "HE160";
             country = "CN";
             cell_density = 0;
           };
