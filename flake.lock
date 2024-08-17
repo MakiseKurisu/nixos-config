@@ -104,11 +104,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1722758538,
-        "narHash": "sha256-2ejYvA28+hFYIQDpKfHpsxCkjC136mgXdsWdhTyECrw=",
+        "lastModified": 1723893666,
+        "narHash": "sha256-dw5/1Nn08hfj02Jp3PKC0fn8JPfsXix6CuWUcXA11kw=",
         "owner": "MakiseKurisu",
         "repo": "dewclaw",
-        "rev": "1ebb87af264613ebd2e44d8fd4414f1bb912f7d8",
+        "rev": "54ef899e8f2495021904fe43c649ccc4b8909616",
         "type": "github"
       },
       "original": {
