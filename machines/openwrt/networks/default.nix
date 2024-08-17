@@ -24,16 +24,17 @@
           {
             device = "br-lan";
             vlan = 10;
-            ports = ["eth1"];
+            ports = ["eth1" "lan1:t"];
           }
           {
             device = "br-lan";
             vlan = 20;
-            ports = ["lan1" "lan2" "lan3"];
+            ports = ["lan1:t" "lan2" "lan3"];
           }
           {
             device = "br-lan";
             vlan = 30;
+            ports = ["lan1:t"];
           }
         ];
       };

@@ -4,7 +4,7 @@
 , target ? "mediatek/filogic"
 , arch ? "aarch64_cortex-a53"
 , hostname ? "OpenWrt"
-, ip ? "192.168.2.101"
+, ip ? "192.168.9.1"
 , ... }:
 
 {

@@ -11,7 +11,7 @@
       network = {
         interface = {
           wwan = {
-            device = "/sys/devices/platform/1a0c0000.usb/usb1/1-1";
+            device = "/sys/devices/platform/11200000.usb/usb1/1-1";
             proto = "modemmanager";
             apn = "CBNET";
             auth = "none";
