@@ -35,7 +35,6 @@
             "fd21::/64"
           ];
           endpoint_host = "vamrs.vpndns.net";
-          persistent_keepalive = 25;
           public_key = "WVcdwHDpBQq2bg4bJE6zHRdWuPG7mptkuF48HxNFNw4=";
           route_allowed_ips = 1;
         }];

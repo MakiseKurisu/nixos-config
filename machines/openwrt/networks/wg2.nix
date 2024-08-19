@@ -24,7 +24,6 @@
           description = "japan";
           endpoint_host = "127.0.0.1";
           endpoint_port = 51819;
-          persistent_keepalive = 25;
           public_key = "mM6UKv/6OJW0re4/R24TGnxhA5g+7XHIkM/iGCSR7Tk=";
           route_allowed_ips = 1;
         }];
