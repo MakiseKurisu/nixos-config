@@ -20,10 +20,6 @@
   ];
   etc = {
     "rc.local".text = ''
-      # https://whrl.pl/Rgk1Lv
-      echo 2dee 4d22 ff 2001 7d04 > /sys/bus/usb-serial/drivers/option1/new_id
-      echo 2dee 4d22 >/sys/bus/usb/drivers/qmi_wwan/new_id
-
       if [ ! -f /usr/local/bin/udp2raw ]; then
         # wait for network to be online
         sleep 30
