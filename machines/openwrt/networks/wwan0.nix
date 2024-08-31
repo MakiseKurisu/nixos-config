@@ -10,7 +10,7 @@
     "rc.local".text = ''
       sh /etc/wwan/reload_driver
     '';
-    "wwan/reload_driver" = ''
+    "wwan/reload_driver".text = ''
       #!/bin/sh
       if [ "$(grep Driver=qmi_wwan /sys/kernel/debug/usb/devices | wc -l)" != "1" ]; then
         rmmod option
@@ -26,7 +26,7 @@
     "crontabs/root".text = ''
       * * * * * sh /etc/wwan/reload_driver
     '';
-  }
+  };
 
   uci = {
     settings = {
