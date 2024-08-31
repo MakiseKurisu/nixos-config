@@ -20,32 +20,36 @@
   ];
   etc = {
     "rc.local".text = ''
-      if [ ! -f /usr/local/bin/udp2raw ]; then
-        # wait for network to be online
+      (
+        if [ ! -f /usr/local/bin/udp2raw ]; then
+          # wait for network to be online
+          sleep 30
+          # we need to download tar because Nix can't convert this archive into input:
+          # https://github.com/NixOS/nix/pull/11195
+          wget -O /tmp/udp2raw_binaries.tar.gz https://github.com/wangyu-/udp2raw/releases/download/20230206.0/udp2raw_binaries.tar.gz
+          cd /tmp
+          tar xvf udp2raw_binaries.tar.gz
+          cd $OLDPWD
+          mkdir -p /usr/local/bin
+          case "${arch}" in
+          x86_64)
+            mv /tmp/udp2raw_amd64_hw_aes /usr/local/bin/udp2raw
+            ;;
+          aarch64*)
+            mv /tmp/udp2raw_arm_asm_aes /usr/local/bin/udp2raw
+            ;;
+          esac
+          chmod +x /usr/local/bin/udp2raw
+          chown root:root /usr/local/bin/udp2raw
+        fi
+        /usr/local/bin/udp2raw -c -l 127.0.0.1:51819 -r 131.186.32.82:51820 >/dev/null &
+        /usr/local/bin/udp2raw -c -l 127.0.0.1:51818 -r 167.71.206.148:51820 >/dev/null &
+      )&
+      (
+        # pppoe-wan may not be ready at boot
         sleep 30
-        # we need to download tar because Nix can't convert this archive into input:
-        # https://github.com/NixOS/nix/pull/11195
-        wget -O /tmp/udp2raw_binaries.tar.gz https://github.com/wangyu-/udp2raw/releases/download/20230206.0/udp2raw_binaries.tar.gz
-        cd /tmp
-        tar xvf udp2raw_binaries.tar.gz
-        cd $OLDPWD
-        mkdir -p /usr/local/bin
-        case "${arch}" in
-        x86_64)
-          mv /tmp/udp2raw_amd64_hw_aes /usr/local/bin/udp2raw
-          ;;
-        aarch64*)
-          mv /tmp/udp2raw_arm_asm_aes /usr/local/bin/udp2raw
-          ;;
-        esac
-        chmod +x /usr/local/bin/udp2raw
-        chown root:root /usr/local/bin/udp2raw
-      fi
-      /usr/local/bin/udp2raw -c -l 127.0.0.1:51819 -r 131.186.32.82:51820 >/dev/null &
-      /usr/local/bin/udp2raw -c -l 127.0.0.1:51818 -r 167.71.206.148:51820 >/dev/null &
-      # pppoe-wan may not be ready at boot
-      sleep 30
-      service ddns start
+        service ddns start
+      )&
     '';
   };
 
