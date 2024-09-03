@@ -74,13 +74,13 @@
             use_syslog = 2;
             force_ipversion = 1;
             dns_server = "ns1.now-dns.com";
-            ip_source = "network";
-            interface = "lan";
+            ip_source = "interface";
+            interface = "br-lan.20";
             check_interval = 5;
             check_unit = "minutes";
             force_unit = "minutes";
             retry_unit = "seconds";
-            ip_network = "lan";
+            ip_network = "br-lan.20";
           };
         };
       };
