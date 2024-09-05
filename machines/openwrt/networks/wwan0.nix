@@ -12,7 +12,9 @@
     '';
     "wwan/reload_driver".text = ''
       #!/bin/sh
-      if [ "$(grep Driver=qmi_wwan /sys/kernel/debug/usb/devices | wc -l)" != "1" ]; then
+      qmi_count="$(grep Driver=qmi_wwan /sys/kernel/debug/usb/devices | wc -l)"
+      if [ "$qmi_count" != "1" ]; then
+        logger -st "$(basename "$0")" -p "daemon.notice" "Detected incorrect number of qmi_wwan devices: $qmi_count"
         rmmod option
         rmmod qmi_wwan
       fi
