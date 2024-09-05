@@ -82,6 +82,7 @@
           timezone = "CST-8";
           zonename = "Asia/Shanghai";
           ttylogin = 0;
+          cronloglevel = 9;
           log_size = 64;
           urandom_seed = 0;
           hostname = hostname;

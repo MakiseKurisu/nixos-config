@@ -72,7 +72,6 @@
             username._secret = "ddns_username";
             password._secret = "ddns_password";
             use_syslog = 2;
-            force_ipversion = 1;
             dns_server = "ns1.now-dns.com";
             ip_source = "interface";
             interface = "br-lan.20";
