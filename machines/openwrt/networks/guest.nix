@@ -5,7 +5,7 @@
         interface = "guest";
         start = 50;
         limit = 200;
-        leasetime = "1h";
+        leasetime = "12h";
         ra_flags = "none";
       };
       network = {

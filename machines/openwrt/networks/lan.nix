@@ -14,7 +14,7 @@
         interface = "lan";
         start = 100;
         limit = 250;
-        leasetime = "1h";
+        leasetime = "12h";
         ra_flags = "none";
       };
       network = {
