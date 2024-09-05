@@ -80,7 +80,7 @@
             check_unit = "minutes";
             force_unit = "minutes";
             retry_unit = "seconds";
-            ip_network = "br-lan.20";
+            ip_interface = "br-lan.20";
           };
         };
       };
