@@ -41,7 +41,6 @@
     systemPackages = with pkgs; [
       amtterm
       audacity
-      blueberry
       bottles
       brightnessctl
       cachix
@@ -271,6 +270,7 @@
       nssmdns6 = true;
       openFirewall = true;
     };
+    blueman.enable = true;
     dbus.enable = true;
     fwupd.enable = true;
     greetd = {
@@ -324,6 +324,8 @@
     ratbagd.enable = true;
     rpcbind.enable = true; # needed for NFS
   };
+
+  hardware.bluetooth.enable = true;
 
   xdg = {
     portal = {
