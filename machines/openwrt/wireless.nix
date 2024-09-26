@@ -25,7 +25,6 @@
             device = "radio0";
             network = "guest";
             mode = "ap";
-            wds = 1;
             encryption = "psk2";
             ssid._secret = "guest_wifi_ssid";
             key._secret = "guest_wifi_password";
