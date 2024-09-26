@@ -1,10 +1,10 @@
 { lib
 , inputs
-, release ? "23.05.4"
-, target ? "mediatek/filogic"
-, arch ? "aarch64_cortex-a53"
-, hostname ? "OpenWrt"
-, ip ? "192.168.9.1"
+, release
+, target
+, arch
+, hostname
+, ip
 , ... }:
 
 {
@@ -24,40 +24,14 @@
     ./dhcp.nix
     ./networks
     ./wireless.nix
+    # This file cannot contain UCI configuration when merged with another attrset
+    # in flake.nix, as those settings will not presist.
+    # Create a new file to keep those
+    ./generic.nix
   ];
 
   etc = {
     "proxy/gfwlist.conf".text = lib.readFile ./gfwlist.conf;
     "proxy/blocklist.conf".text = lib.readFile ./blocklist.conf;
-  };
-  uci = {
-    sopsSecrets = ./secrets.yaml;
-
-    settings = {
-      network = {
-        globals.globals = {
-          ula_prefix = "fd09::/48";
-        };
-      };
-
-      system = {
-        led = [
-          {
-            name = "Receive";
-            sysfs = "red:status";
-            trigger = "netdev";
-            dev = "wwan0";
-            mode = "rx";
-          }
-          {
-            name = "Transmit";
-            sysfs = "green:status";
-            trigger = "netdev";
-            dev = "wwan0";
-            mode = "tx";
-          }
-        ];
-      };
-    };
   };
 }

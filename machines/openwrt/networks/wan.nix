@@ -1,6 +1,22 @@
 {
   uci = {
     settings = {
+      dropbear.dropbear = [
+        {
+          Interface = "wan";
+          PasswordAuth = "off";
+          GatewayPorts = "on";
+          RootPasswordAuth = "off";
+          Port = 22;
+        }
+        {
+          Interface = "wan6";
+          PasswordAuth = "off";
+          GatewayPorts = "on";
+          RootPasswordAuth = "off";
+          Port = 22;
+        }
+      ];
       network = {
         interface = {
           wan = {

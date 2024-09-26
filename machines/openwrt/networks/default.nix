@@ -17,19 +17,19 @@
           {
             name = "br-lan";
             type = "bridge";
-            ports = ["eth1" "lan1" "lan2" "lan3"];
+            ports = ["eth1" "wan" "lan1" "lan2" "lan3" "lan4"];
           }
         ];
         bridge-vlan = [
           {
             device = "br-lan";
             vlan = 10;
-            ports = ["eth1" "lan1:t"];
+            ports = ["eth1" "wan" "lan1:t"];
           }
           {
             device = "br-lan";
             vlan = 20;
-            ports = ["lan1:t" "lan2" "lan3"];
+            ports = ["lan1:t" "lan2" "lan3" "lan4"];
           }
           {
             device = "br-lan";
@@ -222,6 +222,13 @@
             src = "wan";
             src_ip = "185.137.36.69";
             target = "DROP";
+          }
+          {
+            name = "Allow WAN SSH";
+            proto = "tcp";
+            src = "wan";
+            dest_port = 22;
+            target = "ACCEPT";
           }
         ];
       };

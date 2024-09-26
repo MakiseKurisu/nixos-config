@@ -58,7 +58,30 @@
           dewclaw-env = pkgs.callPackage dewclaw {
             configuration = {
               openwrt = {
-                openwrt = import machines/openwrt {inherit lib inputs;};
+                rax3000m = import machines/openwrt {
+                  inherit lib inputs;
+                  release = "23.05.4";
+                  target = "mediatek/filogic";
+                  arch = "aarch64_cortex-a53";
+                  hostname = "RAX3000M";
+                  ip = "192.168.9.1";
+                } // {
+                  uci.settings.network.interface.wwan0.device = "/sys/devices/platform/11200000.usb/usb1/1-1";
+                  uci.settings.wireless.wifi-device.radio0.path = "platform/18000000.wifi";
+                  uci.settings.wireless.wifi-device.radio1.path = "platform/18000000.wifi+1";
+                };
+                rt3200 = import machines/openwrt {
+                  inherit lib inputs;
+                  release = "23.05.5";
+                  target = "mediatek/mt7622";
+                  arch = "aarch64_cortex-a53";
+                  hostname = "RT3200";
+                  ip = "192.168.9.1";
+                } // {
+                  uci.settings.network.interface.wwan0.device = "/sys/devices/platform/1a0c0000.usb/usb1/1-1";
+                  uci.settings.wireless.wifi-device.radio0.path = "platform/18000000.wmac";
+                  uci.settings.wireless.wifi-device.radio1.path = "1a143000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0";
+                };
               };
             };
           };

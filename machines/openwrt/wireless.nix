@@ -5,16 +5,14 @@
         wifi-device = {
           radio0 = {
             type = "mac80211";
-            path = "platform/18000000.wifi";
             channel = "auto";
             band = "2g";
-            htmode = "HE20";
+            htmode = "HT20";
             country = "CN";
             cell_density = 0;
           };
           radio1 = {
             type = "mac80211";
-            path = "platform/18000000.wifi+1";
             channel = "auto";
             band = "5g";
             htmode = "HE160";
