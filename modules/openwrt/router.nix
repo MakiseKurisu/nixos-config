@@ -67,8 +67,8 @@
             service_name = "now-dns.com";
             use_ipv6 = 1;
             enabled = 1;
-            lookup_host = "protoducer-cn-szx-6.64-b.it";
-            domain = "protoducer-cn-szx-6.64-b.it";
+            lookup_host = "protoducer-cn-szx-6.vpndns.net";
+            domain = "protoducer-cn-szx-6.vpndns.net";
             username._secret = "ddns_username";
             password._secret = "ddns_password";
             use_syslog = 2;
