@@ -2,7 +2,6 @@
 
 {
   imports = [
-    # ./pr/ch9344.nix
     ./pr/dolphin.nix
     ./pr/mmdebstrap.nix
     ./plasma-systemsettings.nix
@@ -10,7 +9,7 @@
 
   boot = {
     extraModulePackages = with config.boot.kernelPackages; [
-      #ch9344
+      ch9344
     ];
   };
 
