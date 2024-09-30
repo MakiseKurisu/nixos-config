@@ -49,6 +49,7 @@
         "root"
         "@wheel"
       ];
+      http2 = false;
     };
   };
 
