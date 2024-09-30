@@ -17,6 +17,28 @@
         leasetime = "12h";
         ra_flags = "none";
       };
+      firewall = {
+        redirect = [
+          {
+            name = "aria2-wan";
+            target = "DNAT";
+            src = "wan";
+            src_dport = 6888;
+            dest = "lan";
+            dest_ip = "192.168.9.2";
+            dest_port = 6888;
+          }
+          {
+            name = "aria2-wg";
+            target = "DNAT";
+            src = "wg";
+            src_dport = 6888;
+            dest = "lan";
+            dest_ip = "192.168.9.2";
+            dest_port = 6888;
+          }
+        ];
+      };
       network = {
         interface = {
           lan = {
