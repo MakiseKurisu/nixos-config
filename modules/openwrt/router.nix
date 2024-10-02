@@ -11,6 +11,7 @@
     "luci-app-ddns"
     "luci-app-sqm"
     "luci-app-wireguard"
+    "luci-app-wol"
     # "UDPspeeder"
 
     # needed by ddns
