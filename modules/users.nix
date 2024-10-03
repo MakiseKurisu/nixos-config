@@ -30,6 +30,18 @@
             source = ../configs/LarkShell;
             recursive = true;
           };
+          "gtk-3.0/settings.ini" = {
+            text = ''
+              [Settings]
+              gtk-im-module=fcitx
+            '';
+          };
+          "gtk-4.0/settings.ini" = {
+            text = ''
+              [Settings]
+              gtk-im-module=fcitx
+            '';
+          };
         };
         userDirs = {
           enable = true;
