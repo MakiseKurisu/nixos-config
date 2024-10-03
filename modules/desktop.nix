@@ -111,7 +111,6 @@
       pwvucontrol
       qq
       qrencode
-      rawtherapee
       remmina
       rs-tftpd
       rstudio
