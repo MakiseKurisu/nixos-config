@@ -50,6 +50,7 @@
       }))
       cliphist
       colmena
+      darktable
       inputs.devenv.packages.${pkgs.system}.devenv
       discord
       element-desktop
@@ -67,7 +68,7 @@
       font-manager
       fsearch
       freecad
-      gimp
+      gimp-with-plugins
       github-desktop
       ghidra
       ghidra-extensions.machinelearning
@@ -116,6 +117,7 @@
       pwvucontrol
       qq
       qrencode
+      rawtherapee
       remmina
       rs-tftpd
       rstudio
