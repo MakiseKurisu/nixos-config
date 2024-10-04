@@ -28,6 +28,7 @@
       QT_QPA_PLATFORM = "wayland";
       CLUTTER_BACKEND = "wayland";
       SDL_VIDEODRIVER = "wayland";
+      GTK_IM_MODULE = lib.mkForce "";
     };
     sessionVariables = {
       EDITOR = "nano";
