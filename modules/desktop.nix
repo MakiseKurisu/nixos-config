@@ -5,6 +5,7 @@
     ./pr/dolphin.nix
     ./pr/mmdebstrap.nix
     ./plasma-systemsettings.nix
+    ./hyprland.nix
   ];
 
   boot = {
