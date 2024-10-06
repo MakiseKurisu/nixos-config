@@ -81,7 +81,7 @@
         bind = $mainMod, P, pseudo, # dwindle
         bind = $mainMod, J, togglesplit, # dwindle
         bind = $mainMod, L, exec, hyprlock
-        bind = $mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
+        bind = $mainMod SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
         bind = $mainMod SHIFT, S, exec, grim -g "$(slurp)" - | wl-copy
 
         # Move focus with mainMod + arrow keys
