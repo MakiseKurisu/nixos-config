@@ -22,6 +22,10 @@
           ];
           server = [
             "/vamrs.org/192.168.2.1"
+            "/bilivideo.cn/119.29.29.29"
+            "/bilivideo.com/119.29.29.29"
+            "/hdslb.com/119.29.29.29"
+            "/bilibili.com/119.29.29.29"
           ];
         }];
       };
