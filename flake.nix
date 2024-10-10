@@ -133,6 +133,13 @@
               ./machines/w540/configuration.nix
             ];
           };
+          n40 = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
+            system = "x86_64-linux";
+            modules = [
+              ./machines/n40/configuration.nix
+            ];
+          };
         };
 
         nixOnDroidConfigurations= {
