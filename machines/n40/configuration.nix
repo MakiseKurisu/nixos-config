@@ -33,6 +33,11 @@
     xdg.configFile = {
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''
+          monitor=eDP-1, highres, auto, 1 # Body: internal LCD
+          monitor=HDMI-A-1, highres, auto, 2 # Body: HDMI
+          workspace=r[1-20], monitor:eDP-1
+          workspace=2, monitor:eDP-1, default:yes
+          workspace=30, monitor:HDMI-A-1, default:yes
         '';
       };
     };
