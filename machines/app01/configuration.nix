@@ -46,42 +46,45 @@
         };
       };
     };
+
+    mihomo = {
+      enable = true;
+      tunMode = true;
+      configFile = "/home/excalibur/containers/clash.yaml";
+      webui = pkgs.fetchzip {
+        url = "https://github.com/MetaCubeX/metacubexd/archive/refs/tags/v1.161.0.zip";
+        hash = "sha256-30y8bp0SRTRsR4inMz29r4/w/OVnf7UZ+et7MGSC34w=";
+      };
+    };
+    iperf3 = {
+      enable = true;
+      openFirewall = true;
+    };
+    aria2 = {
+      enable = true;
+      openPorts = true;
+      downloadDir = "/media/aria2/";
+      extraArguments = "--rpc-listen-all";
+      rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
+    };
   };
+  
+  networking.firewall.allowedTCPPorts = [
+    # mihomo
+    9090
+  ];
+  networking.firewall.allowedTCPPortRanges = [
+    # mihomo
+    {
+      from = 7890;
+      to = 7894;
+    }
+  ];
 
   virtualisation = {
     oci-containers = {
       backend = "podman";
       containers = {
-        clash = {
-          image = "docker.io/dreamacro/clash-premium";
-          autoStart = true;
-          ports = [
-            "7890:7890"
-            "7891:7891"
-            "9090:9090"
-          ];
-          volumes = [
-            "/home/excalibur/containers/clash.yml:/root/.config/clash/config.yaml"
-          ];
-          environment = {
-            PUID = "1000";
-            PGID = "100";
-            TZ = "Asia/Shanghai";
-          };
-        };
-        yacd = {
-          image = "docker.io/haishanh/yacd";
-          autoStart = true;
-          ports = [
-            "8080:80"
-          ];
-          environment = {
-            PUID = "1000";
-            PGID = "100";
-            TZ = "Asia/Shanghai";
-            YACD_DEFAULT_BACKEND = "http://app01.protoducer.com:9090";
-          };
-        };
         acng = {
           image = "docker.io/mbentley/apt-cacher-ng";
           autoStart = true;
@@ -145,32 +148,6 @@
             LEASE_EXPIRE_DAYS = "90";
             DATABASE = "sqlite:////app/database/db.sqlite";
             DEBUG = "false";
-          };
-        };
-        aria2-pro = {
-          image = "docker.io/p3terx/aria2-pro";
-          autoStart = true;
-          ports = [
-            "6800:6800"
-            "6888:6888"
-            "6888:6888/udp"
-          ];
-          volumes = [
-            "/home/excalibur/containers/aria2-pro/:/config/"
-            "/media/aria2/:/downloads/"
-          ];
-          environment = {
-            PUID = "1000";
-            PGID = "100";
-            UMASK_SET = "022";
-            RPC_SECRET = "P3TERX";
-            RPC_PORT = "6800";
-            LISTEN_PORT = "6888";
-            DISK_CACHE = "64M";
-            IPV6_MODE = "false";
-            UPDATE_TRACKERS = "true";
-            CUSTOM_TRACKER_URL = "";
-            TZ = "Asia/Shanghai";
           };
         };
         ariang = {
