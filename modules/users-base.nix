@@ -6,6 +6,7 @@
     description = "Excalibur";
     extraGroups = [
       "adbusers"
+      "aria2"
       "audio"
       "cups"
       "dialout"
