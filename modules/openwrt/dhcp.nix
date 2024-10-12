@@ -27,6 +27,9 @@
             "/hdslb.com/119.29.29.29"
             "/bilibili.com/119.29.29.29"
           ];
+          rebind_domain = [
+            "vamrs.org"
+          ];
         }];
       };
     };
