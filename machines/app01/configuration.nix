@@ -23,6 +23,12 @@
     ./hardware-configuration.nix
   ];
 
+  boot = {
+    kernelParams = [
+      "console=ttyS0"
+    ];
+  };
+
   services = {
     nfs.server = {
       exports = ''
@@ -165,5 +171,5 @@
   };
 
   networking.hostName = "app01";
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }
