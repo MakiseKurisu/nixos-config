@@ -91,8 +91,8 @@
     '';
     "proxy/gfwlist2dnsmasq.sh".text = lib.readFile "${gfwlist2dnsmasq}/gfwlist2dnsmasq.sh";
     "proxy/whitelist.conf".text = '''';
-    "proxy/gfwlist.conf".text = '''';
-    "proxy/blocklist.conf".text = '''';
+    "proxy/gfwlist.conf".text = lib.readFile ./gfwlist.conf;
+    "proxy/blocklist.conf".text = lib.readFile ./blocklist.conf;
     "proxy/update_gfwlist".text = ''
       #!/bin/sh
       set -euo pipefail

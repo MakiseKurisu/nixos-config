@@ -1,4 +1,5 @@
-{ release
+{ lib
+, release
 , target
 , arch
 , hostname
@@ -42,6 +43,8 @@
   };
 
   uci = {
+    sopsSecrets = ./secrets.yaml;
+
     # leave the ucitrack and firewall packages as they are, retaining defaults if
     # freshly installed. the firewall rules are verbose and ucitrack is mostly not
     # necessary, so we don't want to include either here. we also keep luci to not
@@ -75,9 +78,53 @@
           netmask = "255.0.0.0";
           proto = "static";
         };
+        globals.globals = {
+          ula_prefix = "fd09::/48";
+        };
       };
 
       system = {
+        led = [
+          {
+            name = "Receive";
+            sysfs = "red:status";
+            trigger = "netdev";
+            dev = "wwan0";
+            mode = "rx";
+          }
+          {
+            name = "Transmit";
+            sysfs = "green:status";
+            trigger = "netdev";
+            dev = "wwan0";
+            mode = "tx";
+          }
+          {
+            name = "Receive";
+            sysfs = "inet:orange";
+            trigger = "netdev";
+            dev = "wwan0";
+            mode = "rx";
+          }
+          {
+            name = "Transmit";
+            sysfs = "inet:blue";
+            trigger = "netdev";
+            dev = "wwan0";
+            mode = "tx";
+          }
+          {
+            name = "Power";
+            sysfs = "power:blue";
+            trigger = "default-on";
+          }
+          {
+            name = "Status";
+            sysfs = "power:orange";
+            trigger = "heartbeat";
+          }
+        ];
+
         system = [{
           timezone = "CST-8";
           zonename = "Asia/Shanghai";
