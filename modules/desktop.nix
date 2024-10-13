@@ -268,6 +268,7 @@
     };
     blueman.enable = true;
     dbus.enable = true;
+    envfs.enable = true;
     fwupd.enable = true;
     greetd = {
       enable = true;
