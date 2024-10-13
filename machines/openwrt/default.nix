@@ -29,9 +29,4 @@
     # Create a new file to keep those
     ./generic.nix
   ];
-
-  etc = {
-    "proxy/gfwlist.conf".text = lib.readFile ./gfwlist.conf;
-    "proxy/blocklist.conf".text = lib.readFile ./blocklist.conf;
-  };
 }
