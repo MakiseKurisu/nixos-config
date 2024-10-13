@@ -56,7 +56,7 @@
           dewclaw-env = pkgs.callPackage dewclaw {
             configuration = {
               openwrt = {
-                rax3000m = import machines/openwrt/wireless-router.nix {
+                rax3000m = import machines/openwrt/wireless-router {
                   inherit lib inputs;
                   release = "23.05.5";
                   target = "mediatek/filogic";
@@ -68,7 +68,7 @@
                   uci.settings.wireless.wifi-device.radio0.path = "platform/18000000.wifi";
                   uci.settings.wireless.wifi-device.radio1.path = "platform/18000000.wifi+1";
                 };
-                rt3200 = import machines/openwrt/wireless-router.nix {
+                rt3200 = import machines/openwrt/wireless-router {
                   inherit lib inputs;
                   release = "23.05.5";
                   target = "mediatek/mt7622";
