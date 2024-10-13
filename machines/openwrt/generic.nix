@@ -1,3 +1,6 @@
+{ lib
+, ... }:
+
 {
   uci = {
     sopsSecrets = ./secrets.yaml;
