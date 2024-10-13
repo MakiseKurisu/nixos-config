@@ -6,7 +6,6 @@
         start = 50;
         limit = 200;
         leasetime = "12h";
-        ra_flags = "none";
       };
       network = {
         interface = {

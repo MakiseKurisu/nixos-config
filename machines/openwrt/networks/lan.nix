@@ -15,7 +15,14 @@
         start = 100;
         limit = 250;
         leasetime = "12h";
-        ra_flags = "none";
+	      dhcpv4 = "server";
+	      dhcpv6 = "server";
+	      ra = "server";
+	      ra_slaac = 1;
+        ra_flags = [
+          "managed-config"
+          "other-config"
+        ];
       };
       firewall = {
         redirect = [
