@@ -26,6 +26,7 @@
             "/bilivideo.com/119.29.29.29"
             "/hdslb.com/119.29.29.29"
             "/bilibili.com/119.29.29.29"
+            "/vpndns.net/192.99.42.52"
           ];
           rebind_domain = [
             "vamrs.org"
