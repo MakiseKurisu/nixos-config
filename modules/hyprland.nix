@@ -22,7 +22,7 @@
         exec-once = [workspace 13 silent] waydroid first-launch
         exec-once = [workspace 14 silent] element-desktop
         exec-once = [workspace 15 silent] teams-for-linux
-        exec-once = [workspace 20 silent] yesplaymusic
+        exec-once = [workspace 20 silent] nuclear
 
         input {
             kb_layout = us

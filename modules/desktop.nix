@@ -136,17 +136,6 @@
       wofi
       wsmancli
       xdg-utils
-      (yesplaymusic.overrideAttrs ({
-        postInstall = ''
-          rm $out/bin/yesplaymusic
-          makeWrapper $out/opt/YesPlayMusic/yesplaymusic $out/bin/yesplaymusic \
-            --argv0 "yesplaymusic" \
-            --add-flags "$out/opt/YesPlayMusic/resources/app.asar" \
-            --add-flags "--enable-features=UseOzonePlatform,WaylandWindowDecorations" \
-            --add-flags "--ozone-platform=wayland" \
-            --add-flags "--enable-wayland-ime"
-        '';
-      }))
       yarn
     ];
   };
