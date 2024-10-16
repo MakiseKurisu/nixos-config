@@ -65,6 +65,7 @@
         windowrulev2 = fullscreen, title:(Waydroid), class:(Waydroid)
         windowrulev2 = workspace 11 silent, title:(Feishu)
         windowrulev2 = workspace 13 silent, title:(Waydroid), class:(Waydroid)
+        windowrulev2 = workspace 16 silent, title:(Skype), class:(Skype)
 
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
         $mainMod = SUPER
