@@ -1,6 +1,26 @@
 {
   uci = {
     settings = {
+      dropbear.dropbear = [
+        {
+          Interface = "lan";
+          PasswordAuth = "on";
+          GatewayPorts = "on";
+          RootPasswordAuth = "on";
+          Port = 22;
+        }
+      ];
+      firewall = {
+        zone = [
+          {
+            name = "lan";
+            network = [ "lan" ];
+            input = "ACCEPT";
+            output = "ACCEPT";
+            forward = "ACCEPT";
+          }
+        ];
+      };
       network = {
         device = [
           {
