@@ -21,6 +21,7 @@
 
   packages = [
     "nano"
+    "qemu-ga"
   ];
 
   etc = {
