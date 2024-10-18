@@ -80,6 +80,16 @@
                   uci.settings.wireless.wifi-device.radio0.path = "platform/18000000.wmac";
                   uci.settings.wireless.wifi-device.radio1.path = "1a143000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0";
                 };
+                openwrt = import machines/openwrt/router {
+                  inherit lib inputs;
+                  release = "23.05.5";
+                  target = "x86/64";
+                  arch = "x86_64";
+                  hostname = "OpenWrt";
+                  ip = "192.168.9.1";
+                } // {
+                  uci.settings.network.interface.wwan0.device = "/sys/devices/pci0000:00/0000:00:1e.0/0000:05:02.0/0000:07:1b.0/usb10/10-1";
+                };
               };
             };
           };
