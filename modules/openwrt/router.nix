@@ -24,7 +24,7 @@
       (
         if [ ! -f /usr/local/bin/udp2raw ]; then
           # wait for network to be online
-          sleep 30
+          sleep 120
           # we need to download tar because Nix can't convert this archive into input:
           # https://github.com/NixOS/nix/pull/11195
           wget -O /tmp/udp2raw_binaries.tar.gz https://github.com/wangyu-/udp2raw/releases/download/20230206.0/udp2raw_binaries.tar.gz
@@ -48,7 +48,7 @@
       )&
       (
         # pppoe-wan may not be ready at boot
-        sleep 30
+        sleep 120
         service ddns start
       )&
     '';
