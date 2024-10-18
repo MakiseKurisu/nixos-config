@@ -74,7 +74,7 @@
                   target = "mediatek/mt7622";
                   arch = "aarch64_cortex-a53";
                   hostname = "RT3200";
-                  ip = "192.168.9.1";
+                  ip = "192.168.9.10";
                 } // {
                   #uci.settings.network.interface.wwan0.device = "/sys/devices/platform/1a0c0000.usb/usb1/1-1";
                   uci.settings.wireless.wifi-device.radio0.path = "platform/18000000.wmac";
