@@ -16,7 +16,7 @@
         zone = [
           {
             name = "lan";
-            network = [ "lan" ];
+            network = [ "lan" "lan6" ];
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";

@@ -9,12 +9,19 @@
           RootPasswordAuth = "on";
           Port = 22;
         }
+        {
+          Interface = "lan6";
+          PasswordAuth = "on";
+          GatewayPorts = "on";
+          RootPasswordAuth = "on";
+          Port = 22;
+        }
       ];
       firewall = {
         zone = [
           {
             name = "lan";
-            network = [ "lan" ];
+            network = [ "lan" "lan6" ];
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";
@@ -54,6 +61,12 @@
           lan = {
             device = "br-lan.20";
             proto = "dhcp";
+          };
+          lan6 = {
+            device = "br-lan.20";
+            proto = "dhcpv6";
+            reqaddress = "try";
+            reqprefix = "auto";
           };
           guest = {
             device = "br-lan.30";
