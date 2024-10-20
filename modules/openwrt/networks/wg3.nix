@@ -14,7 +14,7 @@
         interface = {
           wg3 = {
             proto = "wireguard";
-            addresses = [ "10.0.21.2/32" "fd21::2/128" ];
+            addresses = [ "10.0.21.3/32" "fd21::3/128" ];
             mtu = 1280;
             private_key._secret = "wg3_private_key";
           };

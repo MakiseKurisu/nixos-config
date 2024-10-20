@@ -6,8 +6,8 @@
     ./wwan0.nix
     # ./wg0.nix
     ./wg1.nix
-    # ./wg2.nix
-    # ./wg3.nix
+    ./wg2.nix
+    ./wg3.nix
   ];
 
   uci = {
