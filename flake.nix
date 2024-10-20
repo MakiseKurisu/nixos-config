@@ -98,6 +98,10 @@
                   hostname = "M93p";
                   ip = "192.168.9.1";
                 } // {
+                  packages = [
+                    "kmod-iwlwifi"
+                    "iwlwifi-firmware-iwl7260"
+                  ];
                   uci.settings.network.interface.wwan0.device = "/sys/devices/pci0000:00/0000:00:14.0/usb4/4-3";
                 };
               };
