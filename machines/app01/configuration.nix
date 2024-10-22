@@ -30,6 +30,11 @@
   };
 
   services = {
+    technitium-dns-server = {
+      enable = true;
+      openFirewall = true;
+    };
+
     nfs.server = {
       exports = ''
         /media        192.168.9.0/24(rw,fsid=0,no_subtree_check)
@@ -62,10 +67,12 @@
         hash = "sha256-30y8bp0SRTRsR4inMz29r4/w/OVnf7UZ+et7MGSC34w=";
       };
     };
+
     iperf3 = {
       enable = true;
       openFirewall = true;
     };
+
     aria2 = {
       enable = true;
       openPorts = true;
