@@ -8,16 +8,17 @@
 
   etc = {
     "wwan/keep_alive".text = ''
-      #!/bin/sh
+      #!/usr/bin/env sh
+      INTERFACE="$1"
       . /usr/share/libubox/jshn.sh
-      json_load "$(ubus call network.interface.wwan0 status)"
+      json_load "$(ubus call "network.interface.$INTERFACE" status)"
       json_get_var up up
       if [ "$up" != "1" ]; then
-        ifup wwan0
+        ifup "$INTERFACE"
       fi
     '';
     "crontabs/root".text = ''
-      * * * * * sh /etc/wwan/keep_alive
+      * * * * * sh /etc/wwan/keep_alive wwan0
     '';
   };
 
