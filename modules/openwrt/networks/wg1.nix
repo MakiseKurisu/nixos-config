@@ -1,4 +1,19 @@
 {
+  etc = {
+    "wireguard/keep_alive".text = ''
+      #!/usr/bin/env sh
+      WG="$1"
+      LATEST_HANDSHAKES="$(( $(date +%s) - $(wg show "$WG" latest-handshakes | cut -f2) ))"
+      if [ $LATEST_HANDSHAKES -gt 180 ]; then
+        ifdown "$WG"
+        ifup "$WG"
+      fi
+    '';
+    "crontabs/root".text = ''
+      * * * * * sh /etc/wireguard/keep_alive wg1
+    '';
+  };
+
   uci = {
     settings = {
       dropbear.dropbear = [
