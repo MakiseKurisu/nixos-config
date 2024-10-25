@@ -75,6 +75,8 @@
     };
   };
 
+  powerManagement.powertop.enable = true;
+
   services.xserver = {
     xkb = {
       layout = "us";
