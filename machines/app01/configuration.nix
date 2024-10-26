@@ -77,7 +77,21 @@
       enable = true;
       openPorts = true;
       downloadDir = "/media/aria2/";
-      extraArguments = "--rpc-listen-all";
+      extraArguments = ''
+        --rpc-listen-all \
+        --input-file=/var/lib/aria2/aria2.session \
+        --continue \
+        --max-concurrent-downloads=100 \
+        --max-overall-upload-limit=64K \
+        --max-connection-per-server=10 \
+        --http-accept-gzip \
+        --file-allocation=falloc \
+        --save-session-interval=10 \
+        --bt-prioritize-piece=head,tail \
+        --bt-remove-unselected-file \
+        --seed-ratio 0.1 \
+        --seed-time 0 \
+      '';
       rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
     };
   };
