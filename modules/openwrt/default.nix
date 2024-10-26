@@ -23,6 +23,8 @@
     "nano"
     "qemu-ga"
     "powertop"
+    "kmod-i6300esb-wdt"
+    "kmod-itco-wdt"
   ];
 
   etc = {
