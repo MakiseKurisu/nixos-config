@@ -76,7 +76,7 @@
     aria2 = {
       enable = true;
       openPorts = true;
-      downloadDir = "/media/aria2/";
+      downloadDir = "/media/aria2";
       extraArguments = ''
         --rpc-listen-all \
         --input-file=/var/lib/aria2/aria2.session \
