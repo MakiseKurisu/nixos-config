@@ -10,6 +10,7 @@
       "audio"
       "cups"
       "dialout"
+      "incus"
       "input"
       "libvirtd"
       "lp"
