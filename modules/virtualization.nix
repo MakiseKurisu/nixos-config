@@ -34,7 +34,6 @@
     incus = {
       enable = true;
       ui.enable = true;
-      socketActivation = true;
       preseed = {
         config = {
           "core.https_address" = "127.0.0.1:8443";
