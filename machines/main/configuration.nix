@@ -77,6 +77,103 @@
     };
   };
 
+  networking.interfaces.enp6s18.useDHCP = false;
+  systemd.network = {
+    netdevs = {
+       "20-br0" = {
+         netdevConfig = {
+           Kind = "bridge";
+           Name = "br0";
+         };
+        bridgeConfig = {
+          STP = true;
+          VLANFiltering = true;
+        };
+       };
+    };
+    networks = {
+      "30-enp6s18" = {
+        matchConfig.Name = "enp6s18";
+        networkConfig.Bridge = "br0";
+        linkConfig.RequiredForOnline = "enslaved";
+        bridgeVLANs = [
+          {
+            bridgeVLANConfig = {
+              PVID = 1;
+              EgressUntagged = 1;
+            };
+          }
+          {
+            bridgeVLANConfig = {
+              VLAN = 10;
+            };
+          }
+          {
+            bridgeVLANConfig = {
+              VLAN = 20;
+            };
+          }
+          {
+            bridgeVLANConfig = {
+              VLAN = 30;
+            };
+          }
+        ];
+        networkConfig = {
+          LinkLocalAddressing = false;
+          DHCP = false;
+        };
+      };
+      "40-br0" = {
+        matchConfig.Name = "br0";
+        bridgeConfig = {};
+        bridgeVLANs = [
+          {
+            bridgeVLANConfig = {
+              PVID = 1;
+              EgressUntagged = 1;
+            };
+          }
+          {
+            bridgeVLANConfig = {
+              VLAN = 10;
+            };
+          }
+          {
+            bridgeVLANConfig = {
+              VLAN = 20;
+            };
+          }
+          {
+            bridgeVLANConfig = {
+              VLAN = 30;
+            };
+          }
+        ];
+        networkConfig = {
+          LinkLocalAddressing = false;
+          DHCP = false;
+        };
+        vlan = [
+          "vlan20"
+        ];
+        linkConfig = {
+          RequiredForOnline = false;
+        };
+      };
+      "50-vlan20" = {
+        matchConfig.Name = "vlan20";
+        networkConfig = {
+          DHCP = true;
+          Domains = "protoducer.com vamrs.org";
+        };
+        linkConfig = {
+          RequiredForOnline = false;
+        };
+      };
+    };
+  };
+
   networking.hostName = "main";
   system.stateVersion = "22.11";
 }
