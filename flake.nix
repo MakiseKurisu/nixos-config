@@ -20,6 +20,7 @@
       url = "github:docker-geph/gfwlist2dnsmasq";
       flake = false;
     };
+    impermanence.url = "github:nix-community/impermanence";
     # Work In Progress PRs
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
@@ -38,6 +39,7 @@
     , NUR
     , dewclaw
     , gfwlist2dnsmasq
+    , impermanence
     , pr-dolphin
     , pr-mmdebstrap
     , ...
