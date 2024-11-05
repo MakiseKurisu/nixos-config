@@ -29,32 +29,6 @@
     loader.efi.efiSysMountPoint = "/boot/efi";
   };
 
-  virtualisation = {
-    oci-containers = {
-      backend = "podman";
-      containers = {
-        jellyfin = {
-          image = "docker.io/jellyfin/jellyfin";
-          autoStart = true;
-          ports = [
-            "8096:8096"
-          ];
-          volumes = [
-            "/home/excalibur/containers/jellyfin/cache:/cache"
-            "/home/excalibur/containers/jellyfin/config:/config"
-            "/media/raid/Media:/media"
-          ];
-          environment = {
-            PUID = "1000";
-            PGID = "1000";
-            TZ = "Asia/Shanghai";
-          };
-          user = "1000:1000";
-        };
-      };
-    };
-  };
-
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
       "hypr/machine.conf" = {

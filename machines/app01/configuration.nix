@@ -93,6 +93,11 @@
       '';
       rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
     };
+
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
   };
   
   networking.firewall.allowedTCPPorts = [
