@@ -6,6 +6,7 @@
     ./pr/mmdebstrap.nix
     ./plasma-systemsettings.nix
     ./hyprland.nix
+    inputs.lix-module.nixosModules.default
   ];
 
   boot = {
