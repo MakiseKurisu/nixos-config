@@ -239,12 +239,6 @@
   security = {
     polkit.enable = true;
     rtkit.enable = true;
-    sudo = {
-      execWheelOnly = true;
-      extraConfig = ''
-        Defaults insults
-      '';
-    };
   };
 
   services = {

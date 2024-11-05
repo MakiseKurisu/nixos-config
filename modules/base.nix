@@ -77,6 +77,16 @@
 
   powerManagement.powertop.enable = true;
 
+  security = {
+    sudo = {
+      execWheelOnly = true;
+      extraConfig = ''
+        Defaults insults = on
+        Defaults lecture = never
+      '';
+    };
+  };
+
   services.xserver = {
     xkb = {
       layout = "us";
