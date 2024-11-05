@@ -106,7 +106,7 @@
       flake = "github:MakiseKurisu/nixos-config";
       operation = "boot";
       randomizedDelaySec = "5min";
-      dates = "*-*~01 23:00:00";
+      dates = "*-*~01 08:00:00";
     };
   };
 
