@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./services.nix
   ];
 
   console = {
@@ -86,10 +85,15 @@
     };
   };
 
-  services.xserver = {
-    xkb = {
-      layout = "us";
-      variant = "";
+
+  services = {
+    openssh.enable = true;
+    qemuGuest.enable = true;
+    xserver = {
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
   };
 

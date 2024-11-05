@@ -11,7 +11,6 @@
     ../../modules/network.nix
     #../../modules/nvidia.nix
     ../../modules/packages-base.nix
-    ../../modules/services.nix
     ../../modules/users-base.nix
     #../../modules/vfio.nix
     #../../modules/virtualization.nix
