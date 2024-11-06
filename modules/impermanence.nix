@@ -45,8 +45,6 @@
         "/etc/machine-id"
         "/etc/nixos/flake.nix"
         "/var/lib/logrotate.status"
-        "/var/lib/mihomo"
-        "/var/lib/technitium-dns-server"
       ];
     };
     "/persistent/user/excalibur" = {
