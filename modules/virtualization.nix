@@ -25,6 +25,10 @@
       ];
   };
 
+  networking.firewall.allowedTCPPorts = [
+    8443 # incus
+  ];
+
   virtualisation = {
     lxc = {
       enable = true; # waydroid uses lxc
