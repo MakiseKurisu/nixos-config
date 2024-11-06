@@ -79,7 +79,7 @@
     sudo = {
       execWheelOnly = true;
       extraConfig = ''
-        Defaults insults = on
+        Defaults insults
         Defaults lecture = never
       '';
     };
