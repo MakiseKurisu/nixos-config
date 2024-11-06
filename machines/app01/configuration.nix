@@ -13,7 +13,7 @@
     ../../modules/packages-base.nix
     ../../modules/users-base.nix
     #../../modules/vfio.nix
-    #../../modules/virtualization.nix
+    ../../modules/virtualization.nix
 
     ../../modules/nfs-nas.nix
     #../../modules/nfs-app01.nix
@@ -26,6 +26,8 @@
     kernelParams = [
       "console=ttyS0"
     ];
+    kernelPackages = lib.mkForce pkgs.linuxPackages_6_11;
+    supportedFilesystems = [ "bcachefs" ];
   };
 
   services = {
@@ -36,8 +38,8 @@
 
     nfs.server = {
       exports = ''
-        /media        192.168.9.0/24(rw,fsid=0,no_subtree_check)
-        /media/aria2  192.168.9.0/24(rw,nohide,insecure,no_subtree_check)
+        /srv        192.168.9.0/24(rw,fsid=0,no_subtree_check)
+        /srv/aria2  192.168.9.0/24(rw,nohide,insecure,no_subtree_check)
       '';
     };
 
@@ -45,7 +47,7 @@
     samba = {
       shares = {
         aria2 = {
-          path = "/media/aria2";
+          path = "/srv/aria2";
           browseable = "yes";
           "read only" = "no";
           "guest ok" = "no";
@@ -53,6 +55,7 @@
           "directory mask" = "0755";
           "force user" = "excalibur";
           "force group" = "users";
+          "acl allow execute always" = "yes";
         };
       };
     };
@@ -60,10 +63,10 @@
     mihomo = {
       enable = true;
       tunMode = true;
-      configFile = "/home/excalibur/containers/clash.yaml";
+      configFile = "/srv/clash/clash.yaml";
       webui = pkgs.fetchzip {
-        url = "https://github.com/MetaCubeX/metacubexd/archive/refs/tags/v1.161.0.zip";
-        hash = "sha256-30y8bp0SRTRsR4inMz29r4/w/OVnf7UZ+et7MGSC34w=";
+        url = "https://github.com/MetaCubeX/metacubexd/archive/refs/tags/v1.169.0.zip";
+        hash = "sha256-4p9L52S4UkydQ7fST0VjCLs+tSXbewI1cCeGlq80+FY=";
       };
     };
 
@@ -75,7 +78,7 @@
     aria2 = {
       enable = true;
       openPorts = true;
-      downloadDir = "/media/aria2";
+      downloadDir = "/srv/aria2";
       extraArguments = ''
         --rpc-listen-all \
         --input-file=/var/lib/aria2/aria2.session \
@@ -98,11 +101,18 @@
       enable = true;
       openFirewall = true;
     };
+
+    static-web-server = {
+      enable = true;
+      listen = "[::]:6880";
+      root = "${pkgs.ariang}/share/ariang/";
+    };
   };
-  
+
   networking.firewall.allowedTCPPorts = [
-    # mihomo
-    9090
+    9090 # mihomo
+    3142 # acng
+    6880 # ariang
   ];
   networking.firewall.allowedTCPPortRanges = [
     # mihomo
@@ -112,88 +122,64 @@
     }
   ];
 
-  virtualisation = {
-    oci-containers = {
-      backend = "podman";
-      containers = {
-        acng = {
-          image = "docker.io/mbentley/apt-cacher-ng";
-          autoStart = true;
-          ports = [
-            "3142:3142"
-          ];
-          volumes = [
-            "/home/excalibur/containers/acng.conf:/etc/apt-cacher-ng/acng.conf"
-            "/home/excalibur/containers/acng/:/var/cache/apt-cacher-ng/"
-          ];
-          environment = {
-            PUID = "1000";
-            PGID = "100";
-            TZ = "Asia/Shanghai";
-          };
-        };
-        vlmcsd = {
-          image = "docker.io/mikolatero/vlmcsd";
-          autoStart = true;
-          ports = [
-            "1688:1688"
-          ];
-          environment = {
-            PUID = "1000";
-            PGID = "100";
-            TZ = "Asia/Shanghai";
-          };
-        };
-        npm = {
-          image = "docker.io/jc21/nginx-proxy-manager";
-          autoStart = true;
-          ports = [
-            "80:80"
-            "81:81"
-            "443:443"
-          ];
-          volumes = [
-            "/home/excalibur/containers/npm/:/data/"
-            "/home/excalibur/containers/npm-letsencrypt/:/etc/letsencrypt/"
-          ];
-          environment = {
-            PUID = "1000";
-            PGID = "100";
-            TZ = "Asia/Shanghai";
-          };
-        };
-        dls = {
-          image = "docker.io/collinwebdesigns/fastapi-dls";
-          autoStart = true;
-          ports = [
-            "8443:443"
-          ];
-          volumes = [
-            "/home/excalibur/containers/fastapi-dls/cert/:/app/cert/"
-            "/home/excalibur/containers/fastapi-dls/database/:/app/database/"
-          ];
-          environment = {
-            TZ = "Asia/Shanghai";
-            DLS_URL = "192.168.9.2";
-            DLS_PORT = "8443";
-            LEASE_EXPIRE_DAYS = "90";
-            DATABASE = "sqlite:////app/database/db.sqlite";
-            DEBUG = "false";
-          };
-        };
-        ariang = {
-          image = "docker.io/p3terx/ariang";
-          autoStart = true;
-          ports = [
-            "6880:6880"
-          ];
-          environment = {
-            TZ = "Asia/Shanghai";
-          };
-        };
+  systemd.services = {
+    apt-cacher-ng = {
+      script = ''
+        set -eu
+        ${lib.getExe pkgs.apt-cacher-ng} -c /var/lib/apt-cacher-ng/ \
+          "SupportDir=${pkgs.apt-cacher-ng}/lib/apt-cacher-ng/" \
+          "LocalDirs=acng-doc ${pkgs.apt-cacher-ng}/share/doc/apt-cacher-ng/"
+      '';
+      serviceConfig = {
+        Type = "exec";
+        DynamicUser = true;
+        StateDirectory = "apt-cacher-ng";
+        CacheDirectory = "apt-cacher-ng";
+        LogsDirectory = "apt-cacher-ng";
+        RuntimeDirectory = "apt-cacher-ng";
       };
+      wantedBy = [ "multi-user.target" ];
     };
   };
+
+  # virtualisation = {
+  #   oci-containers = {
+  #     backend = "podman";
+  #     containers = {
+  #       vlmcsd = {
+  #         image = "docker.io/mikolatero/vlmcsd";
+  #         autoStart = true;
+  #         ports = [
+  #           "1688:1688"
+  #         ];
+  #         environment = {
+  #           PUID = "1000";
+  #           PGID = "100";
+  #           TZ = "Asia/Shanghai";
+  #         };
+  #       };
+  #       dls = {
+  #         image = "docker.io/collinwebdesigns/fastapi-dls";
+  #         autoStart = true;
+  #         ports = [
+  #           "8443:443"
+  #         ];
+  #         volumes = [
+  #           "/home/excalibur/containers/fastapi-dls/cert/:/app/cert/"
+  #           "/home/excalibur/containers/fastapi-dls/database/:/app/database/"
+  #         ];
+  #         environment = {
+  #           TZ = "Asia/Shanghai";
+  #           DLS_URL = "192.168.9.2";
+  #           DLS_PORT = "8443";
+  #           LEASE_EXPIRE_DAYS = "90";
+  #           DATABASE = "sqlite:////app/database/db.sqlite";
+  #           DEBUG = "false";
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
 
   networking.hostName = "app01";
   system.stateVersion = "24.05";
