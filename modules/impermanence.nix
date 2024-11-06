@@ -7,27 +7,50 @@
 
   fileSystems = {
     "/persistent".neededForBoot = true;
-    "/diagnostic".neededForBoot = true;
   };
 
   environment.persistence = {
-    "/persistent" = {
+    "/persistent/system" = {
       hideMounts = true;
       directories = [
         "/etc/NetworkManager/system-connections"
-        "/var/lib/bluetooth"
-        "/var/lib/lxd"
+        "/var/lib/apt"
+        { directory = "/var/lib/aria2"; user = "aria2"; group = "aria2"; mode = "0770"; }
+        { directory = "/var/lib/bluetooth"; mode = "0700"; }
+        { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "0750"; }
+        "/var/lib/containers"
+        "/var/lib/cups"
+        { directory = "/var/lib/fail2ban"; mode = "0750"; }
+        { directory = "/var/lib/fwupd"; user = "fwupd-refresh"; group = "fwupd-refresh"; }
+        { directory = "/var/lib/geoclue"; user = "geoclue"; group = "geoclue"; }
+        { directory = "/var/lib/incus"; mode = "0711"; }
+        { directory = "/var/lib/iwd"; mode = "0700"; }
+        "/var/lib/jellyfin"
+        "/var/lib/libvirt"
+        "/var/lib/lxc"
+        "/var/lib/lxcfs"
+        { directory = "/var/lib/mpd"; user = "mpd"; group = "mpd"; }
+        "/var/lib/NetworkManager"
+        "/var/lib/nfs"
         "/var/lib/nixos"
-        { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+        "/var/lib/nixos-containers"
+        { directory = "/var/lib/private"; mode = "0700"; }
+        "/var/lib/samba"
+        "/var/lib/systemd"
+        { directory = "/var/lib/waydroid"; mode = "0777"; }
+        "/var/log"
       ];
       files = [
         "/etc/adjtime"
         "/etc/machine-id"
         "/etc/nixos/flake.nix"
-        "/var/lib/NetworkManager/secret_key"
-        "/var/lib/NetworkManager/seen-bssids"
-        "/var/lib/NetworkManager/timestamps"
+        "/var/lib/logrotate.status"
+        "/var/lib/mihomo"
+        "/var/lib/technitium-dns-server"
       ];
+    };
+    "/persistent/user/excalibur" = {
+      hideMounts = true;
       users.excalibur = {
         directories = [
           "Downloads"
@@ -43,43 +66,39 @@
           { directory = ".ssh"; mode = "0700"; }
           { directory = ".local/share/keyrings"; mode = "0700"; }
           ".local/share/direnv"
+          ".bash_history"
         ];
         files = [
-          { file = ".git-credentials"; }
+          ".git-credentials"
+          ".config/nix/nix.conf"
         ];
       };
-    };
-    "/diagnostic" = {
-      hideMounts = true;
-      directories = [
-        "/var/log"
-        "/var/lib/systemd/coredump"
-      ];
     };
   };
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
-    mkdir /btrfs_tmp
-    mount /dev/root_vg/root /btrfs_tmp
-    if [[ -e /btrfs_tmp/root ]]; then
-        mkdir -p /btrfs_tmp/old_roots
-        timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
-        mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+    mkdir -p /impermanence
+    mount -o subvol=/ /dev/disk/by-label/nixos /impermanence
+
+    if [[ -e /impermanence/root ]]; then
+        mkdir -p /impermanence/old_roots
+        timestamp=$(date --date="@$(stat -c %Y /impermanence/root)" "+%Y-%m-%-d_%H:%M:%S")
+        mv /impermanence/root "/impermanence/old_roots/$timestamp"
     fi
 
     delete_subvolume_recursively() {
         IFS=$'\n'
         for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-            delete_subvolume_recursively "/btrfs_tmp/$i"
+            delete_subvolume_recursively "/impermanence/$i"
         done
         btrfs subvolume delete "$1"
     }
 
-    for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
+    for i in $(find /impermanence/old_roots/ -maxdepth 1 -mtime +30); do
         delete_subvolume_recursively "$i"
     done
 
-    btrfs subvolume create /btrfs_tmp/root
-    umount /btrfs_tmp
+    btrfs subvolume create /impermanence/root
+    umount /impermanence
   '';
 }
