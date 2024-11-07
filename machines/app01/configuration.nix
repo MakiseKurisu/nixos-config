@@ -23,10 +23,7 @@
   ];
 
   boot = {
-    kernelParams = [
-      "console=ttyS0"
-    ];
-    kernelPackages = lib.mkForce pkgs.linuxPackages_6_11;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     supportedFilesystems = [ "bcachefs" ];
   };
 
@@ -65,8 +62,9 @@
       tunMode = true;
       configFile = "/srv/clash/clash.yaml";
       webui = pkgs.fetchzip {
-        url = "https://github.com/MetaCubeX/metacubexd/archive/refs/tags/v1.169.0.zip";
-        hash = "sha256-4p9L52S4UkydQ7fST0VjCLs+tSXbewI1cCeGlq80+FY=";
+        url = "https://github.com/MetaCubeX/metacubexd/releases/download/v1.169.0/compressed-dist.tgz";
+        stripRoot = false;
+        hash = "sha256-L0HHTh20qpTQiOJQTr5GgZF17JuhHHFSfn5Fht2V/rw=";
       };
     };
 
@@ -97,22 +95,47 @@
       rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
     };
 
-    jellyfin = {
-      enable = true;
-      openFirewall = true;
-    };
+    jellyfin.enable = true;
 
-    static-web-server = {
+    nginx = {
       enable = true;
-      listen = "[::]:6880";
-      root = "${pkgs.ariang}/share/ariang/";
+      recommendedOptimisation = true;
+      recommendedTlsSettings = true;
+      recommendedBrotliSettings = true;
+      recommendedGzipSettings = true;
+      recommendedZstdSettings = true;
+      recommendedProxySettings = true;
+      virtualHosts = {
+        "apt.protoducer.com".locations."/".proxyPass = "http://127.0.0.1:3142/";
+        "aria.protoducer.com".locations = {
+          "/" = {
+            root = "${pkgs.ariang}/share/ariang/";
+          };
+          "/jsonrpc" = {
+            proxyPass = "http://127.0.0.1:6800/jsonrpc";
+            extraConfig = ''
+              add_header 'Access-Control-Allow-Origin' '*' always;
+            '';
+          };
+        };
+        "dns.protoducer.com".locations."/".proxyPass = "http://127.0.0.1:5380/";
+        "incus.protoducer.com".locations."/".proxyPass = "http://127.0.0.1:8443/";
+        "jf.protoducer.com".locations."/" = {
+          proxyWebsockets = true;
+          proxyPass = "http://127.0.0.1:8096/";
+        };
+        "proxy.protoducer.com".locations."/".proxyPass = "http://127.0.0.1:9090/ui/";
+      };
     };
   };
 
+  networking.firewall.allowedUDPPorts = [
+    # 53 # technitium-dns-server
+  ];
   networking.firewall.allowedTCPPorts = [
+    # 53 # technitium-dns-server
+    80 # nginx
     9090 # mihomo
-    3142 # acng
-    6880 # ariang
   ];
   networking.firewall.allowedTCPPortRanges = [
     # mihomo
