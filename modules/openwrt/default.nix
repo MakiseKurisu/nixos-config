@@ -20,6 +20,7 @@
   };
 
   packages = [
+    "bash"
     "nano"
     "qemu-ga"
     "powertop"
