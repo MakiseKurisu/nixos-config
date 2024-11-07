@@ -106,6 +106,7 @@
       recommendedZstdSettings = true;
       recommendedProxySettings = true;
       virtualHosts = {
+        "_".locations."/".return = "404";
         "apt.protoducer.com".locations."/".proxyPass = "http://127.0.0.1:3142/";
         "aria.protoducer.com".locations = {
           "/" = {
