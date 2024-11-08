@@ -28,10 +28,9 @@
   };
 
   services = {
-    technitium-dns-server = {
-      enable = true;
-      openFirewall = true;
-    };
+    # Must configure to NOT listen on 0.0.0.0:53 but 192.168.xxx.yyy:53
+    # As systemd-resolved would listen on 127.0.0.53:53
+    technitium-dns-server.enable = true;
 
     nfs.server = {
       exports = ''
@@ -146,10 +145,10 @@
   };
 
   networking.firewall.allowedUDPPorts = [
-    # 53 # technitium-dns-server
+    53 # technitium-dns-server
   ];
   networking.firewall.allowedTCPPorts = [
-    # 53 # technitium-dns-server
+    53 # technitium-dns-server
     80 # nginx
     443 # nginx
     9090 # mihomo
