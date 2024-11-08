@@ -60,7 +60,7 @@
     mihomo = {
       enable = true;
       tunMode = true;
-      configFile = "/srv/clash/clash.yaml";
+      configFile = "/var/lib/mihomo/clash.yaml";
       webui = pkgs.fetchzip {
         url = "https://github.com/MetaCubeX/metacubexd/releases/download/v1.169.0/compressed-dist.tgz";
         stripRoot = false;
