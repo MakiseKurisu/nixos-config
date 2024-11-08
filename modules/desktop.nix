@@ -53,7 +53,7 @@
       cliphist
       colmena
       darktable
-      inputs.devenv.packages.${pkgs.system}.devenv
+      devenv
       discord
       element-desktop
       element-desktop-wayland

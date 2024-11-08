@@ -5,11 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    devenv.url = "github:cachix/devenv";
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
@@ -30,7 +29,6 @@
     inputs@{ self
     , nixpkgs
     , nixpkgs-unstable
-    , devenv
     , flake-parts
     , home-manager
     , lix-module
@@ -90,7 +88,7 @@
                   hostname = "OpenWrt";
                   ip = "192.168.9.1";
                 } // {
-                  uci.settings.network.interface.wwan0.device = "/sys/devices/pci0000:00/0000:00:1e.0/0000:05:02.0/0000:07:1b.0/usb10/10-1";
+                  uci.settings.network.interface.wwan0.device = "/sys/devices/pci0000:00/0000:00:14.0/usb4/4-3";
                 };
                 m93p = import machines/openwrt/router {
                   inherit lib inputs;
