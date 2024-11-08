@@ -21,9 +21,10 @@
 
   packages = [
     "bash"
+    "kitty-terminfo"
     "nano"
-    "qemu-ga"
     "powertop"
+    "qemu-ga"
     "kmod-i6300esb-wdt"
     "kmod-itco-wdt"
   ];

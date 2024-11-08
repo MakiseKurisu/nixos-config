@@ -10,6 +10,8 @@
 
   documentation.man.generateCaches = true;
 
+  environment.enableAllTerminfo = true;
+
   hardware = {
     enableAllFirmware = true;
     bluetooth.enable = true;
