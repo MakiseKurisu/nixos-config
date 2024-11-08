@@ -105,27 +105,42 @@
       recommendedGzipSettings = true;
       recommendedZstdSettings = true;
       recommendedProxySettings = true;
-      virtualHosts = {
-        "_".locations."/".return = "404";
-        "apt.protoducer.com".locations."/".proxyPass = "http://127.0.0.1:3142/";
-        "aria.protoducer.com".locations = {
-          "/" = {
-            root = "${pkgs.ariang}/share/ariang/";
-          };
-          "/jsonrpc" = {
-            proxyPass = "http://127.0.0.1:6800/jsonrpc";
-            extraConfig = ''
-              add_header 'Access-Control-Allow-Origin' '*' always;
-            '';
+      virtualHosts = let
+        https = host: host // {
+          sslCertificate = "/var/lib/nginx/cert.pem";
+          sslCertificateKey = "/var/lib/nginx/key.pem";
+          forceSSL = true;
+          kTLS = true;
+        };
+        http = host: host // {
+          rejectSSL = true;
+        }; in {
+        "_" = https { locations."/".return = "404"; };
+        "apt.protoducer.com" = http { locations."/".proxyPass = "http://127.0.0.1:3142/"; };
+        "aria.protoducer.com" = http {
+          locations = {
+            "/".root = "${pkgs.ariang}/share/ariang/";
+            "/jsonrpc" = {
+              proxyPass = "http://127.0.0.1:6800/jsonrpc";
+              extraConfig = ''
+                add_header 'Access-Control-Allow-Origin' '*' always;
+              '';
+            };
           };
         };
-        "dns.protoducer.com".locations."/".proxyPass = "http://127.0.0.1:5380/";
-        "incus.protoducer.com".locations."/".proxyPass = "http://127.0.0.1:8443/";
-        "jf.protoducer.com".locations."/" = {
-          proxyWebsockets = true;
-          proxyPass = "http://127.0.0.1:8096/";
+        "dns.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:5380/"; };
+        "jf.protoducer.com" = https {
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "http://127.0.0.1:8096/";
+          };
         };
-        "proxy.protoducer.com".locations."/".proxyPass = "http://127.0.0.1:9090/ui/";
+        "proxy.protoducer.com" = https {
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "http://127.0.0.1:9090/";
+          };
+        };
       };
     };
   };
@@ -136,6 +151,7 @@
   networking.firewall.allowedTCPPorts = [
     # 53 # technitium-dns-server
     80 # nginx
+    443 # nginx
     9090 # mihomo
   ];
   networking.firewall.allowedTCPPortRanges = [
