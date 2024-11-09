@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "uas" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -25,9 +25,9 @@
     };
 
   fileSystems."/srv/aria2" =
-    { device = "UUID=d3547938-66b6-4244-853a-f9dc9e6d2855";
-      fsType = "bcachefs";
-      options = [ "nofail" ];
+    { device = "UUID=7a250339-3879-482c-8f13-0a313c0069be";
+      fsType = "btrfs";
+      options = [ "defaults" "compress=zstd" "noauto" "x-systemd.automount" "x-systemd.idle-timeout=600" ];
     };
 
   swapDevices = [ ];
