@@ -1,9 +1,19 @@
+# When OpenWrt is running from incus, please add following passthrough devices:
+#  wwan-cdc-wdm0:
+#    mode: '0600'
+#    path: /dev/cdc-wdm0
+#    required: 'false'
+#    type: unix-char
+#  wwan:
+#    nictype: physical
+#    parent: wwp0s20u3i5
+#    type: nic
+{ lib
+, ...}:
 {
   packages = [
-    "luci-proto-modemmanager"
-    "kmod-usb-net-qmi-wwan"
+    "luci-proto-qmi"
     "kmod-usb-serial-option"
-    "uqmi"
   ];
 
   etc = {
@@ -27,11 +37,11 @@
       network = {
         interface = {
           wwan0 = {
-            proto = "modemmanager";
+            proto = "qmi";
+            device = lib.mkDefault "/dev/cdc-wdm0";
             apn = "CBNET";
             auth = "none";
-            iptype = "ipv4v6";
-            loglevel = "ERR";
+            pdptype = "ipv4v6";
           };
         };
       };
