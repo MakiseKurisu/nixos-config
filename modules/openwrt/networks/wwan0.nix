@@ -20,15 +20,17 @@
     "wwan/keep_alive".text = ''
       #!/usr/bin/env sh
       INTERFACE="$1"
+      PARENT="''${2:-$1}"
       . /usr/share/libubox/jshn.sh
       json_load "$(ubus call "network.interface.$INTERFACE" status)"
       json_get_var up up
       if [ "$up" != "1" ]; then
-        ifup "$INTERFACE"
+        ifup "$PARENT"
       fi
     '';
     "crontabs/root".text = ''
       * * * * * sh /etc/wwan/keep_alive wwan0
+      * * * * * sh /etc/wwan/keep_alive wwan0_4 wwan0
     '';
   };
 
