@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -21,7 +21,13 @@
   fileSystems."/boot" =
     { device = "UUID=F3C8-1489";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  fileSystems."/srv/aria2" =
+    { device = "UUID=d3547938-66b6-4244-853a-f9dc9e6d2855";
+      fsType = "bcachefs";
+      options = [ "nofail" ];
     };
 
   swapDevices = [ ];
