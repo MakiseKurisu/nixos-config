@@ -7,6 +7,7 @@
             name = "br-lan";
             type = "bridge";
             ports = ["eth1" "lan1" "lan2" "lan3" "lan4" "wan"];
+            stp = 1;
           }
         ];
         bridge-vlan = [
