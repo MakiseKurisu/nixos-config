@@ -29,6 +29,9 @@
     8443 # incus
   ];
 
+  security.apparmor.enable = true;
+  services.dbus.apparmor = "enabled";
+
   virtualisation = {
     lxc = {
       enable = true; # waydroid uses lxc
