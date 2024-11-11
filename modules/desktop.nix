@@ -108,6 +108,7 @@
       nwg-panel
       nwg-drawer
       nwg-launchers
+      opentofu
       pinentry-qt
       piper
       pre-commit
