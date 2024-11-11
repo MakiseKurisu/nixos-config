@@ -44,16 +44,6 @@
         };
       };
     };
-    libvirtd = {
-      enable = true;
-      onBoot = "ignore";
-      qemu = {
-        swtpm.enable = true;
-        ovmf.packages = with pkgs; [
-          OVMFFull.fd
-        ];
-      };
-    };
     waydroid.enable = true;
   };
 }

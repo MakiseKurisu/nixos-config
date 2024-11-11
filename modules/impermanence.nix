@@ -26,7 +26,6 @@
         { directory = "/var/lib/incus"; mode = "0711"; }
         { directory = "/var/lib/iwd"; mode = "0700"; }
         "/var/lib/jellyfin"
-        "/var/lib/libvirt"
         "/var/lib/lxc"
         "/var/lib/lxcfs"
         { directory = "/var/lib/mpd"; user = "mpd"; group = "mpd"; }

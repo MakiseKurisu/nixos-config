@@ -12,7 +12,6 @@
       "dialout"
       "incus"
       "input"
-      "libvirtd"
       "lp"
       "networkmanager"
       "realtime"
