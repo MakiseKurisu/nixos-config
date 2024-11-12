@@ -12,6 +12,9 @@
 
   systemd.network = {
     enable = true;
+    config.networkConfig = {
+      SpeedMeter = true;
+    };
     netdevs = {
       "20-vlan1" = {
         netdevConfig = {
@@ -40,6 +43,15 @@
           Name = "vlan30";
         };
         vlanConfig.Id = 30;
+      };
+    };
+    networks = {
+      "01-lo" = {
+        matchConfig.Name = "lo";
+        networkConfig = {
+          LinkLocalAddressing = "ipv6";
+          Address = "127.0.0.1/8";
+        };
       };
     };
   };

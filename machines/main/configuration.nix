@@ -93,10 +93,6 @@
             };
           }
         ];
-        networkConfig = {
-          LinkLocalAddressing = false;
-          DHCP = false;
-        };
       };
       "40-br0" = {
         matchConfig.Name = "br0";
@@ -124,10 +120,6 @@
             };
           }
         ];
-        networkConfig = {
-          LinkLocalAddressing = false;
-          DHCP = false;
-        };
         vlan = [
           "vlan20"
         ];
@@ -140,6 +132,7 @@
         networkConfig = {
           DHCP = true;
           Domains = "protoducer.com vamrs.org";
+          Address = "192.168.9.20/24";
         };
         linkConfig = {
           RequiredForOnline = false;

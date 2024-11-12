@@ -263,10 +263,6 @@
             };
           }
         ];
-        networkConfig = {
-          LinkLocalAddressing = false;
-          DHCP = false;
-        };
       };
       "30-enp2s0" = {
         matchConfig.Name = "enp2s0";
@@ -295,10 +291,6 @@
             };
           }
         ];
-        networkConfig = {
-          LinkLocalAddressing = false;
-          DHCP = false;
-        };
       };
       "40-br0" = {
         matchConfig.Name = "br0";
@@ -326,10 +318,6 @@
             };
           }
         ];
-        networkConfig = {
-          LinkLocalAddressing = false;
-          DHCP = false;
-        };
         vlan = [
           "vlan20"
         ];
@@ -342,6 +330,7 @@
         networkConfig = {
           DHCP = true;
           Domains = "protoducer.com vamrs.org";
+          Address = "192.168.9.2/24";
         };
         linkConfig = {
           RequiredForOnline = false;
