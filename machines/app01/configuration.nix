@@ -179,6 +179,16 @@
       };
       wantedBy = [ "multi-user.target" ];
     };
+    e1000e = {
+      script = ''
+        set -eu
+        ${lib.getExe pkgs.ethtool} -K eno1 tso off gso off
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+      };
+      wantedBy = [ "sys-subsystem-net-devices-eno1.device" ];
+    };
   };
 
   # virtualisation = {
