@@ -123,6 +123,7 @@
       slack
       slurp
       solaar
+      sops
       sunshine
       sweethome3d.application
       tdesktop
