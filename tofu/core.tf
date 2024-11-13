@@ -137,7 +137,12 @@ resource oci_core_instance amd0 {
     assign_private_dns_record = true
     assign_public_ip = true
     display_name     = local.if0_name
-    hostname_label   = "${local.amd0_name}-0"
+    hostname_label   = local.amd0_name
+    private_ip       = "${substr(oci_core_subnet.subnet.cidr_block, 0, length(oci_core_subnet.subnet.cidr_block) - length("0/24"))}10"
+    ipv6address_ipv6subnet_cidr_pair_details {
+      ipv6subnet_cidr = oci_core_subnet.subnet.ipv6cidr_blocks[0]
+      ipv6address = "${substr(oci_core_subnet.subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.subnet.ipv6cidr_blocks[0]) - length("0000/64"))}10"
+    }
   }
 
   instance_options {
@@ -173,7 +178,12 @@ resource oci_core_instance arm0 {
     assign_private_dns_record = true
     assign_public_ip = true
     display_name     = local.if0_name
-    hostname_label   = "${local.arm0_name}-0"
+    hostname_label   = local.arm0_name
+    private_ip       = "${substr(oci_core_subnet.subnet.cidr_block, 0, length(oci_core_subnet.subnet.cidr_block) - length("0/24"))}20"
+    ipv6address_ipv6subnet_cidr_pair_details {
+      ipv6subnet_cidr = oci_core_subnet.subnet.ipv6cidr_blocks[0]
+      ipv6address = "${substr(oci_core_subnet.subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.subnet.ipv6cidr_blocks[0]) - length("0000/64"))}20"
+    }
   }
 
   instance_options {
@@ -214,7 +224,12 @@ resource oci_core_instance arm1 {
     assign_private_dns_record = true
     assign_public_ip = true
     display_name     = local.if0_name
-    hostname_label   = "${local.arm1_name}-0"
+    hostname_label   = local.arm1_name
+    private_ip       = "${substr(oci_core_subnet.subnet.cidr_block, 0, length(oci_core_subnet.subnet.cidr_block) - length("0/24"))}21"
+    ipv6address_ipv6subnet_cidr_pair_details {
+      ipv6subnet_cidr = oci_core_subnet.subnet.ipv6cidr_blocks[0]
+      ipv6address = "${substr(oci_core_subnet.subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.subnet.ipv6cidr_blocks[0]) - length("0000/64"))}21"
+    }
   }
 
   instance_options {
