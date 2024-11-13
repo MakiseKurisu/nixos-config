@@ -1,13 +1,27 @@
+locals {
+  vcn_name    = "protoducer"
+  subnet_name = "subnet"
+  amd0_name   = "amd0"
+  amd1_name   = "amd1"
+  arm0_name   = "arm0"
+  arm1_name   = "arm1"
+  if0_name    = "eth0"
+  if1_name    = "eth1"
+}
+
 resource oci_core_vcn vcn {
   compartment_id = local.tenancy_ocid
 
   cidr_blocks    = ["10.0.0.0/16"]
   is_ipv6enabled = true
+  display_name   = local.vcn_name
+  dns_label      = local.vcn_name
 }
 
 resource oci_core_internet_gateway internet_gateway {
   compartment_id = local.tenancy_ocid
   vcn_id         = oci_core_vcn.vcn.id
+  display_name   = "gateway"
 }
 
 resource oci_core_subnet subnet {
@@ -21,11 +35,14 @@ resource oci_core_subnet subnet {
   security_list_ids = [oci_core_security_list.security_list.id]
   route_table_id    = oci_core_route_table.route_table.id
   dhcp_options_id   = oci_core_vcn.vcn.default_dhcp_options_id
+  display_name      = local.subnet_name
+  dns_label         = local.subnet_name
 }
 
 resource oci_core_security_list security_list {
   compartment_id = local.tenancy_ocid
   vcn_id         = oci_core_vcn.vcn.id
+  display_name   = "security_list"
 
   egress_security_rules {
     protocol    = "all"
@@ -91,6 +108,7 @@ resource oci_core_security_list security_list {
 resource oci_core_route_table route_table {
   compartment_id = local.tenancy_ocid
   vcn_id         = oci_core_vcn.vcn.id
+  display_name   = "route_table"
 
   route_rules {
     destination       = "0.0.0.0/0"
@@ -103,10 +121,11 @@ resource oci_core_route_table route_table {
   }
 }
 
-resource oci_core_instance amd01 {
+resource oci_core_instance amd0 {
   availability_domain = local.availability_domain.name
   compartment_id      = local.tenancy_ocid
   shape               = "VM.Standard.E2.1.Micro"
+  display_name        = local.amd0_name
 
   metadata = {
     ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
@@ -115,7 +134,10 @@ resource oci_core_instance amd01 {
   create_vnic_details {
     subnet_id        = oci_core_subnet.subnet.id
     assign_ipv6ip    = true
+    assign_private_dns_record = true
     assign_public_ip = true
+    display_name     = local.if0_name
+    hostname_label   = "${local.amd0_name}-0"
   }
 
   instance_options {
@@ -135,10 +157,11 @@ resource oci_core_instance amd01 {
   }
 }
 
-resource oci_core_instance arm01 {
+resource oci_core_instance arm0 {
   availability_domain = local.availability_domain.name
   compartment_id      = local.tenancy_ocid
   shape               = "VM.Standard.A1.Flex"
+  display_name        = local.arm0_name
 
   metadata = {
     ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
@@ -147,7 +170,10 @@ resource oci_core_instance arm01 {
   create_vnic_details {
     subnet_id        = oci_core_subnet.subnet.id
     assign_ipv6ip    = true
+    assign_private_dns_record = true
     assign_public_ip = true
+    display_name     = local.if0_name
+    hostname_label   = "${local.arm0_name}-0"
   }
 
   instance_options {
@@ -172,10 +198,11 @@ resource oci_core_instance arm01 {
   }
 }
 
-resource oci_core_instance arm02 {
+resource oci_core_instance arm1 {
   availability_domain = local.availability_domain.name
   compartment_id      = local.tenancy_ocid
   shape               = "VM.Standard.A1.Flex"
+  display_name        = local.arm1_name
 
   metadata = {
     ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
@@ -184,7 +211,10 @@ resource oci_core_instance arm02 {
   create_vnic_details {
     subnet_id        = oci_core_subnet.subnet.id
     assign_ipv6ip    = true
+    assign_private_dns_record = true
     assign_public_ip = true
+    display_name     = local.if0_name
+    hostname_label   = "${local.arm1_name}-0"
   }
 
   instance_options {
