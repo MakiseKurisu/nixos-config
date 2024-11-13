@@ -15,7 +15,10 @@ resource oci_core_internet_gateway gateway {
 resource oci_core_subnet subnet {
   compartment_id    = local.tenancy_ocid
 
-  cidr_block        = "10.0.0.0/24"
+  cidr_block        = cidrsubnet(oci_core_vcn.primary.cidr_blocks[0], 8, 0)
+  ipv6cidr_blocks   = [
+    cidrsubnet(oci_core_vcn.primary.ipv6cidr_blocks[0], 8, 0),
+  ]
   display_name      = "subnet"
   vcn_id            = oci_core_vcn.primary.id
   security_list_ids = [oci_core_security_list.security_list.id]
@@ -102,13 +105,11 @@ resource oci_core_route_table route {
 
   route_rules {
     destination       = "0.0.0.0/0"
-    destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_internet_gateway.gateway.id
   }
 
   route_rules {
     destination       = "::/0"
-    destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_internet_gateway.gateway.id
   }
 }
@@ -119,10 +120,24 @@ resource oci_core_instance amd01 {
   compartment_id      = local.tenancy_ocid
   shape               = "VM.Standard.E2.1.Micro"
 
+  metadata = {
+    ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
+  }
+
   create_vnic_details {
     subnet_id        = oci_core_subnet.subnet.id
     display_name     = "eth0"
+    assign_ipv6ip    = true
     assign_public_ip = true
+  }
+
+  instance_options {
+    are_legacy_imds_endpoints_disabled = true
+  }
+
+  launch_options {
+    network_type = "PARAVIRTUALIZED" 
+    is_pv_encryption_in_transit_enabled = true
   }
 
   source_details {
@@ -130,10 +145,6 @@ resource oci_core_instance amd01 {
     source_id   = local.ubuntu_images.amd64.id
     boot_volume_size_in_gbs = 50
     boot_volume_vpus_per_gb = 120
-  }
-
-  metadata = {
-    ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
   }
 }
 
@@ -143,15 +154,29 @@ resource oci_core_instance arm01 {
   compartment_id      = local.tenancy_ocid
   shape               = "VM.Standard.A1.Flex"
 
-  shape_config {
-    ocpus               = 2
-    memory_in_gbs       = 12
+  metadata = {
+    ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
   }
 
   create_vnic_details {
     subnet_id        = oci_core_subnet.subnet.id
     display_name     = "eth0"
+    assign_ipv6ip    = true
     assign_public_ip = true
+  }
+
+  instance_options {
+    are_legacy_imds_endpoints_disabled = true
+  }
+
+  launch_options {
+    network_type = "PARAVIRTUALIZED" 
+    is_pv_encryption_in_transit_enabled = true
+  }
+
+  shape_config {
+    ocpus               = 2
+    memory_in_gbs       = 12
   }
 
   source_details {
@@ -159,10 +184,6 @@ resource oci_core_instance arm01 {
     source_id   = local.ubuntu_images.arm64.id
     boot_volume_size_in_gbs = 50
     boot_volume_vpus_per_gb = 120
-  }
-
-  metadata = {
-    ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
   }
 }
 
@@ -172,15 +193,29 @@ resource oci_core_instance arm02 {
   compartment_id      = local.tenancy_ocid
   shape               = "VM.Standard.A1.Flex"
 
-  shape_config {
-    ocpus               = 2
-    memory_in_gbs       = 12
+  metadata = {
+    ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
   }
 
   create_vnic_details {
     subnet_id        = oci_core_subnet.subnet.id
     display_name     = "eth0"
+    assign_ipv6ip    = true
     assign_public_ip = true
+  }
+
+  instance_options {
+    are_legacy_imds_endpoints_disabled = true
+  }
+
+  launch_options {
+    network_type = "PARAVIRTUALIZED" 
+    is_pv_encryption_in_transit_enabled = true
+  }
+
+  shape_config {
+    ocpus               = 2
+    memory_in_gbs       = 12
   }
 
   source_details {
@@ -188,9 +223,5 @@ resource oci_core_instance arm02 {
     source_id   = local.ubuntu_images.arm64.id
     boot_volume_size_in_gbs = 50
     boot_volume_vpus_per_gb = 120
-  }
-
-  metadata = {
-    ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
   }
 }
