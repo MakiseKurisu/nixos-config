@@ -126,6 +126,7 @@ resource oci_core_instance amd0 {
   compartment_id      = local.tenancy_ocid
   shape               = "VM.Standard.E2.1.Micro"
   display_name        = local.amd0_name
+  is_pv_encryption_in_transit_enabled = true
 
   metadata = {
     ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
@@ -149,11 +150,6 @@ resource oci_core_instance amd0 {
     are_legacy_imds_endpoints_disabled = true
   }
 
-  launch_options {
-    network_type = "PARAVIRTUALIZED" 
-    is_pv_encryption_in_transit_enabled = true
-  }
-
   source_details {
     source_type = "image"
     source_id   = local.ubuntu_images.amd64.id
@@ -167,6 +163,7 @@ resource oci_core_instance arm0 {
   compartment_id      = local.tenancy_ocid
   shape               = "VM.Standard.A1.Flex"
   display_name        = local.arm0_name
+  is_pv_encryption_in_transit_enabled = true
 
   metadata = {
     ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
@@ -190,11 +187,6 @@ resource oci_core_instance arm0 {
     are_legacy_imds_endpoints_disabled = true
   }
 
-  launch_options {
-    network_type = "PARAVIRTUALIZED" 
-    is_pv_encryption_in_transit_enabled = true
-  }
-
   shape_config {
     ocpus               = 2
     memory_in_gbs       = 12
@@ -213,6 +205,7 @@ resource oci_core_instance arm1 {
   compartment_id      = local.tenancy_ocid
   shape               = "VM.Standard.A1.Flex"
   display_name        = local.arm1_name
+  is_pv_encryption_in_transit_enabled = true
 
   metadata = {
     ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
@@ -234,11 +227,6 @@ resource oci_core_instance arm1 {
 
   instance_options {
     are_legacy_imds_endpoints_disabled = true
-  }
-
-  launch_options {
-    network_type = "PARAVIRTUALIZED" 
-    is_pv_encryption_in_transit_enabled = true
   }
 
   shape_config {
