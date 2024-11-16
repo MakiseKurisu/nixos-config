@@ -103,10 +103,13 @@
       nuclear
       nwg-bar
       nwg-menu
-      nwg-dock
+      nwg-look
       nwg-panel
+      nwg-hello
       nwg-drawer
+      nwg-displays
       nwg-launchers
+      nwg-dock-hyprland
       opentofu
       pinentry-qt
       piper
