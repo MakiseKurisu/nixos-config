@@ -55,6 +55,33 @@
       };
       programs = {
         home-manager.enable = true;
+        bash = {
+          enable = true;
+          historyControl = [
+            "ignoredups"
+            "ignorespace"
+          ];
+        };
+        bashmount.enable = true;
+        starship = {
+          enable = true;
+          enableBashIntegration = true;
+        };
+        direnv = {
+          enable = true;
+          enableBashIntegration = true;
+          nix-direnv.enable = true;
+        };
+        fzf = {
+          enable = true;
+          enableBashIntegration = true;
+          tmux.enableShellIntegration = true;
+        };
+        tmux = {
+          enable = true;
+          mouse = true;
+          newSession = true;
+        };
         kitty = {
           enable = true;
           settings = {

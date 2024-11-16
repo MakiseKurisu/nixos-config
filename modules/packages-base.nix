@@ -6,7 +6,6 @@
       with pkgs; [
         git-crypt
         parted
-        tmux
         wget
       ];
   };

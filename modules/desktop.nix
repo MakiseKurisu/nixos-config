@@ -198,15 +198,7 @@
         pr-mmdebstrap.debian-archive-keyring
       ];
     };
-    bash = {
-      undistractMe = {
-        enable = true;
-        playSound = true;
-        timeout = 45;
-      };
-    };
     dconf.enable = true;
-    direnv.enable = true;
     dolphin.enable = true;
     firefox = {
       enable = true;
