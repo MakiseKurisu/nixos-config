@@ -96,6 +96,11 @@
 
     jellyfin.enable = true;
 
+    pykms = {
+      enable = true;
+      openFirewallPort = true;
+    };
+
     nginx = {
       enable = true;
       recommendedOptimisation = true;
@@ -195,18 +200,6 @@
   #   oci-containers = {
   #     backend = "podman";
   #     containers = {
-  #       vlmcsd = {
-  #         image = "docker.io/mikolatero/vlmcsd";
-  #         autoStart = true;
-  #         ports = [
-  #           "1688:1688"
-  #         ];
-  #         environment = {
-  #           PUID = "1000";
-  #           PGID = "100";
-  #           TZ = "Asia/Shanghai";
-  #         };
-  #       };
   #       dls = {
   #         image = "docker.io/collinwebdesigns/fastapi-dls";
   #         autoStart = true;
