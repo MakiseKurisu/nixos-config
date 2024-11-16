@@ -78,7 +78,6 @@
       guvcview
       helvum
       hyprpaper
-      imv
       jq
       kicad
       krita
@@ -99,6 +98,7 @@
       musescore
       networkmanagerapplet
       nixpkgs-review
+      nomacs
       nss
       nuclear
       nwg-bar
