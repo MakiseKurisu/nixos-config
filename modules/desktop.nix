@@ -97,7 +97,6 @@
       mob
       moonlight-qt
       musescore
-      netease-cloud-music-gtk
       networkmanagerapplet
       nixpkgs-review
       nss
