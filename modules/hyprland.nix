@@ -27,8 +27,8 @@
           "[workspace 13 silent] waydroid first-launch"
           "[workspace 14 silent] element-desktop"
           "[workspace 15 silent] teams-for-linux"
-          "[workspace 16 silent] wechat-uos"
           "[workspace 17 silent] qq"
+          "[workspace 18 silent] wechat-uos"
           "[workspace 20 silent] nuclear"
         ];
         general = {
