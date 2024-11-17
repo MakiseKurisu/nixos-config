@@ -1,3 +1,14 @@
+# When OpenWrt is running from Incus, please add following configs:
+#config:
+#  raw.apparmor: |-
+#    mount fstype=bpf -> /sys/fs/bpf/,
+#    mount fstype=pstore -> /sys/fs/pstore/,
+#    mount options=(rw,remount,noatime) -> /,
+#    mount options=(rw,remount,bind) -> /tmp/ujail-*/**,
+#
+# May no longer be necessary with this commit:
+# https://github.com/lxc/incus/commit/36e76aaecb1e5d8f39e453b16958fe4c7af05e5d
+
 { lib
 , release
 , target
