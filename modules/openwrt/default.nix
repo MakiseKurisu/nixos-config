@@ -5,8 +5,17 @@
 #    mount fstype=pstore -> /sys/fs/pstore/,
 #    mount options=(rw,remount,noatime) -> /,
 #    mount options=(rw,remount,bind) -> /tmp/ujail-*/**,
+#devices:
+#  eth0:
+#    name: eth0
+#    host_name: openwrt
+#    nictype: bridged
+#    parent: br0
+#    type: nic
+#    vlan: '1'
+#    vlan.tagged: '10,20,30'
 #
-# May no longer be necessary with this commit:
+# Custom AppArmor rules may no longer be necessary with this commit:
 # https://github.com/lxc/incus/commit/36e76aaecb1e5d8f39e453b16958fe4c7af05e5d
 
 { lib
