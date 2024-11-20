@@ -96,6 +96,9 @@
       };
       "40-br0" = {
         matchConfig.Name = "br0";
+        networkConfig = {
+          LinkLocalAddressing = false;
+        };
         bridgeConfig = {};
         bridgeVLANs = [
           {
