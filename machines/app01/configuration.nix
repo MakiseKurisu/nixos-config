@@ -101,6 +101,32 @@
       openFirewallPort = true;
     };
 
+    home-assistant = {
+      enable = true;
+      extraPackages = python3Packages: with python3Packages; [
+        gtts
+      ];
+      extraComponents = [
+        "default_config"
+        "met"
+        "mobile_app"
+        "radio_browser"
+        "tuya"
+        "xiaomi_miio"
+      ];
+      config = {
+        http = {
+          use_x_forwarded_for = true;
+          trusted_proxies = [ "127.0.0.1" ];
+        };
+        homeassistant = {
+          unit_system = "metric";
+          name = "Home";
+        };
+        mobile_app = {};
+      };
+    };
+
     nginx = {
       enable = true;
       recommendedOptimisation = true;
@@ -143,6 +169,12 @@
           locations."/" = {
             proxyWebsockets = true;
             proxyPass = "http://127.0.0.1:9090/";
+          };
+        };
+        "ha.protoducer.com" = http {
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "http://127.0.0.1:8123/";
           };
         };
       };
