@@ -19,6 +19,8 @@
     #../../modules/nfs-app01.nix
     #../../modules/wireguard.nix
 
+    ../../modules/pr/fastapi-dls.nix
+
     ./hardware-configuration.nix
   ];
 
@@ -127,6 +129,14 @@
       };
     };
 
+    fastapi-dls = {
+      enable = true;
+      package = pkgs.pr-fastapi-dls.fastapi-dls;
+      listenPort = 8001;
+      dlsAddress = "dls.protoducer.com";
+      dlsPort = 443;
+    };
+
     nginx = {
       enable = true;
       recommendedOptimisation = true;
@@ -177,6 +187,7 @@
             proxyPass = "http://127.0.0.1:8123/";
           };
         };
+        "dls.protoducer.com" = https { locations."/".proxyPass = "https://127.0.0.1:8001/"; };
       };
     };
   };
@@ -227,33 +238,6 @@
       wantedBy = [ "sys-subsystem-net-devices-eno1.device" ];
     };
   };
-
-  # virtualisation = {
-  #   oci-containers = {
-  #     backend = "podman";
-  #     containers = {
-  #       dls = {
-  #         image = "docker.io/collinwebdesigns/fastapi-dls";
-  #         autoStart = true;
-  #         ports = [
-  #           "8443:443"
-  #         ];
-  #         volumes = [
-  #           "/home/excalibur/containers/fastapi-dls/cert/:/app/cert/"
-  #           "/home/excalibur/containers/fastapi-dls/database/:/app/database/"
-  #         ];
-  #         environment = {
-  #           TZ = "Asia/Shanghai";
-  #           DLS_URL = "192.168.9.2";
-  #           DLS_PORT = "8443";
-  #           LEASE_EXPIRE_DAYS = "90";
-  #           DATABASE = "sqlite:////app/database/db.sqlite";
-  #           DEBUG = "false";
-  #         };
-  #       };
-  #     };
-  #   };
-  # };
 
   networking.interfaces.eno1.useDHCP = false;
   networking.interfaces.enp2s0.useDHCP = false;

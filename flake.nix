@@ -23,6 +23,7 @@
     # Work In Progress PRs
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
+    pr-fastapi-dls.url = "github:MakiseKurisu/nixpkgs/fastapi-dls";
   };
 
   outputs =
@@ -40,6 +41,7 @@
     , impermanence
     , pr-dolphin
     , pr-mmdebstrap
+    , pr-fastapi-dls
     , ...
     }: flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [

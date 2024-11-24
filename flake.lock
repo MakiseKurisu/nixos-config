@@ -528,6 +528,22 @@
         "type": "github"
       }
     },
+    "pr-fastapi-dls": {
+      "locked": {
+        "lastModified": 1732436545,
+        "narHash": "sha256-o+Xij9oecUpjDdmPH+tfQAduvx326ueHkhTzCz/NE08=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "94c1c17d12d64f5730f19f233762fb67fc0f0354",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "fastapi-dls",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pr-mmdebstrap": {
       "locked": {
         "lastModified": 1708840397,
@@ -559,6 +575,7 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pr-dolphin": "pr-dolphin",
+        "pr-fastapi-dls": "pr-fastapi-dls",
         "pr-mmdebstrap": "pr-mmdebstrap"
       }
     },
