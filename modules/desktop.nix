@@ -240,6 +240,10 @@
 
   services = {
     ananicy.enable = true;
+    aria2 = {
+      enable = true;
+      rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
+    };
     avahi = {
       enable = true;
       nssmdns4 = true;
