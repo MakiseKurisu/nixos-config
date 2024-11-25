@@ -20,6 +20,7 @@
     #../../modules/wireguard.nix
 
     ../../modules/pr/fastapi-dls.nix
+    ../../modules/pr/aria2.nix
 
     ./hardware-configuration.nix
   ];
@@ -76,24 +77,25 @@
 
     aria2 = {
       enable = true;
-      openPorts = true;
-      downloadDir = "/srv/aria2";
-      extraArguments = ''
-        --rpc-listen-all \
-        --input-file=/var/lib/aria2/aria2.session \
-        --continue \
-        --max-concurrent-downloads=100 \
-        --max-overall-upload-limit=64K \
-        --max-connection-per-server=10 \
-        --http-accept-gzip \
-        --file-allocation=falloc \
-        --save-session-interval=10 \
-        --bt-prioritize-piece=head,tail \
-        --bt-remove-unselected-file \
-        --seed-ratio 0.1 \
-        --seed-time 0 \
-      '';
       rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
+      openPorts = true;
+      serviceUMask = "0007";
+      settings = {
+        dir = "/srv/aria2";
+        rpc-listen-all = true;
+        input-file = "/var/lib/aria2/aria2.session";
+        continue = true;
+        max-concurrent-downloads = 100;
+        max-overall-upload-limit = "64K";
+        max-connection-per-server = 10;
+        http-accept-gzip = true;
+        file-allocation = "falloc";
+        save-session-interval = 10;
+        bt-prioritize-piece = "head,tail";
+        bt-remove-unselected-file = true;
+        seed-ratio = 0.1;
+        seed-time = 0;
+      };
     };
 
     jellyfin.enable = true;
