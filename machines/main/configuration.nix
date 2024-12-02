@@ -9,7 +9,7 @@
     #../../modules/intel.nix
     ../../modules/kernel.nix
     ../../modules/network.nix
-    ../../modules/nvidia.nix
+    # ../../modules/nvidia.nix
     ../../modules/packages.nix
     ../../modules/users.nix
     ../../modules/vfio.nix
@@ -72,25 +72,17 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
-            bridgeVLANConfig = {
-              PVID = 1;
-              EgressUntagged = 1;
-            };
+            PVID = 1;
+            EgressUntagged = 1;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 10;
-            };
+            VLAN = 10;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 20;
-            };
+            VLAN = 20;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 30;
-            };
+            VLAN = 30;
           }
         ];
       };
@@ -102,25 +94,17 @@
         bridgeConfig = {};
         bridgeVLANs = [
           {
-            bridgeVLANConfig = {
-              PVID = 1;
-              EgressUntagged = 1;
-            };
+            PVID = 1;
+            EgressUntagged = 1;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 10;
-            };
+            VLAN = 10;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 20;
-            };
+            VLAN = 20;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 30;
-            };
+            VLAN = 30;
           }
         ];
         vlan = [

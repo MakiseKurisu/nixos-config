@@ -25,12 +25,10 @@
       MOZ_WEBRENDER = "1";
       MOZ_USE_XINPUT2 = "1";
       XDG_SESSION_TYPE = "wayland";
-      XDG_CURRENT_DESKTOP = "hyprland";
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland";
       CLUTTER_BACKEND = "wayland";
       SDL_VIDEODRIVER = "wayland";
-      GTK_IM_MODULE = lib.mkForce "";
     };
     sessionVariables = {
       EDITOR = "nano";
@@ -70,14 +68,13 @@
       ghidra
       ghidra-extensions.machinelearning
       ghidra-extensions.gnudisassembler
-      gnome3.adwaita-icon-theme
       greetd.wlgreet
       grim
       gsettings-desktop-schemas
       gtk3
       guvcview
       helvum
-      hyprpaper
+      hyprcursor
       jq
       kicad
       krita
@@ -157,8 +154,11 @@
       source-sans-pro
       source-serif-pro
       noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-color-emoji
+      noto-fonts-emoji-blob-bin
+      noto-fonts-monochrome-emoji
       liberation_ttf
       fira-code
       fira-code-symbols
@@ -182,12 +182,16 @@
 
   i18n = {
     inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [
-        fcitx5-gtk
-        fcitx5-chinese-addons
-        kdePackages.fcitx5-qt
-      ];
+      enable = true;
+      type = "fcitx5";
+      fcitx5 = {
+        waylandFrontend = true;
+        addons = with pkgs; [
+          fcitx5-gtk
+          fcitx5-chinese-addons
+          kdePackages.fcitx5-qt
+        ];
+      };
     };
   };
 
@@ -208,7 +212,6 @@
     };
     regreet.enable = true;
     hyprland.enable = true;
-    hyprlock.enable = true;
     waybar = {
       enable = true;
       package = pkgs.waybar;
@@ -254,26 +257,7 @@
     dbus.enable = true;
     envfs.enable = true;
     fwupd.enable = true;
-    greetd = {
-      enable = true;
-      settings = {
-        default_session =
-          let
-            greetdConfig = pkgs.writeText "greetd-config" ''
-              exec-once = ${pkgs.greetd.regreet}/bin/regreet; hyprctl dispatch exit
-              animations {
-                  enabled = off
-              }
-              misc {
-                  force_default_wallpaper = 2
-              }
-            '';
-          in
-          {
-            command = "${pkgs.hyprland}/bin/Hyprland --config ${greetdConfig} >/dev/null 2>/dev/null";
-          };
-      };
-    };
+    greetd.enable = true;
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
     hypridle.enable = true;
@@ -308,21 +292,35 @@
 
   hardware.bluetooth.enable = true;
 
-  xdg = {
-    portal = {
-      enable = true;
-      # xdg-open is broken and cannot open link from discord
-      # xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-      ];
-    };
-    mime.defaultApplications = {
-      "text/html" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
+  home-manager = {
+    users.excalibur = { pkgs, ... }: {
+      xdg = {
+        portal = {
+          enable = true;
+          # xdg-open is broken and cannot open link from discord
+          xdgOpenUsePortal = true;
+          config = {
+            common = {
+              default = [
+                "hyprland"
+                "gtk"
+              ];
+            };
+          };
+          extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+        };
+        mime.enable = true;
+        mimeApps = {
+          enable = true;
+          defaultApplications = {
+            "text/html" = [ "firefox.desktop" ];
+            "x-scheme-handler/about" = [ "firefox.desktop" ];
+            "x-scheme-handler/http" = [ "firefox.desktop" ];
+            "x-scheme-handler/https" = [ "firefox.desktop" ];
+            "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+          };
+        };
+      };
     };
   };
 }

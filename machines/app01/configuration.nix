@@ -26,7 +26,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
     supportedFilesystems = [ "bcachefs" ];
   };
 
@@ -263,25 +263,17 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
-            bridgeVLANConfig = {
-              PVID = 1;
-              EgressUntagged = 1;
-            };
+            PVID = 1;
+            EgressUntagged = 1;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 10;
-            };
+            VLAN = 10;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 20;
-            };
+            VLAN = 20;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 30;
-            };
+            VLAN = 30;
           }
         ];
       };
@@ -291,25 +283,17 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
-            bridgeVLANConfig = {
-              PVID = 1;
-              EgressUntagged = 1;
-            };
+            PVID = 1;
+            EgressUntagged = 1;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 10;
-            };
+            VLAN = 10;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 20;
-            };
+            VLAN = 20;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 30;
-            };
+            VLAN = 30;
           }
         ];
       };
@@ -321,25 +305,17 @@
         bridgeConfig = {};
         bridgeVLANs = [
           {
-            bridgeVLANConfig = {
-              PVID = 1;
-              EgressUntagged = 1;
-            };
+            PVID = 1;
+            EgressUntagged = 1;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 10;
-            };
+            VLAN = 10;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 20;
-            };
+            VLAN = 20;
           }
           {
-            bridgeVLANConfig = {
-              VLAN = 30;
-            };
+            VLAN = 30;
           }
         ];
         vlan = [

@@ -2,13 +2,13 @@
   description = "NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
@@ -24,7 +24,6 @@
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
     pr-fastapi-dls.url = "github:MakiseKurisu/nixpkgs/fastapi-dls";
-    pr-aria2.url = "github:MakiseKurisu/nixpkgs/aria2";
   };
 
   outputs =
@@ -43,7 +42,6 @@
     , pr-dolphin
     , pr-mmdebstrap
     , pr-fastapi-dls
-    , pr-aria2
     , ...
     }: flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [

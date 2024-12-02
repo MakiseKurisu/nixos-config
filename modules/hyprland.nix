@@ -2,10 +2,96 @@
 
 {
   home-manager.users.excalibur = { pkgs, ... }: {
+    programs = {
+      hyprlock = {
+        enable = true;
+        settings = {
+          general = {
+            disable_loading_bar = true;
+            grace = 10;
+            hide_cursor = true;
+          };
+
+          background = [
+            {
+              path = "~/.config/hypr/lockscreen.png";
+              color = "rgba(25, 20, 20, 1.0)";
+            }
+          ];
+
+          input-field = [
+            {
+              size = "250, 60";
+              dots_size = 0.2;
+              dots_spacing = 0.2;
+              dots_center = true;
+              font_color = "rgb(200, 200, 200)";
+              inner_color = "rgba(0, 0, 0, 0.5)";
+              outer_color = "rgba(0, 0, 0, 0)";
+              outline_thickness = 2;
+              shadow_passes = 2;
+              fade_on_empty = false;
+              font_family = "JetBrains Mono Nerd Font Mono";
+              hide_input = false;
+              position = "0, -120";
+              halign = "center";
+              valign = "center";
+            }
+          ];
+
+          label = [
+            {
+              text = "cmd[update:1000] echo $(date +%T)";
+              color = "rgba(0, 0, 0, 0.6)";
+              font_size = 120;
+              font_family = "JetBrains Mono Nerd Font Mono ExtraBold";
+              position = "0, -300";
+              halign = "center";
+              valign = "top";
+            }
+            {
+              text = "$USER";
+              color = "$foreground";
+              font_size = 25;
+              font_family = "JetBrains Mono Nerd Font Mono";
+              position = "0, -40";
+              halign = "center";
+              valign = "center";
+            }
+            {
+              text = "AUTHORIZED ACCESS ONLY";
+              color = "rgba(255, 0, 0, 0.6)";
+              font_size = 18;
+              font_family = "JetBrains Mono Nerd Font Mono";
+              position = "0, 0";
+              halign = "center";
+              valign = "bottom";
+            }
+          ];
+        };
+      };
+    };
+    services = {
+      hyprpaper = {
+        enable = true;
+        settings = {
+          ipc = "on";
+          splash = false;
+
+          preload = [
+            "~/.config/hypr/wallpaper.jpg"
+          ];
+
+          wallpaper = [
+            ", ~/.config/hypr/wallpaper.jpg"
+          ];
+        };
+      };
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       plugins = [
-        pkgs.unstable.hyprlandPlugins.hyprgrass
+        pkgs.hyprlandPlugins.hyprgrass
       ];
       systemd = {
         enableXdgAutostart = true;
@@ -16,7 +102,7 @@
             numlock_by_default = "yes";
         };
         exec-once = [
-          "waybar & hyprpaper & fcitx5 & discord --start-minimized"
+          "waybar & fcitx5 & discord --start-minimized"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
           "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ & wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
@@ -24,7 +110,7 @@
           "[workspace 2 silent] firefox"
           "[workspace 11 silent] gtk-launch bytedance-feishu"
           "[workspace 12 silent] thunderbird"
-          "[workspace 13 silent] waydroid first-launch"
+          #"[workspace 13 silent] waydroid first-launch"
           "[workspace 14 silent] element-desktop"
           "[workspace 15 silent] teams-for-linux"
           "[workspace 17 silent] qq"

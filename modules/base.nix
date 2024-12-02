@@ -111,10 +111,6 @@
     };
   };
 
-  systemd = {
-    enableUnifiedCgroupHierarchy = true;
-  };
-
   zramSwap = {
     enable = true;
     algorithm = "zstd";

@@ -13,6 +13,7 @@
         inputs.nixos-vscode-server.homeModules.default
       ];
       xdg = {
+        enable = true;
         configFile = {
           "hypr" = {
             source = ../configs/hypr;
