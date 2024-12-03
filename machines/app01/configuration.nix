@@ -44,7 +44,7 @@
 
     samba-wsdd.enable = true;
     samba = {
-      shares = {
+      settings = {
         aria2 = {
           path = "/srv/aria2";
           browseable = "yes";

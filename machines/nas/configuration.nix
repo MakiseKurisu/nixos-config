@@ -40,7 +40,7 @@
 
     samba-wsdd.enable = true;
     samba = {
-      shares = {
+      settings = {
         backup = {
           path = "/media/backup";
           browseable = "yes";
