@@ -560,6 +560,22 @@
         "type": "github"
       }
     },
+    "pr-r8125": {
+      "locked": {
+        "lastModified": 1733272996,
+        "narHash": "sha256-SuPKatdgmKjtQQoeJkb/4ajonMNxQgfSRuPmDLOI+fs=",
+        "owner": "r-ryantm",
+        "repo": "nixpkgs",
+        "rev": "7c393176966921a5f51d3604c04178ea8e8873db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "r-ryantm",
+        "ref": "auto-update/linuxPackages.r8125",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "NUR": "NUR",
@@ -576,7 +592,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pr-dolphin": "pr-dolphin",
         "pr-fastapi-dls": "pr-fastapi-dls",
-        "pr-mmdebstrap": "pr-mmdebstrap"
+        "pr-mmdebstrap": "pr-mmdebstrap",
+        "pr-r8125": "pr-r8125"
       }
     },
     "scss-reset": {

@@ -26,9 +26,14 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
+    kernelPackages = lib.mkForce pkgs.pr-r8125.linuxPackages_6_12;
     supportedFilesystems = [ "bcachefs" ];
+    extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
+    blacklistedKernelModules = [ "r8169" ];
   };
+
+  # r8125 is currently marked as broken
+  nixpkgs.config.allowBroken = true;
 
   services = {
     # Must configure to NOT listen on 0.0.0.0:53 but 192.168.xxx.yyy:53

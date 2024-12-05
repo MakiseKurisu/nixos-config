@@ -69,6 +69,10 @@
           inherit pkgs;
           nurpkgs = pkgs;
         };
+        pr-r8125 = import inputs.pr-r8125 {
+          config = config.nixpkgs.config;
+          system = pkgs.system;
+        };
       };
       permittedInsecurePackages = [
       ];
