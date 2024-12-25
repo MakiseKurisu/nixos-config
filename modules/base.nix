@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./pr/powertop.nix
   ];
 
   console = {
@@ -75,7 +76,16 @@
     };
   };
 
-  powerManagement.powertop.enable = true;
+  services.udev.extraRules = ''
+    # disable USB auto suspend for Logitech, Inc. G PRO Gaming Mouse
+    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c08c", TEST=="power/control", ATTR{power/control}="on"
+  '';
+  powerManagement.powertop = {
+    enable = true;
+    postStart = ''
+      ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -a idVendor=046d -a idProduct=c08c
+    '';
+  };
 
   security = {
     sudo = {

@@ -602,6 +602,22 @@
         "type": "github"
       }
     },
+    "pr-powertop-fix": {
+      "locked": {
+        "lastModified": 1735144320,
+        "narHash": "sha256-nXB1JUUKC1W5OdJnda99uRtvZGKrdXI+upXOXrJG5vM=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "38a363f52e14621c30964c8e570b7d419d74dc3b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "powertop-fix",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "NUR": "NUR",
@@ -618,7 +634,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pr-dolphin": "pr-dolphin",
         "pr-fastapi-dls": "pr-fastapi-dls",
-        "pr-mmdebstrap": "pr-mmdebstrap"
+        "pr-mmdebstrap": "pr-mmdebstrap",
+        "pr-powertop-fix": "pr-powertop-fix"
       }
     },
     "scss-reset": {
