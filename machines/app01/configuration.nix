@@ -26,7 +26,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.pr-r8125.linuxPackages_6_12;
+    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_6_12;
     supportedFilesystems = [ "bcachefs" ];
     extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
     blacklistedKernelModules = [ "r8169" ];

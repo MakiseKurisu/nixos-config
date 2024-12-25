@@ -54,7 +54,6 @@
       devenv
       discord
       element-desktop
-      element-desktop-wayland
       (feishu.override (previous: {
         commandLineArgs = (previous.commandLineArgs or "") +
           " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=x11 --enable-wayland-ime";
@@ -131,7 +130,7 @@
       ventoy-full
       vlc
       virt-viewer
-      nur.repos.xddxdd.wechat-uos
+      wechat-uos
       wev
       wlr-randr
       wireguard-tools

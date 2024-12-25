@@ -2,7 +2,7 @@
 
 {
   boot = {
-    #kernelPackages = pkgs.local.linuxPackages;
+    kernelPackages = pkgs.unstable.linuxPackages;
     kernelParams = [
       "console=tty1"
     ];
