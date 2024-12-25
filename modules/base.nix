@@ -83,7 +83,7 @@
   powerManagement.powertop = {
     enable = true;
     postStart = ''
-      ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -a idVendor=046d -a idProduct=c08c
+      ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=046d -a idProduct=c08c
     '';
   };
 
