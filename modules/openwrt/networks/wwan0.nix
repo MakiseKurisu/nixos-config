@@ -56,5 +56,5 @@
       };
     };
   };
-  services.statistics.monitors.interfaces.targets = [ "wwan0" ];
+  services.statistics.monitors.interfaces.targets = [ "wwan0" "eth1" ];
 }
