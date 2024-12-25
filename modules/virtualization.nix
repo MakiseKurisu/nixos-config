@@ -20,7 +20,6 @@
     };
     systemPackages =
       with pkgs; [
-        virt-manager
         wl-clipboard # used by waydroid
       ];
   };
