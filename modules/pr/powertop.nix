@@ -3,6 +3,6 @@
 {
   disabledModules = [ "tasks/powertop.nix" ];
   imports = [
-    "${inputs.pr-powertop-fix}/nixos/modules/tasks/powertop.nix"
+    "${inputs.nixpkgs-master}/nixos/modules/tasks/powertop.nix"
   ];
 }
