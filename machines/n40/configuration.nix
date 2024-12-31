@@ -38,6 +38,7 @@
           workspace=r[1-20], monitor:eDP-1
           workspace=2, monitor:eDP-1, default:yes
           workspace=30, monitor:HDMI-A-1, default:yes
+          exec-once=brightnessctl --device radeon_bl0 set 30%
         '';
       };
     };
