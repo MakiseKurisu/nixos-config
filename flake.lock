@@ -602,6 +602,22 @@
         "type": "github"
       }
     },
+    "pr-pykms": {
+      "locked": {
+        "lastModified": 1735664396,
+        "narHash": "sha256-nAzFPWQX4OLi3oENYdO4bWapDMO/0XYUF9HmGhtWjNs=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "deed6aa0978012648c3ea2f1b2d66625a1e95ea3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "pykms",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "NUR": "NUR",
@@ -618,7 +634,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pr-dolphin": "pr-dolphin",
         "pr-fastapi-dls": "pr-fastapi-dls",
-        "pr-mmdebstrap": "pr-mmdebstrap"
+        "pr-mmdebstrap": "pr-mmdebstrap",
+        "pr-pykms": "pr-pykms"
       }
     },
     "scss-reset": {
