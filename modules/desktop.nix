@@ -296,7 +296,6 @@
       xdg = {
         portal = {
           enable = true;
-          # xdg-open is broken and cannot open link from discord
           xdgOpenUsePortal = true;
           config = {
             common = {
@@ -306,7 +305,10 @@
               ];
             };
           };
-          extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+          extraPortals = [
+            pkgs.xdg-desktop-portal-hyprland
+            pkgs.xdg-desktop-portal-gtk
+          ];
         };
         mime.enable = true;
         mimeApps = {
