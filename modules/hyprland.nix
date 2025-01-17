@@ -146,7 +146,7 @@
           "workspace 16 silent, title:(Skype), class:(Skype)"
         ];
         "$mainMod" = "SUPER";
-        "$menu" = "nwg-drawer -term kitty";
+        "$menu" = "nwg-drawer -term kitty -nofs";
         bind = [
           "$mainMod, Q, exec, kitty"
           "$mainMod, C, killactive, "
