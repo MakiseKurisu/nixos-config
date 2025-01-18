@@ -21,7 +21,6 @@
 
     ../../modules/pr/fastapi-dls.nix
     ../../modules/pr/aria2.nix
-    ../../modules/pr/pykms.nix
 
     ./hardware-configuration.nix
   ];
@@ -108,7 +107,6 @@
 
     pykms = {
       enable = true;
-      package = pkgs.pr-pykms.pykms;
       listenAddress = "::";
       openFirewallPort = true;
     };
