@@ -102,10 +102,12 @@
             numlock_by_default = "yes";
         };
         exec-once = [
-          "waybar & fcitx5 & discord --start-minimized"
+          "waybar"
+          "fcitx5"
+          "discord --start-minimized"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
-          "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ & wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           "[workspace 1 silent] looking-glass-client"
           "[workspace 2 silent] firefox"
           "[workspace 11 silent] gtk-launch bytedance-feishu"
