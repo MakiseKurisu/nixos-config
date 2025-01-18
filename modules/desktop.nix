@@ -92,6 +92,7 @@
       mob
       moonlight-qt
       musescore
+      muse-sounds-manager
       networkmanagerapplet
       nixpkgs-review
       nomacs
