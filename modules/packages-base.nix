@@ -37,6 +37,7 @@
         commit.gpgSign = true;
         tag.gpgSign = true;
         push.gpgSign = "if-asked";
+        help.autocorrect = "prompt";
       };
     };
     ssh = {
