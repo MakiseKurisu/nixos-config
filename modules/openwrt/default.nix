@@ -26,10 +26,6 @@
 , ip
 , ...}:
 {
-  services = {
-    statistics.enable = true;
-  };
-
   deploy = {
     sshConfig = {
       StrictHostKeyChecking = "accept-new";

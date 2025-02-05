@@ -12,6 +12,7 @@
     "luci-app-sqm"
     "luci-app-wireguard"
     "luci-app-wol"
+    "luci-app-nlbwmon"
     # "UDPspeeder"
 
     # needed by ddns
@@ -56,6 +57,26 @@
 
   uci = {
     settings = {
+      nlbwmon = {
+        nlbwmon = [
+          {
+            netlink_buffer_size = 524288;
+            commit_interval = "10m";
+            refresh_interval = "30s";
+            database_directory = "/var/lib/nlbwmon";
+            database_generations = 10;
+            database_interval = 1;
+            database_limit = 10000;
+            protocol_database = "/usr/share/nlbwmon/protocols";
+            database_compress = 1;
+            local_network = [
+              "192.168.0.0/16"
+              "guest"
+              "lan"
+            ];
+          }
+        ];
+      };
       ddns = {
         ddns.global = {
           ddns_dateformat = "%F %R";
