@@ -88,7 +88,7 @@
       openPorts = true;
       serviceUMask = "0007";
       settings = {
-        dir = "/srv/aria2";
+        dir = "/media/raid/aria2";
         rpc-listen-all = true;
         input-file = "/var/lib/aria2/aria2.session";
         continue = true;
