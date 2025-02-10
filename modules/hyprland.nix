@@ -144,6 +144,7 @@
           "fullscreen, title:(Waydroid), class:(Waydroid)"
           "workspace 11 silent, title:(Feishu)"
           "workspace 13 silent, title:(Waydroid), class:(Waydroid)"
+          "workspace 17 silent, title:(QQ), class:(QQ)"
           "workspace 18 silent, title:(微信), class:(wechat)"
           "workspace 16 silent, title:(Skype), class:(Skype)"
         ];
