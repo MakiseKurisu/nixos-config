@@ -200,6 +200,8 @@
         "dls.protoducer.com" = https { locations."/".proxyPass = "https://127.0.0.1:8001/"; };
       };
     };
+
+    btrfs.autoScrub.enable = true;
   };
 
   networking.firewall.allowedUDPPorts = [
