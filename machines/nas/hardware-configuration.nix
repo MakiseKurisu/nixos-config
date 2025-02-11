@@ -27,13 +27,13 @@
   fileSystems."/media/backup" =
     { device = "UUID=10e929aa-42bb-446d-9879-c4078d766dc3";
       fsType = "btrfs";
-      options = [ "compress=zstd" ];
+      options = [ "compress=zstd" "nofail" "x-systemd.automount" "x-systemd.idle-timeout=600" ];
     };
 
   fileSystems."/media/raid" =
     { device = "UUID=0c23dec6-baae-4d54-9b04-09e1083aec93";
       fsType = "btrfs";
-      options = [ "compress=zstd" ];
+      options = [ "compress=zstd" "nofail" "x-systemd.automount" "x-systemd.idle-timeout=600" ];
     };
 
   swapDevices = [ ];
