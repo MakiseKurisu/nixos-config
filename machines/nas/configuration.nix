@@ -6,7 +6,7 @@
     ../../modules/file-share.nix
     #../../modules/desktop.nix
     ../../modules/podman.nix
-    #../../modules/intel.nix
+    ../../modules/intel-base.nix
     ../../modules/kernel.nix
     ../../modules/network.nix
     #../../modules/nvidia.nix
