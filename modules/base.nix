@@ -106,6 +106,7 @@
         variant = "";
       };
     };
+    smartd.enable = true;
   };
 
   system = {
