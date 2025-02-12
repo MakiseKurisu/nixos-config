@@ -116,7 +116,10 @@
       nwg-displays
       nwg-launchers
       nwg-dock-hyprland
-      opentofu
+      (opentofu.withPlugins (p: with p; [
+        incus
+        sops
+      ]))
       pinentry-qt
       piper
       pre-commit
