@@ -1,11 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  boot = {
-    kernelParams = [
-      "intel_iommu=on"
-    ];
-  };
+  imports = [
+    ./intel-base.nix
+  ];
+
   hardware = {
     opengl = {
       enable = true;
