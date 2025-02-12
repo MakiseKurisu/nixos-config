@@ -13,6 +13,15 @@
     extraModulePackages = with config.boot.kernelPackages; [
       ch9344
     ];
+    binfmt = {
+      preferStaticEmulators = true;
+      emulatedSystems = [
+        "aarch64-linux"
+        "riscv64-linux"
+        "x86_64-windows"
+        "i686-windows"
+      ];
+    }
   };
 
   environment = {
