@@ -21,7 +21,7 @@
         "x86_64-windows"
         "i686-windows"
       ];
-    }
+    };
   };
 
   environment = {
