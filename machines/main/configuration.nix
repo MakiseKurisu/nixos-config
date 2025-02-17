@@ -51,6 +51,17 @@
     };
   };
 
+  hardware = {
+    nvidia = {
+      prime = {
+        # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
+        intelBusId = "PCI:f:0:0";
+        # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
+        nvidiaBusId = "PCI:e:0:0";
+      };
+    };
+  };
+
   networking.interfaces.enp6s18.useDHCP = false;
   systemd.network = {
     netdevs = {
