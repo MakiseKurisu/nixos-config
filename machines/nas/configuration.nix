@@ -198,6 +198,14 @@
           };
         };
         "dls.protoducer.com" = https { locations."/".proxyPass = "https://127.0.0.1:8001/"; };
+        "downloads.protoducer.com" = http {
+          locations."/" = {
+            root = "/media/raid/downloads.protoducer.com";
+            extraConfig = ''
+              autoindex on;
+            '';
+          };
+        };
       };
     };
 
