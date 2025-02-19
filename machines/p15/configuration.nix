@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.vgpu4nixos.nixosModules.host
     ../../modules/base.nix
     ../../modules/desktop.nix
     ../../modules/podman.nix
