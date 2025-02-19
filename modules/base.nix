@@ -61,6 +61,9 @@
         unstable = import inputs.nixpkgs-unstable {
           config = config.nixpkgs.config;
           system = pkgs.system;
+          overlays = [
+            pkgs.linuxPackages.nvidiaPackages.vgpuNixpkgsOverlay
+          ];
         };
         master = import inputs.nixpkgs-master {
           config = config.nixpkgs.config;

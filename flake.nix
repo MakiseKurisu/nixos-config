@@ -8,7 +8,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
@@ -20,6 +20,7 @@
       flake = false;
     };
     impermanence.url = "github:nix-community/impermanence";
+    vgpu4nixos.url = "github:MakiseKurisu/vgpu4nixos";
     # Work In Progress PRs
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
@@ -39,6 +40,7 @@
     , dewclaw
     , gfwlist2dnsmasq
     , impermanence
+    , vgpu4nixos
     , pr-dolphin
     , pr-mmdebstrap
     , pr-fastapi-dls
