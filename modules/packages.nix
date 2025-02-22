@@ -44,6 +44,7 @@
         with pkgs; [
           android-tools
           asciinema
+          nur.repos.xddxdd.baidunetdisk
           binutils
           brightnessctl
           cmake
