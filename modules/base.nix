@@ -2,6 +2,7 @@
 
 {
   imports = [
+    inputs.vgpu4nixos.nixosModules.host
     ./pr/powertop.nix
   ];
 

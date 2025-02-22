@@ -710,15 +710,15 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1739882276,
-        "narHash": "sha256-FapcunJBEUpSwlTp63zFkP7AkMf7snPuvTEUq9HPfNw=",
-        "owner": "MakiseKurisu",
+        "lastModified": 1739824288,
+        "narHash": "sha256-BbjRQC6laKRM8jfKOHA2vkInSg35+8sy5xsmCavZeow=",
+        "owner": "mrzenc",
         "repo": "vgpu4nixos",
-        "rev": "4d08c75cdc292b491ad6c98fd2a33bafdb438865",
+        "rev": "6f8e5e9ca4de8435ef5120cdd93b5009a4ecf8db",
         "type": "github"
       },
       "original": {
-        "owner": "MakiseKurisu",
+        "owner": "mrzenc",
         "repo": "vgpu4nixos",
         "type": "github"
       }
