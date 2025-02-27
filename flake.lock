@@ -613,8 +613,8 @@
       },
       "original": {
         "owner": "MakiseKurisu",
-        "ref": "mdevctl",
         "repo": "nixpkgs",
+        "rev": "2db3f670641f422ebdd5ed5d1a071565742a1f2f",
         "type": "github"
       }
     },

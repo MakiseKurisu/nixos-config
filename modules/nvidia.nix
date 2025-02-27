@@ -80,7 +80,14 @@
     };
   };
 
-  programs.mdevctl.enable = true;
+  programs.mdevctl = {
+    enable = true;
+    # mdevs = {
+    #   "0000:01:00.0" = {
+    #     "0f046260-c22b-49aa-aba1-dcef69faeb50".mdev_type = "nvidia-260";
+    #   };
+    # };
+  };
 
   services = {
     xserver.videoDrivers = [ "nvidia" ];
