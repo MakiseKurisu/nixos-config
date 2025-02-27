@@ -139,7 +139,6 @@
       thunderbird
       ventoy-full
       vlc
-      virt-viewer
       wechat-uos
       wev
       wlr-randr
