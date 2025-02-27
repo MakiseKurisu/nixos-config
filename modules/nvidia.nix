@@ -43,9 +43,20 @@
             "1E07:0000" = "1E30:12BA"; # GeForce RTX 2080 Ti Rev. A
           };
           profileOverrides = {
-            # GRID RTX6000-8Q
-            "261" = {
-              vramAllocation = 10240;
+            # GRID RTX6000-6Q
+            "260" = {
+              vramAllocation = 6144;
+              heads = 4;
+              enableCuda = true;
+              display = {
+                width = 7680;
+                height = 4320;
+              };
+              framerateLimit = 0;
+            };
+            # GRID RTX6000-24Q
+            "263" = {
+              vramAllocation = 20480;
               heads = 4;
               enableCuda = true;
               display = {
