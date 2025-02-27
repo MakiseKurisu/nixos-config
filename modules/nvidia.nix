@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./pr/mdevctl.nix
+  ];
+
   boot = {
     blacklistedKernelModules = [ "nouveau" ];
     kernelPackages = pkgs.unstable.linuxPackages_6_6;

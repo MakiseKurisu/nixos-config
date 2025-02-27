@@ -25,6 +25,7 @@
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
     pr-fastapi-dls.url = "github:MakiseKurisu/nixpkgs/fastapi-dls";
+    pr-mdevctl.url = "github:MakiseKurisu/nixpkgs/mdevctl";
   };
 
   outputs =
@@ -44,6 +45,7 @@
     , pr-dolphin
     , pr-mmdebstrap
     , pr-fastapi-dls
+    , pr-mdevctl
     , ...
     }: flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [

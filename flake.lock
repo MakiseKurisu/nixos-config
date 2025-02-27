@@ -602,6 +602,22 @@
         "type": "github"
       }
     },
+    "pr-mdevctl": {
+      "locked": {
+        "lastModified": 1740668788,
+        "narHash": "sha256-pWRF+hJ3SMSeGqLOKPHsstQq8w1ceicPv2+n4zZ5Tew=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "2db3f670641f422ebdd5ed5d1a071565742a1f2f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "mdevctl",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pr-mmdebstrap": {
       "locked": {
         "lastModified": 1708840397,
@@ -634,6 +650,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pr-dolphin": "pr-dolphin",
         "pr-fastapi-dls": "pr-fastapi-dls",
+        "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
         "vgpu4nixos": "vgpu4nixos"
       }
