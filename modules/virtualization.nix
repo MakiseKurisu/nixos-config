@@ -9,7 +9,6 @@
     etc = {
       "looking-glass-client.ini" = {
         source = ../configs/looking-glass/looking-glass-client.ini;
-        mode = "0644";
       };
     };
     systemPackages =
