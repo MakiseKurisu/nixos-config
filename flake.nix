@@ -20,7 +20,7 @@
       flake = false;
     };
     impermanence.url = "github:nix-community/impermanence";
-    vgpu4nixos.url = "github:mrzenc/vgpu4nixos";
+    vgpu4nixos.url = "github:MakiseKurisu/vgpu4nixos";
     # Work In Progress PRs
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";

@@ -8,10 +8,6 @@
   boot = {
     blacklistedKernelModules = [ "nouveau" ];
     kernelPackages = pkgs.unstable.linuxPackages_6_6;
-    extraModprobeConfig = ''
-      # options nvidia vup_qmode=1 vup_swrlwar=1 vup_sunlock=1 #vup_gspvgpu=1
-      # options nvidia_drm modeset=1
-    '';
   };
 
   environment = {
@@ -42,6 +38,7 @@
         patcher = {
           enable = true;
           options.doNotForceGPLLicense = true;
+          runtimeOptions.enable = true;
           copyVGPUProfiles = {
             "1E93:0000" = "1E30:12BA"; # GeForce RTX 2080 SUPER Mobile / Max-Q
             "1E07:0000" = "1E30:12BA"; # GeForce RTX 2080 Ti Rev. A
