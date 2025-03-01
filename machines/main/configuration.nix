@@ -16,7 +16,7 @@
     ../../modules/virtualization.nix
 
     ../../modules/nfs-nas.nix
-    ../../modules/nfs-app01.nix
+    # ../../modules/nfs-app01.nix
     #../../modules/wireguard.nix
 
     ./hardware-configuration.nix

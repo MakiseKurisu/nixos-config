@@ -337,7 +337,7 @@
         networkConfig = {
           DHCP = true;
           Domains = "protoducer.com vamrs.org";
-          Address = "192.168.9.3/24";
+          Address = "192.168.9.2/24";
         };
         linkConfig = {
           RequiredForOnline = true;
