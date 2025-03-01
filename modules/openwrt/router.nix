@@ -10,7 +10,7 @@
   packages = [
     "luci-app-ddns"
     "luci-app-sqm"
-    "luci-app-wireguard"
+    "luci-proto-wireguard"
     "luci-app-wol"
     "luci-app-nlbwmon"
     # "UDPspeeder"

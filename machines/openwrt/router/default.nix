@@ -5,12 +5,13 @@
 , arch
 , hostname
 , ip
+, kver ? null
 , ... }:
 
 {
   imports = [
     (import ../../../modules/openwrt {
-      inherit lib release target arch hostname ip;
+      inherit lib release target arch hostname ip kver;
     })
     (import ../../../modules/openwrt/router.nix {
       inherit arch;

@@ -86,11 +86,12 @@
                 };
                 openwrt = import machines/openwrt/router {
                   inherit lib inputs;
-                  release = "23.05.5";
+                  release = "24.10.0";
                   target = "x86/64";
                   arch = "x86_64";
                   hostname = "OpenWrt";
                   ip = "192.168.9.1";
+                  kver = "6.6.73-1-a21259e4f338051d27a6443a3a7f7f1f";
                 };
                 m93p = import machines/openwrt/router {
                   inherit lib inputs;

@@ -24,6 +24,7 @@
 , arch
 , hostname
 , ip
+, kver ? null
 , ...}:
 {
   deploy = {
@@ -60,6 +61,8 @@
       src/gz openwrt_packages https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/packages
       src/gz openwrt_routing https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/routing
       src/gz openwrt_telephony https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/telephony
+    '' + lib.optionalString (kver != null) ''
+      src/gz openwrt_kmods https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/targets/${target}/kmods/${kver}
     '';
     "sysctl.d/90-nf_conntrack_max.conf".text = ''
       # Increase maximum active connection count
