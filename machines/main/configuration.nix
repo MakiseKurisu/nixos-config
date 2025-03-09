@@ -65,7 +65,7 @@
   networking.interfaces.enp6s18.useDHCP = false;
   systemd.network = {
     netdevs = {
-       "20-br0" = {
+      "20-br0" = {
          netdevConfig = {
            Kind = "bridge";
            Name = "br0";
@@ -74,7 +74,7 @@
           STP = true;
           VLANFiltering = true;
         };
-       };
+      };
     };
     networks = {
       "30-enp6s18" = {
