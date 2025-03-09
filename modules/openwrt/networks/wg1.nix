@@ -52,7 +52,6 @@
           endpoint_host = "vamrs.vpndns.net";
           public_key = "WVcdwHDpBQq2bg4bJE6zHRdWuPG7mptkuF48HxNFNw4=";
           route_allowed_ips = 1;
-          persistent_keepalive = 25;
         }];
       };
     };
