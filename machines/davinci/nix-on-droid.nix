@@ -42,6 +42,7 @@
             findutils
             gnugrep
             iperf
+            iputils
             ldns
             nano
             nmap
