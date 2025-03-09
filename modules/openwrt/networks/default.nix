@@ -8,6 +8,7 @@
     ./wg1.nix
     ./wg2.nix
     ./wg3.nix
+    ./wg4.nix
   ];
 
   uci = {
@@ -20,6 +21,7 @@
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";
+            masq = 1;
           }
           {
             name = "wan";
@@ -39,7 +41,7 @@
           }
           {
             name = "wg";
-            network = [ "wg0" "wg1" "wg2" "wg3" ];
+            network = [ "wg0" "wg1" "wg2" "wg3" "wg4" ];
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";
