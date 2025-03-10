@@ -5,6 +5,7 @@
     systemPackages =
       with pkgs; [
         git-crypt
+        multipath-tools
         parted
         wget
       ];

@@ -72,7 +72,6 @@
           linux.dev
           lm_sensors
           minicom
-          multipath-tools
           neovim
           nfs-utils
           nix-index
