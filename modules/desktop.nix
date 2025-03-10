@@ -130,7 +130,6 @@
       rs-tftpd
       rstudio
       selectdefaultapplication
-      skypeforlinux
       slack
       slurp
       solaar
