@@ -21,6 +21,10 @@
     };
     impermanence.url = "github:nix-community/impermanence";
     vgpu4nixos.url = "github:MakiseKurisu/vgpu4nixos";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Work In Progress PRs
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
@@ -42,6 +46,7 @@
     , gfwlist2dnsmasq
     , impermanence
     , vgpu4nixos
+    , disko
     , pr-dolphin
     , pr-mmdebstrap
     , pr-fastapi-dls
@@ -130,7 +135,7 @@
             specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
-              ./machines/main/configuration.nix
+              ./machines/main
             ];
           };
           nas = nixpkgs.lib.nixosSystem {

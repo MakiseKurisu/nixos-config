@@ -9,7 +9,7 @@
     #../../modules/intel.nix
     ../../modules/kernel.nix
     ../../modules/network.nix
-    # ../../modules/nvidia.nix
+    ../../modules/nvidia.nix
     ../../modules/packages.nix
     ../../modules/users.nix
     ../../modules/vfio.nix
@@ -19,6 +19,8 @@
     # ../../modules/nfs-app01.nix
     #../../modules/wireguard.nix
 
+    inputs.disko.nixosModules.disko
+    ./disko.nix
     ./hardware-configuration.nix
   ];
 
@@ -26,17 +28,16 @@
     kernelParams = [
       "console=ttyS0"
     ];
-    loader.efi.efiSysMountPoint = "/boot/efi";
   };
 
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''
-          monitor=DP-1, highrr, 0x0, 1
-          monitor=HDMI-A-1, 1920x1080@60, 3440x0, auto, transform, 1
-          workspace=2, monitor:DP-1, default:yes
-          workspace=30, monitor:HDMI-A-1, default:yes
+          monitor=DP-3, highrr, 0x0, 1
+          monitor=DP-4, highrr, 3440x0, auto, transform, 1
+          workspace=2, monitor:DP-3, default:yes
+          workspace=30, monitor:DP-4, default:yes
         '';
       };
       "looking-glass/client.ini" = {
@@ -54,15 +55,15 @@
   hardware = {
     nvidia = {
       prime = {
-        # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
-        intelBusId = "PCI:f:0:0";
-        # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
+        offload.enable = false;
+        amdgpuBusId = "PCI:f:0:0";
         nvidiaBusId = "PCI:e:0:0";
       };
     };
   };
 
-  networking.interfaces.enp6s18.useDHCP = false;
+  networking.interfaces.enp10s0.useDHCP = false;
+  networking.interfaces.enp13s0.useDHCP = false;
   systemd.network = {
     netdevs = {
       "20-br0" = {
@@ -77,8 +78,28 @@
       };
     };
     networks = {
-      "30-enp6s18" = {
-        matchConfig.Name = "enp6s18";
+      "30-enp10s0" = {
+        matchConfig.Name = "enp10s0";
+        networkConfig.Bridge = "br0";
+        linkConfig.RequiredForOnline = "enslaved";
+        bridgeVLANs = [
+          {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
+            VLAN = 10;
+          }
+          {
+            VLAN = 20;
+          }
+          {
+            VLAN = 30;
+          }
+        ];
+      };
+      "30-enp13s0" = {
+        matchConfig.Name = "enp13s0";
         networkConfig.Bridge = "br0";
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
@@ -140,5 +161,5 @@
   };
 
   networking.hostName = "main";
-  system.stateVersion = "22.11";
+  system.stateVersion = "24.11";
 }

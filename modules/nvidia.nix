@@ -32,7 +32,7 @@
       package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
       modesetting.enable = true;
       prime = {
-        offload.enable = true;
+        offload.enable = lib.mkDefault true;
       };
       vgpu = {
         patcher = {
@@ -80,9 +80,12 @@
   programs.mdevctl = {
     enable = true;
     # mdevs = {
-    #   "0000:01:00.0" = {
-    #     "0f046260-c22b-49aa-aba1-dcef69faeb50".mdev_type = "nvidia-260";
-    #   };
+      # "0000:01:00.0" = {
+      #   "0f046260-c22b-49aa-aba1-dcef69faeb50".mdev_type = "nvidia-260";
+      # };
+      # "0000:0e:00.0" = {
+      #   "528edaa8-b5f8-4e4f-9da3-a05016aafbe1".mdev_type = "nvidia-263";
+      # };
     # };
   };
 
