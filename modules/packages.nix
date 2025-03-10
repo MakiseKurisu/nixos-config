@@ -64,6 +64,7 @@
           glib
           gnumake
           gptfdisk
+          imhex
           inetutils
           iperf
           ldns
