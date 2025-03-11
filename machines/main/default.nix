@@ -117,23 +117,14 @@
           }
         ];
       };
-      "30-vnet1" = {
-        matchConfig.Name = "vnet1";
+      "30-vnet" = {
+        matchConfig.Name = "vnet*";
         networkConfig.Bridge = "br0";
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
-            PVID = 1;
-            EgressUntagged = 1;
-          }
-          {
-            VLAN = 10;
-          }
-          {
-            VLAN = 20;
-          }
-          {
-            VLAN = 30;
+            PVID = 20;
+            EgressUntagged = 20;
           }
         ];
       };
