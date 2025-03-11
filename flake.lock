@@ -657,6 +657,22 @@
         "type": "github"
       }
     },
+    "pr-nvidia-busid": {
+      "locked": {
+        "lastModified": 1741671694,
+        "narHash": "sha256-21Mx/bKbRaTpfFJVexewG9i48VLN9S1NM1rSYQC1Kf4=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "72ffdcd4a6c11c44403318c6a60f7ebf519a68bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "nvidia-busid",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "NUR": "NUR",
@@ -676,6 +692,7 @@
         "pr-fastapi-dls": "pr-fastapi-dls",
         "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
+        "pr-nvidia-busid": "pr-nvidia-busid",
         "vgpu4nixos": "vgpu4nixos"
       }
     },

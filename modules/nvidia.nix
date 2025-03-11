@@ -3,6 +3,7 @@
 {
   imports = [
     ./pr/mdevctl.nix
+    ./pr/nvidia-busid.nix
   ];
 
   boot = {
@@ -32,7 +33,8 @@
       package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
       modesetting.enable = true;
       prime = {
-        offload.enable = lib.mkDefault true;
+        reverseSync.enable = true;
+        offload.enable = true;
       };
       vgpu = {
         patcher = {

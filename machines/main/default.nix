@@ -55,9 +55,8 @@
   hardware = {
     nvidia = {
       prime = {
-        offload.enable = false;
-        amdgpuBusId = "PCI:f:0:0";
-        nvidiaBusId = "PCI:e:0:0";
+        amdgpuBusId = "PCI:15@0:0:0";
+        nvidiaBusId = "PCI:14@0:0:0";
       };
     };
   };
