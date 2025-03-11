@@ -42,11 +42,9 @@
       };
       "looking-glass/client.ini" = {
         source = pkgs.writeText "looking-glass-client.ini" ''
-          [app]
-          shmFile=/dev/kvmfr1
           [spice]
-          host=192.168.9.12
-          port=5901
+          host=127.0.0.1
+          port=5900
         '';
       };
     };
