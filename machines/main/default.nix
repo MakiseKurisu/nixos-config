@@ -40,13 +40,6 @@
           workspace=30, monitor:DP-4, default:yes
         '';
       };
-      "looking-glass/client.ini" = {
-        source = pkgs.writeText "looking-glass-client.ini" ''
-          [spice]
-          host=127.0.0.1
-          port=5900
-        '';
-      };
     };
   };
 
