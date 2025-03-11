@@ -121,6 +121,7 @@
             ms-vscode.hexeditor
             ms-vscode.makefile-tools
             ms-vscode.powershell
+            ms-vscode-remote.remote-containers
             ms-vscode-remote.remote-ssh
             ms-vsliveshare.vsliveshare
             unifiedjs.vscode-mdx
