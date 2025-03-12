@@ -220,6 +220,10 @@
       enable = true;
       package = pkgs.firefox-wayland;
     };
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
     regreet.enable = true;
     hyprland.enable = true;
     waybar = {
@@ -241,6 +245,11 @@
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true;
+      gamescopeSession.enable = true;
+      extest.enable = true;
+      extraPackages = [ pkgs.gamescope ];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
     system-config-printer.enable = true;
     wireshark.enable = true;
