@@ -18,7 +18,7 @@
       with pkgs; [
         virt-manager
         virt-viewer
-        looking-glass-client
+        unstable.looking-glass-client
       ];
   };
 
