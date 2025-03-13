@@ -220,6 +220,9 @@
       enable = true;
       package = pkgs.firefox-wayland;
     };
+    gamemode = {
+      enable = true;
+    };
     gamescope = {
       enable = true;
       capSysNice = true;
