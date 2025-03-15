@@ -41,7 +41,7 @@
     "crontabs/root".text = ''
       * * * * * sh /etc/wwan/keep_alive wwan0
       * * * * * sh /etc/wwan/keep_alive wwan0_4 wwan0
-      0 0 * * * uqmi --device /dev/cdc-wdm0 --set-network-modes lte
+      0 1 * * * uqmi --device /dev/cdc-wdm0 --set-network-modes lte
       0 8 * * * uqmi --device /dev/cdc-wdm0 --set-network-modes all
     '';
   };
