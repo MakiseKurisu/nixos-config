@@ -34,7 +34,7 @@
     xdg.configFile = {
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''
-          monitor=DP-3, highrr, 0x0, 1
+          monitor=DP-3, highrr, 0x700, 1
           monitor=DP-4, highrr, 3440x0, auto, transform, 1
           workspace=2, monitor:DP-3, default:yes
           workspace=30, monitor:DP-4, default:yes
