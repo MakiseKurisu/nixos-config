@@ -217,6 +217,18 @@
     };
 
     btrfs.autoScrub.enable = true;
+
+    udev.extraRules = ''
+      # Restart openwrt instance, as new net device will not be auto reconnected
+      ACTION=="move", SUBSYSTEM=="net", ENV{DEVTYPE}=="wwan", ENV{INTERFACE}=="wwp0s20f0u*i5", RUN+="${pkgs.writeShellScript "restart-openwrt" ''
+        if ${lib.getExe config.virtualisation.incus.package} list -c s -f compact local:openwrt |
+           ${lib.getExe pkgs.gnugrep} -q RUNNING; then
+          ${lib.getExe' pkgs.util-linux "logger"} -s -t "restart-openwrt" "Detect wwan reconnection, but Incus instance is already running."
+          ${lib.getExe config.virtualisation.incus.package} stop local:openwrt
+          ${lib.getExe config.virtualisation.incus.package} start local:openwrt
+        fi
+      ''}"
+    '';
   };
 
   networking.firewall.allowedUDPPorts = [
