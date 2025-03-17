@@ -35,6 +35,15 @@
         ifup "$PARENT"
       fi
     '';
+    "wwan/query".text = ''
+      #!/usr/bin/env sh
+      set -x
+      uqmi --device "$1" --get-current-settings
+      uqmi --device "$1" --get-system-info
+      uqmi --device "$1" --get-cell-location-info
+      uqmi --device "$1" --get-tx-rx-info 5gnr
+      uqmi --device "$1" --get-tx-rx-info lte
+    '';
     "rc.local".text = ''
       bash -c "(( $(date +%H) >= 00 )) && (( $(date +%H) <= 07 )) && uqmi --device /dev/cdc-wdm0 --set-network-modes lte" &
     '';
@@ -43,6 +52,7 @@
       * * * * * sh /etc/wwan/keep_alive wwan0_4 wwan0
       0 1 * * * uqmi --device /dev/cdc-wdm0 --set-network-modes lte
       0 8 * * * uqmi --device /dev/cdc-wdm0 --set-network-modes all
+      0 * * * * sh /etc/wwan/query /dev/cdc-wdm0 | logger -t wwan_query
     '';
   };
 
