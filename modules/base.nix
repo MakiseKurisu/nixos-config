@@ -128,6 +128,10 @@
     };
   };
 
+  systemd.watchdog = {
+    runtimeTime = "10m";
+  };
+
   zramSwap = {
     enable = true;
     algorithm = "zstd";
