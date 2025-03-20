@@ -255,7 +255,10 @@
       extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
     system-config-printer.enable = true;
-    wireshark.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
   };
 
   security = {
