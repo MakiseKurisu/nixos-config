@@ -25,7 +25,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_6_12;
+    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
     supportedFilesystems = [ "bcachefs" ];
   };
 

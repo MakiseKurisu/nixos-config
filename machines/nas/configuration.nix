@@ -25,6 +25,10 @@
     ./hardware-configuration.nix
   ];
 
+  boot = {
+    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+  };
+
   services = {
     # Must configure to NOT listen on 0.0.0.0:53 but 192.168.xxx.yyy:53
     # As systemd-resolved would listen on 127.0.0.53:53
