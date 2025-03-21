@@ -50,8 +50,8 @@
     "crontabs/root".text = ''
       * * * * * sh /etc/wwan/keep_alive wwan0
       * * * * * sh /etc/wwan/keep_alive wwan0_4 wwan0
-      0 1 * * * uqmi --device /dev/cdc-wdm0 --set-network-modes lte
-      0 8 * * * uqmi --device /dev/cdc-wdm0 --set-network-modes all
+      1 1 * * * uqmi --device /dev/cdc-wdm0 --set-network-modes lte
+      1 8 * * * uqmi --device /dev/cdc-wdm0 --set-network-modes all
       0 * * * * sh /etc/wwan/query /dev/cdc-wdm0 | logger -t wwan_query
     '';
   };
