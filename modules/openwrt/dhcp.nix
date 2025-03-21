@@ -66,6 +66,10 @@
             ip = "192.168.9.2";
             name = "downloads";
           }
+          {
+            ip = "192.168.9.2";
+            name = "pico";
+          }
         ];
         host = [
           {

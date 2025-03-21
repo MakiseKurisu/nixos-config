@@ -31,6 +31,7 @@
     pr-fastapi-dls.url = "github:MakiseKurisu/nixpkgs/fastapi-dls";
     pr-mdevctl.url = "github:MakiseKurisu/nixpkgs/2db3f670641f422ebdd5ed5d1a071565742a1f2f";
     pr-nvidia-busid.url = "github:MakiseKurisu/nixpkgs/nvidia-busid";
+    pr-pico-rpa.url = "github:MakiseKurisu/nixpkgs/pico-rpa";
   };
 
   outputs =
@@ -53,6 +54,7 @@
     , pr-fastapi-dls
     , pr-mdevctl
     , pr-nvidia-busid
+    , pr-pico-rpa
     , ...
     }: flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [

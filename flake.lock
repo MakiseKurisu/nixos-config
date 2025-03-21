@@ -673,6 +673,22 @@
         "type": "github"
       }
     },
+    "pr-pico-rpa": {
+      "locked": {
+        "lastModified": 1742493985,
+        "narHash": "sha256-pv2S1rczie88IrOZrIp9DGnJbest6p/n5n/ODBcmjtA=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "eafd98e81f5be5db794a5d0863572c931439462e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "pico-rpa",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "NUR": "NUR",
@@ -693,6 +709,7 @@
         "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
         "pr-nvidia-busid": "pr-nvidia-busid",
+        "pr-pico-rpa": "pr-pico-rpa",
         "vgpu4nixos": "vgpu4nixos"
       }
     },

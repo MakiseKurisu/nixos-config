@@ -21,6 +21,7 @@
 
     ../../modules/pr/fastapi-dls.nix
     ../../modules/pr/aria2.nix
+    ../../modules/pr/pico-rpa.nix
 
     ./hardware-configuration.nix
   ];
@@ -217,6 +218,12 @@
             '';
           };
         };
+        "pico.protoducer.com" = https {
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "http://127.0.0.1:14500/";
+          };
+        };
       };
     };
 
@@ -233,6 +240,13 @@
         fi
       ''}"
     '';
+
+    pico-remote-play-assistant = {
+      enable = true;
+      package = pkgs.pr-pico-rpa.pico-remote-play-assistant;
+      openFirewall = true;
+      xpra.package = pkgs.pr-pico-rpa.xpra;
+    };
   };
 
   networking.firewall.allowedUDPPorts = [
