@@ -7,6 +7,7 @@
     ./plasma-systemsettings.nix
     ./hyprland.nix
     inputs.lix-module.nixosModules.default
+    inputs.aagl.nixosModules.default
   ];
 
   boot = {
@@ -205,7 +206,15 @@
     };
   };
 
+  nix.settings = inputs.aagl.nixConfig;
   programs = {
+    anime-game-launcher.enable = true;
+    anime-games-launcher.enable = true;
+    honkers-railway-launcher.enable = true;
+    honkers-launcher.enable = true;
+    wavey-launcher.enable = true;
+    sleepy-launcher.enable = true;
+
     adb.enable = true;
     alvr = {
       enable = true;

@@ -20,6 +20,28 @@
         "type": "github"
       }
     },
+    "aagl": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1740876812,
+        "narHash": "sha256-SIACIiVBsGGUw1t4ph6QH87clrC6JMlWQQW6zeM1Q7g=",
+        "owner": "ezKEa",
+        "repo": "aagl-gtk-on-nix",
+        "rev": "78713c67dceea68cd2ef0ed9b140759395e7461d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ezKEa",
+        "ref": "release-24.11",
+        "repo": "aagl-gtk-on-nix",
+        "type": "github"
+      }
+    },
     "dewclaw": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -56,6 +78,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "disko",
+        "type": "github"
+      }
+    },
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
         "type": "github"
       }
     },
@@ -692,6 +730,7 @@
     "root": {
       "inputs": {
         "NUR": "NUR",
+        "aagl": "aagl",
         "dewclaw": "dewclaw",
         "disko": "disko",
         "flake-parts": "flake-parts_3",

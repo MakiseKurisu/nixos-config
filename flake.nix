@@ -25,6 +25,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Work In Progress PRs
     pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
@@ -49,6 +53,7 @@
     , impermanence
     , vgpu4nixos
     , disko
+    , aagl
     , pr-dolphin
     , pr-mmdebstrap
     , pr-fastapi-dls
