@@ -17,6 +17,7 @@
   hardware = {
     enableAllFirmware = true;
     bluetooth.enable = true;
+    rasdaemon.enable = true;
   };
 
   i18n = {
