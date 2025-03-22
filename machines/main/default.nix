@@ -28,16 +28,17 @@
     kernelParams = [
       "console=ttyS0"
     ];
+    blacklistedKernelModules = [ "amdgpu" ];
   };
 
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''
-          monitor=DP-3, highrr, 0x700, 1
-          monitor=DP-4, highrr, 3440x0, auto, transform, 1
-          workspace=2, monitor:DP-3, default:yes
-          workspace=30, monitor:DP-4, default:yes
+          monitor=DP-2, highrr, 0x700, 1
+          monitor=DP-3, highrr, 3440x0, auto, transform, 1
+          workspace=2, monitor:DP-2, default:yes
+          workspace=30, monitor:DP-3, default:yes
         '';
       };
     };
