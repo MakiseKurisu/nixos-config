@@ -19,6 +19,8 @@
           cachesize = 10000;
           address = [
             "/time.android.com/203.107.6.88"
+            "/*.mcdn.bilivideo.cn/"
+            "/*.szbdyd.com/"
           ];
           server = [
             "/vamrs.org/192.168.2.1"
