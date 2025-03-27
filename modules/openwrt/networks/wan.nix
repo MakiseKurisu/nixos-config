@@ -22,12 +22,16 @@
           wan = {
             device = "br-lan.10";
             proto = "dhcp";
+            defaultroute = false;
+            peerdns = false;
           };
           wan6 = {
             device = "br-lan.10";
             proto = "dhcpv6";
             reqaddress = "try";
             reqprefix = "auto";
+            defaultroute = false;
+            peerdns = false;
           };
         };
       };
