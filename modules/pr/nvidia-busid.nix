@@ -3,6 +3,6 @@
 {
   disabledModules = [ "hardware/video/nvidia.nix" ];
   imports = [
-    "${inputs.pr-nvidia-busid}/nixos/modules/hardware/video/nvidia.nix"
+    "${inputs.nixpkgs-master}/nixos/modules/hardware/video/nvidia.nix"
   ];
 }
