@@ -28,6 +28,10 @@
 
   boot = {
     kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+    kernelModules = [
+      "iptable_mangle"
+      "ip6table_mangle"
+    ];
   };
 
   services = {
