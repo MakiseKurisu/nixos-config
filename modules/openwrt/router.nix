@@ -63,12 +63,12 @@
             netlink_buffer_size = 524288;
             commit_interval = "10m";
             refresh_interval = "30s";
-            database_directory = "/var/lib/nlbwmon";
-            database_generations = 10;
+            database_directory = "/usr/lib/nlbwmon";
+            database_generations = 12;
             database_interval = 1;
-            database_limit = 10000;
+            database_limit = 100000;
             protocol_database = "/usr/share/nlbwmon/protocols";
-            database_compress = 1;
+            database_compress = true;
             local_network = [
               "192.168.0.0/16"
               "guest"
