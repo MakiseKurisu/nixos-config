@@ -4,6 +4,7 @@
     ./guest.nix
     ./wan.nix
     ./wwan0.nix
+    ./pppoe.nix
     # ./wg0.nix
     ./wg1.nix
     ./wg2.nix
@@ -25,7 +26,7 @@
           }
           {
             name = "wan";
-            network = [ "wan" "wan6" "wwan0" ];
+            network = [ "wan" "wan6" "wwan0" "pppoe" ];
             input = "DROP";
             output = "ACCEPT";
             forward = "DROP";
