@@ -100,6 +100,8 @@
             apn = "CBNET";
             auth = "none";
             pdptype = "ipv4v6";
+            metric = 20;
+            dns_metric = 20;
           };
         };
       };
