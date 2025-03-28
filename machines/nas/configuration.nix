@@ -147,7 +147,7 @@
     fastapi-dls = {
       enable = true;
       package = pkgs.pr-fastapi-dls.fastapi-dls;
-      listenPort = 8001;
+      port = 8001;
       dlsAddress = "dls.protoducer.com";
       dlsPort = 443;
     };
