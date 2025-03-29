@@ -5,7 +5,10 @@ let
       "163.com"
       "baidu.com"
       "qq.com"
-      "taobao.com"
+      "bilibili.com"
+    ];
+    flush_conntrack = [
+      "ifup"
     ];
     initial_state = "online";
     family = "ipv4";
