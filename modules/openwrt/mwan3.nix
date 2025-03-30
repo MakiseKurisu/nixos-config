@@ -76,10 +76,19 @@ in
         };
         member = (mwanMembers "pppoe") // (mwanMembers "wwan0");
         policy = mwanPolicies "pppoe" "wwan0";
-        rule.default = {
-          proto = "all";
-          sticky = false;
-          use_policy = "pppoe_wwan0";
+        rule = {
+          default = {
+            proto = "all";
+            sticky = false;
+            use_policy = "pppoe_wwan0";
+            family = "ipv4"
+          };
+          unreachable = {
+            proto = "all";
+            sticky = false;
+            use_policy = "unreachable";
+            family = "ipv6"
+          };
         };
       };
     };
