@@ -4,7 +4,7 @@
   nixpkgs.overlays = [
     (final: prev: {
       pr-mmdebstrap = import inputs.pr-mmdebstrap {
-        system = "${pkgs.system}";
+        system = pkgs.system;
         config.allowUnfree = true;
       };
     })

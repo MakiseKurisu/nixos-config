@@ -4,7 +4,7 @@
   nixpkgs.overlays = [
     (final: prev: {
       pr-fastapi-dls = import inputs.pr-fastapi-dls {
-        system = "${pkgs.system}";
+        system = pkgs.system;
         config.allowUnfree = true;
       };
     })
