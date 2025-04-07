@@ -235,7 +235,7 @@
 
     udev.extraRules = ''
       # Restart openwrt instance, as new net device will not be auto reconnected
-      ACTION=="move", SUBSYSTEM=="net", ENV{DEVTYPE}=="wwan", ENV{INTERFACE}=="wwan*", RUN+="${pkgs.writeShellScript "restart-openwrt" ''
+      ACTION=="move", SUBSYSTEM=="net", ENV{DEVTYPE}=="wwan", ENV{INTERFACE}=="wwan*", ENV{TAGS}==":systemd:", RUN+="${pkgs.writeShellScript "restart-openwrt" ''
         if ${lib.getExe config.virtualisation.incus.package} list -c s -f compact local:openwrt |
            ${lib.getExe pkgs.gnugrep} -q RUNNING; then
           ${lib.getExe' pkgs.util-linux "logger"} -s -t "restart-openwrt" "Detect wwan reconnection, but Incus instance is already running."
@@ -299,7 +299,7 @@
           Property = "ID_SERIAL_SHORT=6f345e48";
         };
         linkConfig = {
-          Name = "wwan0";
+          Name = "wwan10";
         };
       };
     };
