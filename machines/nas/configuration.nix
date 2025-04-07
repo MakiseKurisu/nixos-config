@@ -240,8 +240,10 @@
            ${lib.getExe pkgs.gnugrep} -q RUNNING; then
           ${lib.getExe' pkgs.util-linux "logger"} -s -t "restart-openwrt" "Detect wwan reconnection, but Incus instance is already running."
           ${lib.getExe config.virtualisation.incus.package} stop local:openwrt
-          ${lib.getExe config.virtualisation.incus.package} start local:openwrt
+        else
+          ${lib.getExe' pkgs.util-linux "logger"} -s -t "restart-openwrt" "Detect wwan reconnection, and Incus instance is not running."
         fi
+        ${lib.getExe config.virtualisation.incus.package} start local:openwrt
       ''}"
     '';
 
