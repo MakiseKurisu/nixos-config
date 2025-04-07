@@ -11,7 +11,11 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     NUR.url = "github:nix-community/NUR";
     dewclaw.url = "github:MakiseKurisu/dewclaw";
@@ -184,6 +188,7 @@
 
         nixOnDroidConfigurations= {
           davinci = nix-on-droid.lib.nixOnDroidConfiguration {
+            pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
             modules = [
               ./machines/davinci/nix-on-droid.nix
             ];
