@@ -9,7 +9,7 @@
 #    type: unix-char
 #  wwan:
 #    nictype: physical
-#    parent: wwp0s20u3i5
+#    parent: wwan0
 #    type: nic
 #
 # Related:
