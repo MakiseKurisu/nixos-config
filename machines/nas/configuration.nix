@@ -165,14 +165,19 @@
       recommendedZstdSettings = true;
       recommendedProxySettings = true;
       virtualHosts = let
-        https = host: host // {
+        ssl = {
           sslCertificate = "/var/lib/nginx/cert.pem";
           sslCertificateKey = "/var/lib/nginx/key.pem";
-          forceSSL = true;
           kTLS = true;
         };
-        http = host: host // {
+        https = host: host // ssl // {
+          forceSSL = true;
+        };
+        http = host: host // ssl // {
           rejectSSL = true;
+        }; 
+        http_https = host: host // ssl // {
+          addSSL = true;
         }; in {
         "_" = https { locations."/".return = "404"; };
         "apt.protoducer.com" = http { locations."/".proxyPass = "http://127.0.0.1:3142/"; };
@@ -195,7 +200,7 @@
             '';
           };
         };
-        "jf.protoducer.com" = https {
+        "jf.protoducer.com" = http_https {
           locations."/" = {
             proxyWebsockets = true;
             proxyPass = "http://127.0.0.1:8096/";
