@@ -22,7 +22,9 @@
     useGlobalPkgs = true;
   
     config =
-      { config, lib, pkgs, ... }: {
+      { config, lib, pkgs, ... }: let
+        android-system-bin-wrapper = pkgs.callPackage ./android-system-bin-wrapper.nix {};
+      in {
         home = {
           # Read the changelog before changing this value
           stateVersion = "23.11";
@@ -33,8 +35,11 @@
           };
 
           sessionPath = [
-            "${lib.getBin (pkgs.callPackage ./android-system-bin-wrapper.nix {})}/bin"
+            "${lib.getBin android-system-bin-wrapper}/bin"
           ];
+          shellAliases = {
+            ping = lib.getExe' android-system-bin-wrapper "ping";
+          };
 
           packages = with pkgs; [
             cachix
