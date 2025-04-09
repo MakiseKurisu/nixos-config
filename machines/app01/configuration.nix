@@ -47,7 +47,6 @@
       '';
     };
 
-    samba-wsdd.enable = true;
     samba = {
       settings = {
         aria2 = {

@@ -7,7 +7,10 @@
     };
 
     # make shares visible for windows 10 clients
-    samba-wsdd.enable = true;
+    samba-wsdd = {
+      enable = true;
+      openFirewall = true;
+    };
     samba = {
       enable = true;
       settings = {
@@ -43,14 +46,8 @@
   # Open ports in the firewall.
   networking.firewall = {
     allowedTCPPorts = [
-      # wsdd
-      5357
       # NFSv4
       2049
-    ];
-    allowedUDPPorts = [
-      # wsdd
-      3702
     ];
   };
 }
