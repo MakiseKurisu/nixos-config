@@ -88,9 +88,9 @@
           }
           {
             dns = 1;
-            ip = "192.168.9.12";
+            ip = "ignore";
             mac = "70:85:c2:bf:37:bc";
-            name = "pve12";
+            name = "main-wol";
           }
           {
             dns = 1;
