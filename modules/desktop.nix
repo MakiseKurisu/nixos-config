@@ -354,11 +354,19 @@
         mimeApps = {
           enable = true;
           defaultApplications = {
+            "image/bmp" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/gif" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/jpeg" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/png" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/svg+xml" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/webp" = [ "org.nomacs.ImageLounge.desktop" ];
             "text/html" = [ "firefox.desktop" ];
             "x-scheme-handler/about" = [ "firefox.desktop" ];
             "x-scheme-handler/http" = [ "firefox.desktop" ];
             "x-scheme-handler/https" = [ "firefox.desktop" ];
             "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+            "x-scheme-handler/baiduyunguanjia" = [ "baidunetdisk.desktop" ];
+            "x-scheme-handler/msteams" = [ "teams-for-linux.desktop" ];
           };
         };
       };
