@@ -63,7 +63,6 @@
       darktable
       devenv
       discord
-      easyeffects
       element-desktop
       (feishu.override (previous: {
         commandLineArgs = (previous.commandLineArgs or "") +
@@ -333,6 +332,9 @@
 
   home-manager = {
     users.excalibur = { pkgs, ... }: {
+      services = {
+        easyeffects.enable = true;
+      };
       xdg = {
         portal = {
           enable = true;
