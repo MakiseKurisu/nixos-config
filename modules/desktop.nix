@@ -63,6 +63,7 @@
       darktable
       devenv
       discord
+      easyeffects
       element-desktop
       (feishu.override (previous: {
         commandLineArgs = (previous.commandLineArgs or "") +
