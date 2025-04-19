@@ -297,6 +297,7 @@
 
   networking.interfaces.eno1.useDHCP = false;
   networking.interfaces.eno2.useDHCP = false;
+  networking.interfaces.enp7s0.useDHCP = false;
   systemd.network = {
     links = {
       "40-wwan0" = {
@@ -344,6 +345,26 @@
       };
       "30-eno2" = {
         matchConfig.Name = "eno2";
+        networkConfig.Bridge = "br0";
+        linkConfig.RequiredForOnline = "enslaved";
+        bridgeVLANs = [
+          {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
+            VLAN = 10;
+          }
+          {
+            VLAN = 20;
+          }
+          {
+            VLAN = 30;
+          }
+        ];
+      };
+      "30-enp7s0" = {
+        matchConfig.Name = "enp7s0";
         networkConfig.Bridge = "br0";
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
