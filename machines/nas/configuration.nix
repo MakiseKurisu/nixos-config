@@ -31,6 +31,7 @@
     kernelModules = [
       "iptable_mangle"
       "ip6table_mangle"
+      "w83627hf_wdt"
     ];
   };
 
@@ -238,6 +239,7 @@
     btrfs.autoScrub.enable = true;
 
     udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="watchdog", ENV{DEVPATH}=="/devices/virtual/watchdog/watchdog*", SYMLINK+="watchdog"
       # Restart openwrt instance, as new net device will not be auto reconnected
       ACTION=="move", SUBSYSTEM=="net", ENV{DEVTYPE}=="wwan", ENV{INTERFACE}=="wwan*", ENV{TAGS}==":systemd:", RUN+="${pkgs.writeShellScript "restart-openwrt" ''
         if ${lib.getExe config.virtualisation.incus.package} list -c s -f compact local:openwrt |

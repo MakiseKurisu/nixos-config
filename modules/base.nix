@@ -130,7 +130,7 @@
   };
 
   systemd.watchdog = {
-    runtimeTime = "10m";
+    runtimeTime = "1m";
   };
 
   zramSwap = {
