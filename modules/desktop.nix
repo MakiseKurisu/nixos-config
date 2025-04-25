@@ -61,6 +61,7 @@
       cliphist
       colmena
       darktable
+      dbeaver-bin
       devenv
       discord
       element-desktop
