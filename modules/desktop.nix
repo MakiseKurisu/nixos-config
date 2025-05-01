@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./pr/dolphin.nix
     ./pr/mmdebstrap.nix
     ./plasma-systemsettings.nix
     ./hyprland.nix
@@ -69,6 +68,7 @@
         commandLineArgs = (previous.commandLineArgs or "") +
           " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=x11 --enable-wayland-ime";
       }))
+      file-roller
       filezilla
       font-manager
       fsearch
@@ -78,6 +78,7 @@
       ghidra
       ghidra-extensions.machinelearning
       ghidra-extensions.gnudisassembler
+      gnome-calculator
       greetd.wlgreet
       grim
       gsettings-desktop-schemas
@@ -89,9 +90,6 @@
       kicad
       krita
       libreoffice-qt
-      kdePackages.ark
-      kdePackages.breeze-gtk
-      kdePackages.kcalc
       kdePackages.qtwayland
       libwebp
       lingot
@@ -104,6 +102,7 @@
       moonlight-qt
       musescore
       muse-sounds-manager
+      nautilus
       networkmanagerapplet
       nixpkgs-review
       nomacs
@@ -229,7 +228,6 @@
       ];
     };
     dconf.enable = true;
-    dolphin.enable = true;
     firefox = {
       enable = true;
       package = pkgs.firefox-wayland;

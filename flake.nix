@@ -34,7 +34,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Work In Progress PRs
-    pr-dolphin.url = "github:MakiseKurisu/nixpkgs/dolphin";
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
     pr-fastapi-dls.url = "github:MakiseKurisu/nixpkgs/fastapi-dls";
     pr-mdevctl.url = "github:MakiseKurisu/nixpkgs/2db3f670641f422ebdd5ed5d1a071565742a1f2f";
@@ -57,7 +56,6 @@
     , vgpu4nixos
     , disko
     , aagl
-    , pr-dolphin
     , pr-mmdebstrap
     , pr-fastapi-dls
     , pr-mdevctl

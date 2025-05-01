@@ -599,22 +599,6 @@
         "type": "gitlab"
       }
     },
-    "pr-dolphin": {
-      "locked": {
-        "lastModified": 1708837548,
-        "narHash": "sha256-Zp1UflhLeeoTUeN+pMqRVZx+pvpGbPBDM8hnRr+gmBM=",
-        "owner": "MakiseKurisu",
-        "repo": "nixpkgs",
-        "rev": "16b907f242b5396c809439dd4dea788a4f607487",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MakiseKurisu",
-        "ref": "dolphin",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "pr-fastapi-dls": {
       "locked": {
         "lastModified": 1743081429,
@@ -695,7 +679,6 @@
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "pr-dolphin": "pr-dolphin",
         "pr-fastapi-dls": "pr-fastapi-dls",
         "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
