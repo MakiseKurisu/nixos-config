@@ -20,7 +20,6 @@
     #../../modules/wireguard.nix
 
     ../../modules/pr/fastapi-dls.nix
-    ../../modules/pr/aria2.nix
 
     ./hardware-configuration.nix
   ];

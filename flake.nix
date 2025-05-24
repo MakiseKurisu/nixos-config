@@ -2,13 +2,16 @@
   description = "NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-on-droid = {
@@ -30,7 +33,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix/release-24.11";
+      url = "github:ezKEa/aagl-gtk-on-nix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Work In Progress PRs

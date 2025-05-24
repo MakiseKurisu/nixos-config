@@ -159,7 +159,6 @@
       cantarell-fonts
       twitter-color-emoji
       meslo-lgs-nf
-      nerdfonts
       gentium
       source-code-pro
       source-sans-pro
@@ -179,7 +178,7 @@
       font-awesome
       wqy_zenhei
       wqy_microhei
-    ];
+    ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
     enableDefaultPackages = true;
     fontconfig = {
       defaultFonts = {

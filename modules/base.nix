@@ -3,7 +3,6 @@
 {
   imports = [
     inputs.vgpu4nixos.nixosModules.host
-    ./pr/powertop.nix
   ];
 
   console = {
@@ -79,6 +78,7 @@
       };
       permittedInsecurePackages = [
         "electron-11.5.0"
+        "ventoy-1.1.05"
       ];
     };
   };

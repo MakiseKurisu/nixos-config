@@ -102,45 +102,47 @@
         };
         vscode = {
           enable = true;
-          enableExtensionUpdateCheck = false;
-          enableUpdateCheck = false;
           package = (pkgs.vscode.override (previous: {
             commandLineArgs = (previous.commandLineArgs or "") +
               " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime --password-store=gnome --disable-gpu-sandbox";
           }));
-          extensions = with pkgs.vscode-extensions; [
-            bbenoist.nix
-            github.vscode-github-actions
-            github.vscode-pull-request-github
-            ms-azuretools.vscode-docker
-            ms-dotnettools.csdevkit
-            ms-dotnettools.csharp
-            ms-python.python
-            ms-vscode.cmake-tools
-            ms-vscode.cpptools
-            ms-vscode.hexeditor
-            ms-vscode.makefile-tools
-            ms-vscode.powershell
-            ms-vscode-remote.remote-containers
-            ms-vscode-remote.remote-ssh
-            ms-vsliveshare.vsliveshare
-            unifiedjs.vscode-mdx
-          ];
-          userSettings = {
-            "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace, 'NotoSans Nerd Font', 'Font Awesome 6 Free', 'RobotoMono Nerd Font'";
-            "editor.selectionClipboard" = false;
-            "git.autofetch" = true;
-            "git.confirmSync" = false;
-            "git.enableSmartCommit" = true;
-            "editor.rulers" = [
-              80
+          profiles.default = {
+            enableExtensionUpdateCheck = false;
+            enableUpdateCheck = false;
+            extensions = with pkgs.vscode-extensions; [
+              bbenoist.nix
+              github.vscode-github-actions
+              github.vscode-pull-request-github
+              ms-azuretools.vscode-docker
+              ms-dotnettools.csdevkit
+              ms-dotnettools.csharp
+              ms-python.python
+              ms-vscode.cmake-tools
+              ms-vscode.cpptools
+              ms-vscode.hexeditor
+              ms-vscode.makefile-tools
+              ms-vscode.powershell
+              ms-vscode-remote.remote-containers
+              ms-vscode-remote.remote-ssh
+              ms-vsliveshare.vsliveshare
+              unifiedjs.vscode-mdx
             ];
-            "diffEditor.ignoreTrimWhitespace" = false;
-            "debug.javascript.unmapMissingSources" = true;
-            "editor.stickyScroll.enabled" = true;
-            "files.autoGuessEncoding" = true;
-            "files.autoSave" = "afterDelay";
-            "window.titleBarStyle" = "custom";
+            userSettings = {
+              "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace, 'NotoSans Nerd Font', 'Font Awesome 6 Free', 'RobotoMono Nerd Font'";
+              "editor.selectionClipboard" = false;
+              "git.autofetch" = true;
+              "git.confirmSync" = false;
+              "git.enableSmartCommit" = true;
+              "editor.rulers" = [
+                80
+              ];
+              "diffEditor.ignoreTrimWhitespace" = false;
+              "debug.javascript.unmapMissingSources" = true;
+              "editor.stickyScroll.enabled" = true;
+              "files.autoGuessEncoding" = true;
+              "files.autoSave" = "afterDelay";
+              "window.titleBarStyle" = "custom";
+            };
           };
         };
       };

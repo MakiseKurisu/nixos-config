@@ -20,7 +20,6 @@
     #../../modules/wireguard.nix
 
     ../../modules/pr/fastapi-dls.nix
-    ../../modules/pr/aria2.nix
     ../../modules/pr/pico-rpa.nix
 
     ./hardware-configuration.nix
@@ -175,7 +174,7 @@
         };
         http = host: host // ssl // {
           rejectSSL = true;
-        }; 
+        };
         http_https = host: host // ssl // {
           addSSL = true;
         }; in {

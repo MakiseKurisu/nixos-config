@@ -3,7 +3,6 @@
 {
   imports = [
     ./pr/mdevctl.nix
-    ./pr/nvidia-busid.nix
   ];
 
   boot = {
