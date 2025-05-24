@@ -97,6 +97,9 @@
         enableXdgAutostart = true;
       };
       settings = {
+        ecosystem = {
+          no_update_news = "yes";
+        };
         input = {
             kb_layout = "us";
             numlock_by_default = "yes";
