@@ -55,7 +55,20 @@
 
   networking.interfaces.enp10s0.useDHCP = false;
   networking.interfaces.enp13s0.useDHCP = false;
+  networking.interfaces.enp13s0.wakeOnLan.enable = true;
+  networking.interfaces.eth10.useDHCP = false;
   systemd.network = {
+    links = {
+      "40-eth10" = {
+        matchConfig = {
+          OriginalName = lib.mkForce "e*";
+          MACAddress = "f8:e4:3b:38:c6:8c";
+        };
+        linkConfig = {
+          Name = "eth10";
+        };
+      };
+    };
     netdevs = {
       "20-br0" = {
          netdevConfig = {
@@ -91,6 +104,26 @@
       };
       "30-enp13s0" = {
         matchConfig.Name = "enp13s0";
+        networkConfig.Bridge = "br0";
+        linkConfig.RequiredForOnline = "enslaved";
+        bridgeVLANs = [
+          {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
+            VLAN = 10;
+          }
+          {
+            VLAN = 20;
+          }
+          {
+            VLAN = 30;
+          }
+        ];
+      };
+      "30-eth10" = {
+        matchConfig.Name = "eth10";
         networkConfig.Bridge = "br0";
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
