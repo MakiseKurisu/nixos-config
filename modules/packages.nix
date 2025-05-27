@@ -50,6 +50,7 @@
           cmake
           debian-devscripts
           duplicacy
+          nur.repos.xddxdd.dingtalk
           distrobox
           dmidecode
           dotnet-combined

@@ -79,6 +79,7 @@
       permittedInsecurePackages = [
         "electron-11.5.0"
         "ventoy-1.1.05"
+        "openssl-1.1.1w"
       ];
     };
   };
