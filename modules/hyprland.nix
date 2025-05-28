@@ -147,7 +147,7 @@
           "float, title:(Picture) # Feishu"
           "fullscreen, title:(Waydroid), class:(Waydroid)"
           "workspace 10 silent, class:(explorer.exe), title:(Wine System Tray)"
-          "workspace 10 silent, class:(steam_app_default)"
+          "workspace 10 silent, class:(steam_app_default), title:()"
           "workspace 11 silent, title:(Feishu)"
           "workspace 13 silent, title:(Waydroid), class:(Waydroid)"
           "workspace 17 silent, title:(QQ), class:(QQ)"
