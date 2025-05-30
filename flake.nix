@@ -154,7 +154,7 @@
             specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
-              ./machines/nas/configuration.nix
+              ./machines/nas
             ];
           };
           p15 = nixpkgs.lib.nixosSystem {

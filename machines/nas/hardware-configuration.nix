@@ -14,12 +14,13 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "UUID=5e14f475-30ba-4fae-a37b-f8f26f9ea88d";
-      fsType = "bcachefs";
+    { device = "/dev/disk/by-uuid/4f513d58-d59e-41d3-86a2-776c7b5addf9";
+      fsType = "btrfs";
+      options = [ "subvol=@" "compress=zstd" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A8AD-53F2";
+    { device = "/dev/disk/by-uuid/2D03-5617";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
@@ -45,6 +46,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno2.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp7s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
