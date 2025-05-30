@@ -47,6 +47,7 @@
   networking.firewall = {
     allowedTCPPorts = [
       # NFSv4
+      111
       2049
     ];
   };
