@@ -25,9 +25,6 @@
   ];
 
   boot = {
-    kernelParams = [
-      "console=ttyS0"
-    ];
     blacklistedKernelModules = [ "amdgpu" ];
   };
 
