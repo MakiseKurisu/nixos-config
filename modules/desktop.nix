@@ -354,6 +354,7 @@
         mimeApps = {
           enable = true;
           defaultApplications = {
+            # find /run/current-system/sw/share/applications/ -name "**"
             "image/bmp" = [ "org.nomacs.ImageLounge.desktop" ];
             "image/gif" = [ "org.nomacs.ImageLounge.desktop" ];
             "image/jpeg" = [ "org.nomacs.ImageLounge.desktop" ];
@@ -367,6 +368,7 @@
             "x-scheme-handler/unknown" = [ "firefox.desktop" ];
             "x-scheme-handler/baiduyunguanjia" = [ "baidunetdisk.desktop" ];
             "x-scheme-handler/msteams" = [ "teams-for-linux.desktop" ];
+            "x-scheme-handler/mailto" = [ "thunderbird.desktop" ];
           };
         };
       };
