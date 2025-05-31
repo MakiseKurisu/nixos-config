@@ -122,7 +122,7 @@
       "30-eth10" = {
         matchConfig.Name = "eth10";
         networkConfig.Bridge = "br0";
-        linkConfig.RequiredForOnline = "enslaved";
+        linkConfig.RequiredForOnline = "no";
         bridgeVLANs = [
           {
             PVID = 1;
