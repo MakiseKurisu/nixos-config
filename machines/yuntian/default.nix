@@ -30,7 +30,7 @@
     xdg.configFile = {
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''
-          monitor=DP-1, highres, 0x0, 1.5, vrr, 2
+          monitor=DP-1, highres, 0x0, 1.5, vrr, 0
           monitor=HDMI-A-2, highres, auto-right, 1.5
           workspace=2, monitor:DP-1, default:yes
           workspace=30, monitor:HDMI-A-2, default:yes
