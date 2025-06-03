@@ -25,9 +25,9 @@
         };
         credential.helper = "store";
         user = {
-          name = "MakiseKurisu";
-          email = "MakiseKurisu@users.noreply.github.com";
-          signingkey = "~/.ssh/id_rsa.pub";
+          name = lib.mkDefault "MakiseKurisu";
+          email = lib.mkDefault "MakiseKurisu@users.noreply.github.com";
+          signingkey = lib.mkDefault "~/.ssh/id_rsa.pub";
         };
         http = {
           version = "HTTP/1.1";

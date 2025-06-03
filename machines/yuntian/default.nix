@@ -39,6 +39,17 @@
     };
   };
 
+  programs = {
+    git = {
+      config = {
+        credential.helper = "store";
+        user = {
+          name = "ZHANG Yuntian";
+          email = "yt@radxa.com";
+        };
+      };
+    };
+  };
 
   networking.interfaces.enp4s0.useDHCP = false;
   networking.interfaces.enp4s0.wakeOnLan.enable = true;
