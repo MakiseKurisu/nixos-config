@@ -69,7 +69,11 @@
     networks = {
       "30-enp4s0" = {
         matchConfig.Name = "enp4s0";
-        networkConfig.Bridge = "br0";
+        networkConfig = {
+          Bridge = "br0";
+          LinkLocalAddressing = false;
+          DHCP = false;
+        };
         linkConfig.RequiredForOnline = "enslaved";
       };
       "50-br0" = {
