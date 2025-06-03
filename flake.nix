@@ -150,6 +150,13 @@
               ./machines/main
             ];
           };
+          yuntian = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
+            system = "x86_64-linux";
+            modules = [
+              ./machines/yuntian
+            ];
+          };
           nas = nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
             system = "x86_64-linux";
