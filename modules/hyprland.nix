@@ -178,6 +178,7 @@
           "float, title:(Open File)"
           "float, title:(Open Folder)"
           "float, title:(Picture) # Feishu"
+          "float, class:(thunderbird), title:(Write\: .*)"
           "fullscreen, title:(Waydroid), class:(Waydroid)"
           "workspace 10 silent, class:(explorer.exe), title:(Wine System Tray)"
           "workspace 10 silent, class:(steam_app_default), title:()"
