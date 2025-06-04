@@ -324,6 +324,7 @@
     };
     ratbagd.enable = true;
     rpcbind.enable = true; # needed for NFS
+    systemd-lock-handler.enable = true;
   };
 
   hardware.bluetooth.enable = true;

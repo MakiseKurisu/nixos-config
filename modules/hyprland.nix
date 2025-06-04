@@ -1,7 +1,40 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
+  security.pam.services.hyprlock = {};
   home-manager.users.excalibur = { pkgs, ... }: {
+    systemd.user = {
+      services = {
+        hyprlock = {
+          Unit = {
+            Description = "Hyprland's GPU-accelerated screen locking utility ";
+
+            # If hyprlock exits cleanly, unlock the session:
+            OnSuccess = ["unlock.target"];
+
+            # When lock.target is stopped, stops this too:
+            PartOf = ["lock.target"];
+
+            # Delay lock.target until this service is ready:
+            Before = ["lock.target"];
+          };
+          Install = {
+            WantedBy = ["lock.target"];
+          };
+          Service = {
+            # systemd will consider this service started when hyprlock forks...
+            Type = "forking";
+
+            # ... and hyprlock will fork only after it has locked the screen.
+            ExecStart = "${lib.getExe pkgs.hyprlock}";
+
+            # If hyprlock crashes, always restart it immediately:
+            Restart = "on-failure";
+            RestartSec = 0;
+          };
+        };
+      };
+    };
     programs = {
       hyprlock = {
         enable = true;
@@ -165,7 +198,7 @@
           "$mainMod, R, exec, $menu"
           "$mainMod, P, pseudo, # dwindle"
           "$mainMod, J, togglesplit, # dwindle"
-          "$mainMod, L, exec, hyprlock"
+          "$mainMod, L, exec, loginctl lock-session"
           "$mainMod SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
           "$mainMod SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
           "$mainMod, left, movefocus, l"
