@@ -10,6 +10,7 @@
       "audio"
       "cups"
       "dialout"
+      "docker"
       "incus"
       "input"
       "libvirtd"
