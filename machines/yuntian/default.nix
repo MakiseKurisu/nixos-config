@@ -27,6 +27,15 @@
   boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
 
   home-manager.users.excalibur = { pkgs, ... }: {
+    wayland.windowManager.hyprland.settings = {
+      xwayland = {
+        force_zero_scaling = true;
+      };
+      env = [
+        "GDK_SCALE,2"
+        "XCURSOR_SIZE,32"
+      ];
+    };
     xdg.configFile = {
       "hypr/machine.conf" = {
         source = pkgs.writeText "hyprland-machine.conf" ''
