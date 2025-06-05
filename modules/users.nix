@@ -130,20 +130,21 @@
               unifiedjs.vscode-mdx
             ];
             userSettings = {
+              "debug.javascript.unmapMissingSources" = true;
+              "diffEditor.ignoreTrimWhitespace" = false;
               "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace, 'NotoSans Nerd Font', 'Font Awesome 6 Free', 'RobotoMono Nerd Font'";
-              "editor.selectionClipboard" = false;
-              "git.autofetch" = true;
-              "git.confirmSync" = false;
-              "git.enableSmartCommit" = true;
               "editor.rulers" = [
                 80
               ];
-              "diffEditor.ignoreTrimWhitespace" = false;
-              "debug.javascript.unmapMissingSources" = true;
+              "editor.selectionClipboard" = false;
               "editor.stickyScroll.enabled" = true;
               "files.autoGuessEncoding" = true;
               "files.autoSave" = "afterDelay";
+              "git.autofetch" = true;
+              "git.confirmSync" = false;
+              "git.enableSmartCommit" = true;
               "window.titleBarStyle" = "custom";
+              "makefile.configureOnOpen" = true;
             };
           };
         };
