@@ -151,7 +151,9 @@
           enable = true;
           settings = {
             global = {
-              monitor = "0";
+              follow = "mouse";
+              origin = "top-center";
+              offset = "(0, 50)";
             };
           };
         };
