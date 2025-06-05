@@ -124,6 +124,8 @@
               ms-vscode.powershell
               ms-vscode-remote.remote-containers
               ms-vscode-remote.remote-ssh
+              ms-vscode-remote.remote-ssh-edit
+              ms-vscode-remote.vscode-remote-extensionpack
               ms-vsliveshare.vsliveshare
               unifiedjs.vscode-mdx
             ];
