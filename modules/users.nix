@@ -119,6 +119,7 @@
               ms-python.python
               ms-vscode.cmake-tools
               ms-vscode.cpptools
+              ms-vscode.cpptools-extension-pack
               ms-vscode.hexeditor
               ms-vscode.makefile-tools
               ms-vscode.powershell
