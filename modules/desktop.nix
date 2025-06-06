@@ -356,6 +356,7 @@
           enable = true;
           defaultApplications = {
             # find /run/current-system/sw/share/applications/ -name "**"
+            # More folders are available under $XDG_DATA_DIRS
             "image/bmp" = [ "org.nomacs.ImageLounge.desktop" ];
             "image/gif" = [ "org.nomacs.ImageLounge.desktop" ];
             "image/jpeg" = [ "org.nomacs.ImageLounge.desktop" ];
@@ -382,6 +383,9 @@
             "message/rfc822" = [ "thunderbird.desktop" ];
             "text/calendar" = [ "thunderbird.desktop" ];
             "application/x-extension-ics" = [ "thunderbird.desktop" ];
+            "model/step" = [ "org.freecad.FreeCAD.desktop" ];
+            "text/plain" = [ "code.desktop" ];
+            "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
           };
         };
       };
