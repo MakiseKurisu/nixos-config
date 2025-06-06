@@ -35,10 +35,14 @@
           maxRequestBuffer = 524288000;
         };
         gpg.format = "ssh";
-        commit.gpgSign = true;
+        commit = {
+          gpgSign = true;
+          template = "~/.gitmessage";
+        };
         tag.gpgSign = true;
         push.gpgSign = "if-asked";
         help.autocorrect = "prompt";
+        format.signOff = true;
       };
     };
     ssh = {
