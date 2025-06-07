@@ -40,7 +40,6 @@
         enable = true;
         settings = {
           general = {
-            disable_loading_bar = true;
             grace = 10;
             hide_cursor = true;
           };
@@ -84,7 +83,7 @@
             }
             {
               text = "$USER";
-              color = "$foreground";
+              color = "rgba(255, 255, 255, 1)";
               font_size = 25;
               font_family = "JetBrains Mono Nerd Font Mono";
               position = "0, -40";
