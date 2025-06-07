@@ -3,6 +3,10 @@
 {
   security.pam.services.hyprlock = {};
   home-manager.users.excalibur = { pkgs, ... }: {
+    home.pointerCursor.hyprcursor = {
+      enable = true;
+      size = 32;
+    };
     systemd.user = {
       services = {
         hyprlock = {
