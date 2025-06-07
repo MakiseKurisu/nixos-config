@@ -39,6 +39,8 @@
             servefile
             tqdm
             pre-commit-hooks
+            pyyaml
+            pyusb
           ];
         in
         with pkgs; [
@@ -71,6 +73,7 @@
           ldns
           libhugetlbfs
           libnotify
+          libxml2
           linux.dev
           lm_sensors
           minicom
