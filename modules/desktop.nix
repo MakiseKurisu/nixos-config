@@ -142,6 +142,7 @@
       thunderbird
       ventoy-full
       vlc
+      waydroid-helper
       wechat-uos
       wev
       wlr-randr
@@ -149,6 +150,7 @@
       wofi
       wsmancli
       xdg-utils
+      xxd
       yarn
     ];
   };
@@ -359,6 +361,9 @@
         mime.enable = true;
         mimeApps = {
           enable = true;
+          associations.added = {
+            "application/x-shellscript" = [ "code.desktop" ];
+          };
           defaultApplications = {
             # find /run/current-system/sw/share/applications/ -name "**"
             # More folders are available under $XDG_DATA_DIRS
