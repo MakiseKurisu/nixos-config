@@ -48,6 +48,8 @@
     };
   };
 
+  powerManagement.powertop.enable = false;
+
   programs = {
     git = {
       config = {
