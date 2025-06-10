@@ -49,7 +49,6 @@
         "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
       ];
       trusted-users = [
-        "root"
         "@wheel"
       ];
       http2 = false;
