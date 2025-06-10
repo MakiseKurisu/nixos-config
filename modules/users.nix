@@ -62,6 +62,12 @@
             "ignoredups"
             "ignorespace"
           ];
+          enableVteIntegration = true;
+          bashrcExtra = ''
+            picocom() {
+              env picocom -b ''${1:-1500000} /dev/ttyUSB0
+            }
+          '';
         };
         bashmount.enable = true;
         starship = {
