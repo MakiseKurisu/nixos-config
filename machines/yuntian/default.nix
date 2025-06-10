@@ -33,7 +33,6 @@
       };
       env = [
         "GDK_SCALE,2"
-        "XCURSOR_SIZE,32"
       ];
     };
     xdg.configFile = {
