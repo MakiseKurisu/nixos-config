@@ -61,7 +61,8 @@
   };
 
   networking.interfaces.enp4s0.useDHCP = false;
-  networking.interfaces.enp4s0.wakeOnLan.enable = true;
+  # enable WoL causes interface to be configured with DHCP
+  # networking.interfaces.enp4s0.wakeOnLan.enable = true;
   systemd.network = {
     netdevs = {
       "20-br0" = {
