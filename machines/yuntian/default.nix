@@ -28,12 +28,14 @@
 
   home-manager.users.excalibur = { pkgs, ... }: {
     wayland.windowManager.hyprland.settings = {
+      exec-once = [
+        "${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
+          Xft.dpi: 144
+        ''}"
+      ];
       xwayland = {
         force_zero_scaling = true;
       };
-      env = [
-        "GDK_SCALE,2"
-      ];
     };
     xdg.configFile = {
       "hypr/machine.conf" = {
