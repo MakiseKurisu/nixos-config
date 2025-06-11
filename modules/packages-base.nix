@@ -23,7 +23,10 @@
           autoStash = true;
           autoSquash = true;
         };
-        credential.helper = "store";
+        credential = {
+          helper = "store";
+          "https://github.com".username = lib.mkDefault "MakiseKurisu";
+        };
         user = {
           name = lib.mkDefault "MakiseKurisu";
           email = lib.mkDefault "MakiseKurisu@users.noreply.github.com";

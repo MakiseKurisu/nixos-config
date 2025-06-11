@@ -54,7 +54,9 @@
   programs = {
     git = {
       config = {
-        credential.helper = "store";
+        credential = {
+          "https://github.com".username = "RadxaYuntian";
+        };
         user = {
           name = "ZHANG Yuntian";
           email = "yt@radxa.com";
