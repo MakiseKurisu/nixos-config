@@ -27,6 +27,46 @@
   boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
 
   home-manager.users.excalibur = { pkgs, ... }: {
+    systemd.user = {
+      services = {
+        lock-session = {
+          Unit = {
+            Description = "Lock current graphical session";
+          };
+          Service = {
+            Type = "oneshot";
+            ExecStart = ''
+              ${lib.getExe pkgs.bash} -c \
+                "${lib.getExe' pkgs.systemd "loginctl"} lock-session \
+                  $$(${lib.getExe' pkgs.systemd "loginctl"} list-sessions | \
+                  ${lib.getExe pkgs.gnugrep} tty1 | \
+                  ${lib.getExe pkgs.gnugrep} active | \
+                  ${lib.getExe' pkgs.coreutils "tr"} -s ' ' | \
+                  ${lib.getExe' pkgs.coreutils "cut"} -d ' ' -f 2)"
+            '';
+          };
+        };
+      };
+      timers = {
+        lock-session = {
+          Unit = {
+            Description = "Lock current graphical session at given time";
+          };
+          Install = {
+            WantedBy = ["timers.target"];
+          };
+          Timer = {
+            OnCalendar = [
+              "*-*-* 09:30:00"
+              "*-*-* 12:00:00"
+              "*-*-* 19:00:00"
+              "*-*-* 19:30:00"
+              "*-*-* 20:30:00"
+            ];
+          };
+        };
+      };
+    };
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         "${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
