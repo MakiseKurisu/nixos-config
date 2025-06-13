@@ -11,7 +11,7 @@
       services = {
         hyprlock = {
           Unit = {
-            Description = "Hyprland's GPU-accelerated screen locking utility ";
+            Description = "Hyprland's GPU-accelerated screen locking utility";
 
             # If hyprlock exits cleanly, unlock the session:
             OnSuccess = ["unlock.target"];
