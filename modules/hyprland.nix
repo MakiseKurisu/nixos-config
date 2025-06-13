@@ -197,6 +197,7 @@
             force_default_wallpaper = 2;
         };
         windowrulev2 = [
+          "idleinhibit fullscreen, class:(.*)"
           "float, title:(KCalc), class:(org.kde.kcalc)"
           "float, title:(Open File)"
           "float, title:(Open Folder)"
