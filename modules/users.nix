@@ -19,10 +19,6 @@
             source = ../configs/hypr;
             recursive = true;
           };
-          "waybar" = {
-            source = ../configs/waybar;
-            recursive = true;
-          };
           "discord" = {
             source = ../configs/discord;
             recursive = true;

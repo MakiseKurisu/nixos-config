@@ -150,6 +150,7 @@
         pkgs.hyprlandPlugins.hyprgrass
       ];
       systemd = {
+        enable = true;
         enableXdgAutostart = true;
       };
       settings = {
@@ -161,7 +162,6 @@
             numlock_by_default = "yes";
         };
         exec-once = [
-          "waybar"
           "fcitx5"
           "discord --start-minimized"
           "wl-paste --type text --watch cliphist store"

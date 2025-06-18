@@ -5,6 +5,7 @@
     ./pr/mmdebstrap.nix
     ./plasma-systemsettings.nix
     ./hyprland.nix
+    ./waybar.nix
     inputs.lix-module.nixosModules.default
     inputs.aagl.nixosModules.default
   ];
@@ -242,10 +243,6 @@
     };
     regreet.enable = true;
     hyprland.enable = true;
-    waybar = {
-      enable = true;
-      package = pkgs.waybar;
-    };
     starship = {
       enable = true;
       settings = {
