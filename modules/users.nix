@@ -148,6 +148,7 @@
               "git.enableSmartCommit" = true;
               "window.titleBarStyle" = "custom";
               "makefile.configureOnOpen" = true;
+              "explorer.confirmDragAndDrop" = false;
             };
           };
         };
