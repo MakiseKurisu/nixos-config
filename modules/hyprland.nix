@@ -281,7 +281,7 @@
           "$mainMod, mouse_down, workspace, e-1"
           "$mainMod, mouse_up, workspace, e+1"
           ", XF86Search, exec, fsearch"
-          #", XF86Display, exec, kitty"
+          ", XF86Display, exec, nwg-displays --num_ws 30"
           #", XF86WLAN, exec, kitty"
           #", XF86Tools, exec, kitty"
           #", XF86LaunchA, exec, kitty"
@@ -325,7 +325,11 @@
             ", swipe:3:r, sendshortcut, mouse:276"
           ];
         };
-        source = "~/.config/hypr/machine.conf";
+        source = [
+          "~/.config/hypr/machine.conf"
+          "~/.config/hypr/monitors.conf"
+          "~/.config/hypr/workspaces.conf"
+        ];
       };
     };
   };
