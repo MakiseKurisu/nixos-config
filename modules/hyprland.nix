@@ -198,19 +198,26 @@
             allow_session_lock_restore = true;
         };
         windowrulev2 = [
-          "idleinhibit fullscreen, class:(.*)"
-          "float, title:(KCalc), class:(org.kde.kcalc)"
-          "float, title:(Open File)"
-          "float, title:(Open Folder)"
-          "float, title:(Picture) # Feishu"
-          "float, class:(thunderbird), title:(Write\: .*)"
-          "fullscreen, title:(Waydroid), class:(Waydroid)"
-          "workspace 10 silent, class:(explorer.exe), title:(Wine System Tray)"
-          "workspace 10 silent, class:(steam_app_default), title:()"
-          "workspace 11 silent, title:(Feishu)"
-          "workspace 13 silent, title:(Waydroid), class:(Waydroid)"
-          "workspace 17 silent, title:(QQ), class:(QQ)"
-          "workspace 18 silent, title:(微信), class:(wechat)"
+          "idleinhibit fullscreen, class:^(.*)$, title:^(.*)$"
+          "float, class:^(.*)$, title:^(Open File)$"
+          "float, class:^(.*)$, title:^(Open Folder)$"
+          "float, class:^(.*)$, title:^(Picture)$" # Feishu
+          "float, class:^(org\.kde\.kcalc)$, title:^(KCalc)$"
+          "float, class:^(thunderbird)$, title:^(Write\: .*)$"
+          "float, class:^(thunderbird)$, title:^(Calendar Reminders)$"
+          "float, class:^(thunderbird)$, title:^(Edit Item)$"
+          "float, class:^(\.virt-manager-wrapped)$, title:^(.* on QEMU/KVM)$"
+          "float, class:^(Bytedance-feishu)$, title:^()$"
+          "float, class:^(org\.gnome\.Calculator)$, title:^(Calculator)$"
+          "float, class:^(nwg-displays)$, title:^(nwg-displays)$"
+          "fullscreen, class:^(Waydroid)$, title:^(Waydroid)$"
+          "workspace 10 silent, class:^(explorer\.exe)$, title:^(Wine System Tray)$"
+          "workspace 10 silent, class:^(steam_app_default)$, title:^()$"
+          "workspace 11 silent, class:^(.*)$, title:^(Feishu)$"
+          "workspace 13 silent, class:^(Waydroid)$, title:^(Waydroid)$"
+          "workspace 16 silent, class:^(com\.alibabainc\.dingtalk)$, title:^(钉钉)$"
+          "workspace 17 silent, class:^(QQ)$, title:^(QQ)$"
+          "workspace 18 silent, class:^(wechat)$, title:^(微信)$"
         ];
         "$mainMod" = "SUPER";
         "$menu" = "nwg-drawer -term kitty -nofs";
