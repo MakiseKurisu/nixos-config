@@ -195,6 +195,7 @@
         misc = {
             vrr = 1;
             force_default_wallpaper = 2;
+            allow_session_lock_restore = true;
         };
         windowrulev2 = [
           "idleinhibit fullscreen, class:(.*)"
