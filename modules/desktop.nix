@@ -393,6 +393,7 @@
             "model/step" = [ "org.freecad.FreeCAD.desktop" ];
             "text/plain" = [ "code.desktop" ];
             "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+            "application/pdf" = [ "chromium-browser.desktop" ];
           };
         };
       };
