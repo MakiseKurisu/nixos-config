@@ -129,8 +129,11 @@
     };
   };
 
-  systemd.watchdog = {
-    runtimeTime = "1m";
+  systemd = {
+    oomd.enableUserSlices = true;
+    watchdog = {
+      runtimeTime = "1m";
+    };
   };
 
   zramSwap = {
