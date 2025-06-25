@@ -95,7 +95,6 @@
       libwebp
       lingot
       lmms
-      lutris
       mako
       mattermost-desktop
       pr-mmdebstrap.mmdebstrap
@@ -329,9 +328,24 @@
   hardware.bluetooth.enable = true;
 
   home-manager = {
-    users.excalibur = { pkgs, ... }: {
+    users.excalibur = { lib, pkgs, osConfig, ... }: {
       services = {
         easyeffects.enable = true;
+      };
+      programs = {
+        lutris = {
+          enable = true;
+          winePackages = [ pkgs.wineWow64Packages.full ];
+          protonPackages = [ pkgs.proton-ge-bin ];
+          steamPackage = osConfig.programs.steam.package;
+          extraPackages = with pkgs; [
+            mangohud
+            winetricks
+            gamescope
+            gamemode
+            umu-launcher
+          ];
+        };
       };
       home.pointerCursor = {
         enable = true;
