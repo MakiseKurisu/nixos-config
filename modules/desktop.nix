@@ -394,6 +394,7 @@
             "text/plain" = [ "code.desktop" ];
             "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
             "application/pdf" = [ "chromium-browser.desktop" ];
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
           };
         };
       };
