@@ -90,6 +90,7 @@
           settings = {
             confirm_os_window_close = 0;
             paste_actions = "quote-urls-at-prompt";
+            scrollback_pager_history_size = 128;
           };
           shellIntegration.enableBashIntegration = true;
         };
