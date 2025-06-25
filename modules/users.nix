@@ -125,6 +125,7 @@
               ms-vscode.hexeditor
               ms-vscode.makefile-tools
               ms-vscode.powershell
+              pkgs.unstable.vscode-extensions.ms-vscode.remote-explorer
               ms-vscode-remote.remote-containers
               ms-vscode-remote.remote-ssh
               ms-vscode-remote.remote-ssh-edit
