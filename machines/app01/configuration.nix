@@ -70,11 +70,7 @@
       enable = true;
       tunMode = true;
       configFile = "/var/lib/mihomo/clash.yaml";
-      webui = pkgs.fetchzip {
-        url = "https://github.com/MetaCubeX/metacubexd/releases/download/v1.169.0/compressed-dist.tgz";
-        stripRoot = false;
-        hash = "sha256-L0HHTh20qpTQiOJQTr5GgZF17JuhHHFSfn5Fht2V/rw=";
-      };
+      webui = pkgs.metacubexd;
     };
 
     iperf3 = {
