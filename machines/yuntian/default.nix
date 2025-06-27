@@ -24,7 +24,7 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+  boot.kernelPackages = lib.mkForce pkgs.master.linuxPackages_latest;
 
   home-manager.users.excalibur = { pkgs, ... }: {
     systemd.user = {
@@ -89,7 +89,10 @@
     };
   };
 
-  powerManagement.powertop.enable = false;
+  powerManagement = {
+    powertop.enable = false;
+    cpuFreqGovernor = "performance";
+  };
 
   programs = {
     git = {
