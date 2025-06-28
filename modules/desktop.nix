@@ -262,6 +262,7 @@
       extest.enable = true;
       extraPackages = [ pkgs.gamescope ];
       extraCompatPackages = [ pkgs.proton-ge-bin ];
+      protontricks.enable = true;
     };
     system-config-printer.enable = true;
     wireshark = {
@@ -325,7 +326,10 @@
     systemd-lock-handler.enable = true;
   };
 
-  hardware.bluetooth.enable = true;
+  hardware = {
+    graphics.enable = true;
+    bluetooth.enable = true;
+  };
 
   home-manager = {
     users.excalibur = { lib, pkgs, osConfig, ... }: {
@@ -335,7 +339,10 @@
       programs = {
         lutris = {
           enable = true;
-          winePackages = [ pkgs.wineWow64Packages.full ];
+          winePackages = [ 
+            pkgs.wineWowPackages.full
+            pkgs.wineWow64Packages.full
+          ];
           protonPackages = [ pkgs.proton-ge-bin ];
           steamPackage = osConfig.programs.steam.package;
           extraPackages = with pkgs; [
