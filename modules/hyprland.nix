@@ -193,7 +193,7 @@
             smart_split = "yes";
         };
         misc = {
-            vrr = 1;
+            vrr = 2;
             force_default_wallpaper = 2;
             allow_session_lock_restore = true;
         };
@@ -210,7 +210,10 @@
           "float, class:^(Bytedance-feishu)$, title:^()$"
           "float, class:^(org\.gnome\.Calculator)$, title:^(Calculator)$"
           "float, class:^(nwg-displays)$, title:^(nwg-displays)$"
+          "float, class:^(net\.lutris\.Lutris)$, title:^(Select an EXE or MSI file)$"
+          "float, class:^(zenity)$, title:^(.*)$"
           "fullscreen, class:^(Waydroid)$, title:^(Waydroid)$"
+          "workspace 10 silent, class:^(explorer\.exe)$, title:^()$"
           "workspace 10 silent, class:^(explorer\.exe)$, title:^(Wine System Tray)$"
           "workspace 10 silent, class:^(steam_app_default)$, title:^()$"
           "workspace 11 silent, class:^(.*)$, title:^(Feishu)$"
