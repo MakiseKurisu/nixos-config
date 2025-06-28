@@ -36,7 +36,7 @@
       MOZ_USE_XINPUT2 = "1";
       XDG_SESSION_TYPE = "wayland";
       NIXOS_OZONE_WL = "1";
-      QT_QPA_PLATFORM = "wayland";
+      QT_QPA_PLATFORM = "wayland;xcb";
       CLUTTER_BACKEND = "wayland";
       SDL_VIDEODRIVER = "wayland";
     };
