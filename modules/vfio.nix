@@ -16,7 +16,6 @@
   environment = {
     systemPackages =
       with pkgs; [
-        virt-manager
         virt-viewer
         unstable.looking-glass-client
       ];
@@ -28,6 +27,8 @@
     '';
   };
 
+  programs.virt-manager.enable = true;
+
   virtualisation.libvirtd = {
     enable = true;
     onBoot = "ignore";
@@ -35,6 +36,9 @@
       swtpm.enable = true;
       ovmf.packages = with pkgs; [
         OVMFFull.fd
+      ];
+      vhostUserPackages = with pkgs; [
+        virtiofsd
       ];
       verbatimConfig = ''
         cgroup_device_acl = [
