@@ -17,7 +17,7 @@
             start_hidden = true;
             modules-left = ["custom/power-off" "clock" "hyprland/workspaces"];
             modules-center = ["hyprland/window"];
-            modules-right = ["mpris" "wireplumber" "network" "bluetooth" "cpu" "memory" "temperature" "backlight" "keyboard-state" "battery" "battery#bat2" "tray"];
+            modules-right = ["mpris" "wireplumber" "backlight" "keyboard-state" "battery" "battery#bat2" "tray"];
             "hyprland/workspaces" = {
               disable-scroll = true;
               all-outputs = true;
