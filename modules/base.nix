@@ -34,6 +34,31 @@
     };
   };
 
+  networking.timeServers = options.networking.timeServers.default ++ [
+    "ntp.ntsc.ac.cn"
+    "cn.ntp.org.cn"
+    "ntp1.nim.ac.cn"
+    "ntp2.nim.ac.cn"
+    "cn.pool.ntp.org"
+    "ntp.aliyun.com"
+    "ntp.tencent.com"
+    "time.izatcloud.net"
+    "time.gpsonextra.net"
+    "hik-time.ys7.com"
+    "time.ys7.com"
+    "ntp.sjtu.edu.cn"
+    "ntp.neu.edu.cn"
+    "ntp.bupt.edu.cn"
+    "ntp.shu.edu.cn"
+    "ntp.tuna.tsinghua.edu.cn"
+    "time.ustc.edu.cn"
+    "ntp.fudan.edu.cn"
+    "ntp.nju.edu.cn"
+    "ntp.tongji.edu.cn"
+    "stdtime.gov.hk"
+    "time.smg.gov.mo"
+  ];
+
   nix = {
     gc = {
       automatic = true;
