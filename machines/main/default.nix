@@ -24,10 +24,6 @@
     ./hardware-configuration.nix
   ];
 
-  boot = {
-    blacklistedKernelModules = [ "amdgpu" ];
-  };
-
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
       "hypr/machine.conf" = {
