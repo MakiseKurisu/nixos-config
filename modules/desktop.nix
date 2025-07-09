@@ -107,7 +107,6 @@
       nixpkgs-review
       nomacs
       nss
-      nuclear
       nwg-bar
       nwg-menu
       nwg-look

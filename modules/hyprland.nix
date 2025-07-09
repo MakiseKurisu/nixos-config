@@ -177,7 +177,6 @@
           "[workspace 16 silent] dingtalk"
           "[workspace 17 silent] qq"
           "[workspace 18 silent] wechat-uos"
-          "[workspace 20 silent] nuclear"
         ];
         general = {
             gaps_in = 0;
