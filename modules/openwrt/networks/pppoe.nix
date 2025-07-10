@@ -18,6 +18,7 @@
             password._secret = "pppoe_password";
             metric = 10;
             dns_metric = 10;
+            auto = false;
           };
         };
       };
