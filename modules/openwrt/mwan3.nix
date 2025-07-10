@@ -81,13 +81,13 @@ in
             proto = "all";
             sticky = false;
             use_policy = "pppoe_wwan0";
-            family = "ipv4"
+            family = "ipv4";
           };
           unreachable = {
             proto = "all";
             sticky = false;
             use_policy = "unreachable";
-            family = "ipv6"
+            family = "ipv6";
           };
         };
       };
