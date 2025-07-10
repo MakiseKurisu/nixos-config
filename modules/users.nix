@@ -151,6 +151,7 @@
               "window.titleBarStyle" = "custom";
               "makefile.configureOnOpen" = true;
               "explorer.confirmDragAndDrop" = false;
+              "workbench.welcomePage.walkthroughs.openOnInstall" = false;
             };
           };
         };
