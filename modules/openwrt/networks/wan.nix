@@ -24,6 +24,7 @@
             proto = "dhcp";
             defaultroute = false;
             peerdns = false;
+            auto = false;
           };
           wan6 = {
             device = "br-lan.10";
@@ -32,6 +33,8 @@
             reqprefix = "auto";
             defaultroute = false;
             peerdns = false;
+            auto = false;
+            norelease = true;
           };
         };
       };
