@@ -77,8 +77,8 @@
           {
             dns = 1;
             ip = "192.168.9.2";
-            mac = "6A:84:62:42:6B:DD";
-            name = "nas";
+            mac = "5A:95:F9:90:E8:AF";
+            name = "app01";
           }
           {
             dns = 1;

@@ -140,7 +140,7 @@
             specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
-              ./machines/app01/configuration.nix
+              ./machines/app01
             ];
           };
           main = nixpkgs.lib.nixosSystem {

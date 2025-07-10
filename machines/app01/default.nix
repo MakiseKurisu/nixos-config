@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
@@ -6,37 +6,40 @@
     ../../modules/file-share.nix
     #../../modules/desktop.nix
     ../../modules/podman.nix
-    #../../modules/intel.nix
+    ../../modules/intel-base.nix
     ../../modules/kernel.nix
     ../../modules/network.nix
     #../../modules/nvidia.nix
     ../../modules/packages-base.nix
     ../../modules/users-base.nix
     #../../modules/vfio.nix
-    ../../modules/virtualization.nix
+    ../../modules/virtualization-base.nix
+    ../../modules/impermanence.nix
 
-    ../../modules/nfs-nas.nix
-    #../../modules/nfs-app01.nix
+    #../../modules/nfs-nas.nix
+    # ../../modules/nfs-app01.nix
     #../../modules/wireguard.nix
 
     ../../modules/pr/fastapi-dls.nix
+    ../../modules/pr/pico-rpa.nix
 
+    inputs.disko.nixosModules.disko
+    ./disko.nix
     ./hardware-configuration.nix
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
     kernelModules = [
       "iptable_mangle"
       "ip6table_mangle"
     ];
-    supportedFilesystems = [ "bcachefs" ];
     extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
     blacklistedKernelModules = [ "r8169" ];
   };
 
-  # r8125 is currently marked as broken
-  nixpkgs.config.allowBroken = true;
+  environment.persistence."/persistent/system".directories = [
+    { directory = "/media/aria2"; user = "aria2"; group = "aria2"; mode = "0770"; }
+  ];
 
   services = {
     # Must configure to NOT listen on 0.0.0.0:53 but 192.168.xxx.yyy:53
@@ -45,15 +48,15 @@
 
     nfs.server = {
       exports = ''
-        /srv        192.168.9.0/24(rw,fsid=0,no_subtree_check)
-        /srv/aria2  192.168.9.0/24(rw,nohide,insecure,no_subtree_check)
+        /media        192.168.9.0/24(rw,fsid=0,no_subtree_check)
+        /media/aria2  192.168.9.0/24(rw,nohide,insecure,no_subtree_check)
       '';
     };
 
     samba = {
       settings = {
         aria2 = {
-          path = "/srv/aria2";
+          path = "/media/aria2";
           browseable = "yes";
           "read only" = "no";
           "guest ok" = "no";
@@ -84,7 +87,7 @@
       openPorts = true;
       serviceUMask = "0007";
       settings = {
-        dir = "/srv/aria2";
+        dir = "/media/aria2";
         rpc-listen-all = true;
         input-file = "/var/lib/aria2/aria2.session";
         continue = true;
@@ -152,14 +155,19 @@
       recommendedZstdSettings = true;
       recommendedProxySettings = true;
       virtualHosts = let
-        https = host: host // {
+        ssl = {
           sslCertificate = "/var/lib/nginx/cert.pem";
           sslCertificateKey = "/var/lib/nginx/key.pem";
-          forceSSL = true;
           kTLS = true;
         };
-        http = host: host // {
+        https = host: host // ssl // {
+          forceSSL = true;
+        };
+        http = host: host // ssl // {
           rejectSSL = true;
+        };
+        http_https = host: host // ssl // {
+          addSSL = true;
         }; in {
         "_" = https { locations."/".return = "404"; };
         "apt.protoducer.com" = http { locations."/".proxyPass = "http://127.0.0.1:3142/"; };
@@ -174,8 +182,15 @@
             };
           };
         };
-        "dns.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:5380/"; };
-        "jf.protoducer.com" = https {
+        "dns.protoducer.com" = https {
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:5380/";
+            extraConfig = ''
+              client_max_body_size 512M;
+            '';
+          };
+        };
+        "jf.protoducer.com" = http_https {
           locations."/" = {
             proxyWebsockets = true;
             proxyPass = "http://127.0.0.1:8096/";
@@ -194,6 +209,47 @@
           };
         };
         "dls.protoducer.com" = https { locations."/".proxyPass = "https://127.0.0.1:8001/"; };
+        "downloads.protoducer.com" = http {
+          locations."/" = {
+            root = "/media/aria2";
+            extraConfig = ''
+              autoindex on;
+            '';
+          };
+        };
+        "pico.protoducer.com" = https {
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "http://127.0.0.1:14500/";
+          };
+        };
+      };
+    };
+
+    btrfs.autoScrub.enable = true;
+
+    udev.extraRules = ''
+      # Restart openwrt instance, as new net device will not be auto reconnected
+      ACTION=="move", SUBSYSTEM=="net", ENV{DEVTYPE}=="wwan", ENV{INTERFACE}=="wwan*", ENV{TAGS}==":systemd:", RUN+="${pkgs.writeShellScript "restart-openwrt" ''
+        if ${lib.getExe config.virtualisation.incus.package} list -c s -f compact local:openwrt |
+           ${lib.getExe pkgs.gnugrep} -q RUNNING; then
+          ${lib.getExe' pkgs.util-linux "logger"} -s -t "restart-openwrt" "Detect wwan reconnection, but Incus instance is already running."
+          ${lib.getExe config.virtualisation.incus.package} stop local:openwrt
+        else
+          ${lib.getExe' pkgs.util-linux "logger"} -s -t "restart-openwrt" "Detect wwan reconnection, and Incus instance is not running."
+        fi
+        ${lib.getExe config.virtualisation.incus.package} start local:openwrt
+      ''}"
+    '';
+
+    pico-remote-play-assistant = {
+      enable = true;
+      package = pkgs.pr-pico-rpa.pico-remote-play-assistant;
+      openFirewall = true;
+      cjkfonts = true;
+      xpra = {
+        package = pkgs.pr-pico-rpa.xpra;
+        auth = "none";
       };
     };
   };
@@ -219,14 +275,13 @@
     apt-cacher-ng = {
       script = ''
         set -eu
-        ${lib.getExe pkgs.apt-cacher-ng} -c /var/lib/apt-cacher-ng/ \
+        ${lib.getExe pkgs.apt-cacher-ng} -c ${pkgs.writeTextDir "acng.conf" (lib.readFile ../../configs/acng/acng.conf)} \
           "SupportDir=${pkgs.apt-cacher-ng}/lib/apt-cacher-ng/" \
           "LocalDirs=acng-doc ${pkgs.apt-cacher-ng}/share/doc/apt-cacher-ng/"
       '';
       serviceConfig = {
         Type = "exec";
         DynamicUser = true;
-        StateDirectory = "apt-cacher-ng";
         CacheDirectory = "apt-cacher-ng";
         LogsDirectory = "apt-cacher-ng";
         RuntimeDirectory = "apt-cacher-ng";
@@ -246,8 +301,18 @@
   };
 
   networking.interfaces.eno1.useDHCP = false;
-  networking.interfaces.enp2s0.useDHCP = false;
   systemd.network = {
+    links = {
+      "40-wwan0" = {
+        matchConfig = {
+          Type = "wwan";
+          Property = "ID_SERIAL_SHORT=6f345e48";
+        };
+        linkConfig = {
+          Name = "wwan10";
+        };
+      };
+    };
     netdevs = {
        "20-br0" = {
          netdevConfig = {
@@ -263,26 +328,6 @@
     networks = {
       "30-eno1" = {
         matchConfig.Name = "eno1";
-        networkConfig.Bridge = "br0";
-        linkConfig.RequiredForOnline = "enslaved";
-        bridgeVLANs = [
-          {
-            PVID = 1;
-            EgressUntagged = 1;
-          }
-          {
-            VLAN = 10;
-          }
-          {
-            VLAN = 20;
-          }
-          {
-            VLAN = 30;
-          }
-        ];
-      };
-      "30-enp2s0" = {
-        matchConfig.Name = "enp2s0";
         networkConfig.Bridge = "br0";
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
@@ -343,6 +388,30 @@
     };
   };
 
+  environment = {
+    systemPackages =
+      with pkgs; [
+        duplicacy
+      ];
+  };
+
+  # systemd.services.duplicacy = {
+  #   environment = {
+  #     https_proxy = "socks5://10.0.20.1:1080";
+  #   };
+  #   script = ''
+  #     set -eu
+  #     ${pkgs.duplicacy}/bin/duplicacy copy -from local -to gcd -threads 2
+  #   '';
+  #   serviceConfig = {
+  #     Type = "exec";
+  #     User = "excalibur";
+  #     Group = "users";
+  #     WorkingDirectory = "~";
+  #   };
+  #   wantedBy = [ "multi-user.target" ];
+  # };
+
   networking.hostName = "app01";
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }
