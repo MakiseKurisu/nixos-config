@@ -29,10 +29,11 @@ passwd
 sudo systemctl start sshd
 ```
 
-Edit the flake on the primary PC, then upload and start installation from SSH:
+Edit the flake on the primary PC, disable impermanence related stuffs, then upload and start installation from SSH:
 
 ```
 rsync -Pr ~/Documents/GitHub/nixos-config/ nixos@nixos:~/nixos-config
+ssh nixos@nixos
 ```
 
 ```
@@ -41,5 +42,11 @@ cat /tmp/config/etc/nixos/hardware-configuration.nix    # remember to include th
 
 cd nixos-config
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount --flake .#<flake-attr>
-sudo nixos-install --root /mnt --flake .#<flake-attr>
+sudo nixos-install --no-root-password --root /mnt --flake .#<flake-attr>
+
+# Set your account password
+sudo nixos-enter --root /mnt
+
+# Only enable impermanence after boot, once you have copied the contents
+# https://github.com/nix-community/impermanence/issues/34#issuecomment-766195787
 ```
