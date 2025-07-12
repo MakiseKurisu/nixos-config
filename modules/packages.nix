@@ -63,14 +63,12 @@
           file
           gcc
           gh
-          git
           glib
           gnumake
           gptfdisk
           imhex
           inetutils
           iperf
-          ldns
           libhugetlbfs
           libnotify
           libxml2
@@ -82,13 +80,11 @@
           nix-index
           nixos-generators
           nixos-option
-          nmap
           ntfs3g
           nvme-cli
           oci-cli
           openssl
           p7zip
-          pciutils
           picocom
           playerctl
           podman-compose
@@ -99,25 +95,11 @@
           shellcheck
           speechd
           ssh-copy-id
-          smartmontools
           unzipNLS
-          usbutils
         ];
     };
 
   programs = {
-    htop = {
-      enable = true;
-      settings = {
-        hide_kernel_threads = false;
-        show_cpu_frequency = true;
-        show_cpu_temperature = true;
-        column_meters_0 = "LeftCPUs Memory Swap Zram DiskIO";
-        column_meter_modes_0 = "1 1 1 1 2";
-        column_meters_1 = "RightCPUs Tasks LoadAverage Uptime NetworkIO";
-        column_meter_modes_1 = "1 2 2 2 2";
-      };
-    };
     nix-ld.enable = true;
     gnupg.agent = {
       enable = true;

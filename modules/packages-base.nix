@@ -8,10 +8,29 @@
         multipath-tools
         parted
         wget
+        usbutils
+        pciutils
+        smartmontools
+        nmap
+        ldns
+        btrfs-progs
+        bcachefs-tools
       ];
   };
 
   programs = {
+    htop = {
+      enable = true;
+      settings = {
+        hide_kernel_threads = false;
+        show_cpu_frequency = true;
+        show_cpu_temperature = true;
+        column_meters_0 = "LeftCPUs Memory Swap Zram DiskIO";
+        column_meter_modes_0 = "1 1 1 1 2";
+        column_meters_1 = "RightCPUs Tasks LoadAverage Uptime NetworkIO";
+        column_meter_modes_1 = "1 2 2 2 2";
+      };
+    };
     git = {
       enable = true;
       config = {
