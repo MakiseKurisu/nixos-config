@@ -71,10 +71,7 @@
       # add routing rules
       nft "add chain inet fw4 dstnat_lan"
       nft "add rule inet fw4 dstnat iifname { br-lan.20 } jump dstnat_lan comment \"!fw4: Handle guest IPv4/IPv6 dstnat traffic\""
-      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_bypass accept"
-      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_force dnat ip to 192.168.9.1:20000"
-      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip daddr @gfwlist dnat ip to 192.168.9.1:20000"
-      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip6 daddr @gfwlist6 dnat ip6 to [fd09::1]:20000"
+      sh /etc/proxy/enable_proxy
 
       nft "add chain inet fw4 dstnat_output { type nat hook output priority -100; policy accept; }"
       nft "add rule inet fw4 dstnat_output meta l4proto tcp ip daddr @gfwlist dnat ip to 192.168.9.1:20000"
@@ -110,6 +107,27 @@
       sh /etc/proxy/gfwlist2dnsmasq.sh -d 192.168.9.1 -p 5053 --nftset4 gfwlist --nftset6 gfwlist6 --exclude-domain-file /tmp/whitelist.conf --extra-domain-file /tmp/gfwlist.conf -o /etc/dnsmasq.d/gfwlist.conf
       grep -v "^\s*$" /tmp/blocklist.conf | sed "s/\(.*\)/address=\/\1\/127.0.0.1/g" >/etc/dnsmasq.d/blocklist.conf
       service dnsmasq restart
+    '';
+    "proxy/enable_proxy".text = ''
+      #!/usr/bin/env sh
+      
+      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_bypass accept"
+      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_force dnat ip to 192.168.9.1:20000"
+      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip daddr @gfwlist dnat ip to 192.168.9.1:20000"
+      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip6 daddr @gfwlist6 dnat ip6 to [fd09::1]:20000"
+    '';
+    "proxy/disable_proxy".text = ''
+      #!/usr/bin/env sh
+
+      get_handle() {
+        andle="$(nft -a list chain inet fw4 dstnat_lan | grep "@$1 " | cut -d 'h' -f 2)"
+        echo "h$andle"
+      }
+
+      nft delete rule inet fw4 dstnat_lan $(get_handle proxy_bypass)
+      nft delete rule inet fw4 dstnat_lan $(get_handle proxy_force)
+      nft delete rule inet fw4 dstnat_lan $(get_handle gfwlist)
+      nft delete rule inet fw4 dstnat_lan $(get_handle gfwlist6)
     '';
   };
 
