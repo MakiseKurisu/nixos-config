@@ -79,11 +79,6 @@
 
   services = {
     fail2ban.enable = true;
-    # automatic-timezoned.enable = true;
+    automatic-timezoned.enable = true;
   };
-
-  # workaround broken geoclue service for now
-  # https://github.com/NixOS/nixpkgs/issues/321121
-  # https://bugzilla.redhat.com/show_bug.cgi?id=2284621
-  time.timeZone = "Asia/Shanghai";
 }
