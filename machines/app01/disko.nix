@@ -29,6 +29,10 @@
                   "--checksum blake2"
                 ];
                 mountpoint = "/media/root";
+                mountOptions = [
+                  "compress=zstd"
+                  "noatime"
+                ];
                 subvolumes = {
                   "/@" = {
                     mountpoint = "/";
