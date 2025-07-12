@@ -1,10 +1,3 @@
-# When OpenWrt is running from Incus, please add following configs:
-#devices:
-#  ppp:
-#    mode: '0600'
-#    path: /dev/ppp
-#    required: 'false'
-#    type: unix-char
 {
   uci = {
     settings = {

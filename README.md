@@ -50,3 +50,26 @@ sudo nixos-enter --root /mnt
 # Only enable impermanence after boot, once you have copied the contents
 # https://github.com/nix-community/impermanence/issues/34#issuecomment-766195787
 ```
+
+## Incus setup
+
+```
+sudo incus config trust add-certificate incus-ui.crt
+
+sudo btrfs subvolume create /media/root/@incus
+sudo incus storage delete default
+sudo incus storage create local:default btrfs source=/media/root/@incus
+
+sudo incus profile device add local:default root disk pool=default path=/
+sudo incus profile device add local:default eth0 nic name=eth0 nictype=bridged parent=br0 vlan=1 vlan.tagged=10,20,30
+
+sudo incus create images:openwrt/24.10 local:openwrt -p local:default
+sudo incus config device override local:openwrt eth0 host_name=openwrt
+sudo incus config device add local:openwrt ppp unix-char mode=0600 path=/dev/ppp required=false
+sudo incus config device add local:openwrt wdm unix-char mode=0600 path=/dev/cdc-wdm0 required=false
+sudo incus config device add local:openwrt wwan nic nictype=physical parent=wwan10
+# https://discuss.linuxcontainers.org/t/unable-to-update-some-network-settings-when-apparmor-is-enabled/22109/3
+sudo incus config set local:openwrt raw.lxc 'lxc.apparmor.profile=unconfined//&:incus-openwrt_<var-lib-incus>:unconfined'
+sudo incus config set local:openwrt volatile.wwan.name wwan0
+sudo incus start local:openwrt
+```

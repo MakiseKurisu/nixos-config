@@ -1,20 +1,3 @@
-# When OpenWrt is running from Incus, please add following configs:
-#config:
-#  raw.lxc: lxc.apparmor.profile=unconfined//&:incus-openwrt_<var-lib-incus>:unconfined
-#devices:
-#  wwan-cdc-wdm0:
-#    mode: '0600'
-#    path: /dev/cdc-wdm0
-#    required: 'false'
-#    type: unix-char
-#  wwan:
-#    nictype: physical
-#    parent: wwan10
-#    type: nic
-#
-# Related:
-# https://discuss.linuxcontainers.org/t/unable-to-update-some-network-settings-when-apparmor-is-enabled/22109/3
-
 { lib
 , ...}:
 {

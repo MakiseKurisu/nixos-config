@@ -1,14 +1,3 @@
-# When OpenWrt is running from Incus, please add following configs:
-#devices:
-#  eth0:
-#    name: eth0
-#    host_name: openwrt
-#    nictype: bridged
-#    parent: br0
-#    type: nic
-#    vlan: '1'
-#    vlan.tagged: '10,20,30'
-
 { lib
 , release
 , target
