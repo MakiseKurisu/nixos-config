@@ -5,6 +5,7 @@
 {
   imports = [
     ./mwan3.nix
+    ./leigod.nix
   ];
 
   packages = [
