@@ -5,7 +5,9 @@
 {
   imports = [
     ./mwan3.nix
-    ./leigod.nix
+    (import ./leigod.nix {
+      inherit arch;
+    })
   ];
 
   packages = [
