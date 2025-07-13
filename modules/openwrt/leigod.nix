@@ -63,7 +63,7 @@
           PC.state = 2;
           Game.state = 2;
           Unknown.state = 2;
-        }
+        };
       };
       upnpd = {};
     };
