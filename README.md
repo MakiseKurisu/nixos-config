@@ -71,5 +71,6 @@ sudo incus config device add local:openwrt wwan nic nictype=physical parent=wwan
 # https://discuss.linuxcontainers.org/t/unable-to-update-some-network-settings-when-apparmor-is-enabled/22109/3
 sudo incus config set local:openwrt raw.lxc 'lxc.apparmor.profile=unconfined//&:incus-openwrt_<var-lib-incus>:unconfined'
 sudo incus config set local:openwrt volatile.wwan.name wwan0
+sudo incus config set local:openwrt boot.autostart true
 sudo incus start local:openwrt
 ```
