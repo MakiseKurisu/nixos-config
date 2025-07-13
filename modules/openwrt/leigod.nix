@@ -31,6 +31,12 @@
           opkg update
           okpg install /tmp/luci-app-leigod-acc.ipk
         fi
+        if [ ! -f /usr/sbin/leigod/leigod-helper.sh ]; then
+          # wait for network to be online
+          sleep 120
+          wget -O /usr/sbin/leigod/leigod-helper.sh https://github.com/miaoermua/leigod-helper/raw/57365ac086c14f7144e2a0b0579440809e248e52/leigod-helper.sh
+          chmod +x /usr/sbin/leigod/leigod-helper.sh
+        fi
       )&
     '';
   };
@@ -48,7 +54,16 @@
         };
         hardware.device = {
           "82a0f6244c88" = 5;
+          "5a95f990e8af" = 5;
+          "74c14f60e983" = 7;
+          "c4411ef8177e" = 9;
         };
+        acceleration = {
+          Phone.state = 2;
+          PC.state = 2;
+          Game.state = 2;
+          Unknown.state = 2;
+        }
       };
       upnpd = {};
     };
