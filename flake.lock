@@ -48,11 +48,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1750091431,
-        "narHash": "sha256-Blkqla37tLRbWO5a++sR7htKeTDeI5GxwcSslENzRd4=",
+        "lastModified": 1752414349,
+        "narHash": "sha256-2f4sbhjdUB1RZcha1K0Y4RPsZLT9ned2o7EZT+eEykU=",
         "owner": "MakiseKurisu",
         "repo": "dewclaw",
-        "rev": "d55ec8bc70ccf8b525ea74e2243fec1d2465cdb8",
+        "rev": "9990e581c793f5fb583f7eb1662fd8346108cb54",
         "type": "github"
       },
       "original": {
