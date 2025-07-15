@@ -32,6 +32,10 @@
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
     };
+    extraLocales = [
+      "ja_JP.UTF-8/UTF-8"
+      "zh_CN.UTF-8/UTF-8"
+    ];
   };
 
   networking.timeServers = options.networking.timeServers.default ++ [

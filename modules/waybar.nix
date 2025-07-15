@@ -78,6 +78,7 @@
               spacing = 10;
             };
             clock = {
+              locale = "zh_CN.UTF-8";
               tooltip-format = "<tt><big>{calendar}</big></tt>";
               format = "T{:%H\n :%M}";
               interval = 1;
@@ -86,8 +87,8 @@
                 format = {
                   months = "<span color='#ffead3'><b>{}</b></span>";
                   days = "<span color='#ecc6d9'><b>{}</b></span>";
-                  weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-                  weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+                  weeks = "<span color='#99ffdd'><b>W{:%V}</b></span>";
+                  weekdays = "<span color='#ffcc66'><b>    Mo Tu We Th Fr Sa Su</b></span>";
                   today = "<span color='#ff6699'><b><u>{}</u></b></span>";
                 };
               };
