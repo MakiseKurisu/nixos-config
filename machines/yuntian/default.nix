@@ -26,6 +26,15 @@
 
   boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
 
+  hardware = {
+    graphics = {
+      extraPackages = with pkgs; [
+        #  OpenCL filter support (hardware tonemapping and subtitle burn-in)
+        intel-compute-runtime
+      ];
+    };
+  };
+
   home-manager.users.excalibur = { pkgs, ... }: {
     systemd.user = {
       services = {

@@ -37,6 +37,13 @@
   };
 
   hardware = {
+    graphics = {
+      extraPackages = with pkgs; [
+        # OpenCL filter support (hardware tonemapping and subtitle burn-in) for intel CPUs before 12th gen
+        # see: https://github.com/NixOS/nixpkgs/issues/356535
+        intel-compute-runtime-legacy1
+      ];
+    };
     nvidia = {
       prime = {
         # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
