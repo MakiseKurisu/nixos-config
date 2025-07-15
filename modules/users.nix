@@ -101,6 +101,10 @@
             looking-glass-obs
             obs-pipewire-audio-capture
             wlrobs
+            obs-vaapi
+            obs-vkcapture
+            obs-multi-rtmp
+            obs-backgroundremoval
           ];
         };
         vscode = {
