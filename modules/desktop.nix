@@ -327,12 +327,7 @@
 
   hardware = {
     graphics = {
-      extraPackages = with pkgs; [
-        libvdpau-va-gl
-        vaapiVdpau
-      ];
       enable = true;
-      enable32Bit = true;
     };
     bluetooth.enable = true;
   };
