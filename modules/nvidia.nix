@@ -32,6 +32,18 @@
     };
   };
 
+  home-manager = {
+    users.excalibur = { pkgs, ... }: {
+      programs = {
+        obs-studio = {
+          package = pkgs.obs-studio.override {
+            cudaSupport = true;
+          };
+        };
+      };
+    };
+  };
+
   services = {
     xserver.videoDrivers = [ "nvidia" ];
   };
