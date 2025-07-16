@@ -29,8 +29,21 @@
   hardware = {
     graphics = {
       extraPackages = with pkgs; [
-        #  OpenCL filter support (hardware tonemapping and subtitle burn-in)
+        # OpenCL filter support on 12th gen or newer
         intel-compute-runtime
+        # OpenCL filter support up to 11th gen
+        # see: https://github.com/NixOS/nixpkgs/issues/356535
+        # intel-compute-runtime-legacy1
+
+        # VAAPI on 5th gen or newer. LIBVA_DRIVER_NAME=iHD
+        intel-media-driver
+        # VAAPI up to 4th gen. LIBVA_DRIVER_NAME=i965
+        # intel-vaapi-driver
+
+        # QSV on 11th gen or newer
+        vpl-gpu-rt
+        # QSV up to 11th gen
+        # intel-media-sdk
       ];
     };
   };
