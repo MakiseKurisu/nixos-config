@@ -159,6 +159,21 @@
             };
           };
         };
+        thunderbird = {
+          enable = true;
+          settings = {
+            "calendar.events.defaultActionEdit" = true;
+            "mail.default_send_format" = 1;
+            "mail.identity.default.compose_html" = false;
+            "privacy.donottrackheader.enabled" = true;
+          };
+          profiles = {
+            default = {
+              isDefault = true;
+              withExternalGnupg = true;
+            };
+          };
+        };
       };
       services = {
         dunst = {
@@ -172,6 +187,41 @@
           };
         };
         vscode-server.enable = true;
+      };
+      accounts.email.accounts = {
+        "yt@radxa.com" = {
+          realName = "ZHANG Yuntian";
+          userName = "yt@radxa.com";
+          address = "yt@radxa.com";
+          primary = true;
+          imap = {
+            host = "imap.exmail.qq.com";
+            port = 993;
+          };
+          smtp = {
+            host = "smtp.exmail.qq.com";
+            port = 465;
+          };
+          gpg = {
+            key = "26CE4D9E745813BE33E6154757116E87EF0460A7";
+            signByDefault = true;
+          };
+          signature = {
+            showSignature = "append";
+            text = ''
+              Best regards,
+
+              ZHANG, Yuntian
+
+              Operating System Developer
+              Radxa Computer (Shenzhen) Co., Ltd
+              Shenzhen, China
+            '';
+          };
+          thunderbird = {
+            enable = true;
+          };
+        };
       };
     };
   };

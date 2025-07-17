@@ -138,7 +138,6 @@
       sweethome3d.application
       tdesktop
       teams-for-linux
-      thunderbird
       ventoy-full
       vlc
       waydroid-helper
