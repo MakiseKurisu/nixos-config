@@ -158,8 +158,8 @@
           no_update_news = "yes";
         };
         input = {
-            kb_layout = "us";
-            numlock_by_default = "yes";
+          kb_layout = "us";
+          numlock_by_default = "yes";
         };
         exec-once = [
           "fcitx5"
@@ -179,22 +179,22 @@
           "[workspace 18 silent] wechat-uos"
         ];
         general = {
-            gaps_in = 0;
-            gaps_out = 0;
-            resize_on_border = "yes";
-            border_size = 1;
+          gaps_in = 0;
+          gaps_out = 0;
+          resize_on_border = "yes";
+          border_size = 1;
         };
         animations = {
-            enabled = "no";
+          enabled = "no";
         };
         dwindle = {
-            pseudotile = "yes";
-            smart_split = "yes";
+          pseudotile = "yes";
+          smart_split = "yes";
         };
         misc = {
-            vrr = 2;
-            force_default_wallpaper = 2;
-            allow_session_lock_restore = true;
+          vrr = 2;
+          force_default_wallpaper = 2;
+          allow_session_lock_restore = true;
         };
         windowrulev2 = [
           "idleinhibit fullscreen, class:^(.*)$, title:^(.*)$"
