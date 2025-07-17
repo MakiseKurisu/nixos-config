@@ -328,12 +328,14 @@
           ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
           ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
         ];
-        "plugin:touch_gestures" = {
-          hyprgrass-bind = [
-            ", tap:3, sendshortcut, mouse:274"
-            ", swipe:3:l, sendshortcut, mouse:275"
-            ", swipe:3:r, sendshortcut, mouse:276"
-          ];
+        plugin = {
+          touch_gestures = {
+            hyprgrass-bind = [
+              ", tap:3, sendshortcut, mouse:274"
+              ", swipe:3:l, sendshortcut, mouse:275"
+              ", swipe:3:r, sendshortcut, mouse:276"
+            ];
+          };
         };
         source = [
           "~/.config/hypr/machine.conf"
