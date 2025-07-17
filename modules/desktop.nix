@@ -75,7 +75,6 @@
       fsearch
       freecad
       gimp-with-plugins
-      github-desktop
       ghidra
       ghidra-extensions.machinelearning
       ghidra-extensions.gnudisassembler
