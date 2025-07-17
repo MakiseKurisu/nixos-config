@@ -165,6 +165,7 @@
             "calendar.events.defaultActionEdit" = true;
             "mail.default_send_format" = 1;
             "mail.identity.default.compose_html" = false;
+            "mail.identity.default.doCc" = true;
             "privacy.donottrackheader.enabled" = true;
           };
           profiles = {
