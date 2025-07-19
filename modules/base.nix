@@ -116,11 +116,14 @@
     # disable USB auto suspend for Logitech, Inc. products
     ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", TEST=="power/control", ATTR{power/control}="on"
   '';
-  powerManagement.powertop = {
-    enable = lib.mkDefault true;
-    postStart = ''
-      ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=046d
-    '';
+  powerManagement = {
+    enable = true;
+    powertop = {
+      enable = lib.mkDefault true;
+      postStart = ''
+        ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=046d
+      '';
+    };
   };
 
   security = {
