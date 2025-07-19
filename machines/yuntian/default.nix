@@ -130,10 +130,21 @@
     };
   };
 
-  networking.interfaces.enp4s0.useDHCP = false;
+  networking.interfaces.eth0.useDHCP = false;
   # enable WoL causes interface to be configured with DHCP
-  # networking.interfaces.enp4s0.wakeOnLan.enable = true;
+  # networking.interfaces.eth0.wakeOnLan.enable = true;
   systemd.network = {
+    links = {
+      "40-eth0" = {
+        matchConfig = {
+          OriginalName = lib.mkForce "e*";
+          MACAddress = "d8:5e:d3:a6:72:b5";
+        };
+        linkConfig = {
+          Name = "eth0";
+        };
+      };
+    };
     netdevs = {
       "20-br0" = {
          netdevConfig = {
@@ -147,8 +158,8 @@
       };
     };
     networks = {
-      "30-enp4s0" = {
-        matchConfig.Name = "enp4s0";
+      "30-eth0" = {
+        matchConfig.Name = "eth0";
         networkConfig = {
           Bridge = "br0";
           LinkLocalAddressing = false;
