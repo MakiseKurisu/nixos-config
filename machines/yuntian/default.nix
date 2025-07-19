@@ -9,7 +9,7 @@
     ../../modules/intel.nix
     ../../modules/kernel.nix
     ../../modules/network.nix
-    # ../../modules/nvidia.nix
+    ../../modules/nvidia.nix
     ../../modules/packages.nix
     ../../modules/users.nix
     ../../modules/vfio.nix
@@ -45,6 +45,13 @@
         # QSV up to 11th gen
         # intel-media-sdk
       ];
+    };
+    nvidia = {
+      open = false;
+      prime = {
+        intelBusId = "PCI:0@0:2:0";
+        nvidiaBusId = "PCI:1@0:0:0";
+      };
     };
   };
 
