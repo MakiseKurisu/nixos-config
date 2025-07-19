@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, options, ... }:
 
 {
   imports = [
@@ -289,7 +289,24 @@
     dbus.enable = true;
     envfs.enable = true;
     fwupd.enable = true;
-    greetd.enable = true;
+    greetd = {
+      enable = true;
+      settings = {
+        default_session.command =
+          let
+            greetdConfig = pkgs.writeText "greetd-config" ''
+              exec-once = ${lib.getExe pkgs.greetd.regreet}; hyprctl dispatch exit
+              animations {
+                  enabled = off
+              }
+              misc {
+                  force_default_wallpaper = 2
+              }
+            '';
+          in
+            "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.hyprland} --config ${greetdConfig}";
+      };
+    };
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
     hypridle.enable = true;
