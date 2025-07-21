@@ -6,6 +6,7 @@
     ../../modules/base.nix
     ../../modules/desktop.nix
     ../../modules/podman.nix
+    ../../modules/amd.nix
     #../../modules/intel.nix
     ../../modules/kernel.nix
     ../../modules/network.nix
