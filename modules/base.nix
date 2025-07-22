@@ -137,7 +137,6 @@
   };
 
   services = {
-    auto-cpufreq.enable = true;
     openssh.enable = true;
     qemuGuest.enable = true;
     smartd.enable = true;
