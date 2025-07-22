@@ -137,15 +137,17 @@
   };
 
   services = {
+    auto-cpufreq.enable = true;
     openssh.enable = true;
     qemuGuest.enable = true;
+    smartd.enable = true;
+    thermald.enable = true;
     xserver = {
       xkb = {
         layout = "us";
         variant = "";
       };
     };
-    smartd.enable = true;
   };
 
   system = {
