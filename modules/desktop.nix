@@ -295,7 +295,7 @@
         default_session.command =
           let
             greetdConfig = pkgs.writeText "greetd-config" ''
-              exec-once = ${lib.getExe pkgs.greetd.regreet}; hyprctl dispatch exit
+              exec-once = ${lib.getExe config.programs.regreet.package}; hyprctl dispatch exit
               animations {
                   enabled = off
               }
