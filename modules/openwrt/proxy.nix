@@ -110,7 +110,9 @@
     '';
     "proxy/enable_proxy".text = ''
       #!/usr/bin/env sh
-      
+
+      sh /etc/proxy/disable_proxy
+
       nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_bypass accept"
       nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_force dnat ip to 192.168.9.1:20000"
       nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip daddr @gfwlist dnat ip to 192.168.9.1:20000"
@@ -119,15 +121,11 @@
     "proxy/disable_proxy".text = ''
       #!/usr/bin/env sh
 
-      get_handle() {
-        andle="$(nft -a list chain inet fw4 dstnat_lan | grep "@$1 " | cut -d 'h' -f 2)"
-        echo "h$andle"
-      }
-
-      nft delete rule inet fw4 dstnat_lan $(get_handle proxy_bypass)
-      nft delete rule inet fw4 dstnat_lan $(get_handle proxy_force)
-      nft delete rule inet fw4 dstnat_lan $(get_handle gfwlist)
-      nft delete rule inet fw4 dstnat_lan $(get_handle gfwlist6)
+      while read -r; do
+        if echo "$REPLY" | grep -q -e @proxy_bypass -e @proxy_force -e @gfwlist -e @gfwlist6; then
+          nft delete rule inet fw4 dstnat_lan h$(echo "$REPLY" | cut -d 'h' -f 2)
+        fi
+      done < <(nft -a list chain inet fw4 dstnat_lan)
     '';
   };
 
