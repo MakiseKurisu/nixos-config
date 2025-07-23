@@ -140,7 +140,6 @@
     openssh.enable = true;
     qemuGuest.enable = true;
     smartd.enable = true;
-    thermald.enable = true;
     xserver = {
       xkb = {
         layout = "us";

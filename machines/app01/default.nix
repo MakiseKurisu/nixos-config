@@ -252,6 +252,8 @@
         auth = "none";
       };
     };
+
+    thermald.enable = false;  # Disable on older Intel systems
   };
 
   networking.firewall.allowedUDPPorts = [
