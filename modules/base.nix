@@ -5,10 +5,6 @@
     inputs.vgpu4nixos.nixosModules.host
   ];
 
-  console = {
-    earlySetup = true;
-  };
-
   documentation.man.generateCaches = true;
 
   environment.enableAllTerminfo = true;
