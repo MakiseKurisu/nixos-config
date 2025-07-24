@@ -258,7 +258,7 @@
       gamescopeSession.enable = true;
       extest.enable = true;
       extraPackages = [ pkgs.gamescope ];
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraCompatPackages = [ pkgs.unstable.proton-ge-bin ];
       protontricks.enable = true;
     };
     system-config-printer.enable = true;
@@ -356,10 +356,10 @@
         lutris = {
           enable = true;
           winePackages = [ 
-            pkgs.wineWowPackages.full
-            pkgs.wineWow64Packages.full
+            pkgs.unstable.wineWowPackages.full
+            pkgs.unstable.wineWow64Packages.full
           ];
-          protonPackages = [ pkgs.proton-ge-bin ];
+          protonPackages = [ pkgs.unstable.proton-ge-bin ];
           steamPackage = osConfig.programs.steam.package;
           extraPackages = with pkgs; [
             mangohud
