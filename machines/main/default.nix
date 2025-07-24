@@ -25,6 +25,8 @@
     ./hardware-configuration.nix
   ];
 
+  boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
       "hypr/machine.conf" = {
