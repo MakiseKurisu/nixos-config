@@ -32,6 +32,7 @@
   virtualisation.libvirtd = {
     enable = true;
     onBoot = "ignore";
+    onShutdown = "shutdown";
     qemu = {
       swtpm.enable = true;
       ovmf.packages = with pkgs; [
