@@ -3,7 +3,6 @@
 {
   imports = [
     ./pr/mmdebstrap.nix
-    ./plasma-systemsettings.nix
     ./hyprland.nix
     ./waybar.nix
     inputs.lix-module.nixosModules.default
