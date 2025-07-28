@@ -25,7 +25,12 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+  boot = {
+    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+    kernelModules = [
+      "ntsync"
+    ];
+  };
 
   home-manager.users.excalibur = { pkgs, ... }: {
     xdg.configFile = {
