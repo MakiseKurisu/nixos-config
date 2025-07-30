@@ -163,9 +163,9 @@
           enable = true;
           settings = {
             "calendar.events.defaultActionEdit" = true;
-            "mail.default_send_format" = 1;
+            "mail.default_send_format" = 1; # plain text
             "mail.identity.default.compose_html" = false;
-            "mail.identity.default.doCc" = true;
+            "mail.identity.default.doCc" = true;  # enable Cc field by default
             "privacy.donottrackheader.enabled" = true;
           };
           profiles = {
@@ -221,6 +221,9 @@
           };
           thunderbird = {
             enable = true;
+            settings = id: {
+              "mail.identity.id_${id}.fcc" = false;  # do not save sent mail to "Sent" folder
+            };
           };
         };
       };
