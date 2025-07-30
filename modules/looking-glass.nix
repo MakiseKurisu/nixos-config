@@ -26,8 +26,6 @@
     '';
   };
 
-  programs.virt-manager.enable = true;
-
   virtualisation.libvirtd = {
     qemu = {
       verbatimConfig = ''

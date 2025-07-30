@@ -10,18 +10,21 @@
 
   programs.virt-manager.enable = true;
 
-  virtualisation.libvirtd = {
-    enable = true;
-    onBoot = "ignore";
-    onShutdown = "shutdown";
-    qemu = {
-      swtpm.enable = true;
-      ovmf.packages = with pkgs; [
-        OVMFFull.fd
-      ];
-      vhostUserPackages = with pkgs; [
-        virtiofsd
-      ];
+  virtualisation = {
+    spiceUSBRedirection.enable = true;
+    libvirtd = {
+      enable = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+      qemu = {
+        swtpm.enable = true;
+        ovmf.packages = with pkgs; [
+          OVMFFull.fd
+        ];
+        vhostUserPackages = with pkgs; [
+          virtiofsd
+        ];
+      };
     };
   };
 }
