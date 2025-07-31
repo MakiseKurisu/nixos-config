@@ -156,6 +156,7 @@
               "makefile.configureOnOpen" = true;
               "explorer.confirmDragAndDrop" = false;
               "workbench.welcomePage.walkthroughs.openOnInstall" = false;
+              "diffEditor.maxComputationTime" = 30000;
             };
           };
         };
