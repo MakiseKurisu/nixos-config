@@ -1,5 +1,16 @@
 { config, lib, pkgs, inputs, ... }:
 
+# Post install file copy:
+# sudo mkdir -p /persistent/user/excalibur/home/
+# sudo mkdir -p /persistent/system/etc/NetworkManager /persistent/system/etc/nixos
+# sudo mkdir -p /persistent/system/var
+# sudo rsync -arP /etc/adjtime /etc/machine-id /etc/passwd /etc/shadow /etc/nixos/flake.nix /etc/ssh /persistent/system/etc
+# sudo rsync -arP /etc/NetworkManager/system-connections /persistent/system/etc/NetworkManager
+# sudo rsync -arP /var/lib /var/log /persistent/system/var
+#
+# Rebuild new machine:
+# nixos-rebuild --fast --use-remote-sudo --target-host <machine> boot
+
 {
   imports = [
     inputs.impermanence.nixosModules.impermanence
