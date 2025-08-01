@@ -128,6 +128,7 @@
       rs-tftpd
       rstudio
       selectdefaultapplication
+      shotcut
       slack
       slurp
       solaar
