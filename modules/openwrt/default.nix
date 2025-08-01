@@ -21,7 +21,6 @@
     "kitty-terminfo"
     "nano"
     "powertop"
-    "qemu-ga"
     "kmod-i6300esb-wdt"
     "kmod-itco-wdt"
   ];
