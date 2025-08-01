@@ -49,7 +49,7 @@
           heart = "https://opapi.nn.com/speed/router/heartbeat";
           base_url = "https://opapi.nn.com/speed";
           enabled = true;
-          tun = true;
+          tun = false;
           neigh = "br-lan.20";
         };
         hardware.device = {
