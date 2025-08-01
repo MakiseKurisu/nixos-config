@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
@@ -14,6 +14,7 @@
     ../../modules/users-base.nix
     #../../modules/vfio.nix
     ../../modules/virtualization-base.nix
+    ../../modules/impermanence.nix
 
     #../../modules/nfs-nas.nix
     # ../../modules/nfs-app01.nix
@@ -22,16 +23,19 @@
     ../../modules/pr/fastapi-dls.nix
     ../../modules/pr/pico-rpa.nix
 
+    inputs.disko.nixosModules.disko
+    ./disko.nix
     ./hardware-configuration.nix
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
     kernelModules = [
       "iptable_mangle"
       "ip6table_mangle"
       "w83627hf_wdt"
     ];
+    extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
+    blacklistedKernelModules = [ "r8169" ];
   };
 
   services = {
@@ -235,24 +239,17 @@
 
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="watchdog", ENV{DEVPATH}=="/devices/virtual/watchdog/watchdog*", SYMLINK+="watchdog"
-      # Restart openwrt instance, as new net device will not be auto reconnected
-      ACTION=="move", SUBSYSTEM=="net", ENV{DEVTYPE}=="wwan", ENV{INTERFACE}=="wwan*", ENV{TAGS}==":systemd:", RUN+="${pkgs.writeShellScript "restart-openwrt" ''
-        if ${lib.getExe config.virtualisation.incus.package} list -c s -f compact local:openwrt |
-           ${lib.getExe pkgs.gnugrep} -q RUNNING; then
-          ${lib.getExe' pkgs.util-linux "logger"} -s -t "restart-openwrt" "Detect wwan reconnection, but Incus instance is already running."
-          ${lib.getExe config.virtualisation.incus.package} stop local:openwrt
-        else
-          ${lib.getExe' pkgs.util-linux "logger"} -s -t "restart-openwrt" "Detect wwan reconnection, and Incus instance is not running."
-        fi
-        ${lib.getExe config.virtualisation.incus.package} start local:openwrt
-      ''}"
     '';
 
     pico-remote-play-assistant = {
       enable = true;
       package = pkgs.pr-pico-rpa.pico-remote-play-assistant;
       openFirewall = true;
-      xpra.package = pkgs.pr-pico-rpa.xpra;
+      cjkfonts = true;
+      xpra = {
+        package = pkgs.pr-pico-rpa.xpra;
+        auth = "none";
+      };
     };
   };
 
@@ -290,23 +287,22 @@
       };
       wantedBy = [ "multi-user.target" ];
     };
+    e1000e = {
+      script = ''
+        set -eu
+        ${lib.getExe pkgs.ethtool} -K eno1 tso off gso off
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+      };
+      wantedBy = [ "sys-subsystem-net-devices-eno1.device" ];
+    };
   };
 
   networking.interfaces.eno1.useDHCP = false;
   networking.interfaces.eno2.useDHCP = false;
   networking.interfaces.enp7s0.useDHCP = false;
   systemd.network = {
-    links = {
-      "40-wwan0" = {
-        matchConfig = {
-          Type = "wwan";
-          Property = "ID_SERIAL_SHORT=6f345e48";
-        };
-        linkConfig = {
-          Name = "wwan10";
-        };
-      };
-    };
     netdevs = {
        "20-br0" = {
          netdevConfig = {
@@ -413,10 +409,10 @@
         networkConfig = {
           DHCP = true;
           Domains = "protoducer.com vamrs.org";
-          Address = "192.168.9.2/24";
+          Address = "192.168.9.3/24";
         };
         linkConfig = {
-          RequiredForOnline = true;
+          RequiredForOnline = false;
         };
       };
     };
