@@ -167,16 +167,7 @@
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
           "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          "[workspace 1 silent] looking-glass-client"
           "[workspace 2 silent] firefox"
-          "[workspace 11 silent] gtk-launch bytedance-feishu"
-          "[workspace 12 silent] thunderbird"
-          #"[workspace 13 silent] waydroid first-launch"
-          "[workspace 14 silent] element-desktop"
-          "[workspace 15 silent] teams-for-linux"
-          "[workspace 16 silent] dingtalk"
-          "[workspace 17 silent] qq"
-          "[workspace 18 silent] wechat-uos"
         ];
         general = {
           gaps_in = 0;

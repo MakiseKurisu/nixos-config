@@ -5,6 +5,7 @@
     inputs.home-manager.nixosModules.home-manager
     ../../modules/base.nix
     ../../modules/desktop.nix
+    ../../modules/desktop-autostart.nix
     ../../modules/podman.nix
     ../../modules/intel.nix
     ../../modules/kernel.nix
