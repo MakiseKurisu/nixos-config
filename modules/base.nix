@@ -165,7 +165,7 @@
   };
 
   zramSwap = {
-    enable = true;
+    enable = lib.mkDefault true;
     algorithm = "zstd";
   };
 }
