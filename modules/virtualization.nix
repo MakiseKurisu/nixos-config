@@ -13,6 +13,7 @@
     };
     systemPackages =
       with pkgs; [
+        waydroid-helper
         wl-clipboard # used by waydroid
       ];
   };
@@ -24,5 +25,15 @@
       lxcfs.enable = true;
     };
     waydroid.enable = true;
+  };
+
+  home-manager.users.excalibur = { pkgs, ... }: {
+    wayland.windowManager.hyprland = {
+      settings = {
+        exec-once = [
+          #"[workspace 13 silent] waydroid first-launch"
+        ];
+      };
+    };
   };
 }

@@ -138,7 +138,6 @@
       teams-for-linux
       ventoy-full
       vlc
-      waydroid-helper
       wechat-uos
       wev
       wlr-randr
