@@ -222,7 +222,7 @@
           };
           thunderbird = {
             enable = true;
-            settings = id: {
+            perIdentitySettings = id: {
               "mail.identity.id_${id}.fcc" = false;  # do not save sent mail to "Sent" folder
             };
           };
