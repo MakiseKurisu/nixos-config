@@ -4,9 +4,6 @@
   boot = {
     kernelPackages = lib.mkOverride 990 pkgs.unstable.linuxPackages;
     kernelModules = [ "tcp_bbr" ];
-    kernelParams = [
-      "console=tty1"
-    ];
     kernel.sysctl = {
       "kernel.dmesg_restrict" = 1;
       "net.ipv4.tcp_fastopen" = 3;
@@ -29,7 +26,7 @@
     };
     loader = {
       efi = {
-        canTouchEfiVariables = true;
+        canTouchEfiVariables = lib.mkDefault true;
       };
       systemd-boot.enable = true;
     };
