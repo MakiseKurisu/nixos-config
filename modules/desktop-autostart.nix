@@ -5,6 +5,7 @@
     wayland.windowManager.hyprland = {
       settings = {
         exec-once = [
+          "[workspace 1 silent] discord --start-minimized"
           "[workspace 11 silent] gtk-launch bytedance-feishu"
           "[workspace 12 silent] thunderbird"
           "[workspace 14 silent] element-desktop"
