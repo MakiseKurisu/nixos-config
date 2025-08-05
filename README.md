@@ -32,7 +32,7 @@ sudo systemctl start sshd
 Edit the flake on the primary PC, disable impermanence related stuffs, then upload and start installation from SSH:
 
 ```
-rsync -Pr ~/Documents/GitHub/nixos-config/ nixos@nixos:~/nixos-config
+scp -r ~/Documents/GitHub/nixos-config/. nixos@nixos:~/nixos-config
 ssh nixos@nixos
 ```
 
