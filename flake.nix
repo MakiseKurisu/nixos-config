@@ -189,7 +189,7 @@
             specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
-              ./machines/n40/configuration.nix
+              ./machines/n40
             ];
           };
         };
