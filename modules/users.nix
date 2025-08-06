@@ -224,6 +224,7 @@
             enable = true;
             perIdentitySettings = id: {
               "mail.identity.id_${id}.fcc" = false;  # do not save sent mail to "Sent" folder
+              "mail.identity.id_${id}.reply_to" = "yt@radxa.com";
             };
           };
         };
