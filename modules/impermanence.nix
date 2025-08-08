@@ -95,23 +95,21 @@
     mount -o compress=zstd,subvol=/ /dev/disk/by-partlabel/disk-main-root /impermanence
 
     if [[ -e /impermanence/@ ]]; then
-      mkdir -p /impermanence/old_roots
       timestamp=$(date --date="@$(stat -c %Y /impermanence/@)" "+%Y-%m-%d_%H:%M:%S")
-      mv /impermanence/@ "/impermanence/old_roots/$timestamp"
+      mkdir -p "/impermanence/snapshots/$timestamp"
+      for i in /impermanence/@*; do
+        btrfs subvolume snapshot "$i" "/impermanence/snapshots/$timestamp"
+      done
     fi
 
-    delete_subvolume_recursively() {
-      IFS=$'\n'
-      for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-          delete_subvolume_recursively "/impermanence/$i"
+    for i in $(find /impermanence/snapshots/ -mindepth 1 -maxdepth 1 -mtime +30); do
+      for j in "$i"/@*; do
+          btrfs subvolume delete --recursive "$j"
       done
-      btrfs subvolume delete "$1"
-    }
-
-    for i in $(find /impermanence/old_roots/ -maxdepth 1 -mtime +30); do
-      delete_subvolume_recursively "$i"
+      rm -rf "$i"
     done
 
+    btrfs subvolume delete --recursive /impermanence/@
     btrfs subvolume create /impermanence/@
     umount /impermanence
   '';
