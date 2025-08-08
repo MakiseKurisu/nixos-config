@@ -152,6 +152,7 @@
               "git.autofetch" = true;
               "git.confirmSync" = false;
               "git.enableSmartCommit" = true;
+              "git.replaceTagsWhenPull" = true;
               "window.titleBarStyle" = "custom";
               "makefile.configureOnOpen" = true;
               "explorer.confirmDragAndDrop" = false;
