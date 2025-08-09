@@ -12,6 +12,7 @@
         };
       };
     };
+    nvidia-container-toolkit.enable = true;
   };
 
   home-manager = {
