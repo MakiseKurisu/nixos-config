@@ -7,6 +7,7 @@
     ./waybar.nix
     inputs.lix-module.nixosModules.default
     inputs.aagl.nixosModules.default
+    inputs.nixified-ai.nixosModules.comfyui
   ];
 
   boot = {
@@ -285,6 +286,14 @@
       openFirewall = true;
     };
     blueman.enable = true;
+    comfyui = {
+      enable = true;
+      # models = builtins.attrValues pkgs.nixified-ai.models;
+      customNodes = with pkgs.comfyuiPackages; [
+        comfyui-gguf
+        # comfyui-impact-pack
+      ];
+    };
     dbus.enable = true;
     envfs.enable = true;
     fwupd.enable = true;
