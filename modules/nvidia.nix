@@ -32,5 +32,10 @@
       "modesetting"
       "nvidia"
     ];
+    llama-cpp = {
+      package = pkgs.unstable.llama-cpp.override {
+        cudaSupport = true;
+      };
+    };
   };
 }
