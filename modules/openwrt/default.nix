@@ -49,9 +49,9 @@
     '';
   };
 
-  uci = {
-    sopsSecrets = ./secrets.yaml;
+  sopsSecrets = ./secrets.yaml;
 
+  uci = {
     # leave the ucitrack and firewall packages as they are, retaining defaults if
     # freshly installed. the firewall rules are verbose and ucitrack is mostly not
     # necessary, so we don't want to include either here. we also keep luci to not
