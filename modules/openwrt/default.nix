@@ -70,11 +70,13 @@
           forward = "DROP";
           input = "DROP";
           output = "ACCEPT";
-          synflood_protect = 1;
+          synflood_protect = true;
+          flow_offloading = false;
+          flow_offloading_hw = false;
         }];
         include = [{
           path = "/etc/firewall.user";
-          fw4_compatible = 1;
+          fw4_compatible = true;
         }];
       };
 
@@ -149,7 +151,7 @@
             "2.openwrt.pool.ntp.org"
             "3.openwrt.pool.ntp.org"
           ];
-          enable_server = 1;
+          enable_server = true;
         };
       };
 
@@ -162,7 +164,7 @@
           "0.0.0.0:443"
           "[::]:443"
         ];
-        redirect_https = 1;
+        redirect_https = true;
         home = "/www";
         lua_prefix = [ "/cgi-bin/luci=/usr/lib/lua/luci/sgi/uhttpd.lua" ];
         cgi_prefix = "/cgi-bin";

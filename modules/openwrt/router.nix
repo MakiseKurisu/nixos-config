@@ -17,6 +17,9 @@
     "luci-app-wol"
     "luci-app-nlbwmon"
     # "UDPspeeder"
+    "snort3"
+    "openappid"
+    "coreutils-sort"
 
     # needed by ddns
     "curl"
@@ -110,6 +113,19 @@
       };
       sqm = {};
       etherwake = {};
+      snort = {
+        snort.snort = {
+          enabled = true;
+          manual = false;
+          home_net = "192.168.8.0/24 192.168.9.0/24";
+          external_net = "!$HOME_NET";
+          openappid = true;
+          interface = "wwan0";
+          method = "nfq";
+          log_dir = "/var/log";
+          config_dir = "/etc/snort";
+        };
+      };
     };
   };
 }
