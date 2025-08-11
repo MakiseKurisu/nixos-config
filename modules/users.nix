@@ -120,7 +120,7 @@
               bbenoist.nix
               github.vscode-github-actions
               github.vscode-pull-request-github
-              ms-azuretools.vscode-docker
+              pkgs.unstable.vscode-extensions.ms-azuretools.vscode-containers
               ms-dotnettools.csdevkit
               ms-dotnettools.csharp
               ms-python.python
