@@ -122,6 +122,7 @@
           openappid = true;
           interface = "wwan0";
           method = "nfq";
+          logging = true;
           log_dir = "/var/log";
           config_dir = "/etc/snort";
         };
