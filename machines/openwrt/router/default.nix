@@ -6,6 +6,7 @@
 , hostname
 , ip
 , kver ? null
+, service_ip
 , ... }:
 
 {
@@ -17,11 +18,15 @@
       inherit arch;
     })
     (import ../../../modules/openwrt/proxy.nix {
-      inherit lib;
+      inherit lib service_ip;
       gfwlist2dnsmasq = inputs.gfwlist2dnsmasq;
     })
-    ../../../modules/openwrt/dhcp.nix
-    ../../../modules/openwrt/networks
+    (import ../../../modules/openwrt/dhcp.nix {
+      inherit service_ip;
+    })
+    (import ../../../modules/openwrt/networks {
+      inherit service_ip;
+    })
 
     ./config.nix
   ];

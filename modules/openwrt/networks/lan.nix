@@ -1,3 +1,6 @@
+{ service_ip
+, ...}:
+
 {
   uci = {
     settings = {
@@ -32,7 +35,7 @@
             src = "wan";
             src_dport = 6888;
             dest = "lan";
-            dest_ip = "192.168.9.2";
+            dest_ip = service_ip;
             dest_port = 6888;
           }
           {
@@ -41,7 +44,7 @@
             src = "wg";
             src_dport = 6888;
             dest = "lan";
-            dest_ip = "192.168.9.2";
+            dest_ip = service_ip;
             dest_port = 6888;
           }
         ];

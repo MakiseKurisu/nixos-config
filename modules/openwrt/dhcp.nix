@@ -1,3 +1,6 @@
+{ service_ip
+, ...}:
+
 {
   uci = {
     settings = {
@@ -25,7 +28,7 @@
           server = [
             "/vamrs.org/192.168.2.1"
             "/vpndns.net/192.99.42.52"
-            "192.168.9.2"
+            service_ip
           ];
           rebind_domain = [
             "vamrs.org"
@@ -33,43 +36,43 @@
         }];
         domain = [
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "apt";
           }
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "aria";
           }
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "dns";
           }
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "jf";
           }
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "proxy";
           }
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "kms";
           }
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "ha";
           }
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "dls";
           }
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "downloads";
           }
           {
-            ip = "192.168.9.2";
+            ip = service_ip;
             name = "pico";
           }
         ];

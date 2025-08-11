@@ -88,6 +88,7 @@
                   arch = "aarch64_cortex-a53";
                   hostname = "RAX3000M";
                   ip = "192.168.9.1";
+                  service_ip = "192.168.9.3";
                 } // {
                   uci.settings.wireless.wifi-device.radio0.path = "platform/18000000.wifi";
                   uci.settings.wireless.wifi-device.radio1.path = "platform/18000000.wifi+1";
@@ -111,6 +112,7 @@
                   hostname = "OpenWrt";
                   ip = "192.168.9.1";
                   kver = "6.6.93-1-1745ebad77278f5cdc8330d17a3f43d6";
+                  service_ip = "192.168.9.3";
                 };
                 m93p = import machines/openwrt/router {
                   inherit lib inputs;
@@ -119,6 +121,7 @@
                   arch = "x86_64";
                   hostname = "M93p";
                   ip = "192.168.9.1";
+                  service_ip = "192.168.9.3";
                 } // {
                   packages = [
                     "kmod-iwlwifi"

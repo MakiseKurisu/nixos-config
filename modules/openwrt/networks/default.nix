@@ -1,6 +1,11 @@
+{ service_ip
+, ...}:
+
 {
   imports = [
-    ./lan.nix
+    (import ./lan.nix {
+      inherit service_ip;
+    })
     ./guest.nix
     ./wan.nix
     ./wwan0.nix
