@@ -121,6 +121,7 @@
           external_net = "!$HOME_NET";
           openappid = true;
           interface = "wwan0";
+          mode = "ips";
           method = "nfq";
           logging = true;
           log_dir = "/var/log";
