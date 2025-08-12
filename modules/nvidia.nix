@@ -37,5 +37,8 @@
         cudaSupport = true;
       };
     };
+    comfyui = {
+      acceleration = "cuda";
+    };
   };
 }
