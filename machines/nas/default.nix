@@ -290,7 +290,7 @@
     e1000e = {
       script = ''
         set -eu
-        ${lib.getExe pkgs.ethtool} -K eno1 tso off gso off
+        ${lib.getExe pkgs.ethtool} -K eno1 tso off
       '';
       serviceConfig = {
         Type = "oneshot";
