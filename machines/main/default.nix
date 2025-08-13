@@ -16,6 +16,7 @@
     ../../modules/users.nix
     ../../modules/vfio.nix
     ../../modules/virtualization.nix
+    ../../modules/vr.nix
 
     ../../modules/nfs-nas.nix
     # ../../modules/nfs-app01.nix

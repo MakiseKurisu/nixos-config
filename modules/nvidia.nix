@@ -40,5 +40,10 @@
     comfyui = {
       acceleration = "cuda";
     };
+    wivrn = {
+      package = pkgs.wivrn.override {
+        cudaSupport = true;
+      };
+    };
   };
 }
