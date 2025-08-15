@@ -16,6 +16,7 @@
     "luci-proto-wireguard"
     "luci-app-wol"
     "luci-app-nlbwmon"
+    "openssh-sftp-server"
     # "UDPspeeder"
     "snort3"
     "openappid"
