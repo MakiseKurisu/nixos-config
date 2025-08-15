@@ -203,6 +203,8 @@
           "float, class:^(zenity)$, title:^(.*)$"
           "float, class:^(battle\.net\.exe)$, title:^(Battle\.net.*)$"
           "float, class:^(heroesprofile\.uploader\.exe)$, title:^(Heroesprofile\.com Uploader v.*)$"
+          "float, class:^(xdg-desktop-portal-gtk)$, title:^(.*)$"
+          "float, class:^(steam)$, title:^(.*)$"
           "fullscreen, class:^(Waydroid)$, title:^(Waydroid)$"
           "fullscreen, class:^(heroesofthestorm_x64\.exe)$, title:^(Heroes of the Storm)$"
           "workspace 1 silent, class:^(heroesofthestorm_x64\.exe)$, title:^(Heroes of the Storm)$"
