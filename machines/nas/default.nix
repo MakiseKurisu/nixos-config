@@ -15,6 +15,7 @@
     #../../modules/vfio.nix
     ../../modules/virtualization-base.nix
     ../../modules/impermanence.nix
+    ../../modules/wwan.nix
 
     #../../modules/nfs-nas.nix
     # ../../modules/nfs-app01.nix
