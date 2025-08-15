@@ -62,7 +62,7 @@
       colmena
       darktable
       dbeaver-bin
-      devenv
+      pkgs.unstable.devenv
       discord
       element-desktop
       (feishu.override (previous: {
