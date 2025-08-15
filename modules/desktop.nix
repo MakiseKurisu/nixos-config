@@ -214,10 +214,6 @@
     sleepy-launcher.enable = true;
 
     adb.enable = true;
-    alvr = {
-      enable = true;
-      openFirewall = true;
-    };
     apt = {
       enable = true;
       package = pkgs.pr-mmdebstrap.apt;
