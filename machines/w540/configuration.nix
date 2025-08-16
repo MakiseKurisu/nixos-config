@@ -30,20 +30,20 @@
   };
 
   home-manager.users.excalibur = { pkgs, ... }: {
-    xdg.configFile = {
-      "hypr/thinkpad.conf" = {
-        source = pkgs.writeText "hyprland-thinkpad.conf" ''
-          monitor=eDP-1, highres, auto, 1.5 # Body: internal LCD
-          monitor=DP-1, highres, auto, 2 # Body: mini DisplayPort
-          monitor=DP-2, highres, auto, 2 # Unknown:
-          monitor=DP-3, highres, auto, 2 # Dock: HDMI
-          workspace=r[1-20], monitor:eDP-1
-          workspace=2, monitor:eDP-1, default:yes
-          workspace=30, monitor:DP-1, default:yes
-          workspace=40, monitor:DP-2, default:yes
-          workspace=50, monitor:DP-3, default:yes
-        '';
-      };
+    wayland.windowManager.hyprland.settings = {
+      monitor = [
+        "eDP-1, highres, auto, 1.5" # Body: internal LCD
+        "DP-1, highres, auto, 2" # Body: mini DisplayPort
+        "DP-2, highres, auto, 2" # Unknown:
+        "DP-3, highres, auto, 2" # Dock: HDMI
+      ];
+      workspace = [
+        "r[1-20], monitor:eDP-1"
+        "2, monitor:eDP-1, default:yes"
+        "30, monitor:DP-1, default:yes"
+        "40, monitor:DP-2, default:yes"
+        "50, monitor:DP-3, default:yes"
+      ];
     };
   };
 

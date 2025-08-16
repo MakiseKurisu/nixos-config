@@ -27,12 +27,10 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   home-manager.users.excalibur = { pkgs, ... }: {
-    xdg.configFile = {
-      "hypr/thinkpad.conf" = {
-        source = pkgs.writeText "hyprland-thinkpad.conf" ''
-          monitor=eDP-1, highres, auto, 1
-        '';
-      };
+    wayland.windowManager.hyprland.settings = {
+      monitor = [
+        "eDP-1, highres, auto, 1"
+      ];
     };
   };
 

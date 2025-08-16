@@ -338,7 +338,6 @@
           };
         };
         source = [
-          "~/.config/hypr/machine.conf"
           "~/.config/hypr/monitors.conf"
           "~/.config/hypr/workspaces.conf"
         ];

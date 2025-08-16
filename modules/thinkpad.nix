@@ -2,17 +2,18 @@
 
 {
   home-manager.users.excalibur = { pkgs, ... }: {
-    xdg.configFile = {
-      "hypr/machine.conf" = {
-        source = pkgs.writeText "hyprland-machine.conf" ''
-          workspace=r[1-20], monitor:eDP-1
-          workspace=2, monitor:eDP-1, default:yes
-          workspace=30, monitor:HDMI-A-3, default:yes
-          exec-once=brightnessctl --device "tpacpi::kbd_backlight" set 100%
-          bindl=,switch:off:Lid Switch,exec,brightnessctl --device "tpacpi::kbd_backlight" set 100%
-          source = ~/.config/hypr/thinkpad.conf
-        '';
-      };
+    wayland.windowManager.hyprland.settings = {
+      bindl = [
+        ",switch:off:Lid Switch,exec,brightnessctl --device 'tpacpi::kbd_backlight' set 100%"
+      ];
+      exec-once = [
+        "brightnessctl --device 'tpacpi::kbd_backlight' set 100%"
+      ];
+      workspace = [
+        "r[1-20], monitor:eDP-1"
+        "2, monitor:eDP-1, default:yes"
+        "30, monitor:HDMI-A-3, default:yes"
+      ];
     };
   };
 
