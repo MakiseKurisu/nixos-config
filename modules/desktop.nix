@@ -256,7 +256,11 @@
       localNetworkGameTransfers.openFirewall = true;
       gamescopeSession.enable = true;
       extest.enable = true;
-      extraPackages = [ pkgs.gamescope ];
+      extraPackages = with pkgs; [
+        mangohud
+        gamescope
+        gamemode
+      ];
       extraCompatPackages = [ pkgs.unstable.proton-ge-bin ];
       protontricks.enable = true;
     };
