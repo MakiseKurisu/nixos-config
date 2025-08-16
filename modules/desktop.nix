@@ -116,7 +116,10 @@
       nwg-launchers
       nwg-dock-hyprland
       (opentofu.withPlugins (p: with p; [
+        cloudflare
+        github
         incus
+        oci
         sops
       ]))
       pinentry-qt
