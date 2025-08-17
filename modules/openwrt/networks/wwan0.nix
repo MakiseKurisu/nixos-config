@@ -85,6 +85,8 @@
             pdptype = "ipv4v6";
             metric = 20;
             dns_metric = 20;
+            dhcp = true;
+            dhcpv6 = false;
           };
         };
       };
