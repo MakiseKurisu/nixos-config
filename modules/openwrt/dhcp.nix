@@ -78,42 +78,43 @@
         ];
         host = [
           {
-            dns = 1;
+            dns = true;
             ip = "192.168.9.2";
             mac = "5A:95:F9:90:E8:AF";
             name = "app01";
           }
           {
-            dns = 1;
+            dns = true;
             ip = "192.168.9.3";
             mac = "de:e6:f8:67:fa:fb";
             name = "nas";
           }
           {
-            dns = 1;
+            dns = true;
             ip = "192.168.9.10";
             mac = "C4:41:1E:F8:17:7E";
             name = "rt3200";
           }
           {
-            dns = 1;
+            dns = true;
             ip = "ignore";
             mac = "70:85:c2:bf:37:bc";
             name = "main-wol";
           }
           {
-            dns = 1;
+            dns = true;
             ip = "192.168.9.20";
             mac = "82:A0:F6:24:4C:88";
             name = "main";
           }
           {
-            dns = 1;
+            dns = true;
             ip = "192.168.9.21";
             mac = "52:54:00:D7:BF:CA";
             name = "windows";
           }
           {
+            dns = true;
             ip = "192.168.9.22";
             mac = "BC:24:11:14:BD:88";
             name = "guest";
