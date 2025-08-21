@@ -21,7 +21,14 @@
       options = [ "subvol=@" "compress=zstd" ];
     };
 
-  fileSystems."/boot/efi" =
+  fileSystems."/media/root" =
+    {
+      device = "/dev/disk/by-uuid/0a144eeb-d552-460b-9e91-631774928493";
+      fsType = "btrfs";
+      options = [ "compress=zstd" ];
+    };
+
+  fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/1BDB-6BF9";
       fsType = "vfat";

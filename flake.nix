@@ -130,6 +130,16 @@
                     "r8169-firmware"
                   ];
                 };
+                p15 = import machines/openwrt/router {
+                  inherit lib inputs;
+                  release = "24.10.2";
+                  target = "x86/64";
+                  arch = "x86_64";
+                  hostname = "OpenWrt";
+                  ip = "192.168.9.1";
+                  kver = "6.6.93-1-1745ebad77278f5cdc8330d17a3f43d6";
+                  service_ip = "192.168.9.23";
+                };
               };
             };
           };
@@ -173,7 +183,7 @@
             specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
-              ./machines/p15/configuration.nix
+              ./machines/p15
             ];
           };
           rpi3 = nixpkgs.lib.nixosSystem {
