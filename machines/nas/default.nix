@@ -16,6 +16,7 @@
     ../../modules/virtualization-base.nix
     ../../modules/impermanence.nix
     ../../modules/wwan.nix
+    ../../modules/router.nix
 
     #../../modules/nfs-nas.nix
     # ../../modules/nfs-app01.nix
@@ -31,8 +32,6 @@
 
   boot = {
     kernelModules = [
-      "iptable_mangle"
-      "ip6table_mangle"
       "w83627hf_wdt"
     ];
     extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
@@ -40,10 +39,6 @@
   };
 
   services = {
-    # Must configure to NOT listen on 0.0.0.0:53 but 192.168.xxx.yyy:53
-    # As systemd-resolved would listen on 127.0.0.53:53
-    technitium-dns-server.enable = true;
-
     nfs.server = {
       exports = ''
         /media         192.168.9.0/24(rw,fsid=0,no_subtree_check)
@@ -79,18 +74,6 @@
       };
     };
 
-    mihomo = {
-      enable = true;
-      tunMode = true;
-      configFile = "/var/lib/mihomo/clash.yaml";
-      webui = pkgs.metacubexd;
-    };
-
-    iperf3 = {
-      enable = true;
-      openFirewall = true;
-    };
-
     aria2 = {
       enable = true;
       rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
@@ -115,12 +98,6 @@
     };
 
     jellyfin.enable = true;
-
-    pykms = {
-      enable = true;
-      listenAddress = "::";
-      openFirewallPort = true;
-    };
 
     home-assistant = {
       enable = true;
@@ -157,13 +134,6 @@
     };
 
     nginx = {
-      enable = true;
-      recommendedOptimisation = true;
-      recommendedTlsSettings = true;
-      recommendedBrotliSettings = true;
-      recommendedGzipSettings = true;
-      recommendedZstdSettings = true;
-      recommendedProxySettings = true;
       virtualHosts = let
         ssl = {
           sslCertificate = "/var/lib/nginx/cert.pem";
@@ -179,7 +149,6 @@
         http_https = host: host // ssl // {
           addSSL = true;
         }; in {
-        "_" = https { locations."/".return = "404"; };
         "apt.protoducer.com" = http { locations."/".proxyPass = "http://127.0.0.1:3142/"; };
         "aria.protoducer.com" = http {
           locations = {
@@ -192,24 +161,10 @@
             };
           };
         };
-        "dns.protoducer.com" = https {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:5380/";
-            extraConfig = ''
-              client_max_body_size 512M;
-            '';
-          };
-        };
         "jf.protoducer.com" = http_https {
           locations."/" = {
             proxyWebsockets = true;
             proxyPass = "http://127.0.0.1:8096/";
-          };
-        };
-        "proxy.protoducer.com" = https {
-          locations."/" = {
-            proxyWebsockets = true;
-            proxyPass = "http://127.0.0.1:9090/";
           };
         };
         "ha.protoducer.com" = http {
@@ -253,23 +208,6 @@
       };
     };
   };
-
-  networking.firewall.allowedUDPPorts = [
-    53 # technitium-dns-server
-  ];
-  networking.firewall.allowedTCPPorts = [
-    53 # technitium-dns-server
-    80 # nginx
-    443 # nginx
-    9090 # mihomo
-  ];
-  networking.firewall.allowedTCPPortRanges = [
-    # mihomo
-    {
-      from = 7890;
-      to = 7894;
-    }
-  ];
 
   systemd.services = {
     apt-cacher-ng = {
