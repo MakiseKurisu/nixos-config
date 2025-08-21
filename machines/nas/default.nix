@@ -191,8 +191,6 @@
       };
     };
 
-    btrfs.autoScrub.enable = true;
-
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="watchdog", ENV{DEVPATH}=="/devices/virtual/watchdog/watchdog*", SYMLINK+="watchdog"
     '';

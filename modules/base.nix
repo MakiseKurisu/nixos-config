@@ -137,6 +137,7 @@
   };
 
   services = {
+    btrfs.autoScrub.enable = true;
     openssh.enable = true;
     qemuGuest.enable = true;
     smartd.enable = true;

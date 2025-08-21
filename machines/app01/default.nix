@@ -39,8 +39,6 @@
   };
 
   services = {
-    btrfs.autoScrub.enable = true;
-
     thermald.enable = false;  # Disable on older Intel systems
   };
 
