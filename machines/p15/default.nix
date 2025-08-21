@@ -158,4 +158,5 @@
 
   networking.hostName = "p15";
   system.stateVersion = "23.05";
+  home-manager.users.excalibur.home.stateVersion = "22.11";
 }

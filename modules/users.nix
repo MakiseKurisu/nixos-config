@@ -48,7 +48,7 @@
       home = {
         username = "excalibur";
         homeDirectory = "/home/excalibur";
-        stateVersion = "22.11";
+        stateVersion = lib.mkDefault config.system.stateVersion;
       };
       programs = {
         home-manager.enable = true;

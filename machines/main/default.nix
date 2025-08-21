@@ -200,4 +200,5 @@
 
   networking.hostName = "main";
   system.stateVersion = "24.11";
+  home-manager.users.excalibur.home.stateVersion = "22.11";
 }
