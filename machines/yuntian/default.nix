@@ -57,6 +57,7 @@
   };
 
   home-manager.users.excalibur = { pkgs, ... }: {
+    home.stateVersion = "22.11";
     systemd.user = {
       services = {
         lock-session = {
@@ -189,5 +190,4 @@
 
   networking.hostName = "yuntian";
   system.stateVersion = "25.05";
-  home-manager.users.excalibur.home.stateVersion = "22.11";
 }

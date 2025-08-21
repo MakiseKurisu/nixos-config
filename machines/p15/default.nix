@@ -28,6 +28,7 @@
   ];
 
   home-manager.users.excalibur = { pkgs, ... }: {
+    home.stateVersion = "22.11";
     wayland.windowManager.hyprland.settings = {
       monitor = [
         "eDP-1, highres, auto, 1"
@@ -158,5 +159,4 @@
 
   networking.hostName = "p15";
   system.stateVersion = "23.05";
-  home-manager.users.excalibur.home.stateVersion = "22.11";
 }

@@ -66,6 +66,7 @@
   };
 
   home-manager.users.excalibur = { pkgs, ... }: {
+    home.stateVersion = "22.11";
     wayland.windowManager.hyprland = {
       settings = {
         exec-once = [
@@ -82,5 +83,4 @@
 
   networking.hostName = "n40";
   system.stateVersion = "25.05";
-  home-manager.users.excalibur.home.stateVersion = "22.11";
 }
