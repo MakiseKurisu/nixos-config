@@ -309,6 +309,27 @@
         "type": "github"
       }
     },
+    "home-manager-droid": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-droid"
+        ]
+      },
+      "locked": {
+        "lastModified": 1726989464,
+        "narHash": "sha256-Vl+WVTJwutXkimwGprnEtXc/s/s8sMuXzqXaspIGlwM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "2f23fa308a7c067e52dfcc30a0758f47043ec176",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-24.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1737831083,
@@ -385,11 +406,11 @@
     "nix-on-droid": {
       "inputs": {
         "home-manager": [
-          "home-manager"
+          "home-manager-droid"
         ],
         "nix-formatter-pack": "nix-formatter-pack",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-droid"
         ],
         "nixpkgs-docs": "nixpkgs-docs",
         "nixpkgs-for-bootstrap": "nixpkgs-for-bootstrap",
@@ -477,6 +498,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "release-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-droid": {
+      "locked": {
+        "lastModified": 1735563628,
+        "narHash": "sha256-OnSAY7XDSx7CtDoqNh8jwVwh4xNL/2HaJxGjryLWzX8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b134951a4c9f3c995fd7be05f3243f8ecd65d798",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -764,12 +801,14 @@
         "flake-parts": "flake-parts_3",
         "gfwlist2dnsmasq": "gfwlist2dnsmasq",
         "home-manager": "home-manager",
+        "home-manager-droid": "home-manager-droid",
         "impermanence": "impermanence",
         "lix-module": "lix-module",
         "nix-on-droid": "nix-on-droid",
         "nixified-ai": "nixified-ai",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_6",
+        "nixpkgs-droid": "nixpkgs-droid",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pr-fastapi-dls": "pr-fastapi-dls",
