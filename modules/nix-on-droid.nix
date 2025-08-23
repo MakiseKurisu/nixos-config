@@ -5,6 +5,16 @@
 , ... }:
 
 {
+  android-integration = {
+    am.enable = true;
+    termux-open.enable = true;
+    termux-open-url.enable = true;
+    termux-reload-settings.enable = true;
+    termux-setup-storage.enable = true;
+    termux-wake-lock.enable = true;
+    xdg-open.enable = true;
+  };
+
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
   environment.etcBackupExtension = ".bak";
 
@@ -16,6 +26,8 @@
 
   # Set your time zone
   time.timeZone = "Asia/Shanghai";
+
+  user.userName = "excalibur";
 
   # Configure home-manager
   home-manager = {
@@ -46,6 +58,7 @@
             findutils
             gnugrep
             iperf
+            iproute2
             iputils
             ldns
             nano
