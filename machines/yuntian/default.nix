@@ -56,6 +56,8 @@
     };
   };
 
+  services.btrfs.autoScrub.enable = false;
+
   home-manager.users.excalibur = { pkgs, ... }: {
     home.stateVersion = "22.11";
     systemd.user = {
