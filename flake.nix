@@ -5,10 +5,15 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-droid.url = "github:NixOS/nixpkgs/nixos-24.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager-droid = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs-droid";
     };
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
@@ -16,8 +21,8 @@
     };
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-droid";
+      inputs.home-manager.follows = "home-manager-droid";
     };
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     NUR.url = "github:nix-community/NUR";
@@ -209,11 +214,17 @@
           };
         };
 
-        nixOnDroidConfigurations= {
+        nixOnDroidConfigurations = {
           davinci = nix-on-droid.lib.nixOnDroidConfiguration {
-            pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
+            pkgs = inputs.nixpkgs-droid.legacyPackages."aarch64-linux";
             modules = [
               ./machines/davinci/nix-on-droid.nix
+            ];
+          };
+          bla-al00 = nix-on-droid.lib.nixOnDroidConfiguration {
+            pkgs = inputs.nixpkgs-droid.legacyPackages."aarch64-linux";
+            modules = [
+              ./machines/bla-al00
             ];
           };
         };
