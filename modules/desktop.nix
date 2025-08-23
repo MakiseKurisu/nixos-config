@@ -137,7 +137,6 @@
       slurp
       solaar
       sops
-      sunshine
       sweethome3d.application
       tdesktop
       teams-for-linux
@@ -340,6 +339,11 @@
     };
     ratbagd.enable = true;
     rpcbind.enable = true; # needed for NFS
+    sunshine = {
+      enable = true;
+      capSysAdmin = true;
+      openFirewall = true;
+    };
     systemd-lock-handler.enable = true;
   };
 
