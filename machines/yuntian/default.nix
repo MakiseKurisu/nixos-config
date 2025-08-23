@@ -107,11 +107,11 @@
         ''}"
       ];
       monitor = [
-        "DP-1, highres, 0x0, 1.5, vrr, 0"
+        "DP-2, highres, 0x0, 1.5, vrr, 0"
         "HDMI-A-2, highres, auto-right, 1.5"
       ];
       workspace = [
-        "2, monitor:DP-1, default:yes"
+        "2, monitor:DP-2, default:yes"
         "30, monitor:HDMI-A-2, default:yes"
       ];
       xwayland = {
