@@ -27,8 +27,6 @@
   # Set your time zone
   time.timeZone = "Asia/Shanghai";
 
-  user.userName = "excalibur";
-
   # Configure home-manager
   home-manager = {
     backupFileExtension = "hm-bak";
