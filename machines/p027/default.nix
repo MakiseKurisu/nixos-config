@@ -9,6 +9,6 @@
   system.stateVersion = "24.05";
   home-manager.config.home = {
     stateVersion = "24.05";
-    sessionVariables.NOD_FLAKE_DEFAULT_DEVICE = "bla-al00";
+    sessionVariables.NOD_FLAKE_DEFAULT_DEVICE = "p027";
   }；
 }

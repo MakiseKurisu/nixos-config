@@ -227,6 +227,12 @@
               ./machines/bla-al00
             ];
           };
+          p027 = nix-on-droid.lib.nixOnDroidConfiguration {
+            pkgs = inputs.nixpkgs-droid.legacyPackages."aarch64-linux";
+            modules = [
+              ./machines/p027
+            ];
+          };
         };
       };
     };
