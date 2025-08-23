@@ -2,7 +2,10 @@
 
 {
   imports = [
-    (import ../../modules/nix-on-droid.nix {android-system-bin-list = ./android-system-bin.list;})
+    (import ../../modules/nix-on-droid.nix {
+      inherit config lib pkg;
+      android-system-bin-list = ./android-system-bin.list;
+    })
   ];
 
   # Read the changelog before changing this value
