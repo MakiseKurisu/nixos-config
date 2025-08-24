@@ -504,15 +504,15 @@
     },
     "nixpkgs-droid": {
       "locked": {
-        "lastModified": 1735563628,
-        "narHash": "sha256-OnSAY7XDSx7CtDoqNh8jwVwh4xNL/2HaJxGjryLWzX8=",
-        "owner": "NixOS",
+        "lastModified": 1756012283,
+        "narHash": "sha256-0B2EUReEZdIA+8ax1CUZ2Vsjfa06CNgNvtqQYgdBZgg=",
+        "owner": "MakiseKurisu",
         "repo": "nixpkgs",
-        "rev": "b134951a4c9f3c995fd7be05f3243f8ecd65d798",
+        "rev": "540aa4ff03c147dad8d07431e17d9fae133c85be",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "MakiseKurisu",
         "ref": "nixos-24.05",
         "repo": "nixpkgs",
         "type": "github"
