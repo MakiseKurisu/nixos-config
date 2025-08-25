@@ -130,6 +130,7 @@
           gh.enable = true;
           git.enable = true;
           home-manager.enable = true;
+          htop.enable = true;
           less.enable = true;
           man.enable = true;
           ssh.enable = true;
