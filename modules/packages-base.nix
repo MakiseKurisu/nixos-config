@@ -7,6 +7,7 @@
         git-crypt
         multipath-tools
         parted
+        rsync
         wget
         usbutils
         pciutils

@@ -63,6 +63,7 @@
             nano
             nmap
             openssh
+            rsync
             wget
             which
             (writeShellScriptBin "sshd-start" ''
