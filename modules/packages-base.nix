@@ -67,6 +67,19 @@
         format.signOff = true;
       };
     };
+    nano = {
+      nanorc = ''
+        set autoindent
+        set historylog
+        set indicator
+        set linenumbers
+        set magic
+        set mouse
+        set noconvert
+        set positionlog
+        set smarthome
+      '';
+    };
     ssh = {
       extraConfig = ''
         StrictHostKeyChecking accept-new
