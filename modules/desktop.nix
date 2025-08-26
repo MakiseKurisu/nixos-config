@@ -143,6 +143,7 @@
       ventoy-full
       vlc
       wechat-uos
+      wemeet
       wev
       wlr-randr
       wireguard-tools
