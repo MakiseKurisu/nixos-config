@@ -238,6 +238,7 @@
     };
     regreet.enable = true;
     hyprland.enable = true;
+    seahorse.enable = true;
     starship = {
       enable = true;
       settings = {
@@ -274,6 +275,7 @@
   security = {
     polkit.enable = true;
     rtkit.enable = true;
+    pam.services.greetd.enableGnomeKeyring = true;
   };
 
   services = {
