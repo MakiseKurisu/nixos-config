@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs-droid";
     };
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-2.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-on-droid = {
