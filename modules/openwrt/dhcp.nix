@@ -97,6 +97,12 @@
           }
           {
             dns = true;
+            ip = "192.168.9.11";
+            mac = "8C:DE:F9:B4:37:A9";
+            name = "ax3600";
+          }
+          {
+            dns = true;
             ip = "ignore";
             mac = "70:85:c2:bf:37:bc";
             name = "main-wol";
