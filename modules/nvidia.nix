@@ -24,6 +24,13 @@
           };
         };
       };
+      # Workaround 580 driver GTK4 regression
+      # https://forums.developer.nvidia.com/t/580-release-feedback-discussion/341205/20
+      wayland.windowManager.hyprland.settings = {
+        env = [
+          "GSK_RENDERER,ngl"
+        ];
+      };
     };
   };
 
