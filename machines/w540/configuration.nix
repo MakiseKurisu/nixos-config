@@ -31,12 +31,6 @@
 
   home-manager.users.excalibur = { pkgs, ... }: {
     wayland.windowManager.hyprland.settings = {
-      monitor = [
-        "eDP-1, highres, auto, 1.5" # Body: internal LCD
-        "DP-1, highres, auto, 2" # Body: mini DisplayPort
-        "DP-2, highres, auto, 2" # Unknown:
-        "DP-3, highres, auto, 2" # Dock: HDMI
-      ];
       workspace = [
         "r[1-20], monitor:eDP-1"
         "2, monitor:eDP-1, default:yes"

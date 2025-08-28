@@ -106,11 +106,8 @@
           Xft.dpi: 144
         ''}"
       ];
-      monitor = [
-        "DP-2, highres, 0x0, 1.5, vrr, 0"
-        "HDMI-A-2, highres, auto-right, 1.5"
-      ];
       workspace = [
+        "r[1-20], monitor:DP-2"
         "2, monitor:DP-2, default:yes"
         "30, monitor:HDMI-A-2, default:yes"
       ];

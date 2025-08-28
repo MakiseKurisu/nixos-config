@@ -37,11 +37,8 @@
   home-manager.users.excalibur = { pkgs, ... }: {
     home.stateVersion = "22.11";
     wayland.windowManager.hyprland.settings = {
-      monitor = [
-        "DP-2, highrr, 0x700, 1"
-        "DP-3, highrr, 3440x0, auto, transform, 1"
-      ];
       workspace = [
+        "r[1-20], monitor:DP-2"
         "2, monitor:DP-2, default:yes"
         "30, monitor:DP-3, default:yes"
       ];
