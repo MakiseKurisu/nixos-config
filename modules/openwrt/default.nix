@@ -21,8 +21,6 @@
     "kitty-terminfo"
     "nano"
     "powertop"
-    "kmod-i6300esb-wdt"
-    "kmod-itco-wdt"
   ];
 
   etc = {
@@ -65,6 +63,8 @@
     ];
 
     settings = {
+      dhcp = {};
+
       firewall = {
         defaults = [{
           forward = "DROP";
@@ -98,28 +98,42 @@
             name = "Receive";
             sysfs = "red:status";
             trigger = "netdev";
-            dev = "wwan0";
+            dev = "br-lan";
             mode = "rx";
           }
           {
             name = "Transmit";
             sysfs = "green:status";
             trigger = "netdev";
-            dev = "wwan0";
+            dev = "br-lan";
             mode = "tx";
           }
           {
             name = "Receive";
             sysfs = "inet:orange";
             trigger = "netdev";
-            dev = "wwan0";
+            dev = "br-lan";
             mode = "rx";
           }
           {
             name = "Transmit";
             sysfs = "inet:blue";
             trigger = "netdev";
-            dev = "wwan0";
+            dev = "br-lan";
+            mode = "tx";
+          }
+          {
+            name = "Receive";
+            sysfs = "yellow:network";
+            trigger = "netdev";
+            dev = "br-lan";
+            mode = "rx";
+          }
+          {
+            name = "Transmit";
+            sysfs = "blue:network";
+            trigger = "netdev";
+            dev = "br-lan";
             mode = "tx";
           }
           {
@@ -129,7 +143,17 @@
           }
           {
             name = "Status";
+            sysfs = "blue:system";
+            trigger = "default-on";
+          }
+          {
+            name = "Status";
             sysfs = "power:orange";
+            trigger = "heartbeat";
+          }
+          {
+            name = "Status";
+            sysfs = "blue:aiot";
             trigger = "heartbeat";
           }
         ];
