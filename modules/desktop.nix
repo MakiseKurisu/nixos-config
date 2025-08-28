@@ -115,6 +115,7 @@
       nwg-displays
       nwg-launchers
       nwg-dock-hyprland
+      openscad-unstable
       (opentofu.withPlugins (p: with p; [
         cloudflare
         github
