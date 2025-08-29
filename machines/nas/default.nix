@@ -110,6 +110,8 @@
         "mobile_app"
         "radio_browser"
         "tuya"
+        "xiaomi_aqara"
+        "xiaomi_ble"
         "xiaomi_miio"
       ];
       config = {
@@ -123,6 +125,14 @@
         };
         mobile_app = {};
       };
+      customComponents = with pkgs.home-assistant-custom-components; [
+        xiaomi_miot
+        xiaomi_gateway3
+        tuya_local
+        ntfy
+        bodymiscale
+        smartir
+      ];
     };
 
     fastapi-dls = {
