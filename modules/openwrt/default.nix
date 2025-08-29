@@ -21,6 +21,7 @@
     "kitty-terminfo"
     "nano"
     "powertop"
+    "tmux"
   ];
 
   etc = {
