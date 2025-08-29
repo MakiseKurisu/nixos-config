@@ -80,20 +80,22 @@
       openPorts = true;
       serviceUMask = "0007";
       settings = {
-        dir = "/media/raid/aria2";
-        rpc-listen-all = true;
-        input-file = "/var/lib/aria2/aria2.session";
-        continue = true;
-        max-concurrent-downloads = 100;
-        max-overall-upload-limit = "64K";
-        max-connection-per-server = 10;
-        http-accept-gzip = true;
-        file-allocation = "falloc";
-        save-session-interval = 10;
         bt-prioritize-piece = "head,tail";
         bt-remove-unselected-file = true;
+        continue = true;
+        dir = "/media/raid/aria2";
+        file-allocation = "falloc";
+        http-accept-gzip = true;
+        input-file = "/var/lib/aria2/aria2.session";
+        max-concurrent-downloads = 100;
+        max-connection-per-server = 10;
+        max-overall-upload-limit = "64K";
+        rpc-listen-all = true;
+        save-session-interval = 10;
         seed-ratio = 0.1;
         seed-time = 0;
+        show-console-readout = false;
+        summary-interval = 0;
       };
     };
 
