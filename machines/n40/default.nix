@@ -57,6 +57,7 @@
         matchConfig.Name = "br0";
         networkConfig = {
           DHCP = true;
+          MulticastDNS = true;
         };
         linkConfig = {
           RequiredForOnline = false;
