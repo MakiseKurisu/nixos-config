@@ -135,6 +135,7 @@
               pkgs.unstable.vscode-extensions.ms-azuretools.vscode-containers
               ms-dotnettools.csdevkit
               ms-dotnettools.csharp
+              ms-dotnettools.vscode-dotnet-runtime
               ms-python.python
               ms-vscode.cmake-tools
               ms-vscode.cpptools
