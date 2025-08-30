@@ -51,7 +51,10 @@
           template = "~/.gitmessage";
         };
         tag.gpgSign = true;
-        push.gpgSign = "if-asked";
+        push = {
+          autoSetupRemote = true;
+          gpgSign = "if-asked";
+        };
         help.autocorrect = "prompt";
         format.signOff = true;
       };
