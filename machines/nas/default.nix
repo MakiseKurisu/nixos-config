@@ -24,6 +24,7 @@
 
     ../../modules/pr/fastapi-dls.nix
     ../../modules/pr/pico-rpa.nix
+    ../../modules/pr/xiaomi_home.nix
 
     inputs.disko.nixosModules.disko
     ./disko.nix
@@ -108,15 +109,16 @@
       ];
       extraComponents = [
         "default_config"
+        "ffmpeg"
+        "homekit"
         "met"
         "mobile_app"
         "radio_browser"
-        "tuya"
-        "xiaomi_aqara"
         "xiaomi_ble"
-        "xiaomi_miio"
+        "zeroconf"
       ];
       config = {
+        default_config = {};
         http = {
           use_x_forwarded_for = true;
           trusted_proxies = [ "127.0.0.1" ];
@@ -124,16 +126,16 @@
         homeassistant = {
           unit_system = "metric";
           name = "Home";
+          internal_url = "http://ha.protoducer.com";
         };
-        mobile_app = {};
       };
       customComponents = with pkgs.home-assistant-custom-components; [
-        xiaomi_miot
-        xiaomi_gateway3
+        pkgs.pr-xiaomi_home.home-assistant-custom-components.xiaomi_home
         tuya_local
         ntfy
         bodymiscale
         smartir
+        midea_ac_lan
       ];
     };
 
@@ -348,6 +350,7 @@
         ];
         vlan = [
           "vlan20"
+          "vlan30"
         ];
         linkConfig = {
           RequiredForOnline = false;
@@ -359,6 +362,15 @@
           DHCP = true;
           Domains = "protoducer.com vamrs.org";
           Address = "192.168.9.3/24";
+        };
+        linkConfig = {
+          RequiredForOnline = false;
+        };
+      };
+      "50-vlan30" = {
+        matchConfig.Name = "vlan30";
+        networkConfig = {
+          DHCP = true;
         };
         linkConfig = {
           RequiredForOnline = false;
