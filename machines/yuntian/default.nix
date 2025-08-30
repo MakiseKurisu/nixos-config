@@ -177,7 +177,6 @@
         matchConfig.Name = "br0";
         networkConfig = {
           DHCP = true;
-          MulticastDNS = true;
           Domains = "vamrs.org protoducer.com";
           Address = "192.168.2.20/24";
         };

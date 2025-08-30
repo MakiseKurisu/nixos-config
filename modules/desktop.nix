@@ -285,12 +285,6 @@
       enable = true;
       rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
     };
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      nssmdns6 = true;
-      openFirewall = true;
-    };
     blueman.enable = true;
     dbus.enable = true;
     envfs.enable = true;

@@ -137,6 +137,16 @@
   };
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        domain = true;
+      };
+    };
     btrfs.autoScrub.enable = lib.mkDefault true;
     openssh.enable = true;
     qemuGuest.enable = true;

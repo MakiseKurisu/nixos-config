@@ -133,7 +133,6 @@
         matchConfig.Name = "vlan1";
         networkConfig = {
           DHCP = true;
-          MulticastDNS = true;
         };
         linkConfig = {
           RequiredForOnline = false;
@@ -143,7 +142,6 @@
         matchConfig.Name = "vlan20";
         networkConfig = {
           DHCP = true;
-          MulticastDNS = true;
           Domains = "protoducer.com vamrs.org";
           Address = "192.168.9.23/24";
         };
