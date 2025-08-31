@@ -349,7 +349,6 @@
     graphics = {
       enable = true;
     };
-    bluetooth.enable = true;
   };
 
   home-manager = {
