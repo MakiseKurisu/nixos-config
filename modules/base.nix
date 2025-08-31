@@ -148,6 +148,7 @@
       };
     };
     btrfs.autoScrub.enable = lib.mkDefault true;
+    dbus.enable = true;
     openssh.enable = true;
     resolved.enable = true;
     smartd.enable = true;

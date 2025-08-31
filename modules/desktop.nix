@@ -286,7 +286,6 @@
       rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
     };
     blueman.enable = true;
-    dbus.enable = true;
     envfs.enable = true;
     fwupd.enable = true;
     greetd = {
