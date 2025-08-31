@@ -25,6 +25,7 @@
     ../../modules/pr/fastapi-dls.nix
     ../../modules/pr/pico-rpa.nix
     ../../modules/pr/xiaomi_home.nix
+    ../../modules/pr/keyboard_remote.nix
 
     inputs.disko.nixosModules.disko
     ./disko.nix
@@ -106,29 +107,51 @@
       enable = true;
       extraPackages = python3Packages: with python3Packages; [
         gtts
+        ibeacon-ble
       ];
       extraComponents = [
+        "bluetooth"
+        "command_line"
         "default_config"
         "ffmpeg"
         "homekit"
+        "jellyfin"
+        "keyboard_remote"
+        "logger"
         "met"
         "mobile_app"
+        "ping"
         "radio_browser"
+        "shell_command"
+        "wake_on_lan"
         "xiaomi_ble"
         "zeroconf"
       ];
       config = {
+        automation = "!include automations.yaml";
         default_config = {};
+        frontend = {
+          themes = "!include_dir_merge_named themes";
+        };
         http = {
           use_x_forwarded_for = true;
           trusted_proxies = [ "127.0.0.1" ];
         };
         homeassistant = {
+          debug = false;
           unit_system = "metric";
           name = "Home";
           internal_url = "http://ha.protoducer.com";
         };
+        keyboard_remote = {
+          device_name = "Chromecast Remote";
+          type = "key_down";
+        };
+        logger = {
+          default = "warning";
+        };
       };
+      configWritable = true;
       customComponents = with pkgs.home-assistant-custom-components; [
         pkgs.pr-xiaomi_home.home-assistant-custom-components.xiaomi_home
         tuya_local
@@ -181,14 +204,14 @@
             proxyPass = "http://127.0.0.1:8096/";
           };
         };
-        "ha.protoducer.com" = http {
+        "ha.protoducer.com" = http_https {
           locations."/" = {
             proxyWebsockets = true;
             proxyPass = "http://127.0.0.1:8123/";
           };
         };
         "dls.protoducer.com" = https { locations."/".proxyPass = "https://127.0.0.1:8001/"; };
-        "downloads.protoducer.com" = http {
+        "downloads.protoducer.com" = http_https {
           locations."/" = {
             root = "/media/raid/downloads.protoducer.com";
             extraConfig = ''

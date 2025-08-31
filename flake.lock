@@ -743,6 +743,22 @@
         "type": "github"
       }
     },
+    "pr-keyboard_remote": {
+      "locked": {
+        "lastModified": 1756630515,
+        "narHash": "sha256-Cvhn6xS8utJTwzIlMJ1+fSV7oAvNEZ5OhxP4hL1PYk0=",
+        "owner": "MakiseKurisu",
+        "repo": "nixpkgs",
+        "rev": "c753697a689d2904e2e1799967a9e7b3df3eee1b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MakiseKurisu",
+        "ref": "keyboard_remote",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pr-mdevctl": {
       "locked": {
         "lastModified": 1740668788,
@@ -827,6 +843,7 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pr-fastapi-dls": "pr-fastapi-dls",
+        "pr-keyboard_remote": "pr-keyboard_remote",
         "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
         "pr-pico-rpa": "pr-pico-rpa",
