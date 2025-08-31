@@ -199,6 +199,8 @@
               follow = "mouse";
               origin = "top-center";
               offset = "(0, 50)";
+              dmenu = "${lib.getExe pkgs.tofi} --prompt-text dunst";
+              browser = "${lib.getExe' pkgs.xdg-utils "xdg-open"}";
             };
           };
         };
