@@ -48,7 +48,6 @@
     pr-mdevctl.url = "github:MakiseKurisu/nixpkgs/2db3f670641f422ebdd5ed5d1a071565742a1f2f";
     pr-pico-rpa.url = "github:MakiseKurisu/nixpkgs/pico-rpa";
     pr-xiaomi_home.url = "github:MakiseKurisu/nixpkgs/ha_xiaomi_home";
-    pr-keyboard_remote.url = "github:MakiseKurisu/nixpkgs/keyboard_remote";
   };
 
   outputs =
@@ -73,7 +72,6 @@
     , pr-mdevctl
     , pr-pico-rpa
     , pr-xiaomi_home
-    , pr-keyboard_remote
     , ...
     }: flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [

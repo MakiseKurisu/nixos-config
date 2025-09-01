@@ -124,6 +124,7 @@
         "radio_browser"
         "shell_command"
         "wake_on_lan"
+        "workday"
         "xiaomi_ble"
         "zeroconf"
       ];
