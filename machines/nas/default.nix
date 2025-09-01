@@ -141,6 +141,7 @@
           debug = false;
           unit_system = "metric";
           name = "Home";
+          external_url = "http://ha.protoducer.com";
           internal_url = "http://ha.protoducer.com";
         };
         keyboard_remote = {
