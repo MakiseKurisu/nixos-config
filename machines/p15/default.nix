@@ -20,7 +20,7 @@
 
     #../../modules/nfs-nas.nix
     #../../modules/nfs-app01.nix
-    # ../../modules/wireguard.nix
+    ../../modules/wireguard.nix
 
     ../../modules/thinkpad.nix
 
