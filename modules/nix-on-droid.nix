@@ -34,7 +34,7 @@
   
     config =
       { config, lib, pkgs, ... }: let
-        android-system-bin-wrapper = pkgs.callPackage ../../packages/android-system-bin-wrapper {
+        android-system-bin-wrapper = pkgs.callPackage ../pkgs/android-system-bin-wrapper {
           android-system-bin-list = android-system-bin-list;
         };
       in {
