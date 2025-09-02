@@ -298,10 +298,6 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
-            PVID = 1;
-            EgressUntagged = 1;
-          }
-          {
             VLAN = 10;
           }
           {
@@ -317,10 +313,6 @@
         networkConfig.Bridge = "br0";
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
-          {
-            PVID = 1;
-            EgressUntagged = 1;
-          }
           {
             VLAN = 10;
           }
@@ -338,10 +330,6 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
-            PVID = 1;
-            EgressUntagged = 1;
-          }
-          {
             VLAN = 10;
           }
           {
@@ -356,13 +344,14 @@
         matchConfig.Name = "br0";
         networkConfig = {
           LinkLocalAddressing = false;
+          DHCP = false;
+          LLDP = false;
+          EmitLLDP = false;
+          IPv6AcceptRA = false;
+          IPv6SendRA = false;
         };
         bridgeConfig = {};
         bridgeVLANs = [
-          {
-            PVID = 1;
-            EgressUntagged = 1;
-          }
           {
             VLAN = 10;
           }

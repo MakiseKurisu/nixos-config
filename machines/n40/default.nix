@@ -50,6 +50,10 @@
           Bridge = "br0";
           LinkLocalAddressing = false;
           DHCP = false;
+          LLDP = false;
+          EmitLLDP = false;
+          IPv6AcceptRA = false;
+          IPv6SendRA = false;
         };
         linkConfig.RequiredForOnline = "enslaved";
       };
