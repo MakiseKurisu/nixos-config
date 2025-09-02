@@ -49,6 +49,7 @@
         directories = [
           "/etc/NetworkManager/system-connections"
           "/etc/ssh"
+          "/var/backup"
           "/var/lib"
           "/var/log"
         ];

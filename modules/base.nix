@@ -150,7 +150,9 @@
     btrfs.autoScrub.enable = lib.mkDefault true;
     dbus.enable = true;
     irqbalance.enable = true;
+    mysqlBackup.enable = true;
     openssh.enable = true;
+    postgresqlBackup.enable = true;
     resolved.enable = true;
     smartd.enable = true;
     xserver = {
