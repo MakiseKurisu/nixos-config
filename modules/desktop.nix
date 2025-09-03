@@ -301,6 +301,8 @@
               misc {
                   force_default_wallpaper = 2
               }
+              $mainMod=SUPER
+              bind=$mainMod, M, exit,
             '';
           in
             "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.hyprland} --config ${greetdConfig}";
