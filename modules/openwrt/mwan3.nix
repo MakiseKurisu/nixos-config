@@ -3,7 +3,7 @@ let
     track_ip = [
       "xiaomi.com"
       "163.com"
-      "baidu.com"
+      "taobao.com"
       "qq.com"
       "bilibili.com"
     ];
