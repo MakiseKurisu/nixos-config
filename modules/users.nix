@@ -123,7 +123,7 @@
           enable = true;
           package = (pkgs.vscode.override (previous: {
             commandLineArgs = (previous.commandLineArgs or "") +
-              " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime --password-store=gnome --disable-gpu-sandbox";
+              " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3 --password-store=gnome --disable-gpu-sandbox";
           }));
           profiles.default = {
             enableExtensionUpdateCheck = false;

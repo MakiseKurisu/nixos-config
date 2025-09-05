@@ -46,13 +46,11 @@
         with pkgs; [
           android-tools
           asciinema
-          nur.repos.xddxdd.baidunetdisk
           binutils
           brightnessctl
           cmake
           debian-devscripts
           duplicacy
-          nur.repos.xddxdd.dingtalk
           distrobox
           dmidecode
           dotnet-combined

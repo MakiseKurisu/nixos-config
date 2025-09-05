@@ -50,24 +50,26 @@
     systemPackages = with pkgs; [
       amtterm
       audacity
+      nur.repos.xddxdd.baidunetdisk
       bottles
       brightnessctl
       cachix
       calibre
       (chromium.override (previous: {
         commandLineArgs = (previous.commandLineArgs or "") +
-          " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime";
+          " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
       }))
       cliphist
       colmena
       darktable
       dbeaver-bin
       pkgs.unstable.devenv
+      nur.repos.xddxdd.dingtalk
       discord
       element-desktop
       (feishu.override (previous: {
         commandLineArgs = (previous.commandLineArgs or "") +
-          " --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=x11 --enable-wayland-ime";
+          " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
       }))
       file-roller
       filezilla
