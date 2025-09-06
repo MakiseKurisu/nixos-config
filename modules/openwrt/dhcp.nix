@@ -131,6 +131,78 @@
             mac = "e2:2b:e4:b8:0f:52";
             name = "p15";
           }
+          {
+            dns = true;
+            ip = "192.168.8.3";
+            mac = "de:e6:f8:67:fa:fb";
+            name = "nas";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.10";
+            mac = "";
+            name = "ESP_A1BFBA";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.11";
+            mac = "C4:5B:BE:D9:3E:F1";
+            name = "ESP_D93EF1";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.15";
+            mac = "84:7C:9B:7A:10:3B";
+            name = "QCA4002";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.20";
+            mac = "7C:C2:94:E8:F1:1F";
+            name = "lumi.acpartner.mcn04";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.21";
+            mac = "54:EF:44:4F:24:78";
+            name = "lumi.gateway.mcn001";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.22";
+            mac = "64:9E:31:67:0D:AD";
+            name = "qmi.plug.psv3.fan";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.23";
+            mac = "D4:F0:EA:C5:7B:A7";
+            name = "qmi.plug.psv3.dehumidifier";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.24";
+            mac = "44:23:7C:A9:47:8F";
+            name = "chunmi.ihcooker.chefnic";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.25";
+            mac = "7C:C2:94:BF:05:98";
+            name = "chunmi.waterpuri.800f3p";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.26";
+            mac = "EC:4D:3E:D5:30:DF";
+            name = "lumi.curtain.hmcn02";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.27";
+            mac = "5C:02:14:28:39:1B";
+            name = "xiaomi.wifispeaker.l16a";
+          }
         ];
       };
     };

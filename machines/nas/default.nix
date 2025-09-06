@@ -125,7 +125,9 @@
         "shell_command"
         "wake_on_lan"
         "workday"
+        "xiaomi_aqara"
         "xiaomi_ble"
+        "xiaomi_miio"
         "zeroconf"
       ];
       config = {
@@ -161,6 +163,7 @@
         bodymiscale
         smartir
         midea_ac_lan
+        xiaomi_gateway3
       ];
     };
 
@@ -385,6 +388,8 @@
         matchConfig.Name = "vlan30";
         networkConfig = {
           DHCP = true;
+          Domains = "protoducer.com vamrs.org";
+          Address = "192.168.8.3/24";
         };
         linkConfig = {
           RequiredForOnline = false;
