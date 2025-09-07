@@ -140,7 +140,7 @@
           {
             dns = true;
             ip = "192.168.8.10";
-            mac = "";
+            mac = "30:83:98:a1:bf:ba";
             name = "ESP_A1BFBA";
           }
           {
@@ -154,6 +154,12 @@
             ip = "192.168.8.15";
             mac = "84:7C:9B:7A:10:3B";
             name = "QCA4002";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.16";
+            mac = "a4:7d:9f:eb:a8:c8";
+            name = "Ipcamera";
           }
           {
             dns = true;
