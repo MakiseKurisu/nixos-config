@@ -164,6 +164,7 @@
         smartir
         midea_ac_lan
         xiaomi_gateway3
+        xiaomi_miot
       ];
     };
 
