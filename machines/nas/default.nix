@@ -176,6 +176,19 @@
       dlsPort = 443;
     };
 
+    meshcentral = {
+      enable = true;
+      settings = {
+        settings = {
+          cert = "mc.protoducer.com";
+          port = 4430;
+          portBind = "127.0.0.1";
+          aliasPort = 443;
+          redirPort = 0;
+        };
+      };
+    };
+
     nginx = {
       virtualHosts = let
         ssl = {
@@ -223,6 +236,12 @@
             extraConfig = ''
               autoindex on;
             '';
+          };
+        };
+        "mc.protoducer.com" = https {
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "https://127.0.0.1:4430/"; 
           };
         };
         "pico.protoducer.com" = https {

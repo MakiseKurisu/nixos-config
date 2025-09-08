@@ -53,6 +53,10 @@
           }
           {
             ip = service_ip;
+            name = "mc";
+          }
+          {
+            ip = service_ip;
             name = "proxy";
           }
           {

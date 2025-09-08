@@ -48,7 +48,6 @@
       NIX_AUTO_RUN = "1";
     };
     systemPackages = with pkgs; [
-      amtterm
       audacity
       nur.repos.xddxdd.baidunetdisk
       bottles
