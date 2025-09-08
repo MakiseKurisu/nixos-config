@@ -29,7 +29,7 @@
         interface = {
           wg1 = {
             proto = "wireguard";
-            addresses = [ "10.0.32.6/32" "fd32::6/128" ];
+            addresses = [ "10.0.32.6/24" "fd32::6/64" ];
             mtu = 1280;
             private_key._secret = "wg1_private_key";
           };
