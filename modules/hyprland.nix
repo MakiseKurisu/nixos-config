@@ -290,6 +290,8 @@
           "$mainMod SHIFT, kp_insert, movetoworkspacesilent, 20"
           "$mainMod, mouse_down, workspace, e-1"
           "$mainMod, mouse_up, workspace, e+1"
+          "$mainMod SHIFT, mouse_down, movetoworkspace, e-1"
+          "$mainMod SHIFT, mouse_up, movetoworkspace, e+1"
           ", XF86Search, exec, fsearch"
           ", XF86Display, exec, nwg-displays --num_ws 30"
           #", XF86WLAN, exec, kitty"
