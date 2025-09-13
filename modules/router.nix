@@ -113,9 +113,25 @@
           while read -r; do
             REPLY="$(cut -d ' ' -f 7 <<< "$REPLY" | sed -E "s/(.*)\:.*/\1/")"
             ${lib.getExe' pkgs.util-linux "logger"} -s -t "qmi_wwan" "Detect modem lock up."
-            echo "$REPLY" > /sys/bus/usb/drivers/usb/unbind
-            sleep 1
-            echo "$REPLY" > /sys/bus/usb/drivers/usb/bind
+            if [[ -f /sys/bus/usb/devices/"$REPLY"/port/disable ]]; then
+              echo "USB supports port power management. Try power cycling."
+              CURRENT_PORT="$(realpath /sys/bus/usb/devices/"$REPLY"/port)"
+              if [[ -L "$CURRENT_PORT"/peer ]]; then
+                PEER_PORT="$CURRENT_PORT/peer"
+              else
+                PEER_PORT="$CURRENT_PORT"
+              fi
+              echo 1 > "$PEER_PORT/disable"
+              echo 1 > "$CURRENT_PORT/disable"
+              sleep 1
+              echo 0 > "$CURRENT_PORT/disable"
+              echo 0 > "$PEER_PORT/disable"
+            else
+              echo "USB does not support port power management. Try driver reloading."
+              echo "$REPLY" > /sys/bus/usb/drivers/usb/unbind
+              sleep 1
+              echo "$REPLY" > /sys/bus/usb/drivers/usb/bind
+            fi
           done < <(journalctl -kfS now --grep "qmi_wwan.*wwan.*: NETDEV WATCHDOG: CPU: .*: transmit queue .* timed out .* ms")
         '';
         wantedBy = [ "multi-user.target" ];
