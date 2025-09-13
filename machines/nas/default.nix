@@ -164,7 +164,7 @@
         smartir
         midea_ac_lan
         xiaomi_gateway3
-        xiaomi_miot
+        pkgs.unstable.home-assistant-custom-components.xiaomi_miot
       ];
     };
 
@@ -251,6 +251,16 @@
           };
         };
       };
+    };
+
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      jack.enable = true;
     };
 
     udev.extraRules = ''
