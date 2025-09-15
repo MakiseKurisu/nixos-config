@@ -57,6 +57,10 @@
           }
           {
             ip = service_ip;
+            name = "nc";
+          }
+          {
+            ip = service_ip;
             name = "proxy";
           }
           {

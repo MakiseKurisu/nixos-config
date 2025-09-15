@@ -189,6 +189,17 @@
       };
     };
 
+    nextcloud = {
+      config = {
+        adminuser = "Excalibur";
+        adminpassFile = "${pkgs.writeText "adminpass" "adminpass"}";
+        dbtype = "sqlite";
+      };
+      enable = true;
+      hostName = "nc.protoducer.com";
+      notify_push.enable = true;
+    };
+
     nginx = {
       virtualHosts = let
         ssl = {
@@ -244,6 +255,7 @@
             proxyPass = "https://127.0.0.1:4430/"; 
           };
         };
+        "nc.protoducer.com" = https {};
         "pico.protoducer.com" = https {
           locations."/" = {
             proxyWebsockets = true;
