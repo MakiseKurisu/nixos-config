@@ -86,6 +86,7 @@
       gtk3
       guvcview
       helvum
+      heroic
       hyprcursor
       jq
       kicad
