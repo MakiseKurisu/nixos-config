@@ -38,7 +38,7 @@
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland;xcb";
       CLUTTER_BACKEND = "wayland";
-      SDL_VIDEODRIVER = "wayland";
+      SDL_VIDEODRIVER = "wayland,x11,windows";
     };
     sessionVariables = {
       EDITOR = "nano";
