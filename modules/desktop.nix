@@ -227,6 +227,7 @@
         pr-mmdebstrap.debian-archive-keyring
       ];
     };
+    bash.blesh.enable = true;
     dconf.enable = true;
     firefox = {
       enable = true;
@@ -242,17 +243,6 @@
     regreet.enable = true;
     hyprland.enable = true;
     seahorse.enable = true;
-    starship = {
-      enable = true;
-      settings = {
-        shlvl = {
-          disabled = false;
-          threshold = 1;
-        };
-        cmd_duration.show_notifications = true;
-        status.disabled = false;
-      };
-    };
     steam = {
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

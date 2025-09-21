@@ -69,6 +69,14 @@
         starship = {
           enable = true;
           enableBashIntegration = true;
+          settings = {
+            shlvl = {
+              disabled = false;
+              threshold = 1;
+            };
+            cmd_duration.show_notifications = true;
+            status.disabled = false;
+          };
         };
         direnv = {
           enable = true;
