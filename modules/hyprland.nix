@@ -212,6 +212,7 @@
           "workspace 3 silent, class:^(battle\.net\.exe)$, title:^(Battle\.net)$"
           "workspace 3 silent, class:^(battle\.net\.exe)$, title:^(Battle\.net Login)$"
           "workspace 4 silent, class:^(battle\.net\.exe)$, title:^(Battle\.net - Chats and Groups)$"
+          "workspace 10 silent, class:^(com\.alibabainc\.dingtalk)$, title:^(升级提醒)$"
           "workspace 10 silent, class:^(explorer\.exe)$, title:^()$"
           "workspace 10 silent, class:^(explorer\.exe)$, title:^(Wine System Tray)$"
           "workspace 10 silent, class:^(steam_app_default)$, title:^()$"
