@@ -191,6 +191,7 @@
           "float, class:^(.*)$, title:^(Open File)$"
           "float, class:^(.*)$, title:^(Open Folder)$"
           "float, class:^(.*)$, title:^(Picture)$" # Feishu
+          "float, class:^(com\.alibabainc\.dingtalk)$, title:^(com\.alibabainc\.dingtalk)$"
           "float, class:^(org\.kde\.kcalc)$, title:^(KCalc)$"
           "float, class:^(thunderbird)$, title:^(Write\: .*)$"
           "float, class:^(thunderbird)$, title:^(Calendar Reminders)$"
