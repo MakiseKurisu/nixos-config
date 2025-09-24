@@ -15,10 +15,6 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-droid";
     };
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-2.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-droid";
@@ -56,7 +52,6 @@
     , nixpkgs-unstable
     , flake-parts
     , home-manager
-    , lix-module
     , nix-on-droid
     , nixos-vscode-server
     , NUR

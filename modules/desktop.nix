@@ -5,7 +5,6 @@
     ./pr/mmdebstrap.nix
     ./hyprland.nix
     ./waybar.nix
-    inputs.lix-module.nixosModules.default
     inputs.aagl.nixosModules.default
     inputs.nixified-ai.nixosModules.comfyui
   ];
@@ -210,7 +209,17 @@
     };
   };
 
-  nix.settings = inputs.aagl.nixConfig;
+  nix = {
+    package = pkgs.lixPackageSets.stable.lix;
+    settings = inputs.aagl.nixConfig;
+  };
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      inherit (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgs.lixPackageSets.stable);
+    })
+  ];
+
   programs = {
     anime-game-launcher.enable = true;
     anime-games-launcher.enable = true;
