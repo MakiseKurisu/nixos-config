@@ -1,6 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
+  disabledModules = [ "system/boot/kernel.nix" ];
+  imports = [
+    "${inputs.nixpkgs-unstable}/nixos/modules/system/boot/kernel.nix"
+  ];
+
   boot = {
     kernelPackages = lib.mkOverride 990 pkgs.unstable.linuxPackages;
     kernelModules = [ "tcp_bbr" ];

@@ -53,7 +53,7 @@
       brightnessctl
       cachix
       calibre
-      (chromium.override (previous: {
+      (unstable.chromium.override (previous: {
         commandLineArgs = (previous.commandLineArgs or "") +
           " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
       }))
@@ -144,7 +144,7 @@
       teams-for-linux
       ventoy-full
       vlc
-      wechat-uos
+      wechat
       wemeet
       wev
       wlr-randr

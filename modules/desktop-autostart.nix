@@ -12,7 +12,7 @@
           "[workspace 15 silent] teams-for-linux"
           "[workspace 16 silent] dingtalk"
           "[workspace 17 silent] qq"
-          "[workspace 18 silent] wechat-uos"
+          "[workspace 18 silent] wechat"
         ];
       };
     };

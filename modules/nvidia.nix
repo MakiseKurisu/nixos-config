@@ -47,11 +47,11 @@
     comfyui = {
       acceleration = "cuda";
     };
-    sunshine.package = pkgs.sunshine.override {
+    sunshine.package = pkgs.unstable.sunshine.override {
       cudaSupport = true;
     };
     wivrn = {
-      package = pkgs.wivrn.override {
+      package = pkgs.unstable.wivrn.override {
         cudaSupport = true;
       };
     };
