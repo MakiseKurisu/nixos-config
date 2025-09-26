@@ -162,23 +162,24 @@
             userSettings = {
               "debug.javascript.unmapMissingSources" = true;
               "diffEditor.ignoreTrimWhitespace" = false;
+              "diffEditor.maxComputationTime" = 30000;
               "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace, 'NotoSans Nerd Font', 'Font Awesome 6 Free', 'RobotoMono Nerd Font'";
               "editor.rulers" = [
                 80
               ];
               "editor.selectionClipboard" = false;
               "editor.stickyScroll.enabled" = true;
+              "explorer.confirmDragAndDrop" = false;
               "files.autoGuessEncoding" = true;
               "files.autoSave" = "afterDelay";
               "git.autofetch" = true;
               "git.confirmSync" = false;
               "git.enableSmartCommit" = true;
               "git.replaceTagsWhenPull" = true;
-              "window.titleBarStyle" = "custom";
               "makefile.configureOnOpen" = true;
-              "explorer.confirmDragAndDrop" = false;
+              "window.titleBarStyle" = "custom";
               "workbench.welcomePage.walkthroughs.openOnInstall" = false;
-              "diffEditor.maxComputationTime" = 30000;
+              "update.showReleaseNotes" = false;
             };
           };
         };
