@@ -26,6 +26,11 @@
             vlan = 30;
             ports = ["eth0:t"];
           }
+          {
+            device = "br-lan";
+            vlan = 40;
+            ports = ["eth0:t"];
+          }
         ];
       };
     };

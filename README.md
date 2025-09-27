@@ -61,7 +61,7 @@ sudo incus storage delete default
 sudo incus storage create local:default btrfs source=/media/root/@incus
 
 sudo incus profile device add local:default root disk pool=default path=/
-sudo incus profile device add local:default eth0 nic name=eth0 nictype=bridged parent=br0 vlan=1 vlan.tagged=10,20,30
+sudo incus profile device add local:default eth0 nic name=eth0 nictype=bridged parent=br0 vlan.tagged=1,10,20,30,40
 
 sudo incus create images:openwrt/24.10 local:openwrt -p default
 sudo incus config device override local:openwrt eth0 host_name=openwrt

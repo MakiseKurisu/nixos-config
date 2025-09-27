@@ -89,6 +89,10 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
             VLAN = 10;
           }
           {
@@ -96,6 +100,9 @@
           }
           {
             VLAN = 30;
+          }
+          {
+            VLAN = 40;
           }
         ];
       };
@@ -105,6 +112,10 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
             VLAN = 10;
           }
           {
@@ -112,6 +123,9 @@
           }
           {
             VLAN = 30;
+          }
+          {
+            VLAN = 40;
           }
         ];
       };
@@ -120,14 +134,10 @@
         networkConfig.Bridge = "br0";
         linkConfig.RequiredForOnline = "no";
         bridgeVLANs = [
+          # This USB NIC cannot do both tagged and untagged traffic at the same time
           {
-            VLAN = 10;
-          }
-          {
-            VLAN = 20;
-          }
-          {
-            VLAN = 30;
+            PVID = 30;
+            EgressUntagged = 30;
           }
         ];
       };
@@ -152,8 +162,13 @@
           IPv6AcceptRA = false;
           IPv6SendRA = false;
         };
-        bridgeConfig = {};
+        bridgeConfig = {
+          HairPin = true;
+        };
         bridgeVLANs = [
+          {
+            VLAN = 1;
+          }
           {
             VLAN = 10;
           }
@@ -162,6 +177,9 @@
           }
           {
             VLAN = 30;
+          }
+          {
+            VLAN = 40;
           }
         ];
         vlan = [

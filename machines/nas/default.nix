@@ -370,6 +370,10 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
             VLAN = 10;
           }
           {
@@ -377,6 +381,9 @@
           }
           {
             VLAN = 30;
+          }
+          {
+            VLAN = 40;
           }
         ];
       };
@@ -386,6 +393,10 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
             VLAN = 10;
           }
           {
@@ -393,6 +404,9 @@
           }
           {
             VLAN = 30;
+          }
+          {
+            VLAN = 40;
           }
         ];
       };
@@ -402,6 +416,10 @@
         linkConfig.RequiredForOnline = "enslaved";
         bridgeVLANs = [
           {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
             VLAN = 10;
           }
           {
@@ -409,6 +427,9 @@
           }
           {
             VLAN = 30;
+          }
+          {
+            VLAN = 40;
           }
         ];
       };
@@ -422,8 +443,14 @@
           IPv6AcceptRA = false;
           IPv6SendRA = false;
         };
-        bridgeConfig = {};
+        bridgeConfig = {
+          HairPin = true;
+        };
         bridgeVLANs = [
+          {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
           {
             VLAN = 10;
           }
@@ -432,6 +459,9 @@
           }
           {
             VLAN = 30;
+          }
+          {
+            VLAN = 40;
           }
         ];
         vlan = [

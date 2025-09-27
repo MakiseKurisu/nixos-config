@@ -7,6 +7,7 @@
       inherit service_ip;
     })
     ./guest.nix
+    ./mgmt.nix
     ./wan.nix
     ./wwan0.nix
     ./pppoe.nix
@@ -46,6 +47,13 @@
             forward = "ACCEPT";
           }
           {
+            name = "mgmt";
+            network = [ "mgmt" ];
+            input = "ACCEPT";
+            output = "ACCEPT";
+            forward = "DROP";
+          }
+          {
             name = "wg";
             network = [ "wg0" "wg1" "wg2" "wg3" "wg4" ];
             input = "ACCEPT";
@@ -55,6 +63,10 @@
           }
         ];
         forwarding = [
+          {
+            src = "lan";
+            dest = "mgmt";
+          }
           {
             src = "lan";
             dest = "wan";
@@ -176,9 +188,7 @@
           }
           {
             dest_port = "33434-33689";
-            enabled = 0;
-            family = "ipv4";
-            name = "Support-UDP-Traceroute";
+            name = "Disable-UDP-Traceroute";
             proto = "udp";
             src = "wan";
             target = "REJECT";
@@ -186,7 +196,6 @@
           # Custom rules
           {
             dest_port = 443;
-            enabled = 0;
             name = "Block Guest Access";
             proto = "tcp";
             src = "guest";
@@ -207,6 +216,7 @@
           }
           {
             name = "Allow WAN SSH";
+            enabled = false;
             proto = "tcp";
             src = "wan";
             dest_port = 22;

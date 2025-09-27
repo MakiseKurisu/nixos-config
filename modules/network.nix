@@ -44,6 +44,13 @@
         };
         vlanConfig.Id = 30;
       };
+      "20-vlan40" = {
+        netdevConfig = {
+          Kind = "vlan";
+          Name = "vlan40";
+        };
+        vlanConfig.Id = 40;
+      };
     };
     networks = {
       "01-lo" = {
