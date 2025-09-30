@@ -193,6 +193,7 @@
           "float, class:^(.*)$, title:^(Picture)$" # Feishu
           "float, class:^(com\.alibabainc\.dingtalk)$, title:^(com\.alibabainc\.dingtalk)$"
           "float, class:^(org\.kde\.kcalc)$, title:^(KCalc)$"
+          "float, class:^(thunderbird)$, title:^(Authentication Required - Mozilla Thunderbird)$"
           "float, class:^(thunderbird)$, title:^(Write\: .*)$"
           "float, class:^(thunderbird)$, title:^(Calendar Reminders)$"
           "float, class:^(thunderbird)$, title:^(Edit Item)$"
