@@ -31,6 +31,8 @@
     home.stateVersion = "22.11";
   };
 
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+
   hardware = {
     graphics = {
       extraPackages = with pkgs; [

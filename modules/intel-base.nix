@@ -4,6 +4,7 @@
   boot = {
     kernelParams = [
       "intel_iommu=on"
+      "i915.enable_guc=3"
     ];
   };
 

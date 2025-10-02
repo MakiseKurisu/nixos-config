@@ -27,6 +27,8 @@
 
   boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
 
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+
   hardware = {
     graphics = {
       extraPackages = with pkgs; [
