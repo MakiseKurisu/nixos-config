@@ -91,6 +91,10 @@
         };
         bridgeVLANs = [
           {
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
             VLAN = 10;
           }
           {
@@ -105,10 +109,18 @@
       "50-br0" = {
         matchConfig.Name = "br0";
         networkConfig = {
-          DHCP = true;
+          LinkLocalAddressing = false;
+          DHCP = false;
+          LLDP = false;
+          EmitLLDP = false;
+          IPv6AcceptRA = false;
+          IPv6SendRA = false;
         };
         bridgeConfig = {};
         bridgeVLANs = [
+          {
+            VLAN = 1;
+          }
           {
             VLAN = 10;
           }
@@ -120,8 +132,18 @@
           }
         ];
         vlan = [
+          "vlan1"
           "vlan20"
         ];
+        linkConfig = {
+          RequiredForOnline = false;
+        };
+      };
+      "50-vlan1" = {
+        matchConfig.Name = "vlan1";
+        networkConfig = {
+          DHCP = true;
+        };
         linkConfig = {
           RequiredForOnline = false;
         };
