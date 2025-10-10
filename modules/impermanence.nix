@@ -105,10 +105,9 @@
           fi
 
           if mkpasswd -m sha-512 "$p1" | sudo tee "$passwd" &>/dev/null; then
+            sudo chmod 0600 "$passwd"
             echo ""
             echo "New password written to $passwd"
-            echo "Password will become active next time you run:" 
-            echo "sudo nixos-rebuild switch"
           else
             echo "Failed to update passwd file. Exiting ..." >&2
             exit 3
