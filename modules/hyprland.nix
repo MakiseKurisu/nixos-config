@@ -192,6 +192,7 @@
           "float, class:^(.*)$, title:^(Open Folder)$"
           "float, class:^(.*)$, title:^(Picture)$" # Feishu
           "float, class:^(com\.alibabainc\.dingtalk)$, title:^(com\.alibabainc\.dingtalk)$"
+          "float, class:^(heroic)$, title:^(Heroic Games Launcher)$"
           "float, class:^(org\.kde\.kcalc)$, title:^(KCalc)$"
           "float, class:^(thunderbird)$, title:^(Authentication Required - Mozilla Thunderbird)$"
           "float, class:^(thunderbird)$, title:^(Write\: .*)$"
