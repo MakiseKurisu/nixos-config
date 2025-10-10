@@ -299,6 +299,7 @@
           ", XF86Display, exec, nwg-displays --num_ws 30"
           #", XF86WLAN, exec, kitty"
           #", XF86Tools, exec, kitty"
+          #", XF86Launch1, exec, kitty"
           #", XF86LaunchA, exec, kitty"
           #", XF86Explorer, exec, kitty"
           ", XF86Calculator, exec, gnome-calculator"

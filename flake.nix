@@ -222,6 +222,13 @@
               ./machines/n40
             ];
           };
+          b490 = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
+            system = "x86_64-linux";
+            modules = [
+              ./machines/b490
+            ];
+          };
         };
 
         nixOnDroidConfigurations = {
