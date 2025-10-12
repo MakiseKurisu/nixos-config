@@ -34,6 +34,7 @@
 
   boot = {
     kernelModules = [
+      "nct6775"
       "w83627hf_wdt"
     ];
     extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
