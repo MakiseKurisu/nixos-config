@@ -61,6 +61,10 @@
           }
           {
             ip = service_ip;
+            name = "ol";
+          }
+          {
+            ip = service_ip;
             name = "proxy";
           }
           {

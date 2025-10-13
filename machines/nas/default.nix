@@ -222,9 +222,9 @@
         adminpassFile = "${pkgs.writeText "adminpass" "adminpass"}";
         dbtype = "sqlite";
       };
-      enable = true;
+      enable = false;
       hostName = "nc.protoducer.com";
-      notify_push.enable = true;
+      notify_push.enable = false;
     };
 
     nginx = {
@@ -261,6 +261,7 @@
             proxyPass = "http://127.0.0.1:8096/";
           };
         };
+        "ol.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:5244/"; };
         "ha.protoducer.com" = http_https {
           locations."/" = {
             proxyWebsockets = true;
@@ -344,6 +345,26 @@
         Type = "oneshot";
       };
       wantedBy = [ "sys-subsystem-net-devices-eno1.device" ];
+    };
+    openlist = {
+      after = [
+        "network.target"
+      ];
+      script = ''
+        set -eu
+        ${lib.getExe pkgs.unstable.openlist} server --data /var/lib/openlist
+      '';
+      serviceConfig = {
+        Type = "simple";
+        Restart = "on-failure";
+        DynamicUser = true;
+        StateDirectory = "openlist";
+        WorkingDirectory = "/var/lib/openlist";
+        ReadWritePaths = [
+          "/media/raid/OpenList"
+        ];
+      };
+      wantedBy = [ "multi-user.target" ];
     };
   };
 
