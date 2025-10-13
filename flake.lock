@@ -725,22 +725,6 @@
         "type": "github"
       }
     },
-    "pr-xiaomi_home": {
-      "locked": {
-        "lastModified": 1756565249,
-        "narHash": "sha256-gXHWfqlAThKxVX5IfIHEK7YtuK+InZRnJMRnYlvjk2I=",
-        "owner": "MakiseKurisu",
-        "repo": "nixpkgs",
-        "rev": "78c85d77ea18643b0f705509954b720b1d451f00",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MakiseKurisu",
-        "ref": "ha_xiaomi_home",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "NUR": "NUR",
@@ -763,7 +747,6 @@
         "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
         "pr-pico-rpa": "pr-pico-rpa",
-        "pr-xiaomi_home": "pr-xiaomi_home",
         "vgpu4nixos": "vgpu4nixos"
       }
     },

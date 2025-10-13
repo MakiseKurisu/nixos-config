@@ -24,7 +24,6 @@
 
     ../../modules/pr/fastapi-dls.nix
     ../../modules/pr/pico-rpa.nix
-    ../../modules/pr/xiaomi_home.nix
     ../../modules/pr/keyboard_remote.nix
 
     inputs.disko.nixosModules.disko
@@ -185,7 +184,7 @@
       };
       configWritable = true;
       customComponents = with pkgs.home-assistant-custom-components; [
-        pkgs.pr-xiaomi_home.home-assistant-custom-components.xiaomi_home
+        pkgs.unstable.home-assistant-custom-components.xiaomi_home
         tuya_local
         ntfy
         bodymiscale
