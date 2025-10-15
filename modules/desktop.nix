@@ -304,6 +304,8 @@
               }
               $mainMod=SUPER
               bind=$mainMod, M, exit,
+              env=GSK_RENDERER,ngl
+              monitor=VGA-1,disable
             '';
           in
             "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.hyprland} --config ${greetdConfig}";
