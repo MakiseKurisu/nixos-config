@@ -49,7 +49,9 @@
     systemPackages = with pkgs; [
       audacity
       nur.repos.xddxdd.baidunetdisk
-      bottles
+      (bottles.override (previous: {
+        removeWarningPopup = true;
+      }))
       brightnessctl
       cachix
       calibre
