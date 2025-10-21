@@ -72,6 +72,10 @@
         "https://mirrors.ustc.edu.cn/nix-channels/store"
         "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
         "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
+        "https://radxa.cachix.org"
+      ];
+      trusted-public-keys = [
+        "radxa.cachix.org-1:Jc5T8fpq3URBLeKKHER2PxcuAd74iPMiW6TOb1M1yPc="
       ];
       trusted-users = [
         "@wheel"
