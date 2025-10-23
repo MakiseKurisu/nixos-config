@@ -7,6 +7,7 @@
     ../../modules/desktop.nix
     ../../modules/desktop-autostart.nix
     ../../modules/podman.nix
+    # ../../modules/amd.nix
     ../../modules/intel.nix
     ../../modules/kernel.nix
     ../../modules/network.nix
@@ -15,10 +16,13 @@
     ../../modules/users.nix
     ../../modules/vfio.nix
     ../../modules/virtualization.nix
+    # ../../modules/impermanence.nix
 
     # ../../modules/nfs-nas.nix
     # ../../modules/nfs-app01.nix
     #../../modules/wireguard.nix
+
+    # ../../modules/thinkpad.nix
 
     inputs.disko.nixosModules.disko
     # ./disko.nix
@@ -64,6 +68,31 @@
     home.stateVersion = "22.11";
     systemd.user = {
       services = {
+        oci = {
+          Unit = {
+            Description = "Deploy OCI changes";
+            StartLimitIntervalSec = 0;
+          };
+          Install = {
+            WantedBy = ["graphical-session.target"];
+          };
+          Service = {
+            Type = "oneshot";
+            Restart = "on-failure";
+            RestartSec = 5;
+            ExecStart = ''
+              ${lib.getExe pkgs.bash} -c \
+                "cd /home/excalibur/Documents/GitHub/nixos-config/tofu && \
+                ${lib.getExe (pkgs.opentofu.withPlugins (p: with p; [
+                  cloudflare
+                  github
+                  incus
+                  oci
+                  sops
+                ]))} apply -auto-approve"
+            '';
+          };
+        };
         lock-session = {
           Unit = {
             Description = "Lock current graphical session";
