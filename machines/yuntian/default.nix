@@ -109,8 +109,8 @@
         ''}"
       ];
       workspace = [
-        "r[1-20], monitor:DP-2"
-        "2, monitor:DP-2, default:yes"
+        "r[1-20], monitor:DP-1"
+        "2, monitor:DP-1, default:yes"
         "30, monitor:HDMI-A-2, default:yes"
       ];
       xwayland = {
