@@ -61,7 +61,7 @@
           enableVteIntegration = true;
           bashrcExtra = ''
             picocom() {
-              env picocom -b ''${1:-1500000} /dev/ttyUSB0
+              env picocom -b ''${1:-1500000} /dev/ttyCH9344USB2
             }
           '';
         };
