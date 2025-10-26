@@ -148,6 +148,7 @@
         "ping"
         "radio_browser"
         "shell_command"
+        "vlc"
         "wake_on_lan"
         "whisper"
         "workday"
