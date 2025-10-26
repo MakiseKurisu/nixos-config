@@ -151,6 +151,12 @@
           }
           {
             dns = true;
+            ip = "192.168.8.4";
+            mac = "C0:18:03:E9:1C:B9";
+            name = "HPE91CB9";
+          }
+          {
+            dns = true;
             ip = "192.168.8.10";
             mac = "30:83:98:a1:bf:ba";
             name = "ESP_A1BFBA";
