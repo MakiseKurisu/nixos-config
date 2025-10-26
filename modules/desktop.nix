@@ -104,6 +104,7 @@
       moonlight-qt
       musescore
       muse-sounds-manager
+      naps2
       nautilus
       networkmanagerapplet
       nixpkgs-review
@@ -193,6 +194,18 @@
         sansSerif = [ "Source Sans Pro" "Noto Sans CJK SC" ];
         monospace = [ "Source Code Pro" "Noto Sans Mono CJK SC" ];
       };
+    };
+  };
+
+  hardware = {
+    sane = {
+      enable = true;
+      extraBackends = with pkgs; [
+        (epsonscan2.override {
+          withNonFreePlugins = true;
+        })
+        hplipWithPlugin
+      ];
     };
   };
 
@@ -337,7 +350,7 @@
       enable = true;
       drivers = with pkgs; [
         gutenprint
-        hplip
+        hplipWithPlugin
         epson-escpr
       ];
     };
