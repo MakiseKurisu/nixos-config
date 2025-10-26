@@ -135,10 +135,21 @@
         networkConfig.Bridge = "br0";
         linkConfig.RequiredForOnline = "no";
         bridgeVLANs = [
-          # This USB NIC cannot do both tagged and untagged traffic at the same time
           {
-            PVID = 30;
-            EgressUntagged = 30;
+            PVID = 1;
+            EgressUntagged = 1;
+          }
+          {
+            VLAN = 10;
+          }
+          {
+            VLAN = 20;
+          }
+          {
+            VLAN = 30;
+          }
+          {
+            VLAN = 40;
           }
         ];
       };
