@@ -419,12 +419,14 @@
         mimeApps = {
           enable = true;
           associations.added = {
+            "application/json" = [ "code.desktop" ];
             "application/x-shellscript" = [ "code.desktop" ];
             "video/mpeg" = [ "vlc.desktop" ];
           };
           defaultApplications = {
             # find /run/current-system/sw/share/applications/ -name "**"
             # More folders are available under $XDG_DATA_DIRS
+            "application/json" = [ "code.desktop" ];
             "application/pdf" = [ "chromium-browser.desktop" ];
             "application/rss+xml" = [ "thunderbird.desktop" ];
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
