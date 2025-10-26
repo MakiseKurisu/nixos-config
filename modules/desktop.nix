@@ -205,6 +205,7 @@
           withNonFreePlugins = true;
         })
         hplipWithPlugin
+        sane-airscan
       ];
     };
   };
