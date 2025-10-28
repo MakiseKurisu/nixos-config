@@ -55,6 +55,21 @@
     };
   };
 
+  power.ups = {
+    enable = true;
+    mode = "netclient";
+    upsmon = {
+      monitor = {
+        SMT1500I = {
+          passwordFile = "${pkgs.writeText "ups-guest.txt" "guest"}";
+          system = "SMT1500I@192.168.9.3";
+          type = "secondary";
+          user = "guest";
+        };
+      };
+    };
+  };
+
   networking.interfaces.enp10s0.useDHCP = false;
   networking.interfaces.enp13s0.useDHCP = false;
   networking.interfaces.enp13s0.wakeOnLan.enable = true;

@@ -64,6 +64,54 @@
     };
   };
 
+  power.ups = {
+    enable = true;
+    mode = "netserver";
+    openFirewall = true;
+    users = {
+      admin = {
+        actions = [ "set" "fsd" ];
+        instcmds = [ "all" ];
+        passwordFile = "/var/lib/ups/adminPassword";
+        upsmon = "primary";
+      };
+      guest = {
+        passwordFile = "${pkgs.writeText "ups-guest.txt" "guest"}";
+        upsmon = "secondary";
+      };
+    };
+    ups = {
+      SMT1500I = {
+        driver = "usbhid-ups";
+        port = "auto";
+        directives = [
+          "vendorid = 051d"
+          "productid = 0003"
+          "serial = AS1048210050"
+        ];
+      };
+    };
+    upsd = {
+      listen = [
+        {
+          address = "127.0.0.1";
+        }
+        {
+          address = "192.168.9.3";
+        }
+      ];
+    };
+    upsmon = {
+      monitor = {
+        SMT1500I = {
+          system = "SMT1500I";
+          type = "primary";
+          user = "admin";
+        };
+      };
+    };
+  };
+
   services = {
     nfs.server = {
       exports = ''
