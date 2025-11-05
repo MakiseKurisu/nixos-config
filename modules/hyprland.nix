@@ -157,6 +157,9 @@
         ecosystem = {
           no_update_news = "yes";
         };
+        env = [
+          "AQ_DRM_DEVICES,/dev/dri/card-mali:/dev/dri/card-intel:/dev/dri/card-amd:/dev/dri/card-nvidia:/dev/dri/card0:/dev/dri/card1"
+        ];
         input = {
           kb_layout = "us";
           numlock_by_default = "yes";

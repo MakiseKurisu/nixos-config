@@ -363,6 +363,14 @@
       openFirewall = true;
     };
     systemd-lock-handler.enable = true;
+
+    udev.extraRules = ''
+      ACTION=="change" KERNEL=="card*", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", DRIVERS=="i915", SYMLINK+="dri/card-intel"
+      ACTION=="change" KERNEL=="card*", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", DRIVERS=="amdgpu", SYMLINK+="dri/card-amd"
+      ACTION=="change" KERNEL=="card*", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", DRIVERS=="nvidia", SYMLINK+="dri/card-nvidia"
+      ACTION=="change" KERNEL=="card*", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", DRIVERS=="nouveau", SYMLINK+="dri/card-nvidia"
+      ACTION=="change" KERNEL=="card*", SUBSYSTEM=="drm", SUBSYSTEMS=="platform", DRIVERS=="panthor", SYMLINK+="dri/card-mali"
+    '';
   };
 
   hardware = {
