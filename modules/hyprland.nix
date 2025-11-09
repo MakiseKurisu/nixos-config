@@ -213,6 +213,8 @@
           "float, class:^(steam)$, title:^(.*)$"
           "fullscreen, class:^(Waydroid)$, title:^(Waydroid)$"
           "fullscreen, class:^(heroesofthestorm_x64\.exe)$, title:^(Heroes of the Storm)$"
+          "workspace 1 silent, class:^(steam_app_default)$, title:^(二重螺旋  )$"
+          "workspace 1 silent, class:^(steam_app_default)$, title:^(MainWnd)$"
           "workspace 1 silent, class:^(heroesofthestorm_x64\.exe)$, title:^(Heroes of the Storm)$"
           "workspace 3 silent, class:^(battle\.net\.exe)$, title:^(Battle\.net)$"
           "workspace 3 silent, class:^(battle\.net\.exe)$, title:^(Battle\.net Login)$"
@@ -221,12 +223,16 @@
           "workspace 10 silent, class:^(explorer\.exe)$, title:^()$"
           "workspace 10 silent, class:^(explorer\.exe)$, title:^(Wine System Tray)$"
           "workspace 10 silent, class:^(steam_app_default)$, title:^()$"
+          "workspace 10 silent, class:^(steam_app_default)$, title:^(TransparentWind)$"
+          "workspace 10 silent, class:^(steam_app_default)$, title:^(FloatingStripWnd)$"
           "workspace 10 silent, class:^(heroesprofile\.uploader\.exe)$, title:^(Heroesprofile\.com Uploader v.*)$"
           "workspace 11 silent, class:^(.*)$, title:^(Feishu)$"
           "workspace 13 silent, class:^(Waydroid)$, title:^(Waydroid)$"
           "workspace 16 silent, class:^(com\.alibabainc\.dingtalk)$, title:^(钉钉)$"
           "workspace 17 silent, class:^(QQ)$, title:^(QQ)$"
           "workspace 18 silent, class:^(wechat)$, title:^(微信)$"
+          "workspace 19 silent, class:^(steam)$, title:^(Sign in to Steam)$"
+          "workspace 19 silent, class:^(steam)$, title:^(Steam)$"
         ];
         "$mainMod" = "SUPER";
         "$menu" = "nwg-drawer -term kitty -nofs";

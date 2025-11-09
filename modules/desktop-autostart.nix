@@ -13,6 +13,7 @@
           "[workspace 16 silent] dingtalk"
           "[workspace 17 silent] qq"
           "[workspace 18 silent] wechat"
+          "[workspace 19 silent] steam"
         ];
       };
     };
