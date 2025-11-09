@@ -147,7 +147,10 @@
         domain = true;
       };
     };
-    btrfs.autoScrub.enable = lib.mkDefault true;
+    btrfs.autoScrub = {
+      enable = lib.mkDefault true;
+      interval = "Fri *-*~07/1 04:00:00";
+    };
     dbus.enable = true;
     irqbalance.enable = true;
     mysqlBackup.enable = config.services.mysql.enable;
