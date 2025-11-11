@@ -2,6 +2,9 @@
 , ...}:
 {
   packages = [
+    "luci-proto-mbim"
+    # "luci-proto-modemmanager"
+    "luci-proto-ncm"
     "luci-proto-qmi"
     "kmod-usb-serial-option"
   ];
