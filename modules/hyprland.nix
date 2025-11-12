@@ -232,6 +232,7 @@
           "workspace 17 silent, class:^(QQ)$, title:^(QQ)$"
           "workspace 18 silent, class:^(wechat)$, title:^(微信)$"
           "workspace 19 silent, class:^(steam)$, title:^(Sign in to Steam)$"
+          "workspace 19 silent, class:^(steam)$, title:^(Special Offers)$"
           "workspace 19 silent, class:^(steam)$, title:^(Steam)$"
         ];
         "$mainMod" = "SUPER";
