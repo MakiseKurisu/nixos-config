@@ -177,9 +177,10 @@
               "git.enableSmartCommit" = true;
               "git.replaceTagsWhenPull" = true;
               "makefile.configureOnOpen" = true;
+              "terminal.integrated.scrollback" = 5000;
+              "update.showReleaseNotes" = false;
               "window.titleBarStyle" = "custom";
               "workbench.welcomePage.walkthroughs.openOnInstall" = false;
-              "update.showReleaseNotes" = false;
             };
           };
         };
