@@ -51,7 +51,7 @@
           background = [
             {
               path = "~/.config/hypr/lockscreen.png";
-              color = "rgba(25, 20, 20, 1.0)";
+              color = "rgba(160, 160, 160, 1.0)";
             }
           ];
 
@@ -61,7 +61,7 @@
               dots_size = 0.2;
               dots_spacing = 0.2;
               dots_center = true;
-              font_color = "rgb(200, 200, 200)";
+              font_color = "rgba(200, 200, 200, 1.0)";
               inner_color = "rgba(0, 0, 0, 0.5)";
               outer_color = "rgba(0, 0, 0, 0)";
               outline_thickness = 2;
@@ -87,7 +87,7 @@
             }
             {
               text = "$USER";
-              color = "rgba(255, 255, 255, 1)";
+              color = "rgba(255, 255, 255, 1.0)";
               font_size = 25;
               font_family = "JetBrains Mono Nerd Font Mono";
               position = "0, -40";
@@ -96,7 +96,7 @@
             }
             {
               text = "AUTHORIZED ACCESS ONLY";
-              color = "rgba(255, 0, 0, 0.6)";
+              color = "rgba(255, 0, 0, 1.0)";
               font_size = 18;
               font_family = "JetBrains Mono Nerd Font Mono";
               position = "0, 0";

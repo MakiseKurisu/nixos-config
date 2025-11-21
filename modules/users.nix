@@ -15,10 +15,6 @@
       xdg = {
         enable = true;
         configFile = {
-          "hypr" = {
-            source = ../configs/hypr;
-            recursive = true;
-          };
           "discord" = {
             source = ../configs/discord;
             recursive = true;
