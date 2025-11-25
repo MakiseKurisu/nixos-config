@@ -194,6 +194,7 @@
           "float, class:^(.*)$, title:^(Open File)$"
           "float, class:^(.*)$, title:^(Open Folder)$"
           "float, class:^(.*)$, title:^(Picture)$" # Feishu
+          "float, class:^(\.scrcpy-wrapped)$, title:^(.*)$"
           "float, class:^(com\.alibabainc\.dingtalk)$, title:^(com\.alibabainc\.dingtalk)$"
           "float, class:^(heroic)$, title:^(Heroic Games Launcher)$"
           "float, class:^(org\.kde\.kcalc)$, title:^(KCalc)$"
