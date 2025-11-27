@@ -212,6 +212,7 @@
           "float, class:^(heroesprofile\.uploader\.exe)$, title:^(Heroesprofile\.com Uploader v.*)$"
           "float, class:^(xdg-desktop-portal-gtk)$, title:^(.*)$"
           "float, class:^(steam)$, title:^(.*)$"
+          "stayfocused, class:^(Pinentry)$"
           "fullscreen, class:^(Waydroid)$, title:^(Waydroid)$"
           "fullscreen, class:^(heroesofthestorm_x64\.exe)$, title:^(Heroes of the Storm)$"
           "workspace 1 silent, class:^(steam_app_default)$, title:^(二重螺旋  )$"
