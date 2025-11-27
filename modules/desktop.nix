@@ -136,6 +136,7 @@
       remmina
       rs-tftpd
       rstudio
+      sc-controller
       selectdefaultapplication
       shotcut
       slack
