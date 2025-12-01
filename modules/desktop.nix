@@ -64,7 +64,11 @@
       darktable
       dbeaver-bin
       pkgs.unstable.devenv
-      nur.repos.xddxdd.dingtalk
+      (nur.repos.xddxdd.dingtalk.overrideAttrs (previous: {
+        postFixup = (previous.postFixup or "") + ''
+          echo "9.9.99-Release.9999999" > $out/version
+        '';
+      }))
       discord
       element-desktop
       (feishu.override (previous: {
@@ -216,7 +220,7 @@
       enable = true;
       type = "fcitx5";
       fcitx5 = {
-        waylandFrontend = true;
+        # waylandFrontend = true;
         addons = with pkgs; [
           fcitx5-gtk
           fcitx5-chinese-addons
@@ -294,7 +298,11 @@
   security = {
     polkit.enable = true;
     rtkit.enable = true;
-    pam.services.greetd.enableGnomeKeyring = true;
+    pam.services = {
+      greetd.enableGnomeKeyring = true;
+      greetd-password.enableGnomeKeyring = true;
+      login.enableGnomeKeyring = true;
+    };
   };
 
   services = {
