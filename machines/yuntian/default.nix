@@ -74,7 +74,7 @@
             StartLimitIntervalSec = 0;
           };
           Install = {
-            WantedBy = ["graphical-session.target"];
+            # WantedBy = ["graphical-session.target"];
           };
           Service = {
             Type = "oneshot";
