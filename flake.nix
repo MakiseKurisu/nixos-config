@@ -40,42 +40,20 @@
     pr-pico-rpa.url = "github:MakiseKurisu/nixpkgs/pico-rpa";
   };
 
-  outputs =
-    inputs@{ self
-    , nixpkgs
-    , nixpkgs-unstable
-    , flake-parts
-    , home-manager
-    , nix-on-droid
-    , nixos-vscode-server
-    , NUR
-    , dewclaw
-    , gfwlist2dnsmasq
-    , impermanence
-    , disko
-    , nixified-ai
-    , pr-mmdebstrap
-    , pr-fastapi-dls
-    , pr-mdevctl
-    , pr-pico-rpa
-    , ...
-    }: flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        # To import a flake module
-        # 1. Add foo to inputs
-        # 2. Add foo as a parameter to the outputs function
-        # 3. Add here: foo.flakeModule
-
+        ./machines
       ];
       systems = [ "x86_64-linux" "aarch64-linux" ];
       perSystem = { config, self', inputs', pkgs, lib, system, ... }: {
         formatter = pkgs.nixpkgs-fmt;
         packages = {
-          dewclaw-env = pkgs.callPackage dewclaw (import ./pkgs/dewclaw {
+          dewclaw-env = pkgs.callPackage inputs.dewclaw (import ./pkgs/dewclaw {
             inherit lib;
             gfwlist2dnsmasq = inputs.gfwlist2dnsmasq;
            });
-          default = self.packages.${system}.dewclaw-env;
+          default = self'.packages.${system}.dewclaw-env;
         };
       };
       flake = {
@@ -83,65 +61,50 @@
         # agnostic ones like nixosModule and system-enumerating ones, although
         # those are more easily expressed in perSystem.
         nixosConfigurations = {
-          app01 = nixpkgs.lib.nixosSystem {
+          app01 = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
             modules = [
               ./machines/app01
             ];
           };
-          main = nixpkgs.lib.nixosSystem {
+          yuntian = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
-            modules = [
-              ./machines/main
-            ];
-          };
-          yuntian = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
             modules = [
               ./machines/yuntian
             ];
           };
-          nas = nixpkgs.lib.nixosSystem {
+          nas = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
             modules = [
               ./machines/nas
             ];
           };
-          p15 = nixpkgs.lib.nixosSystem {
+          p15 = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
             modules = [
               ./machines/p15
             ];
           };
-          rpi3 = nixpkgs.lib.nixosSystem {
+          rpi3 = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
             modules = [
               ./machines/rpi3/configuration.nix
             ];
           };
-          w540 = nixpkgs.lib.nixosSystem {
+          w540 = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
             modules = [
               ./machines/w540/configuration.nix
             ];
           };
-          n40 = nixpkgs.lib.nixosSystem {
+          n40 = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
             modules = [
               ./machines/n40
             ];
           };
-          b490 = nixpkgs.lib.nixosSystem {
+          b490 = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
             modules = [
               ./machines/b490
             ];
@@ -149,19 +112,19 @@
         };
 
         nixOnDroidConfigurations = {
-          davinci = nix-on-droid.lib.nixOnDroidConfiguration {
+          davinci = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
             pkgs = inputs.nixpkgs-droid.legacyPackages."aarch64-linux";
             modules = [
               ./machines/davinci/nix-on-droid.nix
             ];
           };
-          bla-al00 = nix-on-droid.lib.nixOnDroidConfiguration {
+          bla-al00 = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
             pkgs = inputs.nixpkgs-droid.legacyPackages."aarch64-linux";
             modules = [
               ./machines/bla-al00
             ];
           };
-          p027 = nix-on-droid.lib.nixOnDroidConfiguration {
+          p027 = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
             pkgs = inputs.nixpkgs-droid.legacyPackages."aarch64-linux";
             modules = [
               ./machines/p027
