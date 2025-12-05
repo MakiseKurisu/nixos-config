@@ -1,5 +1,5 @@
 { lib
-, inputs
+, gfwlist2dnsmasq
 , release
 , target
 , arch
@@ -18,8 +18,7 @@
       inherit arch;
     })
     (import ../../../modules/openwrt/proxy.nix {
-      inherit lib service_ip;
-      gfwlist2dnsmasq = inputs.gfwlist2dnsmasq;
+      inherit lib service_ip gfwlist2dnsmasq;
     })
     (import ../../../modules/openwrt/dhcp.nix {
       inherit service_ip;
@@ -27,6 +26,7 @@
     (import ../../../modules/openwrt/networks {
       inherit service_ip;
     })
+    ../../../modules/openwrt/wireless.nix
 
     ./config.nix
   ];
