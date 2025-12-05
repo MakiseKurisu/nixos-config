@@ -2,13 +2,13 @@
   description = "NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs-droid.url = "github:MakiseKurisu/nixpkgs/nixos-24.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager-droid = {
@@ -28,13 +28,8 @@
       flake = false;
     };
     impermanence.url = "github:nix-community/impermanence";
-    vgpu4nixos.url = "github:MakiseKurisu/vgpu4nixos";
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixified-ai.url = "github:nixified-ai/flake";
@@ -57,9 +52,7 @@
     , dewclaw
     , gfwlist2dnsmasq
     , impermanence
-    , vgpu4nixos
     , disko
-    , aagl
     , nixified-ai
     , pr-mmdebstrap
     , pr-fastapi-dls

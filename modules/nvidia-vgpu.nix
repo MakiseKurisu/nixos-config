@@ -1,13 +1,29 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
+    inputs.vgpu4nixos.nixosModules.host
     ./pr/mdevctl.nix
     ./nvidia.nix
   ];
 
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+        vgpu = import inputs.nixpkgs-unstable {
+          config = config.nixpkgs.config;
+          system = pkgs.stdenv.hostPlatform.system;
+          overlays = [
+            pkgs.linuxPackages.nvidiaPackages.vgpuNixpkgsOverlay
+          ];
+        };
+      };
+    };
+  };
+
   boot = {
-    kernelPackages = pkgs.unstable.linuxPackages_6_6;
+    kernelPackages = pkgs.vgpu.linuxPackages_6_6;
   };
 
   # https://docs.nvidia.com/vgpu/latest/pdf/grid-vgpu-user-guide.pdf

@@ -1,10 +1,6 @@
 { config, lib, pkgs, inputs, options, ... }:
 
 {
-  imports = [
-    inputs.vgpu4nixos.nixosModules.host
-  ];
-
   documentation.man.generateCaches = true;
 
   environment.enableAllTerminfo = true;
@@ -60,10 +56,6 @@
   ];
 
   nix = {
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 7d";
-    };
     optimise = {
       automatic = true;
     };
@@ -92,14 +84,11 @@
       packageOverrides = pkgs: {
         unstable = import inputs.nixpkgs-unstable {
           config = config.nixpkgs.config;
-          system = pkgs.system;
-          overlays = [
-            pkgs.linuxPackages.nvidiaPackages.vgpuNixpkgsOverlay
-          ];
+          system = pkgs.stdenv.hostPlatform.system;
         };
         master = import inputs.nixpkgs-master {
           config = config.nixpkgs.config;
-          system = pkgs.system;
+          system = pkgs.stdenv.hostPlatform.system;
         };
         nur = import inputs.NUR {
           inherit pkgs;
@@ -107,9 +96,8 @@
         };
       };
       permittedInsecurePackages = [
-        "electron-11.5.0"
-        "ventoy-1.1.05"
         "openssl-1.1.1w"
+        "ventoy-1.1.07"
       ];
     };
   };
@@ -183,9 +171,7 @@
 
   systemd = {
     oomd.enableUserSlices = true;
-    watchdog = {
-      runtimeTime = "1m";
-    };
+    settings.Manager.RuntimeWatchdogSec = "1m";
   };
 
   zramSwap = {

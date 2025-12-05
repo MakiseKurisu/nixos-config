@@ -84,11 +84,11 @@
               ${lib.getExe pkgs.bash} -c \
                 "cd /home/excalibur/Documents/GitHub/nixos-config/tofu && \
                 ${lib.getExe (pkgs.opentofu.withPlugins (p: with p; [
-                  cloudflare
-                  github
-                  incus
-                  oci
-                  sops
+                  cloudflare_cloudflare
+                  integrations_github
+                  lxc_incus
+                  oracle_oci
+                  carlpett_sops
                 ]))} apply -auto-approve"
             '';
           };

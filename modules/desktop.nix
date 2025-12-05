@@ -5,7 +5,6 @@
     ./pr/mmdebstrap.nix
     ./hyprland.nix
     ./waybar.nix
-    inputs.aagl.nixosModules.default
     inputs.nixified-ai.nixosModules.comfyui
   ];
 
@@ -85,7 +84,7 @@
       ghidra-extensions.machinelearning
       ghidra-extensions.gnudisassembler
       gnome-calculator
-      greetd.wlgreet
+      wlgreet
       grim
       gsettings-desktop-schemas
       gtk3
@@ -125,11 +124,11 @@
       nwg-dock-hyprland
       openscad-unstable
       (opentofu.withPlugins (p: with p; [
-        cloudflare
-        github
-        incus
-        oci
-        sops
+        cloudflare_cloudflare
+        integrations_github
+        lxc_incus
+        oracle_oci
+        carlpett_sops
       ]))
       pinentry-qt
       piper
@@ -148,7 +147,7 @@
       solaar
       sops
       sweethome3d.application
-      tdesktop
+      telegram-desktop
       teams-for-linux
       ventoy-full
       vlc
@@ -222,10 +221,10 @@
       type = "fcitx5";
       fcitx5 = {
         waylandFrontend = true;
-        addons = with pkgs; [
+        addons = with pkgs; with qt6Packages; [
           fcitx5-gtk
           fcitx5-chinese-addons
-          kdePackages.fcitx5-qt
+          fcitx5-qt
         ];
       };
     };
@@ -233,7 +232,6 @@
 
   nix = {
     package = pkgs.lixPackageSets.stable.lix;
-    settings = inputs.aagl.nixConfig;
   };
 
   nixpkgs.overlays = [
@@ -243,13 +241,6 @@
   ];
 
   programs = {
-    anime-game-launcher.enable = true;
-    anime-games-launcher.enable = true;
-    honkers-railway-launcher.enable = true;
-    honkers-launcher.enable = true;
-    wavey-launcher.enable = true;
-    sleepy-launcher.enable = true;
-
     adb.enable = true;
     apt = {
       enable = true;
@@ -260,10 +251,7 @@
     };
     bash.blesh.enable = true;
     dconf.enable = true;
-    firefox = {
-      enable = true;
-      package = pkgs.firefox-wayland;
-    };
+    firefox.enable = true;
     gamemode = {
       enable = true;
     };
@@ -341,9 +329,7 @@
     gnome.gnome-keyring.enable = true;
     hypridle.enable = true;
     locate.enable = true;
-    logind = {
-      lidSwitch = "ignore";
-    };
+    logind.settings.Login.HandleLidSwitch = "ignore";
     mpd = {
       enable = true;
       startWhenNeeded = true;

@@ -18,9 +18,6 @@
       onShutdown = "shutdown";
       qemu = {
         swtpm.enable = true;
-        ovmf.packages = with pkgs; [
-          OVMFFull.fd
-        ];
         vhostUserPackages = with pkgs; [
           virtiofsd
         ];

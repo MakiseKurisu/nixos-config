@@ -4,7 +4,7 @@
   nixpkgs.overlays = [
     (final: prev: {
       pr-pico-rpa = import inputs.pr-pico-rpa {
-        system = pkgs.system;
+        system = pkgs.stdenv.hostPlatform.system;
         config.allowUnfree = true;
       };
     })

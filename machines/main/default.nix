@@ -28,7 +28,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_6_17;
     kernelModules = [
       "nct6775"
       "ntsync"
