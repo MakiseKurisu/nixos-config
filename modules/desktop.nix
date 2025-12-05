@@ -166,6 +166,7 @@
   };
 
   fonts = {
+    enableGhostscriptFonts = true;
     fontDir.enable = true;
     packages = with pkgs; [
       cantarell-fonts
@@ -220,7 +221,7 @@
       enable = true;
       type = "fcitx5";
       fcitx5 = {
-        # waylandFrontend = true;
+        waylandFrontend = true;
         addons = with pkgs; [
           fcitx5-gtk
           fcitx5-chinese-addons

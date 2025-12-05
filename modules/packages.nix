@@ -75,7 +75,6 @@
           minicom
           neovim
           nfs-utils
-          nix-index
           nixos-generators
           nixos-option
           ntfs3g
@@ -98,6 +97,12 @@
     };
 
   programs = {
+    command-not-found.enable = false;
+    nh = {
+      enable = true;
+      clean.enable = true;
+    };
+    nix-index.enable = true;
     nix-ld.enable = true;
     gnupg.agent = {
       enable = true;

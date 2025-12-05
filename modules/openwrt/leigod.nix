@@ -39,6 +39,30 @@
         fi
       )&
     '';
+    "firewall.user".text = ''
+      #iptables -t nat -D PREROUTING -j GAMEACC
+      #iptables -t mangle -D PREROUTING -j GAMEACC
+      #iptables -t filter -D INPUT -j GAMEACC
+      #
+      #iptables -t mangle -A PREROUTING --src 192.168.9.20 ! --dest 192.168.0.0/16 -p tcp -j TPROXY --tproxy-mark 0x99/0x99 --on-ip 10.20.30.40 --on-port 6699
+      #iptables -t mangle -A PREROUTING --src 192.168.9.20 ! --dest 192.168.0.0/16 -p udp -j TPROXY --tproxy-mark 0x99/0x99 --on-ip 10.20.30.40 --on-port 6699
+      #iptables -t mangle -D PREROUTING --src 192.168.9.20 ! --dest 192.168.0.0/16 -p tcp -j TPROXY --tproxy-mark 0x99/0x99 --on-ip 10.20.30.40 --on-port 6699
+      #iptables -t mangle -D PREROUTING --src 192.168.9.20 ! --dest 192.168.0.0/16 -p udp -j TPROXY --tproxy-mark 0x99/0x99 --on-ip 10.20.30.40 --on-port 6699
+      #nft add rule inet fw4 dstnat_lan \
+      #  meta l4proto tcp \
+      #  ip saddr 192.168.9.20 \
+      #  ip daddr != 192.168.0.0/16 \
+      #  tproxy ip to 10.20.30.40:6699 \
+      #  meta mark set 0x99 \
+      #  comment "TPROXY TCP streams"
+      #nft add rule inet fw4 dstnat_lan \
+      #  meta l4proto udp \
+      #  ip saddr 192.168.9.20 \
+      #  ip daddr != 192.168.0.0/16 \
+      #  tproxy ip to 10.20.30.40:6699 \
+      #  meta mark set 0x99 \
+      #  comment "TPROXY UDP packets"
+    '';
   };
 
   uci = {
