@@ -9,7 +9,7 @@
 # sudo rsync -arP /var/lib /var/log /persistent/system/var
 #
 # Rebuild new machine:
-# nixos-rebuild --fast --use-remote-sudo --target-host <machine> boot
+# nixos-rebuild --ask-sudo-password --no-reexec --target-host <machine> boot
 
 {
   imports = [

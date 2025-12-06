@@ -37,7 +37,6 @@
       recommendedTlsSettings = true;
       recommendedBrotliSettings = true;
       recommendedGzipSettings = true;
-      recommendedZstdSettings = true;
       recommendedProxySettings = true;
       virtualHosts = let
         ssl = {

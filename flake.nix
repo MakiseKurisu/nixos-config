@@ -73,12 +73,6 @@
               ./machines/yuntian
             ];
           };
-          nas = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./machines/nas
-            ];
-          };
           p15 = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
             modules = [

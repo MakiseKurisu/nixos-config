@@ -10,7 +10,7 @@ Run `./install <profile>` to install a profile.
 
 Run `./rebuild` as if you are using `nixos-rebuild`. This is a small wrapper to override `NIXOS_LABEL_VERSION` with git HEAD hash.
 
-Run `nixos-rebuild --fast --use-remote-sudo --target-host <machine> switch` to update another device. Need to have this flake installed under `/etc/nixos/flake.nix`.
+Run `nixos-rebuild --ask-sudo-password --no-reexec --target-host <machine> switch` to update another device. Need to have this flake installed under `/etc/nixos/flake.nix`.
 
 If your initial build is large that can't fit NixOS ISO's tmpfs store, you will need to mount a work disk to overlay on top of `/nix/store`:
 
