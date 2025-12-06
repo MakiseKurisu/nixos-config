@@ -67,12 +67,6 @@
               ./machines/app01
             ];
           };
-          yuntian = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./machines/yuntian
-            ];
-          };
           p15 = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
             modules = [
