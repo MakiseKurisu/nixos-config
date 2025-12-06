@@ -322,7 +322,7 @@
           #", XF86Launch1, exec, kitty"
           #", XF86LaunchA, exec, kitty"
           #", XF86Explorer, exec, kitty"
-          ", XF86Calculator, exec, gnome-calculator"
+          ", XF86Calculator, exec, kcalc"
           ", XF86FullScreen, fullscreen, 0"
           #", XF86Sleep, exec, hyprlock"
           ", XF86HomePage, exec, firefox"

@@ -82,7 +82,6 @@
       ghidra
       ghidra-extensions.machinelearning
       ghidra-extensions.gnudisassembler
-      gnome-calculator
       wlgreet
       grim
       gsettings-desktop-schemas
@@ -102,6 +101,7 @@
       kdePackages.breeze-gtk
       kdePackages.dolphin
       kdePackages.dolphin-plugins
+      kdePackages.kcalc
       kdePackages.kdegraphics-thumbnailers
       kdePackages.kio
       kdePackages.kio-admin
