@@ -28,7 +28,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_6_17;
+    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
     kernelModules = [
       "nct6775"
       "ntsync"
@@ -48,6 +48,7 @@
 
   hardware = {
     nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       prime = {
         amdgpuBusId = "PCI:15@0:0:0";
         nvidiaBusId = "PCI:14@0:0:0";
