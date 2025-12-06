@@ -246,7 +246,7 @@
           "$mainMod, Q, exec, kitty"
           "$mainMod, C, killactive, "
           "$mainMod, M, exit,"
-          "$mainMod, E, exec, nautilus"
+          "$mainMod, E, exec, dolphin"
           "$mainMod, F, fullscreen, 0"
           "$mainMod, V, togglefloating,"
           "$mainMod, R, exec, $menu"

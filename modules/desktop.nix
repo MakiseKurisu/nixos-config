@@ -74,7 +74,6 @@
         commandLineArgs = (previous.commandLineArgs or "") +
           " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
       }))
-      file-roller
       filezilla
       font-manager
       fsearch
@@ -96,6 +95,19 @@
       kicad
       krita
       libreoffice-qt
+      kdePackages.ark
+      kdePackages.baloo-widgets
+      kdePackages.breeze
+      kdePackages.breeze-icons
+      kdePackages.breeze-gtk
+      kdePackages.dolphin
+      kdePackages.dolphin-plugins
+      kdePackages.kdegraphics-thumbnailers
+      kdePackages.kio
+      kdePackages.kio-admin
+      kdePackages.kio-extras
+      kdePackages.kio-fuse
+      kdePackages.konsole
       kdePackages.qtwayland
       libwebp
       lingot
@@ -108,7 +120,6 @@
       musescore
       muse-sounds-manager
       naps2
-      nautilus
       networkmanagerapplet
       nixpkgs-review
       nomacs
@@ -359,7 +370,7 @@
       openFirewall = true;
     };
     systemd-lock-handler.enable = true;
-
+    udisks2.enable = true;
     udev.extraRules = ''
       ACTION=="change" KERNEL=="card*", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", DRIVERS=="i915", SYMLINK+="dri/card-intel"
       ACTION=="change" KERNEL=="card*", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", DRIVERS=="amdgpu", SYMLINK+="dri/card-amd"
@@ -443,7 +454,7 @@
             "image/png" = [ "org.nomacs.ImageLounge.desktop" ];
             "image/svg+xml" = [ "org.nomacs.ImageLounge.desktop" ];
             "image/webp" = [ "org.nomacs.ImageLounge.desktop" ];
-            "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+            "inode/directory" = [ "org.kde.dolphin" ];
             "message/rfc822" = [ "thunderbird.desktop" ];
             "model/step" = [ "org.freecad.FreeCAD.desktop" ];
             "text/calendar" = [ "thunderbird.desktop" ];
