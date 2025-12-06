@@ -239,6 +239,7 @@
           "workspace 19 silent, class:^(steam)$, title:^(Sign in to Steam)$"
           "workspace 19 silent, class:^(steam)$, title:^(Special Offers)$"
           "workspace 19 silent, class:^(steam)$, title:^(Steam)$"
+          "workspace 19 silent, class:^()$, title:^(Steam)$"
         ];
         "$mainMod" = "SUPER";
         "$menu" = "nwg-drawer -term kitty -nofs";
