@@ -54,14 +54,14 @@
       }
       is_5g_station_on() {
         uqmi --device "$DEVICE" --get-cell-location-info | \
-          grep -q -e '"physical_cell_id": 295' -e '"physical_cell_id": 296'
+          grep -q -e '"physical_cell_id": 282'
       }
       if is_time_close; then
         logger -t "lte_fallback" "time = $time, switching to LTE"
         uqmi --device "$DEVICE" --set-network-modes lte
         exit
       elif is_5g_station_on; then
-        logger -t "lte_fallback" "cell 295/296 for channel 40936 is online, switching to default"
+        logger -t "lte_fallback" "cell 282 for channel 40936 is online, switching to default"
         uqmi --device "$DEVICE" --set-network-modes all
       fi
       if is_5g_signal_bad; then
