@@ -7,4 +7,5 @@ locals {
   user_ocid = data.sops_file.secrets.data["user"]
   fingerprint = data.sops_file.secrets.data["fingerprint"]
   region = data.sops_file.secrets.data["region"]
+  objectstorage_namespace = data.sops_file.secrets.data["objectstorage_namespace"]
 }
