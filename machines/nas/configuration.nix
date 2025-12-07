@@ -24,7 +24,6 @@
 
     ../../modules/pr/fastapi-dls.nix
     ../../modules/pr/pico-rpa.nix
-    ../../modules/pr/keyboard_remote.nix
 
     inputs.disko.nixosModules.disko
     ./disko.nix
