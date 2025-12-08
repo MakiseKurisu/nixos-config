@@ -92,12 +92,6 @@
               ./machines/n40
             ];
           };
-          b490 = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./machines/b490
-            ];
-          };
         };
 
         nixOnDroidConfigurations = {
