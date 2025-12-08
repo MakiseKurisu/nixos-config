@@ -15,7 +15,7 @@
       inherit lib release target arch hostname ip kver;
     })
     (import ../../../modules/openwrt/router.nix {
-      inherit arch;
+      inherit arch release;
     })
     (import ../../../modules/openwrt/proxy.nix {
       inherit lib service_ip gfwlist2dnsmasq;

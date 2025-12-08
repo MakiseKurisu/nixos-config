@@ -54,7 +54,7 @@
             inherit lib;
             gfwlist2dnsmasq = inputs.gfwlist2dnsmasq;
            });
-          default = self'.packages.${system}.dewclaw-env;
+          default = self'.packages.dewclaw-env;
         };
       };
       flake = {

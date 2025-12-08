@@ -13,19 +13,23 @@
       network = {
         interface = {
           wg2 = {
-            proto = "wireguard";
+            proto = "amneziawg";
+            private_key._secret = "wg2_private_key";
             addresses = [ "10.0.20.3/32" "fd20::3/128" ];
             mtu = 1280;
-            private_key._secret = "wg2_private_key";
+            awg_jc = 1;
+            awg_jmin = 10;
+            awg_jmax = 50;
+            awg_s1 = 16;
+            awg_s2 = 48;
           };
         };
-        wireguard_wg2 = [{
-          allowed_ips = [ "10.0.20.0/24" "fd20::/64" ];
+        amneziawg_wg2 = [{
           description = "japan";
-          endpoint_host = "127.0.0.1";
-          endpoint_port = 51819;
           public_key = "mM6UKv/6OJW0re4/R24TGnxhA5g+7XHIkM/iGCSR7Tk=";
-          route_allowed_ips = 1;
+          allowed_ips = [ "10.0.20.0/24" "fd20::/64" ];
+          route_allowed_ips = true;
+          endpoint_host = "155.248.163.136";
           persistent_keepalive = 25;
         }];
       };

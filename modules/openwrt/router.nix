@@ -1,4 +1,5 @@
 { arch
+, release
 , ...
 }:
 
@@ -17,7 +18,6 @@
     "luci-app-wol"
     "luci-app-nlbwmon"
     "openssh-sftp-server"
-    # "UDPspeeder"
     "snort3"
     "openappid"
     "coreutils-sort"
@@ -29,6 +29,20 @@
   ];
   etc = {
     "rc.local".text = ''
+      (
+        if [ ! -f /usr/bin/amneziawg ]; then
+          # wait for network to be online
+          sleep 120
+          wget -O /tmp/amneziawg-tools.ipk "https://github.com/Slava-Shchipunov/awg-openwrt/releases/download/v${release}/amneziawg-tools_v${release}_${arch}_${arch}.ipk"
+          wget -O /tmp/kmod-amneziawg.ipk "https://github.com/Slava-Shchipunov/awg-openwrt/releases/download/v${release}/kmod-amneziawg_v${release}_${arch}_${arch}.ipk"
+          wget -O /tmp/luci-app-amneziawg.ipk "https://github.com/Slava-Shchipunov/awg-openwrt/releases/download/v${release}/luci-app-amneziawg_v${release}_${arch}_${arch}.ipk"
+          opkg update
+          opkg install /tmp/amneziawg-tools.ipk
+          opkg install /tmp/kmod-amneziawg.ipk
+          opkg install /tmp/luci-app-amneziawg.ipk
+          service network restart
+        fi
+      )&
       (
         if [ ! -f /usr/local/bin/udp2raw ]; then
           # wait for network to be online
@@ -51,7 +65,6 @@
           chmod +x /usr/local/bin/udp2raw
           chown root:root /usr/local/bin/udp2raw
         fi
-        /usr/local/bin/udp2raw -c -l 127.0.0.1:51819 -r 131.186.32.82:51820 >/dev/null &
         /usr/local/bin/udp2raw -c -l 127.0.0.1:51818 -r 167.71.206.148:51820 >/dev/null &
       )&
       (

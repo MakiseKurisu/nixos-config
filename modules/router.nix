@@ -2,7 +2,11 @@
 
 {
   boot = {
+    extraModulePackages = with config.boot.kernelPackages; [
+      amneziawg
+    ];
     kernelModules = [
+      "amneziawg"
       "iptable_mangle"
       "ip6table_mangle"
     ];
