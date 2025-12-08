@@ -1,22 +1,28 @@
-# Build VM image with
-# nix build .#nixosConfigurations.<machine>.config.system.build.OCIImage
+# Install VM with
+#  nix run github:nix-community/nixos-anywhere -- --flake .#<machine> \
+#    --generate-hardware-config nixos-facter machines/oci/<machine>/facter.json \
+#    --kexec "https://github.com/nix-community/nixos-images/releases/download/nixos-24.11/nixos-kexec-installer-noninteractive-x86_64-linux.tar.gz" \
+#    --target-host <user>@<host>
+# Run following command in Cloud Console to enable zram
+#   modprobe zram && sleep 1 && zramctl /dev/zram0 --algorithm zstd --size "900MiB" && mkswap -U clear /dev/zram0 && swapon --discard --priority 100 /dev/zram0
 
 { config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
-    "${inputs.nixpkgs}/nixos/modules/virtualisation/oci-image.nix"
-    ../../../modules/base.nix
+    ../../../modules/base-base.nix
+    ../../../modules/kernel.nix
+    ../../../modules/oci.nix
     ../../../modules/users-base.nix
+    inputs.nixos-facter-modules.nixosModules.facter
   ];
 
-  services = {
-    avahi.enable = false;
-    btrfs.autoScrub.enable = false;
-    cloud-init.enable = true;
+  facter = {
+    reportPath = ./facter.json;
   };
 
-  nixpkgs.hostPlatform = "x86_64-linux";
+  security.sudo.wheelNeedsPassword = false;
+
   networking.hostName = "amd01";
   system.stateVersion = "25.11";
 }

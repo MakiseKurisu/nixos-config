@@ -20,6 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs-droid";
       inputs.home-manager.follows = "home-manager-droid";
     };
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     NUR.url = "github:nix-community/NUR";
     dewclaw.url = "github:MakiseKurisu/dewclaw";
