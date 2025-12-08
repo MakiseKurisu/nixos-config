@@ -83,6 +83,7 @@
         domain = true;
       };
     };
+    smartd.enable = true;
   };
 
   system = {

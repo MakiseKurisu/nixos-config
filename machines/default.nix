@@ -3,7 +3,7 @@
     ./b490
     ./main
     ./nas
-    ./oci/amd01
+    ./oci/amd0
     ./yuntian
   ];
 }

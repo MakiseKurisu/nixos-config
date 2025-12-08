@@ -84,7 +84,6 @@
     openssh.enable = true;
     postgresqlBackup.enable = config.services.postgresql.enable;
     resolved.enable = true;
-    smartd.enable = true;
     xserver = {
       xkb = {
         layout = "us";
