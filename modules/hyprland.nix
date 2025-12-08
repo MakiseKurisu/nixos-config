@@ -188,6 +188,7 @@
           vrr = 2;
           force_default_wallpaper = 2;
           allow_session_lock_restore = true;
+          render_unfocused_fps = 30;
         };
         windowrulev2 = [
           "idleinhibit fullscreen, class:^(.*)$, title:^(.*)$"
@@ -227,6 +228,7 @@
           "workspace 3 silent, class:^(steam_app_default)$, title:^(STOVE)$"
           "renderunfocused, class:^(ssr-stove-shield\.exe)$, title:^(Chaos Zero Nightmare)$"
           "renderunfocused, class:^(steam_app_default)$, title:^(Chaos Zero Nightmare)$"
+          "renderunfocused, class:^(steam_app_default)$, title:^(二重螺旋  )$"
           "workspace 4 silent, class:^(battle\.net\.exe)$, title:^(Battle\.net - Chats and Groups)$"
           "workspace 10 silent, class:^(com\.alibabainc\.dingtalk)$, title:^(升级提醒)$"
           "workspace 10 silent, class:^(explorer\.exe)$, title:^()$"
