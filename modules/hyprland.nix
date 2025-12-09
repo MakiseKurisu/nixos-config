@@ -13,9 +13,6 @@
           Unit = {
             Description = "Hyprland's GPU-accelerated screen locking utility";
 
-            # If hyprlock exits cleanly, unlock the session:
-            OnSuccess = ["unlock.target"];
-
             # When lock.target is stopped, stops this too:
             PartOf = ["lock.target"];
 
