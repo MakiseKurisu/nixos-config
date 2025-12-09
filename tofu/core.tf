@@ -137,16 +137,16 @@ resource "oci_core_vnic_attachment" arm0_eth1 {
   instance_id  = oci_core_instance.arm0.id
 
   create_vnic_details {
-    subnet_id        = oci_core_subnet.subnet.id
+    subnet_id        = oci_core_subnet.secondary_subnet.id
     assign_ipv6ip    = true
     assign_private_dns_record = true
     assign_public_ip = true
     display_name     = local.if1_name
     hostname_label   = local.arm0_name2
-    private_ip       = "${substr(oci_core_subnet.subnet.cidr_block, 0, length(oci_core_subnet.subnet.cidr_block) - length("0/24"))}30"
+    private_ip       = "${substr(oci_core_subnet.secondary_subnet.cidr_block, 0, length(oci_core_subnet.secondary_subnet.cidr_block) - length("0/24"))}20"
     ipv6address_ipv6subnet_cidr_pair_details {
-      ipv6_subnet_cidr = oci_core_subnet.subnet.ipv6cidr_blocks[0]
-      ipv6_address = "${substr(oci_core_subnet.subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.subnet.ipv6cidr_blocks[0]) - length("0000/64"))}30"
+      ipv6_subnet_cidr = oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]
+      ipv6_address = "${substr(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]) - length("0000/64"))}20"
     }
   }
 }
@@ -201,16 +201,16 @@ resource "oci_core_vnic_attachment" arm1_eth1 {
   instance_id  = oci_core_instance.arm1.id
 
   create_vnic_details {
-    subnet_id        = oci_core_subnet.subnet.id
+    subnet_id        = oci_core_subnet.secondary_subnet.id
     assign_ipv6ip    = true
     assign_private_dns_record = true
     assign_public_ip = true
     display_name     = local.if1_name
     hostname_label   = local.arm1_name2
-    private_ip       = "${substr(oci_core_subnet.subnet.cidr_block, 0, length(oci_core_subnet.subnet.cidr_block) - length("0/24"))}31"
+    private_ip       = "${substr(oci_core_subnet.secondary_subnet.cidr_block, 0, length(oci_core_subnet.secondary_subnet.cidr_block) - length("0/24"))}21"
     ipv6address_ipv6subnet_cidr_pair_details {
-      ipv6_subnet_cidr = oci_core_subnet.subnet.ipv6cidr_blocks[0]
-      ipv6_address = "${substr(oci_core_subnet.subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.subnet.ipv6cidr_blocks[0]) - length("0000/64"))}31"
+      ipv6_subnet_cidr = oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]
+      ipv6_address = "${substr(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]) - length("0000/64"))}21"
     }
   }
 }

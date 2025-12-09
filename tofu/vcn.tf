@@ -1,6 +1,7 @@
 locals {
   vcn_name    = "protoducer"
-  subnet_name = "subnet"
+  primary_subnet_name = "subnet"
+  secondary_subnet_name = "secondary"
 }
 
 resource oci_core_vcn vcn {
@@ -29,8 +30,23 @@ resource oci_core_subnet subnet {
   security_list_ids = [oci_core_vcn.vcn.default_security_list_id]
   route_table_id    = oci_core_vcn.vcn.default_route_table_id
   dhcp_options_id   = oci_core_vcn.vcn.default_dhcp_options_id
-  display_name      = local.subnet_name
-  dns_label         = local.subnet_name
+  display_name      = local.primary_subnet_name
+  dns_label         = local.primary_subnet_name
+}
+
+resource oci_core_subnet secondary_subnet {
+  compartment_id    = local.tenancy_ocid
+
+  cidr_block        = cidrsubnet(oci_core_vcn.vcn.cidr_blocks[0], 8, 1)
+  ipv6cidr_blocks   = [
+    cidrsubnet(oci_core_vcn.vcn.ipv6cidr_blocks[0], 8, 1),
+  ]
+  vcn_id            = oci_core_vcn.vcn.id
+  security_list_ids = [oci_core_vcn.vcn.default_security_list_id]
+  route_table_id    = oci_core_vcn.vcn.default_route_table_id
+  dhcp_options_id   = oci_core_vcn.vcn.default_dhcp_options_id
+  display_name      = local.secondary_subnet_name
+  dns_label         = local.secondary_subnet_name
 }
 
 resource oci_core_default_security_list default_security_list {
