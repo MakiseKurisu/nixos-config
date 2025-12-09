@@ -96,6 +96,16 @@ resource oci_core_default_security_list default_security_list {
       min = "51820"
     }
   }
+
+  ingress_security_rules {
+    protocol = "6"
+    source   = oci_core_vcn.vcn.cidr_blocks[0]
+  }
+
+  ingress_security_rules {
+    protocol = "6"
+    source   = oci_core_vcn.vcn.ipv6cidr_blocks[0]
+  }
 }
 
 resource oci_core_default_route_table default_route_table {
