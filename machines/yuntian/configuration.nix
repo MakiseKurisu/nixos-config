@@ -29,7 +29,12 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+  boot = {
+    extraModulePackages = with config.boot.kernelPackages; [
+      amneziawg
+    ];
+    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+  };
 
   environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
 
@@ -162,6 +167,43 @@
         user = {
           name = "ZHANG Yuntian";
           email = "yt@radxa.com";
+        };
+      };
+    };
+  };
+
+  networking = {
+    wireguard = {
+      useNetworkd = false;
+      interfaces = {
+        wg0 = {
+          type = "amneziawg";
+          privateKeyFile = "/var/lib/wireguard/wg0.key";
+          mtu = 1280;
+          listenPort = 51820;
+          ips = [
+            "10.0.20.2/32"
+            "fd20::2/128"
+          ];
+          extraOptions = {
+            Jc = 1;
+            Jmin = 10;
+            Jmax = 50;
+            S1 = 16;
+            S2 = 48;
+          };
+          dynamicEndpointRefreshSeconds = 5;
+          peers = [
+            {
+              publicKey = "mM6UKv/6OJW0re4/R24TGnxhA5g+7XHIkM/iGCSR7Tk=";
+              persistentKeepalive = 25;
+              endpoint = "155.248.160.18:51820";
+              allowedIPs = [
+                "10.0.20.0/24"
+                "fd20::/64"
+              ];
+            }
+          ];
         };
       };
     };
