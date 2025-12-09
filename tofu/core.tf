@@ -34,17 +34,16 @@ resource oci_core_subnet subnet {
     cidrsubnet(oci_core_vcn.vcn.ipv6cidr_blocks[0], 8, 0),
   ]
   vcn_id            = oci_core_vcn.vcn.id
-  security_list_ids = [oci_core_security_list.security_list.id]
-  route_table_id    = oci_core_route_table.route_table.id
+  security_list_ids = [oci_core_vcn.vcn.default_security_list_id]
+  route_table_id    = oci_core_vcn.vcn.default_route_table_id
   dhcp_options_id   = oci_core_vcn.vcn.default_dhcp_options_id
   display_name      = local.subnet_name
   dns_label         = local.subnet_name
 }
 
-resource oci_core_security_list security_list {
+resource oci_core_default_security_list default_security_list {
   compartment_id = local.tenancy_ocid
-  vcn_id         = oci_core_vcn.vcn.id
-  display_name   = "security_list"
+  manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
 
   egress_security_rules {
     protocol    = "all"
@@ -87,10 +86,9 @@ resource oci_core_security_list security_list {
   }
 }
 
-resource oci_core_route_table route_table {
+resource oci_core_default_route_table default_route_table {
   compartment_id = local.tenancy_ocid
-  vcn_id         = oci_core_vcn.vcn.id
-  display_name   = "route_table"
+  manage_default_resource_id = oci_core_vcn.vcn.default_route_table_id
 
   route_rules {
     destination       = "0.0.0.0/0"
