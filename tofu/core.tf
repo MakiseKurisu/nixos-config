@@ -46,6 +46,10 @@ resource oci_core_instance amd0 {
   }
 }
 
+resource oci_core_boot_volume_backup amd0_boot_volume_backup {
+  boot_volume_id = oci_core_instance.amd0.boot_volume_id
+}
+
 resource oci_core_instance amd1 {
   availability_domain = local.availability_domain.name
   compartment_id      = local.tenancy_ocid
@@ -81,6 +85,10 @@ resource oci_core_instance amd1 {
     boot_volume_size_in_gbs = 50
     boot_volume_vpus_per_gb = 120
   }
+}
+
+resource oci_core_boot_volume_backup amd1_boot_volume_backup {
+  boot_volume_id = oci_core_instance.amd1.boot_volume_id
 }
 
 resource oci_core_instance arm0 {
@@ -143,6 +151,10 @@ resource "oci_core_vnic_attachment" arm0_eth1 {
   }
 }
 
+resource oci_core_boot_volume_backup arm0_boot_volume_backup {
+  boot_volume_id = oci_core_instance.arm0.boot_volume_id
+}
+
 resource oci_core_instance arm1 {
   availability_domain = local.availability_domain.name
   compartment_id      = local.tenancy_ocid
@@ -201,4 +213,8 @@ resource "oci_core_vnic_attachment" arm1_eth1 {
       ipv6_address = "${substr(oci_core_subnet.subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.subnet.ipv6cidr_blocks[0]) - length("0000/64"))}31"
     }
   }
+}
+
+resource oci_core_boot_volume_backup arm1_boot_volume_backup {
+  boot_volume_id = oci_core_instance.arm1.boot_volume_id
 }
