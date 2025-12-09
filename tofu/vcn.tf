@@ -22,7 +22,9 @@ resource oci_core_internet_gateway internet_gateway {
 resource oci_core_subnet subnet {
   compartment_id    = local.tenancy_ocid
 
-  cidr_block        = cidrsubnet(oci_core_vcn.vcn.cidr_blocks[0], 8, 0)
+  ipv4cidr_blocks   = [
+    cidrsubnet(oci_core_vcn.vcn.cidr_blocks[0], 8, 0),
+  ]
   ipv6cidr_blocks   = [
     cidrsubnet(oci_core_vcn.vcn.ipv6cidr_blocks[0], 8, 0),
   ]
@@ -37,7 +39,9 @@ resource oci_core_subnet subnet {
 resource oci_core_subnet secondary_subnet {
   compartment_id    = local.tenancy_ocid
 
-  cidr_block        = cidrsubnet(oci_core_vcn.vcn.cidr_blocks[0], 8, 1)
+  ipv4cidr_blocks   = [
+    cidrsubnet(oci_core_vcn.vcn.cidr_blocks[0], 8, 1),
+  ]
   ipv6cidr_blocks   = [
     cidrsubnet(oci_core_vcn.vcn.ipv6cidr_blocks[0], 8, 1),
   ]
