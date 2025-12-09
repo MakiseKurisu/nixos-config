@@ -359,6 +359,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1765187887,
+        "narHash": "sha256-6d3UhLjPWejcR+3inpitpBK4zzNZ9MBJsAW/djNHTHU=",
+        "owner": "RadxaYuntian",
+        "repo": "nixos-hardware",
+        "rev": "87f53fb33a662bce5e709c463f9257855dd70511",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RadxaYuntian",
+        "ref": "sky1",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixos-vscode-server": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -682,6 +698,7 @@
         "nix-on-droid": "nix-on-droid",
         "nixified-ai": "nixified-ai",
         "nixos-facter-modules": "nixos-facter-modules",
+        "nixos-hardware": "nixos-hardware",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-droid": "nixpkgs-droid",

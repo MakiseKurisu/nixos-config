@@ -114,7 +114,7 @@
           enable = true;
           plugins = with pkgs.obs-studio-plugins; [
             input-overlay
-            looking-glass-obs
+            (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") looking-glass-obs)
             obs-pipewire-audio-capture
             wlrobs
             obs-vaapi

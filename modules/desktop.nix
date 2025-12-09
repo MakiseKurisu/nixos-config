@@ -15,10 +15,10 @@
     binfmt = {
       preferStaticEmulators = true;
       emulatedSystems = [
-        "aarch64-linux"
-        "riscv64-linux"
-        "x86_64-windows"
-        "i686-windows"
+        (lib.mkIf (pkgs.stdenv.hostPlatform.system != "aarch64-linux") "aarch64-linux")
+        (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") "riscv64-linux")
+        (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") "x86_64-windows")
+        (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") "i686-windows")
       ];
     };
   };
@@ -88,7 +88,7 @@
       gtk3
       guvcview
       helvum
-      heroic
+      (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") heroic)
       hyprcursor
       jq
       kicad
@@ -153,7 +153,7 @@
       sc-controller
       selectdefaultapplication
       shotcut
-      slack
+      (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") slack)
       slurp
       solaar
       sops
@@ -217,9 +217,10 @@
     sane = {
       enable = true;
       extraBackends = with pkgs; [
-        (epsonscan2.override {
-          withNonFreePlugins = true;
-        })
+        (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux")
+          (epsonscan2.override {
+            withNonFreePlugins = true;
+        }))
         hplipWithPlugin
         sane-airscan
       ];
@@ -274,7 +275,7 @@
     hyprland.enable = true;
     seahorse.enable = true;
     steam = {
-      enable = true;
+      enable = (pkgs.stdenv.hostPlatform.system == "x86_64-linux");
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true;
@@ -393,7 +394,7 @@
       };
       programs = {
         lutris = {
-          enable = true;
+          enable = (pkgs.stdenv.hostPlatform.system == "x86_64-linux");
           winePackages = [ 
             pkgs.unstable.wineWowPackages.full
             pkgs.unstable.wineWow64Packages.full

@@ -86,7 +86,8 @@
           playerctl
           podman-compose
           (python3.withPackages python-packages)
-          rar
+          (lib.mkIf (pkgs.stdenv.hostPlatform.system != "aarch64-linux") rar)
+          (lib.mkIf (pkgs.stdenv.hostPlatform.system == "aarch64-linux") pkgs.pkgsCross.gnu64.rar)
           rkdeveloptool
           rPackages.glmnet
           shellcheck

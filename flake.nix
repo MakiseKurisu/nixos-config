@@ -15,6 +15,7 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-droid";
     };
+    nixos-hardware.url = "github:RadxaYuntian/nixos-hardware/sky1";
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-droid";
