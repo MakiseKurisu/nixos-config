@@ -79,7 +79,7 @@
       enable = true;
       config = ''
         internal: wg0 port = 1080
-        external: ens3
+        external: enp0s6
         clientmethod: none
         socksmethod: none
         client pass {
