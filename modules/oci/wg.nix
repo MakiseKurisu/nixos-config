@@ -10,7 +10,7 @@
   networking = {
     firewall = {
       allowedUDPPorts = [
-        51820 #amneziawg
+        51820 # amneziawg
       ];
     };
 

@@ -4,7 +4,11 @@
   networking = {
     firewall = {
       allowedTCPPorts = [
-        1080 #dante
+        53 # systemd-resolved
+        1080 # dante
+      ];
+      allowedUDPPorts = [
+        53 # systemd-resolved
       ];
     };
   };
@@ -35,6 +39,14 @@
     iperf3 = {
       enable = true;
       openFirewall = true;
+    };
+
+    resolved = {
+      enable = true;
+      extraConfig = ''
+        DNSStubListenerExtra=10.0.20.1
+        DNSStubListenerExtra=fd20::1
+      '';
     };
   };
 }
