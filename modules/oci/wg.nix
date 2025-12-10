@@ -14,6 +14,15 @@
       ];
     };
 
+    nat = {
+      enable = true;
+      enableIPv6 = true;
+      internalInterfaces = [ "wg0" ];
+      externalInterface = if (pkgs.stdenv.hostPlatform.system == "x86_64-linux") 
+                          then "ens3"
+                          else "enp0s6";
+    };
+
     wireguard = {
       useNetworkd = false;
       interfaces = {
