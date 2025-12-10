@@ -29,7 +29,7 @@
           public_key = "mM6UKv/6OJW0re4/R24TGnxhA5g+7XHIkM/iGCSR7Tk=";
           allowed_ips = [ "10.0.20.0/24" "fd20::/64" ];
           route_allowed_ips = true;
-          endpoint_host = "155.248.160.18";
+          endpoint_host = "140.245.83.173";
           persistent_keepalive = 25;
         }];
       };
