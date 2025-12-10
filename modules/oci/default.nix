@@ -3,6 +3,7 @@
 {
   imports = [
     ./disko.nix
+    ./network.nix
     ./oci.nix
     ./services.nix
     ./wg.nix

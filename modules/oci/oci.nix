@@ -20,17 +20,7 @@
   ++ lib.optional (pkgs.stdenv.hostPlatform.system == "aarch64-linux") "console=ttyAMA0,115200";
 
   services = {
-    cloud-init = {
-      enable = true;
-      network.enable = true;
-      settings = {
-        datasource = {
-          Oracle = {
-            configure_secondary_nics = true;
-          };
-        };
-      };
-    };
+    cloud-init.enable = true;
     qemuGuest.enable = true;
   };
 
