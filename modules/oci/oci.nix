@@ -23,6 +23,13 @@
     cloud-init = {
       enable = true;
       network.enable = true;
+      settings = {
+        datasource = {
+          Oracle = {
+            configure_secondary_nics = true;
+          };
+        };
+      };
     };
     qemuGuest.enable = true;
   };
@@ -34,33 +41,55 @@
   # making the fetch-ssh-keys.service fail
   networking.useNetworkd = lib.mkDefault true;
 
-  systemd.services.fetch-ssh-keys = {
-    description = "Fetch authorized_keys for root user";
+  systemd.services = {
+    cloud-init-clean = {
+      description = "Clean cloud-init metadata";
+      wantedBy = [ "multi-user.target" ];
+      wants = [
+        "network-online.target"
+        "cloud-init.service"
+      ];
+      before = [
+        "cloud-init.service"
+      ];
+      requires = [ "network.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.cloud-init}/bin/cloud-init clean";
+        RemainAfterExit = "yes";
+        TimeoutSec = "infinity";
+        StandardOutput = "journal+console";
+      };
+    };
 
-    wantedBy = [ "sshd.service" ];
-    before = [ "sshd.service" ];
+    fetch-ssh-keys = {
+      description = "Fetch authorized_keys for root user";
 
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
+      wantedBy = [ "sshd.service" ];
+      before = [ "sshd.service" ];
 
-    path = [
-      pkgs.coreutils
-      pkgs.curl
-    ];
-    script = ''
-      mkdir -m 0700 -p /root/.ssh
-      echo "Downloading authorized keys from Instance Metadata Service v2"
-      curl -s -S -L \
-        -H "Authorization: Bearer Oracle" \
-        -o /root/.ssh/authorized_keys \
-        http://169.254.169.254/opc/v2/instance/metadata/ssh_authorized_keys
-      chmod 600 /root/.ssh/authorized_keys
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      StandardError = "journal+console";
-      StandardOutput = "journal+console";
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+
+      path = [
+        pkgs.coreutils
+        pkgs.curl
+      ];
+      script = ''
+        mkdir -m 0700 -p /root/.ssh
+        echo "Downloading authorized keys from Instance Metadata Service v2"
+        curl -s -S -L \
+          -H "Authorization: Bearer Oracle" \
+          -o /root/.ssh/authorized_keys \
+          http://169.254.169.254/opc/v2/instance/metadata/ssh_authorized_keys
+        chmod 600 /root/.ssh/authorized_keys
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        StandardError = "journal+console";
+        StandardOutput = "journal+console";
+      };
     };
   };
 }
