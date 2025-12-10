@@ -20,7 +20,10 @@
   ++ lib.optional (pkgs.stdenv.hostPlatform.system == "aarch64-linux") "console=ttyAMA0,115200";
 
   services = {
-    cloud-init.enable = true;
+    cloud-init = {
+      enable = true;
+      network.enable = true;
+    };
     qemuGuest.enable = true;
   };
 
@@ -30,4 +33,34 @@
   # Otherwise the instance may not have a working network-online.target,
   # making the fetch-ssh-keys.service fail
   networking.useNetworkd = lib.mkDefault true;
+
+  systemd.services.fetch-ssh-keys = {
+    description = "Fetch authorized_keys for root user";
+
+    wantedBy = [ "sshd.service" ];
+    before = [ "sshd.service" ];
+
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+
+    path = [
+      pkgs.coreutils
+      pkgs.curl
+    ];
+    script = ''
+      mkdir -m 0700 -p /root/.ssh
+      echo "Downloading authorized keys from Instance Metadata Service v2"
+      curl -s -S -L \
+        -H "Authorization: Bearer Oracle" \
+        -o /root/.ssh/authorized_keys \
+        http://169.254.169.254/opc/v2/instance/metadata/ssh_authorized_keys
+      chmod 600 /root/.ssh/authorized_keys
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      StandardError = "journal+console";
+      StandardOutput = "journal+console";
+    };
+  };
 }
