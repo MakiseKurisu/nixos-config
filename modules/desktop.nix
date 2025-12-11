@@ -133,7 +133,7 @@
       nwg-displays
       nwg-launchers
       nwg-dock-hyprland
-      openscad-unstable
+      (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") openscad-unstable)
       (opentofu.withPlugins (p: with p; [
         cloudflare_cloudflare
         integrations_github
