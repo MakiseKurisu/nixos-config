@@ -59,6 +59,9 @@
             picocom() {
               env picocom -b ''${1:-1500000} /dev/ttyACM0
             }
+            flashrom() {
+              env flashrom -p ch347_spi -w "$@"
+            }
           '';
         };
         bashmount.enable = true;
