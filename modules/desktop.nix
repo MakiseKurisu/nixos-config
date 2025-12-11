@@ -75,6 +75,7 @@
           " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
       }))
       filezilla
+      flashrom
       font-manager
       fsearch
       freecad
