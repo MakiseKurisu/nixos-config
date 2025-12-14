@@ -9,6 +9,8 @@
     "luci-app-https-dns-proxy"
     "redsocks"
     "coreutils-base64"
+
+    "hev-socks5-tunnel"
   ];
 
   providers = {
@@ -128,6 +130,20 @@
         fi
       done < <(nft -a list chain inet fw4 dstnat_lan)
     '';
+    "proxy/tunnel.yaml".text = ''
+      tunnel:
+        name: tun0
+        mtu: 8500
+        multi-queue: true
+        ipv4: 10.0.40.1
+        ipv6: 'fd40::1'
+
+      socks5:
+        port: 7891
+        address: ${service_ip}
+        udp: 'udp'
+        mark: 438
+    ''
   };
 
   uci = {
@@ -147,6 +163,13 @@
           resolver_url = "https://cloudflare-dns.com/dns-query";
           proxy_server = "socks5h://${service_ip}:7891";
         }];
+      };
+
+      hev-socks5-tunnel = {
+        hev-socks5-tunnel.config = {
+          enabled = true;
+          conffile = "/etc/proxy/tunnel.yaml";
+        };
       };
     };
   };
