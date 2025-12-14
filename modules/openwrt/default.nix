@@ -19,6 +19,7 @@
   packages = [
     "bash"
     "kitty-terminfo"
+    "less"
     "nano"
     "powertop"
     "tmux"

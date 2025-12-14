@@ -7,7 +7,6 @@
 {
   packages = [
     "luci-app-https-dns-proxy"
-    "redsocks"
     "coreutils-base64"
 
     "hev-socks5-tunnel"
@@ -18,51 +17,6 @@
   };
 
   etc = {
-    "redsocks.conf".text = ''
-      base {
-        daemon = on;
-        redirector = iptables;
-        rlimit_nofile = 65535;
-        redsocks_conn_max = 65535;
-        //log_info = on;
-      }
-
-      redsocks {
-        local_ip = 192.168.9.1;
-        local_port = 20002;
-        ip = 10.0.20.1;
-        port = 1080;
-        type = socks5;
-        listenq = 512;
-      }
-
-      redsocks {
-        local_ip = 192.168.9.1;
-        local_port = 20001;
-        ip = 10.0.21.1;
-        port = 1080;
-        type = socks5;
-        listenq = 512;
-      }
-
-      redsocks {
-        local_ip = 192.168.9.1;
-        local_port = 20003;
-        ip = 192.168.2.4;
-        port = 7891;
-        type = socks5;
-        listenq = 512;
-      }
-
-      redsocks {
-        local_ip = 192.168.9.1;
-        local_port = 20000;
-        ip = ${service_ip};
-        port = 7891;
-        type = socks5;
-        listenq = 512;
-      }
-    '';
     "firewall.user".text = ''
       # create nftset
       nft "add set inet fw4 gfwlist { type ipv4_addr; flags interval; }"
@@ -72,13 +26,22 @@
       # add telegram ip
       nft "add element inet fw4 gfwlist { 91.108.4.0/22, 91.108.8.0/22, 91.108.56.0/22, 109.239.140.0/24, 149.154.160.0/20 }"
       # add routing rules
-      nft "add chain inet fw4 dstnat_lan"
-      nft "add rule inet fw4 dstnat iifname { br-lan.20 } jump dstnat_lan comment \"!fw4: Handle guest IPv4/IPv6 dstnat traffic\""
-      sh /etc/proxy/enable_proxy
+      nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter ct mark set 439"
+      nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter meta mark set ct mark"
+      nft "add rule inet fw4 mangle_output meta l4proto tcp ip6 daddr @gfwlist6 counter ct mark set 439"
+      nft "add rule inet fw4 mangle_output meta l4proto tcp ip6 daddr @gfwlist6 counter meta mark set ct mark"
 
-      nft "add chain inet fw4 dstnat_output { type nat hook output priority -100; policy accept; }"
-      nft "add rule inet fw4 dstnat_output meta l4proto tcp ip daddr @gfwlist dnat ip to 192.168.9.1:20000"
-      nft "add rule inet fw4 dstnat_output meta l4proto tcp ip6 daddr @gfwlist6 dnat ip6 to [fd09::1]:20000"
+      nft "add chain inet fw4 accept_to_tun"
+      nft 'add rule inet fw4 accept_to_tun oifname { tun0 } counter accept comment "!fw4: accept tun IPv4/IPv6 traffic"'
+      nft 'add rule inet fw4 forward_lan jump accept_to_tun'
+
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_bypass accept"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter ct mark set 439"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter meta mark set ct mark"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @gfwlist counter ct mark set 439"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @gfwlist counter meta mark set ct mark"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip6 daddr @gfwlist6 counter ct mark set 439"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip6 daddr @gfwlist6 counter meta mark set ct mark"
     '';
     "crontabs/root".text = ''
       0 0 * * * sh /etc/proxy/update_gfwlist
@@ -111,24 +74,19 @@
       grep -v "^\s*$" /tmp/blocklist.conf | sed "s/\(.*\)/address=\/\1\/127.0.0.1/g" >/etc/dnsmasq.d/blocklist.conf
       service dnsmasq restart
     '';
-    "proxy/enable_proxy".text = ''
+    "proxy/postup".text = ''
       #!/usr/bin/env sh
 
-      sh /etc/proxy/disable_proxy
-
-      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_bypass accept"
-      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip saddr @proxy_force dnat ip to 192.168.9.1:20000"
-      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip daddr @gfwlist dnat ip to 192.168.9.1:20000"
-      nft "add rule inet fw4 dstnat_lan meta l4proto tcp ip6 daddr @gfwlist6 dnat ip6 to [fd09::1]:20000"
+      ip rule add fwmark 439 lookup 100
+      ip route add default dev $1 table 100
+      ip -6 rule add fwmark 439 lookup 100
+      ip -6 route add default dev $1 table 100
     '';
-    "proxy/disable_proxy".text = ''
+    "proxy/postdown".text = ''
       #!/usr/bin/env sh
 
-      while read -r; do
-        if echo "$REPLY" | grep -q -e @proxy_bypass -e @proxy_force -e @gfwlist -e @gfwlist6; then
-          nft delete rule inet fw4 dstnat_lan h$(echo "$REPLY" | cut -d 'h' -f 2)
-        fi
-      done < <(nft -a list chain inet fw4 dstnat_lan)
+      ip rule del fwmark 439 lookup 100
+      ip -6 rule del fwmark 439 lookup 100
     '';
     "proxy/tunnel.yaml".text = ''
       tunnel:
@@ -136,14 +94,20 @@
         mtu: 8500
         multi-queue: true
         ipv4: 10.0.40.1
-        ipv6: 'fd40::1'
-
+        ipv6: "fd40::1"
+        post-up-script: /etc/proxy/postup
+        post-down-script: /etc/proxy/postdown
       socks5:
         port: 7891
-        address: ${service_ip}
-        udp: 'udp'
+        address: "fd20::1"
+        udp: udp
         mark: 438
-    ''
+    '';
+    "rc.local".text = ''
+      chmod +x /etc/proxy/postup
+      chmod +x /etc/proxy/postdown
+      chmod +x /etc/proxy/update_gfwlist
+    '';
   };
 
   uci = {
