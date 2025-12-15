@@ -90,7 +90,7 @@
           listen_port = 5053;
           bootstrap_dns = "1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001,8.8.8.8,8.8.4.4,9.9.9.9";
           resolver_url = "https://cloudflare-dns.com/dns-query";
-          proxy_server = "socks5h://${service_ip}:7891";
+          proxy_server = "socks5h://10.0.20.1:1080";
         }];
       };
 
