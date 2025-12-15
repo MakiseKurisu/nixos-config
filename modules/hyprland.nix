@@ -246,7 +246,7 @@
           "workspace 19 silent, class:^()$, title:^(Steam)$"
         ];
         "$mainMod" = "SUPER";
-        "$menu" = "nwg-drawer -term kitty -nofs";
+        "$menu" = "nwg-drawer -i breeze -term kitty -nofs";
         bind = [
           "$mainMod, Q, exec, kitty"
           "$mainMod, C, killactive, "
