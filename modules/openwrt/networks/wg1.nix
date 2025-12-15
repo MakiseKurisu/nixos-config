@@ -49,6 +49,7 @@
             #"fd20::/64"
             #"10.0.21.0/24"
             #"fd21::/64"
+            "140.245.83.173/32"
           ];
           endpoint_host = "vamrs.vpndns.net";
           public_key = "WVcdwHDpBQq2bg4bJE6zHRdWuPG7mptkuF48HxNFNw4=";

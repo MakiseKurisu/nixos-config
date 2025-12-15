@@ -56,7 +56,7 @@
           }
           {
             name = "wg";
-            network = [ "wg0" "wg1" "wg2" "wg3" "wg4" "tun" ];
+            network = [ "wg0" "wg1" "wg2" "wg3" "wg4" "tun0" ];
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";
