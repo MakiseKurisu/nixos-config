@@ -11,6 +11,7 @@
     ./wan.nix
     ./wwan0.nix
     ./pppoe.nix
+    ./tun.nix
     # ./wg0.nix
     ./wg1.nix
     ./wg2.nix
@@ -28,7 +29,7 @@
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";
-            masq = 1;
+            masq = true;
           }
           {
             name = "wan";
@@ -36,8 +37,8 @@
             input = "DROP";
             output = "ACCEPT";
             forward = "DROP";
-            masq = 1;
-            mtu_fix = 1;
+            masq = true;
+            mtu_fix = true;
           }
           {
             name = "guest";
@@ -55,11 +56,12 @@
           }
           {
             name = "wg";
-            network = [ "wg0" "wg1" "wg2" "wg3" "wg4" ];
+            network = [ "wg0" "wg1" "wg2" "wg3" "wg4" "tun" ];
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";
-            masq = 1;
+            masq = true;
+            masq6 = true;
           }
         ];
         forwarding = [

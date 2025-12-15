@@ -22,15 +22,47 @@
             awg_jmax = 50;
             awg_s1 = 16;
             awg_s2 = 48;
+            sourcefilter = false;
+            defaultroute = false;
           };
         };
         amneziawg_wg2 = [{
           description = "japan";
           public_key = "mM6UKv/6OJW0re4/R24TGnxhA5g+7XHIkM/iGCSR7Tk=";
-          allowed_ips = [ "10.0.20.0/24" "fd20::/64" ];
+          allowed_ips = [ "0.0.0.0/0" "::/0" ];
           route_allowed_ips = true;
           endpoint_host = "140.245.83.173";
           persistent_keepalive = 25;
+        }];
+        route = [
+          {
+            interface = "wg2";
+            target = "10.0.20.0/24";
+          }
+          {
+            interface = "wg2";
+            target = "0.0.0.0/0";
+            table = 440;
+          }
+        ];
+        route6 = [
+          {
+            interface = "wg2";
+            target = "fd20::/64";
+          }
+          {
+            interface = "wg2";
+            target = "::/0";
+            table = 440;
+          }
+        ];
+        rule = [{
+          lookup = 440;
+          mark = 440;
+        }];
+        rule6 = [{
+          lookup = 440;
+          mark = 440;
         }];
       };
     };

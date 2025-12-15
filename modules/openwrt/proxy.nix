@@ -9,7 +9,7 @@
     "luci-app-https-dns-proxy"
     "coreutils-base64"
 
-    "hev-socks5-tunnel"
+    "luci-app-pbr"
   ];
 
   providers = {
@@ -26,21 +26,17 @@
       # add telegram ip
       nft "add element inet fw4 gfwlist { 91.108.4.0/22, 91.108.8.0/22, 91.108.56.0/22, 109.239.140.0/24, 149.154.160.0/20 }"
       # add routing rules
-      nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter ct mark set 439"
+      nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter ct mark set 440"
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter meta mark set ct mark"
-      nft "add rule inet fw4 mangle_output meta l4proto tcp ip6 daddr @gfwlist6 counter ct mark set 439"
+      nft "add rule inet fw4 mangle_output meta l4proto tcp ip6 daddr @gfwlist6 counter ct mark set 440"
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip6 daddr @gfwlist6 counter meta mark set ct mark"
 
-      nft "add chain inet fw4 accept_to_tun"
-      nft 'add rule inet fw4 accept_to_tun oifname { tun0 } counter accept comment "!fw4: accept tun IPv4/IPv6 traffic"'
-      nft 'add rule inet fw4 forward_lan jump accept_to_tun'
-
-      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_bypass accept"
-      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter ct mark set 439"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_bypass counter accept"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter ct mark set 440"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter meta mark set ct mark"
-      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @gfwlist counter ct mark set 439"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @gfwlist counter ct mark set 440"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @gfwlist counter meta mark set ct mark"
-      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip6 daddr @gfwlist6 counter ct mark set 439"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip6 daddr @gfwlist6 counter ct mark set 440"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip6 daddr @gfwlist6 counter meta mark set ct mark"
     '';
     "crontabs/root".text = ''
@@ -74,38 +70,7 @@
       grep -v "^\s*$" /tmp/blocklist.conf | sed "s/\(.*\)/address=\/\1\/127.0.0.1/g" >/etc/dnsmasq.d/blocklist.conf
       service dnsmasq restart
     '';
-    "proxy/postup".text = ''
-      #!/usr/bin/env sh
-
-      ip rule add fwmark 439 lookup 100
-      ip route add default dev $1 table 100
-      ip -6 rule add fwmark 439 lookup 100
-      ip -6 route add default dev $1 table 100
-    '';
-    "proxy/postdown".text = ''
-      #!/usr/bin/env sh
-
-      ip rule del fwmark 439 lookup 100
-      ip -6 rule del fwmark 439 lookup 100
-    '';
-    "proxy/tunnel.yaml".text = ''
-      tunnel:
-        name: tun0
-        mtu: 8500
-        multi-queue: true
-        ipv4: 10.0.40.1
-        ipv6: "fd40::1"
-        post-up-script: /etc/proxy/postup
-        post-down-script: /etc/proxy/postdown
-      socks5:
-        port: 7891
-        address: "fd20::1"
-        udp: udp
-        mark: 438
-    '';
     "rc.local".text = ''
-      chmod +x /etc/proxy/postup
-      chmod +x /etc/proxy/postdown
       chmod +x /etc/proxy/update_gfwlist
     '';
   };
@@ -129,11 +94,42 @@
         }];
       };
 
-      hev-socks5-tunnel = {
-        hev-socks5-tunnel.config = {
-          enabled = true;
-          conffile = "/etc/proxy/tunnel.yaml";
+      pbr = {
+        pbr.config = {
+          enabled = false;
+	        strict_enforcement = true;
+	        resolver_set = "dnsmasq.nftset";
+	        resolver_instance = ["*"];
+	        ipv6_enabled = true;
+	        ignored_interface = "vpnserver";
+	        rule_create_option = "add";
+          procd_boot_trigger_delay = 5000;
+          procd_reload_delay = true;
+          webui_show_ignore_target = false;
+          nft_rule_counter = false;
+          nft_set_auto_merge = 1;
+          nft_set_counter = 0;
+          nft_set_flags_interval = 1;
+          nft_set_flags_timeout = 0;
+          nft_set_gc_interval = "";
+          nft_set_policy = "performance";
+          nft_set_timeout = "";
+	        webui_supported_protocol = ["all" "tcp" "udp" "tcp udp" "icmp"];
         };
+        include = [
+          {
+            path = "/usr/share/pbr/pbr.user.dnsprefetch";
+            enabled = false;
+          }
+          {
+            path = "/usr/share/pbr/pbr.user.aws";
+            enabled = false;
+          }
+          {
+            path = "/usr/share/pbr/pbr.user.netflix";
+            enabled = false;
+          }
+        ];
       };
     };
   };
