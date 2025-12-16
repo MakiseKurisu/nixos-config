@@ -23,21 +23,27 @@
       nft "add set inet fw4 gfwlist6 { type ipv6_addr; flags interval; auto-merge; }"
       nft "add set inet fw4 proxy_bypass { type ipv4_addr; flags interval; auto-merge; }"
       nft "add set inet fw4 proxy_force { type ipv4_addr; flags interval; auto-merge; }"
+      nft "add set inet fw4 game { type ipv4_addr; flags interval; auto-merge; }"
+      nft "add set inet fw4 game6 { type ipv6_addr; flags interval; auto-merge; }"
       # add telegram ip
       nft "add element inet fw4 gfwlist { 91.108.4.0/22, 91.108.8.0/22, 91.108.56.0/22, 109.239.140.0/24, 149.154.160.0/20 }"
       # add cloudflare ip
       nft "add element inet fw4 gfwlist { $(curl https://www.cloudflare.com/ips-v4/ | tr '\n' ',') }"
       nft "add element inet fw4 gfwlist6 { $(curl https://www.cloudflare.com/ips-v6/ | tr '\n' ',') }"
       # add routing rules
-      nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter ct mark set 440"
+      nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter ct mark set 439"
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter meta mark set ct mark"
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip6 daddr @gfwlist6 counter ct mark set 440"
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip6 daddr @gfwlist6 counter meta mark set ct mark"
 
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_bypass counter accept"
-      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter ct mark set 440"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter ct mark set 439"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter meta mark set ct mark"
-      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @gfwlist counter ct mark set 440"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @game counter ct mark set 439"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @game counter meta mark set ct mark"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip6 daddr @game6 counter ct mark set 440"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip6 daddr @game6 counter meta mark set ct mark"
+      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @gfwlist counter ct mark set 439"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @gfwlist counter meta mark set ct mark"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip6 daddr @gfwlist6 counter ct mark set 440"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip6 daddr @gfwlist6 counter meta mark set ct mark"
@@ -52,7 +58,8 @@
       nftset=/github.com/4#inet#fw4#gfwlist,6#inet#fw4#gfwlist6
     '';
     "proxy/gfwlist2dnsmasq.sh".text = lib.readFile "${inputs.gfwlist2dnsmasq}/gfwlist2dnsmasq.sh";
-    "proxy/whitelist.conf".text = '''';
+    "proxy/whitelist.conf".text = lib.readFile ./game.conf;
+    "proxy/game.conf".text = lib.readFile ./game.conf;
     "proxy/gfwlist.conf".text = lib.readFile ./gfwlist.conf;
     "proxy/blocklist.conf".text = lib.readFile ./blocklist.conf;
     "proxy/update_gfwlist".text = ''
@@ -71,6 +78,8 @@
 
       sh /etc/proxy/gfwlist2dnsmasq.sh -d 192.168.9.1 -p 5053 --nftset4 gfwlist --nftset6 gfwlist6 --exclude-domain-file /tmp/whitelist.conf --extra-domain-file /tmp/gfwlist.conf -o /etc/dnsmasq.d/gfwlist.conf
       grep -v "^\s*$" /tmp/blocklist.conf | sed "s/\(.*\)/address=\/\1\/127.0.0.1/g" >/etc/dnsmasq.d/blocklist.conf
+      grep -v "^\s*$" /etc/proxy/game.conf | sed "s/\(.*\)/server=\/\1\/192.168.9.1#5054/g" >/etc/dnsmasq.d/game.conf
+      grep -v "^\s*$" /etc/proxy/game.conf | sed "s/\(.*\)/nftset=\/\1\/4#inet#fw4#game,6#inet#fw4#game6/g" >>/etc/dnsmasq.d/game.conf
       service dnsmasq restart
     '';
     "rc.local".text = ''
@@ -86,15 +95,26 @@
           procd_trigger_wan6 = 0;
           force_dns = 0;
         };
-        https-dns-proxy = [{
-          user = "nobody";
-          group = "nogroup";
-          listen_addr = "192.168.9.1";
-          listen_port = 5053;
-          bootstrap_dns = "1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001,8.8.8.8,8.8.4.4,9.9.9.9";
-          resolver_url = "https://cloudflare-dns.com/dns-query";
-          proxy_server = "socks5h://10.0.20.1:1080";
-        }];
+        https-dns-proxy = [
+          {
+            user = "nobody";
+            group = "nogroup";
+            listen_addr = "192.168.9.1";
+            listen_port = 5053;
+            bootstrap_dns = "1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001,8.8.8.8,8.8.4.4,9.9.9.9";
+            resolver_url = "https://cloudflare-dns.com/dns-query";
+            proxy_server = "socks5h://10.0.20.1:1080";
+          }
+          {
+            user = "nobody";
+            group = "nogroup";
+            listen_addr = "192.168.9.1";
+            listen_port = 5054;
+            bootstrap_dns = "1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001,8.8.8.8,8.8.4.4,9.9.9.9";
+            resolver_url = "https://cloudflare-dns.com/dns-query";
+            proxy_server = "socks5h://${service_ip}:7891";
+          }
+        ];
       };
 
       pbr = {
