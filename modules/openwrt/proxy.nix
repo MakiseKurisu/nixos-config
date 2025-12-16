@@ -19,12 +19,15 @@
   etc = {
     "firewall.user".text = ''
       # create nftset
-      nft "add set inet fw4 gfwlist { type ipv4_addr; flags interval; }"
-      nft "add set inet fw4 gfwlist6 { type ipv6_addr; flags interval; }"
-      nft "add set inet fw4 proxy_bypass { type ipv4_addr; flags interval; }"
-      nft "add set inet fw4 proxy_force { type ipv4_addr; flags interval; }"
+      nft "add set inet fw4 gfwlist { type ipv4_addr; flags interval; auto-merge; }"
+      nft "add set inet fw4 gfwlist6 { type ipv6_addr; flags interval; auto-merge; }"
+      nft "add set inet fw4 proxy_bypass { type ipv4_addr; flags interval; auto-merge; }"
+      nft "add set inet fw4 proxy_force { type ipv4_addr; flags interval; auto-merge; }"
       # add telegram ip
       nft "add element inet fw4 gfwlist { 91.108.4.0/22, 91.108.8.0/22, 91.108.56.0/22, 109.239.140.0/24, 149.154.160.0/20 }"
+      # add cloudflare ip
+      nft "add element inet fw4 gfwlist { $(curl https://www.cloudflare.com/ips-v4/ | tr '\n' ',') }"
+      nft "add element inet fw4 gfwlist6 { $(curl https://www.cloudflare.com/ips-v6/ | tr '\n' ',') }"
       # add routing rules
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter ct mark set 440"
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter meta mark set ct mark"
