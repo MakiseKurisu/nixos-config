@@ -1,5 +1,5 @@
 { lib
-, gfwlist2dnsmasq
+, inputs
 , ...
 }:
 
@@ -7,7 +7,7 @@
   configuration = {
     openwrt = {
       rax3000m = import ./wireless-router {
-        inherit lib gfwlist2dnsmasq;
+        inherit lib inputs;
         release = "23.05.5";
         target = "mediatek/filogic";
         arch = "aarch64_cortex-a53";
@@ -19,7 +19,7 @@
         uci.settings.wireless.wifi-device.radio1.path = "platform/18000000.wifi+1";
       };
       rt3200 = import ./wireless-ap {
-        inherit lib gfwlist2dnsmasq;
+        inherit lib inputs;
         release = "24.10.2";
         target = "mediatek/mt7622";
         arch = "aarch64_cortex-a53";
@@ -31,7 +31,7 @@
         uci.settings.wireless.wifi-device.radio1.path = "1a143000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0";
       };
       openwrt = import ./router {
-        inherit lib gfwlist2dnsmasq;
+        inherit lib inputs;
         release = "24.10.2";
         target = "x86/64";
         arch = "x86_64";
@@ -41,7 +41,7 @@
         service_ip = "192.168.9.3";
       };
       m93p = import ./router {
-        inherit lib gfwlist2dnsmasq;
+        inherit lib inputs;
         release = "23.05.5";
         target = "x86/64";
         arch = "x86_64";
@@ -57,7 +57,7 @@
         ];
       };
       p15 = import ./router {
-        inherit lib gfwlist2dnsmasq;
+        inherit lib inputs;
         release = "24.10.2";
         target = "x86/64";
         arch = "x86_64";
@@ -67,7 +67,7 @@
         service_ip = "192.168.9.23";
       };
       ax3600 = import ./wireless-ap {
-        inherit lib gfwlist2dnsmasq;
+        inherit lib inputs;
         release = "24.10.2";
         target = "qualcommax/ipq807x";
         arch = "aarch64_cortex-a53";

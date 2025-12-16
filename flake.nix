@@ -2,6 +2,10 @@
   description = "NixOS configurations";
 
   inputs = {
+    secrets = {
+      url = "git+file:secrets";
+      flake = false;
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
@@ -35,6 +39,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixified-ai.url = "github:nixified-ai/flake";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Work In Progress PRs
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
     pr-fastapi-dls.url = "github:MakiseKurisu/nixpkgs/fastapi-dls";
@@ -52,8 +61,7 @@
         formatter = pkgs.nixpkgs-fmt;
         packages = {
           dewclaw-env = pkgs.callPackage inputs.dewclaw (import ./pkgs/dewclaw {
-            inherit lib;
-            gfwlist2dnsmasq = inputs.gfwlist2dnsmasq;
+            inherit lib inputs;
            });
           default = self'.packages.dewclaw-env;
         };

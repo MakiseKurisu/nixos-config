@@ -1,5 +1,4 @@
 { lib
-, gfwlist2dnsmasq
 , release
 , target
 , arch
@@ -7,18 +6,19 @@
 , ip
 , kver ? null
 , service_ip
+, inputs
 , ... }:
 
 {
   imports = [
     (import ../../../modules/openwrt {
-      inherit lib release target arch hostname ip kver;
+      inherit lib release target arch hostname ip kver inputs;
     })
     (import ../../../modules/openwrt/router.nix {
       inherit arch release;
     })
     (import ../../../modules/openwrt/proxy.nix {
-      inherit lib service_ip gfwlist2dnsmasq;
+      inherit lib service_ip inputs;
     })
     (import ../../../modules/openwrt/dhcp.nix {
       inherit service_ip;

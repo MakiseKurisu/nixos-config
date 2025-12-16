@@ -5,6 +5,7 @@
 , hostname
 , ip
 , kver ? null
+, inputs
 , ...}:
 {
   deploy = {
@@ -49,7 +50,7 @@
     '';
   };
 
-  sopsSecrets = ./secrets.yaml;
+  sopsSecrets = "${inputs.secrets}/openwrt.yaml";
 
   uci = {
     # leave the ucitrack and firewall packages as they are, retaining defaults if

@@ -1,5 +1,5 @@
 { lib
-, gfwlist2dnsmasq
+, inputs
 , service_ip
 , ...
 }:
@@ -51,7 +51,7 @@
       server=/github.com/192.168.9.1#5053
       nftset=/github.com/4#inet#fw4#gfwlist,6#inet#fw4#gfwlist6
     '';
-    "proxy/gfwlist2dnsmasq.sh".text = lib.readFile "${gfwlist2dnsmasq}/gfwlist2dnsmasq.sh";
+    "proxy/gfwlist2dnsmasq.sh".text = lib.readFile "${inputs.gfwlist2dnsmasq}/gfwlist2dnsmasq.sh";
     "proxy/whitelist.conf".text = '''';
     "proxy/gfwlist.conf".text = lib.readFile ./gfwlist.conf;
     "proxy/blocklist.conf".text = lib.readFile ./blocklist.conf;

@@ -707,7 +707,9 @@
         "pr-fastapi-dls": "pr-fastapi-dls",
         "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
-        "pr-pico-rpa": "pr-pico-rpa"
+        "pr-pico-rpa": "pr-pico-rpa",
+        "secrets": "secrets",
+        "sops-nix": "sops-nix"
       }
     },
     "scss-reset": {
@@ -723,6 +725,42 @@
       "original": {
         "owner": "andreymatin",
         "repo": "scss-reset",
+        "type": "github"
+      }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1765888628,
+        "narHash": "sha256-AEFLTyIRN14ntDcH8urZVbGKFT6jyN/NaWLeW2VsMN8=",
+        "ref": "refs/heads/main",
+        "rev": "0404832c677923822b376b5ed51c8270467754ce",
+        "revCount": 1,
+        "type": "git",
+        "url": "file:secrets"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:secrets"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765836173,
+        "narHash": "sha256-hWRYfdH2ONI7HXbqZqW8Q1y9IRbnXWvtvt/ONZovSNY=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "443a7f2e7e118c4fc63b7fae05ab3080dd0e5c63",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
         "type": "github"
       }
     },
