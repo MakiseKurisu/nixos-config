@@ -1,16 +1,7 @@
-{
-  packages = [
-    "hev-socks5-tunnel"
-  ];
-
+{ service_ip
+, ...
+}: {
   etc = {
-    "proxy/postup".text = ''
-      #!/usr/bin/env sh
-
-      nft "add chain inet fw4 accept_to_tun"
-      nft 'add rule inet fw4 accept_to_tun oifname { tun0 } counter accept comment "!fw4: accept tun IPv4/IPv6 traffic"'
-      nft 'add rule inet fw4 forward_lan counter jump accept_to_tun'
-    '';
     "proxy/tun0.yaml".text = ''
       tunnel:
         name: tun0
@@ -20,22 +11,30 @@
         ipv6: "fd40::1"
       socks5:
         port: 7891
-        address: 192.168.9.3
+        address: ${service_ip}
         udp: udp
         mark: 438
     '';
     "rc.local".text = ''
-      chmod +x /etc/proxy/postup
+      /usr/bin/hev-socks5-tunnel /etc/proxy/tun0.yaml &
+      /usr/bin/hev-socks5-tunnel /etc/proxy/tun0.yaml &
     '';
   };
 
   uci = {
     settings = {
-      hev-socks5-tunnel = {
-        hev-socks5-tunnel.config = {
-          enabled = true;
-          conffile = "/etc/proxy/tun0.yaml";
-        };
+      https-dns-proxy = {
+        https-dns-proxy = [
+          {
+            user = "nobody";
+            group = "nogroup";
+            listen_addr = "192.168.9.1";
+            listen_port = 5054;
+            bootstrap_dns = "1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001,8.8.8.8,8.8.4.4,9.9.9.9";
+            resolver_url = "https://cloudflare-dns.com/dns-query";
+            proxy_server = "socks5h://${service_ip}:7891";
+          }
+        ];
       };
 
       network = {

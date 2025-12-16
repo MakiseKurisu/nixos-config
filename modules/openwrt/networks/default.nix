@@ -11,7 +11,12 @@
     ./wan.nix
     ./wwan0.nix
     ./pppoe.nix
-    ./tun.nix
+    (import ./tun0.nix {
+      inherit service_ip;
+    })
+    (import ./tun1.nix {
+      inherit service_ip;
+    })
     # ./wg0.nix
     ./wg1.nix
     ./wg2.nix
@@ -56,7 +61,7 @@
           }
           {
             name = "wg";
-            network = [ "wg0" "wg1" "wg2" "wg3" "wg4" "tun0" ];
+            network = [ "wg0" "wg1" "wg2" "wg3" "wg4" "tun0" "tun1" ];
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";

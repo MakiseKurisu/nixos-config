@@ -1,6 +1,19 @@
 {
   uci = {
     settings = {
+      https-dns-proxy = {
+        https-dns-proxy = [
+          {
+            user = "nobody";
+            group = "nogroup";
+            listen_addr = "192.168.9.1";
+            listen_port = 5053;
+            bootstrap_dns = "1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001,8.8.8.8,8.8.4.4,9.9.9.9";
+            resolver_url = "https://cloudflare-dns.com/dns-query";
+            proxy_server = "socks5h://10.0.20.1:1080";
+          }
+        ];
+      };
       dropbear.dropbear = [
         {
           Interface = "wg2";
