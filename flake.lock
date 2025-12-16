@@ -731,11 +731,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1765898632,
-        "narHash": "sha256-R1FLipbQBS7ZkY+AleEamIORjQpz1///MKtP1RbOQMI=",
+        "lastModified": 1765902879,
+        "narHash": "sha256-robb/hc8mgp/UvUEsDrzugygsLlzDMwNl4gG9zrrwZY=",
         "ref": "refs/heads/main",
-        "rev": "246fa064142e7b54e57e1e4f2b74aaf4d47d2114",
-        "revCount": 2,
+        "rev": "26b4c2f67bc16720e009e98e64eed456b1a6cd5d",
+        "revCount": 3,
         "type": "git",
         "url": "file:secrets"
       },
