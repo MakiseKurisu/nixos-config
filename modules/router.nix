@@ -12,6 +12,41 @@
     ];
   };
 
+  sops.templates."v2ray.json" = {
+    mode = "0444";
+    content = ''
+      {
+        "inbounds":[
+          {
+            "port": 7899,
+            "protocol": "socks",
+            "settings": { "udp": true }
+          }
+        ],
+        "outbounds": [
+          {
+            "protocol": "vmess",
+            "settings":
+            {
+              "udp": true,
+              "vnext": [
+                {
+                  "address": "${config.sops.placeholder.v2ray_address}",
+                  "port": ${config.sops.placeholder.v2ray_port},
+                  "users": [
+                      {
+                          "id": "${config.sops.placeholder.v2ray_id}"
+                      }
+                    ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    '';
+  };
+
   services = {
     # Must configure to NOT listen on 0.0.0.0:53 but 192.168.xxx.yyy:53
     # As systemd-resolved would listen on 127.0.0.53:53
@@ -22,6 +57,11 @@
       tunMode = true;
       configFile = "/var/lib/mihomo/clash.yaml";
       webui = pkgs.metacubexd;
+    };
+
+    v2ray = {
+      enable = true;
+      configFile = "${config.sops.templates."v2ray.json".path}";
     };
 
     iperf3 = {
@@ -83,6 +123,7 @@
     53 # technitium-dns-server
     80 # nginx
     443 # nginx
+    7899 # v2ray
     9090 # mihomo
   ];
   networking.firewall.allowedTCPPortRanges = [

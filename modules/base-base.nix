@@ -1,6 +1,10 @@
 { config, lib, pkgs, inputs, options, ... }:
 
 {
+  imports = [
+    ./sops.nix
+  ];
+
   documentation.man.generateCaches = true;
 
   environment.enableAllTerminfo = true;
