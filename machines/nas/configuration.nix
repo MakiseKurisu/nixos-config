@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ../../modules/zone/home.nix
+
     ../../modules/base.nix
     ../../modules/file-share.nix
     #../../modules/desktop.nix

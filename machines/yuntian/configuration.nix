@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ../../modules/zone/office.nix
+
     inputs.home-manager.nixosModules.home-manager
     ../../modules/base.nix
     ../../modules/desktop.nix
