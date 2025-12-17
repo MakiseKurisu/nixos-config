@@ -76,6 +76,7 @@
         rule6 = [{
           lookup = 439;
           mark = 439;
+          disabled = true;
         }];
       };
     };
