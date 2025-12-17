@@ -20,8 +20,16 @@
   ++ lib.optional (pkgs.stdenv.hostPlatform.system == "aarch64-linux") "console=ttyAMA0,115200";
 
   services = {
-    cloud-init.enable = true;
-    qemuGuest.enable = true;
+    cloud-init = {
+      enable = true;
+      settings = {
+        updates = {
+          network = {
+            when = ["boot" "hotplug"];
+          };
+        };
+      };
+    };
   };
 
   # https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/configuringntpservice.htm#Configuring_the_Oracle_Cloud_Infrastructure_NTP_Service_for_an_Instance
@@ -32,26 +40,6 @@
   networking.useNetworkd = lib.mkDefault true;
 
   systemd.services = {
-    cloud-init-clean = {
-      description = "Clean cloud-init metadata";
-      wantedBy = [ "multi-user.target" ];
-      wants = [
-        "network-online.target"
-        "cloud-init.service"
-      ];
-      before = [
-        "cloud-init.service"
-      ];
-      requires = [ "network.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.cloud-init}/bin/cloud-init clean";
-        RemainAfterExit = "yes";
-        TimeoutSec = "infinity";
-        StandardOutput = "journal+console";
-      };
-    };
-
     fetch-ssh-keys = {
       description = "Fetch authorized_keys for root user";
 
