@@ -24,10 +24,16 @@
   };
 
   environment = {
-    etc."greetd/environments".text = ''
-      hyprland
-      bash
-    '';
+    etc = {
+      "greetd/environments".text = ''
+        hyprland
+        bash
+      '';
+      # https://discourse.nixos.org/t/hyprland-dolphin-file-manager-trying-to-open-an-image-asks-for-a-program-to-use-for-open-it/69824/3
+      # https://github.com/NixOS/nixpkgs/issues/409986
+      # Run `rm -rf ~/.cache/ksyscoca* && kbuildsycoca6`
+      "xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+    };
     variables = {
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_WEBRENDER = "1";
@@ -431,6 +437,7 @@
           extraPortals = [
             pkgs.xdg-desktop-portal-hyprland
             pkgs.xdg-desktop-portal-gtk
+            pkgs.kdePackages.xdg-desktop-portal-kde
           ];
         };
         mime.enable = true;
