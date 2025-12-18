@@ -23,6 +23,9 @@
     git = {
       enable = true;
       config = {
+        credential = {
+          "https://github.com/MakiseKurisu".username = "MakiseKurisu";
+        };
         init = {
           defaultBranch = "main";
         };
