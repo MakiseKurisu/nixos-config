@@ -60,7 +60,7 @@
     };
 
     v2ray = {
-      enable = true;
+      enable = false;
       configFile = "${config.sops.templates."v2ray.json".path}";
     };
 
