@@ -8,24 +8,32 @@
         hostName = "yuntian";
         protocol = "ssh-ng";
         speedFactor = 20;
+        sshUser = "excalibur";
+        supportedFeatures = [ "cuda" "big-parallel" "kvm" ];
         systems = [ "x86_64-linux" "aarch64-linux" ];
       }
       {
         hostName = "b490";
         protocol = "ssh-ng";
         speedFactor = 4;
+        sshUser = "excalibur";
+        supportedFeatures = [ "kvm" ];
         systems = [ "x86_64-linux" ];
       }
       {
         hostName = "orion-o6n";
         protocol = "ssh-ng";
         speedFactor = 12;
+        sshUser = "excalibur";
+        supportedFeatures = [ "big-parallel" "kvm" ];
         systems = [ "aarch64-linux" ];
       }
       {
         hostName = "mac01";
         protocol = "ssh-ng";
         speedFactor = 8;
+        sshUser = "excalibur";
+        supportedFeatures = [ "kvm" ];
         systems = [ "aarch64-linux" ];
       }
     ];
