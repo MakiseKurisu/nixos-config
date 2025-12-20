@@ -98,7 +98,7 @@
 
   systemd = {
     oomd.enableUserSlices = true;
-    settings.Manager.RuntimeWatchdogSec = "1m";
+    settings.Manager.RuntimeWatchdogSec = lib.mkDefault "1m";
   };
 
   zramSwap = {

@@ -94,6 +94,8 @@
     };
   };
 
+  systemd.settings.Manager.RuntimeWatchdogSec = "off";
+
   nix = {
     settings = {
       cores = 8;
@@ -105,6 +107,9 @@
     upstream.configuration = {
       hardware.cix.sky1.bspRelease = "none";
       boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
+    };
+    entropi.configuration = {
+      hardware.cix.sky1.bspRelease = "sky1-linux";
     };
   };
 
