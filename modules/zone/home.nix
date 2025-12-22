@@ -3,7 +3,7 @@
 {
   nix = {
     distributedBuilds = true;
-    buildMachines = [
+    buildMachines = (lib.filter (m: m.hostName != config.networking.hostName) [
       {
         hostName = "main";
         protocol = "ssh-ng";
@@ -28,6 +28,6 @@
         supportedFeatures = [ "kvm" ];
         systems = [ "x86_64-linux" ];
       }
-    ];
+    ]);
   };
 }

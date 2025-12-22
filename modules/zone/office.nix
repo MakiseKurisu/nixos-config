@@ -3,7 +3,7 @@
 {
   nix = {
     distributedBuilds = true;
-    buildMachines = [
+    buildMachines = (lib.filter (m: m.hostName != config.networking.hostName) [
       {
         hostName = "yuntian";
         protocol = "ssh-ng";
@@ -36,6 +36,6 @@
         supportedFeatures = [ "kvm" ];
         systems = [ "aarch64-linux" ];
       }
-    ];
+    ]);
   };
 }
