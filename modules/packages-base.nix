@@ -77,10 +77,11 @@
     };
     ssh = {
       extraConfig = ''
-        StrictHostKeyChecking accept-new
-
         Host openwrt
           User root
+        
+        Host *
+          StrictHostKeyChecking accept-new
       '';
     };
   };

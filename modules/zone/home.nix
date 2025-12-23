@@ -30,4 +30,21 @@
       }
     ]);
   };
+
+  programs = {
+    ssh = {
+      extraConfig = ''
+        Host main
+          IdentityFile /home/excalibur/.ssh/id_rsa
+          IdentityFile ~/.ssh/id_rsa
+        Host p15
+          IdentityFile /home/excalibur/.ssh/id_rsa
+          IdentityFile ~/.ssh/id_rsa
+        Host nas
+          IdentityFile /home/excalibur/.ssh/id_rsa
+          IdentityFile ~/.ssh/id_rsa
+        Host *
+      '';
+    };
+  };
 }

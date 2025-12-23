@@ -38,4 +38,24 @@
       }
     ]);
   };
+
+  programs = {
+    ssh = {
+      extraConfig = ''
+        Host yuntian
+          IdentityFile /home/excalibur/.ssh/id_rsa
+          IdentityFile ~/.ssh/id_rsa
+        Host b490
+          IdentityFile /home/excalibur/.ssh/id_rsa
+          IdentityFile ~/.ssh/id_rsa
+        Host orion-o6n
+          IdentityFile /home/excalibur/.ssh/id_rsa
+          IdentityFile ~/.ssh/id_rsa
+        Host mac01
+          IdentityFile /home/excalibur/.ssh/id_rsa
+          IdentityFile ~/.ssh/id_rsa
+        Host *
+      '';
+    };
+  };
 }
