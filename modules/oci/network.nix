@@ -12,7 +12,7 @@
     };
   };
 
-  systemd = {
+  systemd = lib.mkIf (pkgs.stdenv.hostPlatform.system == "aarch64-linux") {
     network = {
       config = {
         routeTables = {
