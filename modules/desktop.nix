@@ -43,6 +43,7 @@
       QT_QPA_PLATFORM = "wayland;xcb";
       CLUTTER_BACKEND = "wayland";
       SDL_VIDEODRIVER = "wayland,x11,windows";
+      DXVK_CONFIG = "dxgi.customDeviceDesc = 'AMD Radeon Graphics (RADV VANGOGH)'";
     };
     sessionVariables = {
       EDITOR = "nano";
