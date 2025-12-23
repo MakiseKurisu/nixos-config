@@ -175,6 +175,21 @@
   };
 
   networking = {
+    firewall.allowedTCPPorts = [
+      1080 # wg0 dante
+    ];
+    nat = {
+      enable = true;
+      enableIPv6 = true;
+      internalInterfaces = [ "wg0" ];
+      externalInterface = "br0";
+      forwardPorts = [
+        {
+          sourcePort = 1080;
+          destination = "10.0.20.1:1080";
+        }
+      ];
+    };
     wireguard = {
       useNetworkd = false;
       interfaces = {
