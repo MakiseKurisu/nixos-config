@@ -17,6 +17,7 @@
       v2ray_id = {
         restartUnits = [ "v2ray.service" ];
       };
+      wg2_private_key = {};
     };
   };
 }

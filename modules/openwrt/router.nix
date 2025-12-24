@@ -30,20 +30,6 @@
   etc = {
     "rc.local".text = ''
       (
-        if [ ! -f /usr/bin/amneziawg ]; then
-          # wait for network to be online
-          sleep 120
-          wget -O /tmp/amneziawg-tools.ipk "https://github.com/Slava-Shchipunov/awg-openwrt/releases/download/v${release}/amneziawg-tools_v${release}_${arch}_${arch}.ipk"
-          wget -O /tmp/kmod-amneziawg.ipk "https://github.com/Slava-Shchipunov/awg-openwrt/releases/download/v${release}/kmod-amneziawg_v${release}_${arch}_${arch}.ipk"
-          wget -O /tmp/luci-app-amneziawg.ipk "https://github.com/Slava-Shchipunov/awg-openwrt/releases/download/v${release}/luci-app-amneziawg_v${release}_${arch}_${arch}.ipk"
-          opkg update
-          opkg install /tmp/amneziawg-tools.ipk
-          opkg install /tmp/kmod-amneziawg.ipk
-          opkg install /tmp/luci-app-amneziawg.ipk
-          service network restart
-        fi
-      )&
-      (
         if [ ! -f /usr/local/bin/udp2raw ]; then
           # wait for network to be online
           sleep 120

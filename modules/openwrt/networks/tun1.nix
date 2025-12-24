@@ -10,7 +10,7 @@
         ipv4: 10.0.41.1
         ipv6: "fd41::1"
       socks5:
-        port: 7899
+        port: 1080
         address: ${service_ip}
         udp: udp
         mark: 437
@@ -32,7 +32,7 @@
             listen_port = 5055;
             bootstrap_dns = "1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001,8.8.8.8,8.8.4.4,9.9.9.9";
             resolver_url = "https://cloudflare-dns.com/dns-query";
-            proxy_server = "socks5h://${service_ip}:7899";
+            proxy_server = "socks5h://${service_ip}:1080";
           }
         ];
       };
@@ -56,6 +56,11 @@
             interface = "tun1";
             target = "0.0.0.0/0";
             table = 441;
+          }
+          {
+            interface = "lan";
+            target = "10.0.20.0/24";
+            gateway = "192.168.9.3";
           }
         ];
         route6 = [

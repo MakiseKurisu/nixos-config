@@ -116,21 +116,72 @@
     };
   };
 
-  networking.firewall.allowedUDPPorts = [
-    53 # technitium-dns-server
-  ];
-  networking.firewall.allowedTCPPorts = [
-    53 # technitium-dns-server
-    80 # nginx
-    443 # nginx
-    7899 # v2ray
-    9090 # mihomo
-  ];
-  networking.firewall.allowedTCPPortRanges = [
-    # mihomo
-    {
-      from = 7890;
-      to = 7894;
-    }
-  ];
+  networking = {
+    firewall = {
+      allowedUDPPorts = [
+        53 # technitium-dns-server
+      ];
+      allowedTCPPorts = [
+        53 # technitium-dns-server
+        80 # nginx
+        443 # nginx
+        1080 # wg0 dante
+        7899 # v2ray
+        9090 # mihomo
+      ];
+      allowedTCPPortRanges = [
+        # mihomo
+        {
+          from = 7890;
+          to = 7894;
+        }
+      ];
+    };
+    nat = {
+      enable = true;
+      enableIPv6 = true;
+      internalInterfaces = [ "wg0" ];
+      externalInterface = "vlan20";
+      forwardPorts = [
+        {
+          sourcePort = 1080;
+          destination = "10.0.20.1:1080";
+        }
+      ];
+    };
+    wireguard = {
+      useNetworkd = false;
+      interfaces = {
+        wg0 = {
+          type = "amneziawg";
+          privateKeyFile = config.sops.secrets.wg2_private_key.path;
+          mtu = 1280;
+          listenPort = 51820;
+          ips = [
+            "10.0.20.3/32"
+            "fd20::3/128"
+          ];
+          extraOptions = {
+            Jc = 1;
+            Jmin = 10;
+            Jmax = 50;
+            S1 = 16;
+            S2 = 48;
+          };
+          dynamicEndpointRefreshSeconds = 5;
+          peers = [
+            {
+              publicKey = "mM6UKv/6OJW0re4/R24TGnxhA5g+7XHIkM/iGCSR7Tk=";
+              persistentKeepalive = 25;
+              endpoint = "140.245.83.173:51820";
+              allowedIPs = [
+                "10.0.20.0/24"
+                "fd20::/64"
+              ];
+            }
+          ];
+        };
+      };
+    };
+  };
 }

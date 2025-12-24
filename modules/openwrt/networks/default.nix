@@ -17,9 +17,7 @@
     (import ./tun1.nix {
       inherit service_ip;
     })
-    # ./wg0.nix
     ./wg1.nix
-    ./wg2.nix
     ./wg3.nix
     ./wg4.nix
   ];
@@ -61,7 +59,7 @@
           }
           {
             name = "wg";
-            network = [ "wg0" "wg1" "wg2" "wg3" "wg4" "tun0" "tun1" ];
+            network = [ "wg1" "wg3" "wg4" "tun0" "tun1" ];
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";
