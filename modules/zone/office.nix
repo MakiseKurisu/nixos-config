@@ -23,15 +23,6 @@
         systems = [ "i686-linux" "x86_64-linux" ];
       }
       {
-        hostName = "orion-o6n";
-        protocol = "ssh-ng";
-        speedFactor = 12;
-        sshUser = "excalibur";
-        sshKey = "/home/excalibur/.ssh/id_rsa";
-        supportedFeatures = [ "big-parallel" "kvm" ];
-        systems = [ "aarch64-linux" ];
-      }
-      {
         hostName = "mac01";
         protocol = "ssh-ng";
         speedFactor = 8;
