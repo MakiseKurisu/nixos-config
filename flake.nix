@@ -77,12 +77,6 @@
               ./machines/app01
             ];
           };
-          p15 = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./machines/p15
-            ];
-          };
           rpi3 = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
             modules = [

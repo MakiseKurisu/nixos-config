@@ -8,6 +8,7 @@
     ./oci/arm0
     ./oci/arm1
     ./orion-o6n
+    ./p15
     ./yuntian
   ];
 }
