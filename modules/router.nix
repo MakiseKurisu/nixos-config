@@ -12,41 +12,6 @@
     ];
   };
 
-  sops.templates."v2ray.json" = {
-    mode = "0444";
-    content = ''
-      {
-        "inbounds":[
-          {
-            "port": 7899,
-            "protocol": "socks",
-            "settings": { "udp": true }
-          }
-        ],
-        "outbounds": [
-          {
-            "protocol": "vmess",
-            "settings":
-            {
-              "udp": true,
-              "vnext": [
-                {
-                  "address": "${config.sops.placeholder.v2ray_address}",
-                  "port": ${config.sops.placeholder.v2ray_port},
-                  "users": [
-                      {
-                          "id": "${config.sops.placeholder.v2ray_id}"
-                      }
-                    ]
-                }
-              ]
-            }
-          }
-        ]
-      }
-    '';
-  };
-
   services = {
     # Must configure to NOT listen on 0.0.0.0:53 but 192.168.xxx.yyy:53
     # As systemd-resolved would listen on 127.0.0.53:53
@@ -55,7 +20,7 @@
     mihomo = {
       enable = true;
       tunMode = true;
-      configFile = "/var/lib/mihomo/clash.yaml";
+      configFile = "${config.sops.templates."mihomo.yaml".path}";
       webui = pkgs.metacubexd;
     };
 
@@ -125,7 +90,7 @@
         53 # technitium-dns-server
         80 # nginx
         443 # nginx
-        1080 # wg0 dante
+        1080 # wg2 dante
         7899 # v2ray
         9090 # mihomo
       ];
@@ -140,7 +105,7 @@
     nat = {
       enable = true;
       enableIPv6 = true;
-      internalInterfaces = [ "wg0" ];
+      internalInterfaces = [ "wg2" ];
       externalInterface = "vlan20";
       forwardPorts = [
         {
@@ -152,12 +117,12 @@
     wireguard = {
       useNetworkd = false;
       interfaces = {
-        wg0 = {
+        wg2 = {
           type = "amneziawg";
-          privateKeyFile = config.sops.secrets.wg2_private_key.path;
+          privateKeyFile = lib.mkDefault config.sops.secrets.wg2_private_key.path;
           mtu = 1280;
           listenPort = 51820;
-          ips = [
+          ips = lib.mkDefault [
             "10.0.20.3/32"
             "fd20::3/128"
           ];
