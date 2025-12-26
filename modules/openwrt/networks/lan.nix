@@ -56,6 +56,7 @@
             proto = "static";
             ipaddr = "192.168.9.1/24";
             ip6assign = 64;
+            arp_accept = true;
           };
         };
       };

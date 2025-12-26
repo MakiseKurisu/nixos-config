@@ -17,6 +17,7 @@
             ip6hint = 30;
             ip6assign = 64;
             ip6class = "local";
+            arp_accept = true;
           };
         };
       };
