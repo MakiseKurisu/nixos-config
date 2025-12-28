@@ -146,10 +146,10 @@
             enableExtensionUpdateCheck = false;
             enableUpdateCheck = false;
             extensions = with pkgs.vscode-extensions; [
-              bbenoist.nix
               github.vscode-github-actions
               github.vscode-pull-request-github
-              pkgs.unstable.vscode-extensions.ms-azuretools.vscode-containers
+              jnoortheen.nix-ide
+              ms-azuretools.vscode-containers
               ms-dotnettools.csdevkit
               ms-dotnettools.csharp
               ms-dotnettools.vscode-dotnet-runtime
@@ -160,7 +160,7 @@
               ms-vscode.hexeditor
               ms-vscode.makefile-tools
               ms-vscode.powershell
-              pkgs.unstable.vscode-extensions.ms-vscode.remote-explorer
+              ms-vscode.remote-explorer
               ms-vscode-remote.remote-containers
               ms-vscode-remote.remote-ssh
               ms-vscode-remote.remote-ssh-edit
