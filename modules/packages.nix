@@ -105,11 +105,6 @@
     };
     nix-index.enable = true;
     nix-ld.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-gtk2;
-    };
   };
   services.pcscd.enable = true;
 }

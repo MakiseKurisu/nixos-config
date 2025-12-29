@@ -279,6 +279,9 @@
       enable = true;
       capSysNice = true;
     };
+    gnupg.agent = {
+      pinentryPackage = pkgs.pinentry-gtk2;
+    };
     regreet.enable = true;
     hyprland.enable = true;
     seahorse.enable = true;
