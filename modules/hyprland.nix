@@ -27,7 +27,7 @@
             Type = "forking";
 
             # ... and hyprlock will fork only after it has locked the screen.
-            ExecStart = "${lib.getExe pkgs.hyprlock}";
+            ExecStart = "${lib.getExe pkgs.hyprlock} --grace 10";
 
             # If hyprlock crashes, always restart it immediately:
             Restart = "on-failure";
