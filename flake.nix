@@ -43,6 +43,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Work In Progress PRs
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
@@ -51,7 +55,7 @@
     pr-pico-rpa.url = "github:MakiseKurisu/nixpkgs/pico-rpa";
   };
 
-  outputs = inputs:
+  outputs = { self, ... }@inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./machines
@@ -77,24 +81,6 @@
               ./machines/app01
             ];
           };
-          rpi3 = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./machines/rpi3/configuration.nix
-            ];
-          };
-          w540 = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./machines/w540/configuration.nix
-            ];
-          };
-          n40 = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./machines/n40
-            ];
-          };
         };
 
         nixOnDroidConfigurations = {
@@ -117,6 +103,8 @@
             ];
           };
         };
+
+        checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
       };
     };
 }

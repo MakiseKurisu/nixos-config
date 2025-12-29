@@ -3,10 +3,7 @@
     ./b490
     ./main
     ./nas
-    ./oci/amd0
-    ./oci/amd1
-    ./oci/arm0
-    ./oci/arm1
+    ./oci
     ./orion-o6n
     ./p15
     ./yuntian
