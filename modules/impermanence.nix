@@ -76,6 +76,8 @@
             ".local/share"
             ".local/state/nix"  
             ".local/state/home-manager"
+            ".mozilla"
+            ".thunderbird"
           ];
           files = [
             ".bash_history"
