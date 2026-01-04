@@ -21,6 +21,11 @@
       # create nftset
       GFW_MARK=439
       GAME_MARK=439
+      DNS_PORT=5054
+      nft "add rule inet fw4 dstnat udp dport 5353 redirect to :$DNS_PORT"
+      nft "add chain inet fw4 output_nat { type nat hook output priority -100; }"
+      nft "add rule inet fw4 output_nat ip daddr 127.0.0.1 udp dport 5353 dnat to 192.168.9.1:$DNS_PORT"
+
       nft "add set inet fw4 gfwlist { type ipv4_addr; flags interval; auto-merge; }"
       nft "add set inet fw4 gfwlist6 { type ipv6_addr; flags interval; auto-merge; }"
       nft "add set inet fw4 proxy_bypass { type ipv4_addr; flags interval; auto-merge; }"
@@ -54,9 +59,9 @@
       0 0 * * * sh /etc/proxy/update_gfwlist
     '';
     "dnsmasq.d/github.conf".text = ''
-      server=/githubusercontent.com/192.168.9.1#5054
+      server=/githubusercontent.com/127.0.0.1#5353
       nftset=/githubusercontent.com/4#inet#fw4#gfwlist,6#inet#fw4#gfwlist6
-      server=/github.com/192.168.9.1#5054
+      server=/github.com/127.0.0.1#5353
       nftset=/github.com/4#inet#fw4#gfwlist,6#inet#fw4#gfwlist6
     '';
     "proxy/gfwlist2dnsmasq.sh".text = lib.readFile "${inputs.gfwlist2dnsmasq}/gfwlist2dnsmasq.sh";
@@ -79,9 +84,9 @@
       curl -Ls https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/proxy-list.txt | sed -e "s/^full://g" -e "s/^regexp:.*//g" >> /tmp/gfwlist.conf
       curl -Ls https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/reject-list.txt | sed -e "s/^full://g" -e "s/^regexp:.*//g" >> /tmp/blocklist.conf
 
-      sh /etc/proxy/gfwlist2dnsmasq.sh -d 192.168.9.1 -p 5054 --nftset4 gfwlist --nftset6 gfwlist6 --exclude-domain-file /tmp/whitelist.conf --extra-domain-file /tmp/gfwlist.conf -o /etc/dnsmasq.d/gfwlist.conf
+      sh /etc/proxy/gfwlist2dnsmasq.sh -d 127.0.0.1 -p 5353 --nftset4 gfwlist --nftset6 gfwlist6 --exclude-domain-file /tmp/whitelist.conf --extra-domain-file /tmp/gfwlist.conf -o /etc/dnsmasq.d/gfwlist.conf
       grep -v "^\s*$" /tmp/blocklist.conf | sed "s/\(.*\)/address=\/\1\/127.0.0.1/g" >/etc/dnsmasq.d/blocklist.conf
-      grep -v "^\s*$" /etc/proxy/game.conf | sed "s/\(.*\)/server=\/\1\/192.168.9.1#5054/g" >/etc/dnsmasq.d/game.conf
+      grep -v "^\s*$" /etc/proxy/game.conf | sed "s/\(.*\)/server=\/\1\/127.0.0.1#5353/g" >/etc/dnsmasq.d/game.conf
       grep -v "^\s*$" /etc/proxy/game.conf | sed "s/\(.*\)/nftset=\/\1\/4#inet#fw4#game,6#inet#fw4#game6/g" >>/etc/dnsmasq.d/game.conf
       service dnsmasq restart
     '';
