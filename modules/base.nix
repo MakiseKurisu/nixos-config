@@ -66,6 +66,8 @@
     ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", TEST=="power/control", ATTR{power/control}="on"
     # Allow user access for WinChipHead devices
     ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="1a86", GROUP="wheel"
+    # Allow user access for Qualcomm QDL devices
+    ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="05c6", ENV{ID_USB_MODEL_ID}=="9008", GROUP="wheel"
   '';
   powerManagement = {
     enable = true;
