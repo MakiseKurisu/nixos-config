@@ -152,6 +152,7 @@
       pinentry-qt
       piper
       pre-commit
+      pkgs.unstable.protonplus
       pwvucontrol
       qq
       qrencode
