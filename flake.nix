@@ -50,7 +50,6 @@
 
     # Work In Progress PRs
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
-    pr-fastapi-dls.url = "github:MakiseKurisu/nixpkgs/fastapi-dls";
     pr-mdevctl.url = "github:MakiseKurisu/nixpkgs/2db3f670641f422ebdd5ed5d1a071565742a1f2f";
     pr-pico-rpa.url = "github:MakiseKurisu/nixpkgs/pico-rpa";
   };

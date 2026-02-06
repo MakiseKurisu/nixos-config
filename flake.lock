@@ -700,22 +700,6 @@
         "type": "gitlab"
       }
     },
-    "pr-fastapi-dls": {
-      "locked": {
-        "lastModified": 1743081429,
-        "narHash": "sha256-Mtao6vWNSeC/a5BT4Z7YJ9kkJd5EUKhiG9wFi/fx0WA=",
-        "owner": "MakiseKurisu",
-        "repo": "nixpkgs",
-        "rev": "857a9b4abf6c7150159cc8bed73dd1fdc59075e8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MakiseKurisu",
-        "ref": "fastapi-dls",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "pr-mdevctl": {
       "locked": {
         "lastModified": 1740668788,
@@ -784,7 +768,6 @@
         "nixpkgs-droid": "nixpkgs-droid",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "pr-fastapi-dls": "pr-fastapi-dls",
         "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
         "pr-pico-rpa": "pr-pico-rpa",

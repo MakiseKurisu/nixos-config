@@ -24,7 +24,6 @@
     # ../../modules/nfs-app01.nix
     #../../modules/wireguard.nix
 
-    ../../modules/pr/fastapi-dls.nix
     ../../modules/pr/pico-rpa.nix
 
     inputs.disko.nixosModules.disko
@@ -243,14 +242,6 @@
         xiaomi_gateway3
         pkgs.unstable.home-assistant-custom-components.xiaomi_miot
       ];
-    };
-
-    fastapi-dls = {
-      enable = true;
-      package = pkgs.pr-fastapi-dls.fastapi-dls;
-      port = 8001;
-      dlsAddress = "dls.protoducer.com";
-      dlsPort = 443;
     };
 
     meshcentral = {

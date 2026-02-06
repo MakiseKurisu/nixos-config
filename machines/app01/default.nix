@@ -21,7 +21,6 @@
     # ../../modules/nfs-app01.nix
     #../../modules/wireguard.nix
 
-    # ../../modules/pr/fastapi-dls.nix
     # ../../modules/pr/pico-rpa.nix
 
     inputs.disko.nixosModules.disko
