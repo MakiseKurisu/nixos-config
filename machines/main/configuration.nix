@@ -73,6 +73,21 @@
     };
   };
 
+  services = {
+    beszel = {
+      agent = {
+        enable = true;
+        environment = {
+          KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBA8itcPg2XlHgWcPJERz4+WNHNxTgfKOi+uF4TBCkSP";
+          TOKEN = "ef10d860-841f-4adb-8b13-b16a4f85dcc6";
+          HUB_URL = "https://beszel.protoducer.com";
+        };
+        extraPath = [ pkgs.smartmontools ];
+        openFirewall = true;
+      };
+    };
+  };
+
   networking.interfaces.enp10s0.useDHCP = false;
   networking.interfaces.enp13s0.useDHCP = false;
   networking.interfaces.enp13s0.wakeOnLan.enable = true;

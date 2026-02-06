@@ -173,6 +173,24 @@
       };
     };
 
+    beszel = {
+      hub = {
+        enable = true;
+        environment = {
+          APP_URL = "https://beszel.protoducer.com";
+        };
+      };
+      agent = {
+        enable = true;
+        environment = {
+          KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBA8itcPg2XlHgWcPJERz4+WNHNxTgfKOi+uF4TBCkSP";
+          TOKEN = "91b1a1c7-9e10-4466-8666-7dfe90330d58";
+          HUB_URL = "https://beszel.protoducer.com";
+        };
+        extraPath = [ pkgs.smartmontools ];
+      };
+    };
+
     jellyfin.enable = true;
 
     home-assistant = {
@@ -296,6 +314,7 @@
             };
           };
         };
+        "beszel.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:8090/"; };
         "jf.protoducer.com" = http_https {
           locations."/" = {
             proxyWebsockets = true;

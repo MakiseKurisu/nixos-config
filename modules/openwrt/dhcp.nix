@@ -45,6 +45,10 @@
           }
           {
             ip = service_ip;
+            name = "beszel";
+          }
+          {
+            ip = service_ip;
             name = "dns";
           }
           {
