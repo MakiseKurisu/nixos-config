@@ -403,6 +403,7 @@
   home-manager = {
     users.excalibur = { lib, pkgs, osConfig, ... }: {
       services = {
+        arrpc.enable = true;
         easyeffects.enable = true;
       };
       programs = {
