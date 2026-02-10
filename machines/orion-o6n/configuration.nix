@@ -26,7 +26,7 @@
 
     # ../../modules/thinkpad.nix
 
-    inputs.nixos-hardware.nixosModules.orion-o6
+    inputs.nixos-hardware.nixosModules.radxa-orion-o6
     inputs.disko.nixosModules.disko
     ./disko.nix
     ./hardware-configuration.nix
@@ -107,9 +107,6 @@
     upstream.configuration = {
       hardware.cix.sky1.bspRelease = "none";
       boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
-    };
-    entropi.configuration = {
-      hardware.cix.sky1.bspRelease = "sky1-linux";
     };
   };
 

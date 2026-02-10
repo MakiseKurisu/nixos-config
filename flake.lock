@@ -424,16 +424,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1766403653,
-        "narHash": "sha256-1LgefMGpgF03YWa59TX7XGbvyPFW25EW9PcTfTGxE/I=",
+        "lastModified": 1770688271,
+        "narHash": "sha256-/L7yiLKK1NVloUs+A2OxOATLhXyXxLRxeVwAYbYv4fg=",
         "owner": "RadxaYuntian",
         "repo": "nixos-hardware",
-        "rev": "941e96539244ee8641bf9a84f39d94829b483369",
+        "rev": "e59b4bbd638a88fc9ff22dc5157d70d1c120a14d",
         "type": "github"
       },
       "original": {
         "owner": "RadxaYuntian",
-        "ref": "sky1-6.18",
+        "ref": "radxa-clean-up",
         "repo": "nixos-hardware",
         "type": "github"
       }
