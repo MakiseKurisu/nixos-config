@@ -350,6 +350,7 @@
             proxyPass = "http://127.0.0.1:14500/";
           };
         };
+        "uptime.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:3001/"; };
       };
     };
 
@@ -363,10 +364,6 @@
       jack.enable = true;
     };
 
-    udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="watchdog", ENV{DEVPATH}=="/devices/virtual/watchdog/watchdog*", SYMLINK+="watchdog"
-    '';
-
     pico-remote-play-assistant = {
       enable = true;
       package = pkgs.pr-pico-rpa.pico-remote-play-assistant;
@@ -377,6 +374,12 @@
         auth = "none";
       };
     };
+
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="watchdog", ENV{DEVPATH}=="/devices/virtual/watchdog/watchdog*", SYMLINK+="watchdog"
+    '';
+
+    uptime-kuma.enable = true;
   };
 
   systemd.services = {

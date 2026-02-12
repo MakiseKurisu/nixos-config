@@ -91,6 +91,10 @@
             ip = service_ip;
             name = "pico";
           }
+          {
+            ip = service_ip;
+            name = "uptime";
+          }
         ];
         host = [
           {
