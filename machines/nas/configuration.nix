@@ -187,7 +187,7 @@
           TOKEN = "91b1a1c7-9e10-4466-8666-7dfe90330d58";
           HUB_URL = "https://beszel.protoducer.com";
         };
-        extraPath = [ pkgs.smartmontools ];
+        smartmon.enable = true;
       };
     };
 
