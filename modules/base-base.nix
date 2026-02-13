@@ -111,6 +111,10 @@
     };
   };
 
+  system = {
+    configurationRevision = inputs.self.shortRev or inputs.self.dirtyShortRev or null;
+  };
+
   systemd = {
     oomd.enableUserSlices = true;
     settings.Manager.RuntimeWatchdogSec = lib.mkDefault "1m";
