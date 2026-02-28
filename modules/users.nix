@@ -219,6 +219,7 @@
                     value = "MiniMax-M2.5";
                   }
                 ];
+                "claudeCode.preferredLocation" = "sidebar";
                 "claudeCode.selectedModel" = "MiniMax-M2.5";
                 "debug.javascript.unmapMissingSources" = true;
                 "diffEditor.ignoreTrimWhitespace" = false;
