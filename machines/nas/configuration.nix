@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -40,7 +46,9 @@
     blacklistedKernelModules = [ "r8169" ];
   };
 
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
   hardware = {
     graphics = {
@@ -70,7 +78,10 @@
     openFirewall = true;
     users = {
       admin = {
-        actions = [ "set" "fsd" ];
+        actions = [
+          "set"
+          "fsd"
+        ];
         instcmds = [ "all" ];
         passwordFile = "/var/lib/ups/adminPassword";
         upsmon = "primary";
@@ -195,10 +206,11 @@
 
     home-assistant = {
       enable = true;
-      extraPackages = python3Packages: with python3Packages; [
-        gtts
-        ibeacon-ble
-      ];
+      extraPackages =
+        python3Packages: with python3Packages; [
+          gtts
+          ibeacon-ble
+        ];
       extraComponents = [
         "bluetooth"
         "command_line"
@@ -226,7 +238,7 @@
       ];
       config = {
         automation = "!include automations.yaml";
-        default_config = {};
+        default_config = { };
         frontend = {
           themes = "!include_dir_merge_named themes";
         };
@@ -287,71 +299,86 @@
     };
 
     nginx = {
-      virtualHosts = let
-        ssl = {
-          sslCertificate = "/var/lib/nginx/cert.pem";
-          sslCertificateKey = "/var/lib/nginx/key.pem";
-          kTLS = true;
-        };
-        https = host: host // ssl // {
-          forceSSL = true;
-        };
-        http = host: host // ssl // {
-          rejectSSL = true;
-        };
-        http_https = host: host // ssl // {
-          addSSL = true;
-        }; in {
-        "apt.protoducer.com" = http { locations."/".proxyPass = "http://127.0.0.1:3142/"; };
-        "aria.protoducer.com" = http {
-          locations = {
-            "/".root = "${pkgs.ariang}/share/ariang/";
-            "/jsonrpc" = {
-              proxyPass = "http://127.0.0.1:6800/jsonrpc";
+      virtualHosts =
+        let
+          ssl = {
+            sslCertificate = "/var/lib/nginx/cert.pem";
+            sslCertificateKey = "/var/lib/nginx/key.pem";
+            kTLS = true;
+          };
+          https =
+            host:
+            host
+            // ssl
+            // {
+              forceSSL = true;
+            };
+          http =
+            host:
+            host
+            // ssl
+            // {
+              rejectSSL = true;
+            };
+          http_https =
+            host:
+            host
+            // ssl
+            // {
+              addSSL = true;
+            };
+        in
+        {
+          "apt.protoducer.com" = http { locations."/".proxyPass = "http://127.0.0.1:3142/"; };
+          "aria.protoducer.com" = http {
+            locations = {
+              "/".root = "${pkgs.ariang}/share/ariang/";
+              "/jsonrpc" = {
+                proxyPass = "http://127.0.0.1:6800/jsonrpc";
+                extraConfig = ''
+                  add_header 'Access-Control-Allow-Origin' '*' always;
+                '';
+              };
+            };
+          };
+          "beszel.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:8090/"; };
+          "jf.protoducer.com" = http_https {
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://127.0.0.1:8096/";
+            };
+          };
+          "ol.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:5244/"; };
+          "ha.protoducer.com" = http_https {
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://127.0.0.1:8123/";
+            };
+          };
+          "dls.protoducer.com" = https { locations."/".proxyPass = "https://127.0.0.1:8001/"; };
+          "downloads.protoducer.com" = http_https {
+            locations."/" = {
+              root = "/media/raid/downloads.protoducer.com";
               extraConfig = ''
-                add_header 'Access-Control-Allow-Origin' '*' always;
+                autoindex on;
               '';
             };
           };
-        };
-        "beszel.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:8090/"; };
-        "jf.protoducer.com" = http_https {
-          locations."/" = {
-            proxyWebsockets = true;
-            proxyPass = "http://127.0.0.1:8096/";
+          "mc.protoducer.com" = https {
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "https://127.0.0.1:4430/";
+            };
           };
-        };
-        "ol.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:5244/"; };
-        "ha.protoducer.com" = http_https {
-          locations."/" = {
-            proxyWebsockets = true;
-            proxyPass = "http://127.0.0.1:8123/";
+          "nc.protoducer.com" = https { };
+          "pico.protoducer.com" = https {
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://127.0.0.1:14500/";
+            };
           };
+          "uptime.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:3001/"; };
         };
-        "dls.protoducer.com" = https { locations."/".proxyPass = "https://127.0.0.1:8001/"; };
-        "downloads.protoducer.com" = http_https {
-          locations."/" = {
-            root = "/media/raid/downloads.protoducer.com";
-            extraConfig = ''
-              autoindex on;
-            '';
-          };
-        };
-        "mc.protoducer.com" = https {
-          locations."/" = {
-            proxyWebsockets = true;
-            proxyPass = "https://127.0.0.1:4430/"; 
-          };
-        };
-        "nc.protoducer.com" = https {};
-        "pico.protoducer.com" = https {
-          locations."/" = {
-            proxyWebsockets = true;
-            proxyPass = "http://127.0.0.1:14500/";
-          };
-        };
-        "uptime.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:3001/"; };
-      };
     };
 
     pipewire = {
@@ -436,16 +463,16 @@
   networking.interfaces.enp7s0.useDHCP = false;
   systemd.network = {
     netdevs = {
-       "20-br0" = {
-         netdevConfig = {
-           Kind = "bridge";
-           Name = "br0";
-         };
+      "20-br0" = {
+        netdevConfig = {
+          Kind = "bridge";
+          Name = "br0";
+        };
         bridgeConfig = {
           STP = true;
           VLANFiltering = true;
         };
-       };
+      };
     };
     networks = {
       "30-eno1" = {
@@ -582,10 +609,9 @@
   };
 
   environment = {
-    systemPackages =
-      with pkgs; [
-        duplicacy
-      ];
+    systemPackages = with pkgs; [
+      duplicacy
+    ];
   };
 
   # systemd.services.duplicacy = {

@@ -1,8 +1,10 @@
-{ config
-, lib
-, pkgs
-, android-system-bin-list
-, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  android-system-bin-list,
+  ...
+}:
 
 {
   android-integration = {
@@ -31,13 +33,20 @@
   home-manager = {
     backupFileExtension = "hm-bak";
     useGlobalPkgs = true;
-  
+
     config =
-      { config, lib, pkgs, ... }: let
+      {
+        config,
+        lib,
+        pkgs,
+        ...
+      }:
+      let
         android-system-bin-wrapper = pkgs.callPackage ../pkgs/android-system-bin-wrapper {
           android-system-bin-list = android-system-bin-list;
         };
-      in {
+      in
+      {
         home = {
           sessionVariables = {
             TERM = "linux";

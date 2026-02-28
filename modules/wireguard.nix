@@ -1,10 +1,18 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   networking = {
     wg-quick.interfaces = {
       wg0 = {
-        address = [ "10.0.32.3/32" "fd32::3/128" ];
+        address = [
+          "10.0.32.3/32"
+          "fd32::3/128"
+        ];
         dns = [ "10.0.32.1" ];
         mtu = 1280;
         privateKeyFile = config.sops.secrets.p15_private_key.path;

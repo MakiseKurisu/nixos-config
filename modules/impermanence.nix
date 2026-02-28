@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 # Post install file copy:
 # sudo mkdir -p /persistent/user/excalibur/home/
@@ -67,14 +73,23 @@
             "Public"
             "Templates"
             "Videos"
-            { directory = ".gnupg"; mode = "0700"; }
-            { directory = ".ssh"; mode = "0700"; }
-            { directory = ".local/share/keyrings"; mode = "0700"; }
+            {
+              directory = ".gnupg";
+              mode = "0700";
+            }
+            {
+              directory = ".ssh";
+              mode = "0700";
+            }
+            {
+              directory = ".local/share/keyrings";
+              mode = "0700";
+            }
             ".vscode"
-				    ".cache"
+            ".cache"
             ".config"
             ".local/share"
-            ".local/state/nix"  
+            ".local/state/nix"
             ".local/state/home-manager"
             ".mozilla"
             ".thunderbird"

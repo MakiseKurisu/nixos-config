@@ -1,5 +1,6 @@
-{ arch
-, ...
+{
+  arch,
+  ...
 }:
 
 {
@@ -89,7 +90,7 @@
           Unknown.state = 2;
         };
       };
-      upnpd = {};
+      upnpd = { };
     };
   };
 }

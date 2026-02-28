@@ -6,7 +6,7 @@
           {
             name = "br-lan";
             type = "bridge";
-            ports = ["eth0"];
+            ports = [ "eth0" ];
             stp = 1;
           }
         ];
@@ -14,22 +14,22 @@
           {
             device = "br-lan";
             vlan = 10;
-            ports = ["eth0:t"];
+            ports = [ "eth0:t" ];
           }
           {
             device = "br-lan";
             vlan = 20;
-            ports = ["eth0:t"];
+            ports = [ "eth0:t" ];
           }
           {
             device = "br-lan";
             vlan = 30;
-            ports = ["eth0:t"];
+            ports = [ "eth0:t" ];
           }
           {
             device = "br-lan";
             vlan = 40;
-            ports = ["eth0:t"];
+            ports = [ "eth0:t" ];
           }
         ];
       };

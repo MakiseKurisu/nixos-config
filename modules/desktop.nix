@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, options, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  options,
+  ...
+}:
 
 {
   imports = [
@@ -32,7 +39,8 @@
       # https://discourse.nixos.org/t/hyprland-dolphin-file-manager-trying-to-open-an-image-asks-for-a-program-to-use-for-open-it/69824/3
       # https://github.com/NixOS/nixpkgs/issues/409986
       # Run `rm -rf ~/.cache/ksyscoca* && kbuildsycoca6`
-      "xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+      "xdg/menus/applications.menu".source =
+        "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
     };
     variables = {
       MOZ_ENABLE_WAYLAND = "1";
@@ -62,8 +70,9 @@
       cachix
       calibre
       (unstable.chromium.override (previous: {
-        commandLineArgs = (previous.commandLineArgs or "") +
-          " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
+        commandLineArgs =
+          (previous.commandLineArgs or "")
+          + " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
       }))
       cliphist
       darktable
@@ -78,8 +87,9 @@
       discord
       element-desktop
       (feishu.override (previous: {
-        commandLineArgs = (previous.commandLineArgs or "") +
-          " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
+        commandLineArgs =
+          (previous.commandLineArgs or "")
+          + " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
       }))
       filezilla
       flashrom
@@ -143,13 +153,15 @@
       nwg-launchers
       nwg-dock-hyprland
       (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") openscad-unstable)
-      (opentofu.withPlugins (p: with p; [
-        cloudflare_cloudflare
-        integrations_github
-        lxc_incus
-        oracle_oci
-        carlpett_sops
-      ]))
+      (opentofu.withPlugins (
+        p: with p; [
+          cloudflare_cloudflare
+          integrations_github
+          lxc_incus
+          oracle_oci
+          carlpett_sops
+        ]
+      ))
       pinentry-qt
       piper
       pre-commit
@@ -188,37 +200,49 @@
   fonts = {
     enableGhostscriptFonts = true;
     fontDir.enable = true;
-    packages = with pkgs; [
-      cantarell-fonts
-      twitter-color-emoji
-      meslo-lgs-nf
-      gentium
-      source-code-pro
-      source-sans-pro
-      source-serif-pro
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-color-emoji
-      noto-fonts-emoji-blob-bin
-      noto-fonts-monochrome-emoji
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      mplus-outline-fonts.githubRelease
-      dina-font
-      proggyfonts
-      font-awesome
-      wqy_zenhei
-      wqy_microhei
-    ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+    packages =
+      with pkgs;
+      [
+        cantarell-fonts
+        twitter-color-emoji
+        meslo-lgs-nf
+        gentium
+        source-code-pro
+        source-sans-pro
+        source-serif-pro
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+        noto-fonts-color-emoji
+        noto-fonts-emoji-blob-bin
+        noto-fonts-monochrome-emoji
+        liberation_ttf
+        fira-code
+        fira-code-symbols
+        mplus-outline-fonts.githubRelease
+        dina-font
+        proggyfonts
+        font-awesome
+        wqy_zenhei
+        wqy_microhei
+      ]
+      ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
     enableDefaultPackages = true;
     fontconfig = {
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
-        serif = [ "Source Serif Pro" "Noto Serif CJK SC" ];
-        sansSerif = [ "Source Sans Pro" "Noto Sans CJK SC" ];
-        monospace = [ "Source Code Pro" "Noto Sans Mono CJK SC" ];
+        serif = [
+          "Source Serif Pro"
+          "Noto Serif CJK SC"
+        ];
+        sansSerif = [
+          "Source Sans Pro"
+          "Noto Sans CJK SC"
+        ];
+        monospace = [
+          "Source Code Pro"
+          "Noto Sans Mono CJK SC"
+        ];
       };
     };
   };
@@ -227,10 +251,11 @@
     sane = {
       enable = true;
       extraBackends = with pkgs; [
-        (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux")
-          (epsonscan2.override {
+        (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") (
+          epsonscan2.override {
             withNonFreePlugins = true;
-        }))
+          }
+        ))
         hplipWithPlugin
         sane-airscan
       ];
@@ -243,11 +268,14 @@
       type = "fcitx5";
       fcitx5 = {
         waylandFrontend = true;
-        addons = with pkgs; with qt6Packages; [
-          fcitx5-gtk
-          fcitx5-chinese-addons
-          fcitx5-qt
-        ];
+        addons =
+          with pkgs;
+          with qt6Packages;
+          [
+            fcitx5-gtk
+            fcitx5-chinese-addons
+            fcitx5-qt
+          ];
       };
     };
   };
@@ -258,7 +286,7 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      inherit (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgs.lixPackageSets.stable);
+      inherit (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgs.lixPackageSets.stable) ;
     })
   ];
 
@@ -348,7 +376,7 @@
               monitor=HDMI-A-2,disable
             '';
           in
-            "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.hyprland} --config ${greetdConfig}";
+          "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.hyprland} --config ${greetdConfig}";
       };
     };
     gvfs.enable = true;
@@ -402,101 +430,108 @@
   };
 
   home-manager = {
-    users.excalibur = { lib, pkgs, osConfig, ... }: {
-      services = {
-        arrpc.enable = true;
-        easyeffects.enable = true;
-      };
-      programs = {
-        lutris = {
-          enable = (pkgs.stdenv.hostPlatform.system == "x86_64-linux");
-          winePackages = [ 
-            pkgs.unstable.wineWowPackages.full
-            pkgs.unstable.wineWow64Packages.full
-          ];
-          protonPackages = [ pkgs.unstable.proton-ge-bin ];
-          steamPackage = osConfig.programs.steam.package;
-          extraPackages = with pkgs; [
-            mangohud
-            winetricks
-            gamescope
-            gamemode
-            umu-launcher
-          ];
+    users.excalibur =
+      {
+        lib,
+        pkgs,
+        osConfig,
+        ...
+      }:
+      {
+        services = {
+          arrpc.enable = true;
+          easyeffects.enable = true;
         };
-      };
-      home.pointerCursor = {
-        enable = true;
-        name = "phinger-cursors-light";
-        package = pkgs.phinger-cursors;
-      };
-      xdg = {
-        portal = {
+        programs = {
+          lutris = {
+            enable = (pkgs.stdenv.hostPlatform.system == "x86_64-linux");
+            winePackages = [
+              pkgs.unstable.wineWowPackages.full
+              pkgs.unstable.wineWow64Packages.full
+            ];
+            protonPackages = [ pkgs.unstable.proton-ge-bin ];
+            steamPackage = osConfig.programs.steam.package;
+            extraPackages = with pkgs; [
+              mangohud
+              winetricks
+              gamescope
+              gamemode
+              umu-launcher
+            ];
+          };
+        };
+        home.pointerCursor = {
           enable = true;
-          xdgOpenUsePortal = true;
-          config = {
-            common = {
-              default = [
-                "hyprland"
-                "gtk"
-              ];
+          name = "phinger-cursors-light";
+          package = pkgs.phinger-cursors;
+        };
+        xdg = {
+          portal = {
+            enable = true;
+            xdgOpenUsePortal = true;
+            config = {
+              common = {
+                default = [
+                  "hyprland"
+                  "gtk"
+                ];
+              };
+            };
+            extraPortals = [
+              pkgs.xdg-desktop-portal-hyprland
+              pkgs.xdg-desktop-portal-gtk
+              pkgs.kdePackages.xdg-desktop-portal-kde
+            ];
+          };
+          mime.enable = true;
+          mimeApps = {
+            enable = true;
+            associations.added = {
+              "application/json" = [ "code.desktop" ];
+              "application/x-shellscript" = [ "code.desktop" ];
+              "video/mpeg" = [ "vlc.desktop" ];
+            };
+            defaultApplications = {
+              # find /run/current-system/sw/share/applications/ -name "**"
+              # More folders are available under $XDG_DATA_DIRS
+              "application/json" = [ "code.desktop" ];
+              "application/pdf" = [ "chromium-browser.desktop" ];
+              "application/rss+xml" = [ "thunderbird.desktop" ];
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
+              "application/x-extension-ics" = [ "thunderbird.desktop" ];
+              "application/x-extension-rss" = [ "thunderbird.desktop" ];
+              "image/bmp" = [ "org.nomacs.ImageLounge.desktop" ];
+              "image/gif" = [ "org.nomacs.ImageLounge.desktop" ];
+              "image/jpeg" = [ "org.nomacs.ImageLounge.desktop" ];
+              "image/png" = [ "org.nomacs.ImageLounge.desktop" ];
+              "image/svg+xml" = [ "org.nomacs.ImageLounge.desktop" ];
+              "image/webp" = [ "org.nomacs.ImageLounge.desktop" ];
+              "inode/directory" = [ "org.kde.dolphin" ];
+              "message/rfc822" = [ "thunderbird.desktop" ];
+              "model/step" = [ "org.freecad.FreeCAD.desktop" ];
+              "text/calendar" = [ "thunderbird.desktop" ];
+              "text/html" = [ "firefox.desktop" ];
+              "text/plain" = [ "code.desktop" ];
+              "video/mp4" = [ "vlc.desktop" ];
+              "video/mpeg" = [ "vlc.desktop" ];
+              "video/x-matroska" = [ "vlc.desktop" ];
+              "x-scheme-handler/about" = [ "firefox.desktop" ];
+              "x-scheme-handler/baiduyunguanjia" = [ "baidunetdisk.desktop" ];
+              "x-scheme-handler/feed" = [ "thunderbird.desktop" ];
+              "x-scheme-handler/http" = [ "firefox.desktop" ];
+              "x-scheme-handler/https" = [ "firefox.desktop" ];
+              "x-scheme-handler/mailto" = [ "thunderbird.desktop" ];
+              "x-scheme-handler/mid" = [ "thunderbird.desktop" ];
+              "x-scheme-handler/msteams" = [ "teams-for-linux.desktop" ];
+              "x-scheme-handler/news" = [ "thunderbird.desktop" ];
+              "x-scheme-handler/nntp" = [ "thunderbird.desktop" ];
+              "x-scheme-handler/snews" = [ "thunderbird.desktop" ];
+              "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+              "x-scheme-handler/webcal" = [ "thunderbird.desktop" ];
+              "x-scheme-handler/webcals" = [ "thunderbird.desktop" ];
             };
           };
-          extraPortals = [
-            pkgs.xdg-desktop-portal-hyprland
-            pkgs.xdg-desktop-portal-gtk
-            pkgs.kdePackages.xdg-desktop-portal-kde
-          ];
-        };
-        mime.enable = true;
-        mimeApps = {
-          enable = true;
-          associations.added = {
-            "application/json" = [ "code.desktop" ];
-            "application/x-shellscript" = [ "code.desktop" ];
-            "video/mpeg" = [ "vlc.desktop" ];
-          };
-          defaultApplications = {
-            # find /run/current-system/sw/share/applications/ -name "**"
-            # More folders are available under $XDG_DATA_DIRS
-            "application/json" = [ "code.desktop" ];
-            "application/pdf" = [ "chromium-browser.desktop" ];
-            "application/rss+xml" = [ "thunderbird.desktop" ];
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
-            "application/x-extension-ics" = [ "thunderbird.desktop" ];
-            "application/x-extension-rss" = [ "thunderbird.desktop" ];
-            "image/bmp" = [ "org.nomacs.ImageLounge.desktop" ];
-            "image/gif" = [ "org.nomacs.ImageLounge.desktop" ];
-            "image/jpeg" = [ "org.nomacs.ImageLounge.desktop" ];
-            "image/png" = [ "org.nomacs.ImageLounge.desktop" ];
-            "image/svg+xml" = [ "org.nomacs.ImageLounge.desktop" ];
-            "image/webp" = [ "org.nomacs.ImageLounge.desktop" ];
-            "inode/directory" = [ "org.kde.dolphin" ];
-            "message/rfc822" = [ "thunderbird.desktop" ];
-            "model/step" = [ "org.freecad.FreeCAD.desktop" ];
-            "text/calendar" = [ "thunderbird.desktop" ];
-            "text/html" = [ "firefox.desktop" ];
-            "text/plain" = [ "code.desktop" ];
-            "video/mp4" = [ "vlc.desktop" ];
-            "video/mpeg" = [ "vlc.desktop" ];
-            "video/x-matroska" = [ "vlc.desktop" ];
-            "x-scheme-handler/about" = [ "firefox.desktop" ];
-            "x-scheme-handler/baiduyunguanjia" = [ "baidunetdisk.desktop" ];
-            "x-scheme-handler/feed" = [ "thunderbird.desktop" ];
-            "x-scheme-handler/http" = [ "firefox.desktop" ];
-            "x-scheme-handler/https" = [ "firefox.desktop" ];
-            "x-scheme-handler/mailto" = [ "thunderbird.desktop" ];
-            "x-scheme-handler/mid" = [ "thunderbird.desktop" ];
-            "x-scheme-handler/msteams" = [ "teams-for-linux.desktop" ];
-            "x-scheme-handler/news" = [ "thunderbird.desktop" ];
-            "x-scheme-handler/nntp" = [ "thunderbird.desktop" ];
-            "x-scheme-handler/snews" = [ "thunderbird.desktop" ];
-            "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-            "x-scheme-handler/webcal" = [ "thunderbird.desktop" ];
-            "x-scheme-handler/webcals" = [ "thunderbird.desktop" ];
-          };
         };
       };
-    };
   };
 }

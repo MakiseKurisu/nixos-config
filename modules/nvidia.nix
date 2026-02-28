@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   hardware = {
@@ -6,7 +11,7 @@
       open = lib.mkDefault true;
       modesetting.enable = true;
       prime = {
-        offload ={
+        offload = {
           enable = true;
           enableOffloadCmd = true;
         };
@@ -16,26 +21,28 @@
   };
 
   home-manager = {
-    users.excalibur = { pkgs, ... }: {
-      programs = {
-        obs-studio = {
-          package = pkgs.obs-studio.override {
-            cudaSupport = true;
+    users.excalibur =
+      { pkgs, ... }:
+      {
+        programs = {
+          obs-studio = {
+            package = pkgs.obs-studio.override {
+              cudaSupport = true;
+            };
           };
         };
+        # Workaround 580 driver GTK4 regression
+        # https://forums.developer.nvidia.com/t/580-release-feedback-discussion/341205/20
+        wayland.windowManager.hyprland.settings = {
+          env = [
+            "GSK_RENDERER,ngl"
+          ];
+        };
       };
-      # Workaround 580 driver GTK4 regression
-      # https://forums.developer.nvidia.com/t/580-release-feedback-discussion/341205/20
-      wayland.windowManager.hyprland.settings = {
-        env = [
-          "GSK_RENDERER,ngl"
-        ];
-      };
-    };
   };
 
   services = {
-    xserver.videoDrivers = [ 
+    xserver.videoDrivers = [
       "modesetting"
       "nvidia"
     ];

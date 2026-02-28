@@ -1,6 +1,8 @@
-{ service_ip
-, ...
-}: {
+{
+  service_ip,
+  ...
+}:
+{
   etc = {
     "proxy/tun0.yaml".text = ''
       tunnel:
@@ -69,15 +71,19 @@
             table = 439;
           }
         ];
-        rule = [{
-          lookup = 439;
-          mark = 439;
-        }];
-        rule6 = [{
-          lookup = 439;
-          mark = 439;
-          disabled = true;
-        }];
+        rule = [
+          {
+            lookup = 439;
+            mark = 439;
+          }
+        ];
+        rule6 = [
+          {
+            lookup = 439;
+            mark = 439;
+            disabled = true;
+          }
+        ];
       };
     };
   };

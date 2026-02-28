@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -11,11 +16,10 @@
         source = ../configs/looking-glass/looking-glass-client.ini;
       };
     };
-    systemPackages =
-      with pkgs; [
-        waydroid-helper
-        wl-clipboard # used by waydroid
-      ];
+    systemPackages = with pkgs; [
+      waydroid-helper
+      wl-clipboard # used by waydroid
+    ];
   };
 
   virtualisation = {
@@ -27,13 +31,15 @@
     waydroid.enable = true;
   };
 
-  home-manager.users.excalibur = { pkgs, ... }: {
-    wayland.windowManager.hyprland = {
-      settings = {
-        exec-once = [
-          #"[workspace 13 silent] waydroid first-launch"
-        ];
+  home-manager.users.excalibur =
+    { pkgs, ... }:
+    {
+      wayland.windowManager.hyprland = {
+        settings = {
+          exec-once = [
+            #"[workspace 13 silent] waydroid first-launch"
+          ];
+        };
       };
     };
-  };
 }

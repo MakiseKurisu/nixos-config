@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, options, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  options,
+  ...
+}:
 
 {
   imports = [
@@ -35,7 +42,10 @@
     settings = {
       auto-optimise-store = true;
       builders-use-substitutes = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       extra-platforms = [
         (lib.mkIf (pkgs.stdenv.hostPlatform.system != "aarch64-linux") "aarch64-linux")
         (lib.mkIf (pkgs.stdenv.hostPlatform.system != "riscv64-linux") "riscv64-linux")

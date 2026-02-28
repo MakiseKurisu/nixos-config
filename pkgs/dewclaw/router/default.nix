@@ -1,18 +1,29 @@
-{ lib
-, release
-, target
-, arch
-, hostname
-, ip
-, kver ? null
-, service_ip
-, inputs
-, ... }:
+{
+  lib,
+  release,
+  target,
+  arch,
+  hostname,
+  ip,
+  kver ? null,
+  service_ip,
+  inputs,
+  ...
+}:
 
 {
   imports = [
     (import ../../../modules/openwrt {
-      inherit lib release target arch hostname ip kver inputs;
+      inherit
+        lib
+        release
+        target
+        arch
+        hostname
+        ip
+        kver
+        inputs
+        ;
     })
     (import ../../../modules/openwrt/router.nix {
       inherit arch release;

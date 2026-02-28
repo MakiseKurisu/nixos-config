@@ -1,6 +1,7 @@
-{ arch
-, release
-, ...
+{
+  arch,
+  release,
+  ...
 }:
 
 {
@@ -24,7 +25,7 @@
 
     # needed by ddns
     "curl"
-    # busybox's tar does not support xvf  
+    # busybox's tar does not support xvf
     "tar"
   ];
   etc = {
@@ -111,8 +112,8 @@
           };
         };
       };
-      sqm = {};
-      etherwake = {};
+      sqm = { };
+      etherwake = { };
       snort = {
         snort.snort = {
           enabled = true;

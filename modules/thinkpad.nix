@@ -1,21 +1,29 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  home-manager.users.excalibur = { pkgs, ... }: {
-    wayland.windowManager.hyprland.settings = {
-      bindl = [
-        ",switch:off:Lid Switch,exec,brightnessctl --device 'tpacpi::kbd_backlight' set 100%"
-      ];
-      exec-once = [
-        "brightnessctl --device 'tpacpi::kbd_backlight' set 100%"
-      ];
-      workspace = [
-        "r[1-20], monitor:eDP-1"
-        "2, monitor:eDP-1, default:yes"
-        "30, monitor:HDMI-A-3, default:yes"
-      ];
+  home-manager.users.excalibur =
+    { pkgs, ... }:
+    {
+      wayland.windowManager.hyprland.settings = {
+        bindl = [
+          ",switch:off:Lid Switch,exec,brightnessctl --device 'tpacpi::kbd_backlight' set 100%"
+        ];
+        exec-once = [
+          "brightnessctl --device 'tpacpi::kbd_backlight' set 100%"
+        ];
+        workspace = [
+          "r[1-20], monitor:eDP-1"
+          "2, monitor:eDP-1, default:yes"
+          "30, monitor:HDMI-A-3, default:yes"
+        ];
+      };
     };
-  };
 
   boot = {
     extraModprobeConfig = ''
@@ -34,7 +42,10 @@
       {
         query = "/proc/acpi/ibm/thermal";
         type = "tpacpi";
-        indices = [ 0 1 ];
+        indices = [
+          0
+          1
+        ];
       }
     ];
   };

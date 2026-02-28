@@ -1,5 +1,7 @@
-{ service_ip
-, ...}:
+{
+  service_ip,
+  ...
+}:
 
 {
   uci = {
@@ -18,10 +20,10 @@
         start = 100;
         limit = 250;
         leasetime = "12h";
-	      dhcpv4 = "server";
-	      dhcpv6 = "server";
-	      ra = "server";
-	      ra_slaac = 1;
+        dhcpv4 = "server";
+        dhcpv6 = "server";
+        ra = "server";
+        ra_slaac = 1;
         ra_flags = [
           "managed-config"
           "other-config"

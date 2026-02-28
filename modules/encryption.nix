@@ -1,6 +1,8 @@
-{ config
-, secretFile
-, ... }:
+{
+  config,
+  secretFile,
+  ...
+}:
 
 # Pending https://github.com/latchset/clevis/pull/462
 
@@ -9,7 +11,11 @@
 
 {
   boot.initrd = {
-    availableKernelModules = [ "tpm_crb" "tpm_tis" "virtio-pci" ];
+    availableKernelModules = [
+      "tpm_crb"
+      "tpm_tis"
+      "virtio-pci"
+    ];
     clevis = {
       enable = true;
       devices."${config.fileSystems."/".device}".secretFile = ./secret.jwe;
@@ -22,7 +28,7 @@
   };
   services.tang = {
     enable = true;
-    ipAddressAllow = "192.168.9.0/24"
+    ipAddressAllow = "192.168.9.0/24";
   };
   networking.firewall.allowedTCPPorts = [ 7654 ];
 }

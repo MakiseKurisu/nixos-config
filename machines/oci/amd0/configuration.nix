@@ -6,7 +6,13 @@
 # Run following command in Cloud Console to enable zram
 #   modprobe zram && sleep 1 && zramctl /dev/zram0 --algorithm zstd --size "900MiB" && mkswap -U clear /dev/zram0 && swapon --discard --priority 100 /dev/zram0
 
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [

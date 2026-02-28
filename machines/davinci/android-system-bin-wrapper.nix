@@ -1,7 +1,8 @@
-{ stdenvNoCC
-, lib
-, bash
-, coreutils
+{
+  stdenvNoCC,
+  lib,
+  bash,
+  coreutils,
 }:
 
 stdenvNoCC.mkDerivation rec {

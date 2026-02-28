@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -37,16 +43,18 @@
     ];
   };
 
-  home-manager.users.excalibur = { pkgs, ... }: {
-    home.stateVersion = "22.11";
-    wayland.windowManager.hyprland.settings = {
-      workspace = [
-        "r[1-20], monitor:DP-2"
-        "2, monitor:DP-2, default:yes"
-        "30, monitor:DP-3, default:yes"
-      ];
+  home-manager.users.excalibur =
+    { pkgs, ... }:
+    {
+      home.stateVersion = "22.11";
+      wayland.windowManager.hyprland.settings = {
+        workspace = [
+          "r[1-20], monitor:DP-2"
+          "2, monitor:DP-2, default:yes"
+          "30, monitor:DP-3, default:yes"
+        ];
+      };
     };
-  };
 
   hardware = {
     nvidia = {
@@ -106,10 +114,10 @@
     };
     netdevs = {
       "20-br0" = {
-         netdevConfig = {
-           Kind = "bridge";
-           Name = "br0";
-         };
+        netdevConfig = {
+          Kind = "bridge";
+          Name = "br0";
+        };
         bridgeConfig = {
           STP = true;
           VLANFiltering = true;

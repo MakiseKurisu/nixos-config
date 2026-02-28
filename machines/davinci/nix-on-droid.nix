@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
@@ -20,11 +25,18 @@
   home-manager = {
     backupFileExtension = "hm-bak";
     useGlobalPkgs = true;
-  
+
     config =
-      { config, lib, pkgs, ... }: let
-        android-system-bin-wrapper = pkgs.callPackage ./android-system-bin-wrapper.nix {};
-      in {
+      {
+        config,
+        lib,
+        pkgs,
+        ...
+      }:
+      let
+        android-system-bin-wrapper = pkgs.callPackage ./android-system-bin-wrapper.nix { };
+      in
+      {
         home = {
           # Read the changelog before changing this value
           stateVersion = "23.11";

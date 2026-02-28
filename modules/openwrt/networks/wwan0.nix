@@ -1,5 +1,7 @@
-{ lib
-, ...}:
+{
+  lib,
+  ...
+}:
 {
   packages = [
     "luci-proto-mbim"
@@ -95,5 +97,8 @@
       };
     };
   };
-  services.statistics.monitors.interfaces.targets = [ "wwan0" "eth1" ];
+  services.statistics.monitors.interfaces.targets = [
+    "wwan0"
+    "eth1"
+  ];
 }

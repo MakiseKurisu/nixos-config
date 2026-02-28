@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -29,11 +35,15 @@
     ./hardware-configuration.nix
   ];
 
-  home-manager.users.excalibur = { pkgs, ... }: {
-    home.stateVersion = "22.11";
-  };
+  home-manager.users.excalibur =
+    { pkgs, ... }:
+    {
+      home.stateVersion = "22.11";
+    };
 
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
   hardware = {
     graphics = {
@@ -69,10 +79,10 @@
   systemd.network = {
     netdevs = {
       "20-br0" = {
-         netdevConfig = {
-           Kind = "bridge";
-           Name = "br0";
-         };
+        netdevConfig = {
+          Kind = "bridge";
+          Name = "br0";
+        };
         bridgeConfig = {
           STP = true;
           VLANFiltering = true;
@@ -118,7 +128,7 @@
           IPv6AcceptRA = false;
           IPv6SendRA = false;
         };
-        bridgeConfig = {};
+        bridgeConfig = { };
         bridgeVLANs = [
           {
             VLAN = 1;

@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -33,7 +39,9 @@
 
   boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
 
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "i965"; };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "i965";
+  };
 
   hardware = {
     graphics = {
@@ -69,10 +77,10 @@
   systemd.network = {
     netdevs = {
       "20-br0" = {
-         netdevConfig = {
-           Kind = "bridge";
-           Name = "br0";
-         };
+        netdevConfig = {
+          Kind = "bridge";
+          Name = "br0";
+        };
         bridgeConfig = {
           STP = true;
           VLANFiltering = true;
@@ -105,21 +113,23 @@
     };
   };
 
-  home-manager.users.excalibur = { pkgs, ... }: {
-    home.stateVersion = "22.11";
-    wayland.windowManager.hyprland = {
-      settings = {
-        exec-once = [
-          "brightnessctl --device intel_backlight set 30%"
-        ];
-        workspace = [
-          "r[1-20], monitor:LVDS-1"
-          "2, monitor:LVDS-1, default:yes"
-          "30, monitor:HDMI-A-1, default:yes"
-        ];
+  home-manager.users.excalibur =
+    { pkgs, ... }:
+    {
+      home.stateVersion = "22.11";
+      wayland.windowManager.hyprland = {
+        settings = {
+          exec-once = [
+            "brightnessctl --device intel_backlight set 30%"
+          ];
+          workspace = [
+            "r[1-20], monitor:LVDS-1"
+            "2, monitor:LVDS-1, default:yes"
+            "30, monitor:HDMI-A-1, default:yes"
+          ];
+        };
       };
     };
-  };
 
   networking.hostName = "b490";
   system.stateVersion = "25.05";

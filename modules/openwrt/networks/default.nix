@@ -1,5 +1,7 @@
-{ service_ip
-, ...}:
+{
+  service_ip,
+  ...
+}:
 
 {
   imports = [
@@ -28,7 +30,10 @@
         zone = [
           {
             name = "lan";
-            network = [ "lan" "lan6" ];
+            network = [
+              "lan"
+              "lan6"
+            ];
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";
@@ -36,7 +41,12 @@
           }
           {
             name = "wan";
-            network = [ "wan" "wan6" "wwan0" "pppoe" ];
+            network = [
+              "wan"
+              "wan6"
+              "wwan0"
+              "pppoe"
+            ];
             input = "DROP";
             output = "ACCEPT";
             forward = "DROP";
@@ -59,7 +69,13 @@
           }
           {
             name = "wg";
-            network = [ "wg1" "wg3" "wg4" "tun0" "tun1" ];
+            network = [
+              "wg1"
+              "wg3"
+              "wg4"
+              "tun0"
+              "tun1"
+            ];
             input = "ACCEPT";
             output = "ACCEPT";
             forward = "ACCEPT";
@@ -130,7 +146,12 @@
           }
           {
             family = "ipv6";
-            icmp_type = [ "130/0" "131/0" "132/0" "143/0" ];
+            icmp_type = [
+              "130/0"
+              "131/0"
+              "132/0"
+              "143/0"
+            ];
             name = "Allow-MLD";
             proto = "icmp";
             src = "wan";

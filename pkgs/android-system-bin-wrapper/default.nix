@@ -1,8 +1,9 @@
-{ stdenvNoCC
-, lib
-, bash
-, coreutils
-, android-system-bin-list
+{
+  stdenvNoCC,
+  lib,
+  bash,
+  coreutils,
+  android-system-bin-list,
 }:
 
 stdenvNoCC.mkDerivation rec {

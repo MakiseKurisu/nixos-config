@@ -1,12 +1,14 @@
-{ lib
-, release
-, target
-, arch
-, hostname
-, ip
-, kver ? null
-, inputs
-, ...}:
+{
+  lib,
+  release,
+  target,
+  arch,
+  hostname,
+  ip,
+  kver ? null,
+  inputs,
+  ...
+}:
 {
   deploy = {
     sshConfig = {
@@ -41,7 +43,8 @@
       src/gz openwrt_packages https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/packages
       src/gz openwrt_routing https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/routing
       src/gz openwrt_telephony https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/telephony
-    '' + lib.optionalString (kver != null) ''
+    ''
+    + lib.optionalString (kver != null) ''
       src/gz openwrt_kmods https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/targets/${target}/kmods/${kver}
     '';
     "sysctl.d/90-nf_conntrack_max.conf".text = ''
@@ -66,21 +69,25 @@
     ];
 
     settings = {
-      dhcp = {};
+      dhcp = { };
 
       firewall = {
-        defaults = [{
-          forward = "DROP";
-          input = "DROP";
-          output = "ACCEPT";
-          synflood_protect = true;
-          flow_offloading = false;
-          flow_offloading_hw = false;
-        }];
-        include = [{
-          path = "/etc/firewall.user";
-          fw4_compatible = true;
-        }];
+        defaults = [
+          {
+            forward = "DROP";
+            input = "DROP";
+            output = "ACCEPT";
+            synflood_protect = true;
+            flow_offloading = false;
+            flow_offloading_hw = false;
+          }
+        ];
+        include = [
+          {
+            path = "/etc/firewall.user";
+            fw4_compatible = true;
+          }
+        ];
       };
 
       network = {
@@ -161,15 +168,17 @@
           }
         ];
 
-        system = [{
-          timezone = "CST-8";
-          zonename = "Asia/Shanghai";
-          ttylogin = 0;
-          cronloglevel = 9;
-          log_size = 1024;
-          urandom_seed = 0;
-          hostname = hostname;
-        }];
+        system = [
+          {
+            timezone = "CST-8";
+            zonename = "Asia/Shanghai";
+            ttylogin = 0;
+            cronloglevel = 9;
+            log_size = 1024;
+            urandom_seed = 0;
+            hostname = hostname;
+          }
+        ];
 
         timeserver.ntp = {
           server = [

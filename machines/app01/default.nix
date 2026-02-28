@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -38,7 +44,7 @@
   };
 
   services = {
-    thermald.enable = false;  # Disable on older Intel systems
+    thermald.enable = false; # Disable on older Intel systems
   };
 
   systemd.services = {
@@ -57,16 +63,16 @@
   networking.interfaces.eno1.useDHCP = false;
   systemd.network = {
     netdevs = {
-       "20-br0" = {
-         netdevConfig = {
-           Kind = "bridge";
-           Name = "br0";
-         };
+      "20-br0" = {
+        netdevConfig = {
+          Kind = "bridge";
+          Name = "br0";
+        };
         bridgeConfig = {
           STP = true;
           VLANFiltering = true;
         };
-       };
+      };
     };
     networks = {
       "30-eno1" = {
@@ -95,7 +101,7 @@
           IPv6AcceptRA = false;
           IPv6SendRA = false;
         };
-        bridgeConfig = {};
+        bridgeConfig = { };
         bridgeVLANs = [
           {
             VLAN = 10;

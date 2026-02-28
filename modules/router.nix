@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, options, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  options,
+  ...
+}:
 
 {
   boot = {
@@ -47,37 +54,52 @@
       recommendedBrotliSettings = true;
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
-      virtualHosts = let
-        ssl = {
-          sslCertificate = "/var/lib/nginx/cert.pem";
-          sslCertificateKey = "/var/lib/nginx/key.pem";
-          kTLS = true;
-        };
-        https = host: host // ssl // {
-          forceSSL = true;
-        };
-        http = host: host // ssl // {
-          rejectSSL = true;
-        };
-        http_https = host: host // ssl // {
-          addSSL = true;
-        }; in {
-        "_" = https { locations."/".return = "404"; };
-        "dns.protoducer.com" = https {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:5380/";
-            extraConfig = ''
-              client_max_body_size 512M;
-            '';
+      virtualHosts =
+        let
+          ssl = {
+            sslCertificate = "/var/lib/nginx/cert.pem";
+            sslCertificateKey = "/var/lib/nginx/key.pem";
+            kTLS = true;
+          };
+          https =
+            host:
+            host
+            // ssl
+            // {
+              forceSSL = true;
+            };
+          http =
+            host:
+            host
+            // ssl
+            // {
+              rejectSSL = true;
+            };
+          http_https =
+            host:
+            host
+            // ssl
+            // {
+              addSSL = true;
+            };
+        in
+        {
+          "_" = https { locations."/".return = "404"; };
+          "dns.protoducer.com" = https {
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:5380/";
+              extraConfig = ''
+                client_max_body_size 512M;
+              '';
+            };
+          };
+          "proxy.protoducer.com" = https {
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://127.0.0.1:9090/";
+            };
           };
         };
-        "proxy.protoducer.com" = https {
-          locations."/" = {
-            proxyWebsockets = true;
-            proxyPass = "http://127.0.0.1:9090/";
-          };
-        };
-      };
     };
   };
 

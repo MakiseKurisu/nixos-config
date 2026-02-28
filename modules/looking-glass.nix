@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   boot = {
@@ -14,10 +19,9 @@
   };
 
   environment = {
-    systemPackages =
-      with pkgs; [
-        looking-glass-client
-      ];
+    systemPackages = with pkgs; [
+      looking-glass-client
+    ];
   };
 
   services = {
@@ -39,13 +43,15 @@
     };
   };
 
-  home-manager.users.excalibur = { pkgs, ... }: {
-    wayland.windowManager.hyprland = {
-      settings = {
-        exec-once = [
-          "[workspace 1 silent] looking-glass-client"
-        ];
+  home-manager.users.excalibur =
+    { pkgs, ... }:
+    {
+      wayland.windowManager.hyprland = {
+        settings = {
+          exec-once = [
+            "[workspace 1 silent] looking-glass-client"
+          ];
+        };
       };
     };
-  };
 }

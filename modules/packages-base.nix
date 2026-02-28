@@ -1,22 +1,26 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   environment = {
-    systemPackages =
-      with pkgs; [
-        git-crypt
-        multipath-tools
-        parted
-        rsync
-        wget
-        usbutils
-        pciutils
-        smartmontools
-        nmap
-        ldns
-        btrfs-progs
-        bcachefs-tools
-      ];
+    systemPackages = with pkgs; [
+      git-crypt
+      multipath-tools
+      parted
+      rsync
+      wget
+      usbutils
+      pciutils
+      smartmontools
+      nmap
+      ldns
+      btrfs-progs
+      bcachefs-tools
+    ];
   };
 
   programs = {
@@ -79,7 +83,7 @@
       extraConfig = ''
         Host openwrt
           User root
-        
+
         Host *
           StrictHostKeyChecking accept-new
       '';

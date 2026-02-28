@@ -3,7 +3,13 @@
 #    --generate-hardware-config nixos-facter machines/oci/<machine>/facter.json \
 #    --target-host <user>@<host>
 
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [

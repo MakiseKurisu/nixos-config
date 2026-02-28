@@ -54,21 +54,37 @@
     pr-pico-rpa.url = "github:MakiseKurisu/nixpkgs/pico-rpa";
   };
 
-  outputs = { self, ... }@inputs:
+  outputs =
+    { self, ... }@inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./machines
       ];
-      systems = [ "x86_64-linux" "aarch64-linux" ];
-      perSystem = { config, self', inputs', pkgs, lib, system, ... }: {
-        formatter = pkgs.nixpkgs-fmt;
-        packages = {
-          dewclaw-env = pkgs.callPackage inputs.dewclaw (import ./pkgs/dewclaw {
-            inherit lib inputs;
-           });
-          default = self'.packages.dewclaw-env;
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      perSystem =
+        {
+          config,
+          self',
+          inputs',
+          pkgs,
+          lib,
+          system,
+          ...
+        }:
+        {
+          formatter = pkgs.nixfmt-tree;
+          packages = {
+            dewclaw-env = pkgs.callPackage inputs.dewclaw (
+              import ./pkgs/dewclaw {
+                inherit lib inputs;
+              }
+            );
+            default = self'.packages.dewclaw-env;
+          };
         };
-      };
       flake = {
         # The usual flake attributes can be defined here, including system-
         # agnostic ones like nixosModule and system-enumerating ones, although
@@ -103,7 +119,9 @@
           };
         };
 
-        checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
+        checks = builtins.mapAttrs (
+          system: deployLib: deployLib.deployChecks self.deploy
+        ) inputs.deploy-rs.lib;
       };
     };
 }

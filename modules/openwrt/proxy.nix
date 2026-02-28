@@ -1,6 +1,7 @@
-{ lib
-, inputs
-, ...
+{
+  lib,
+  inputs,
+  ...
 }:
 
 {
@@ -108,12 +109,12 @@
       pbr = {
         pbr.config = {
           enabled = false;
-	        strict_enforcement = true;
-	        resolver_set = "dnsmasq.nftset";
-	        resolver_instance = ["*"];
-	        ipv6_enabled = true;
-	        ignored_interface = "vpnserver";
-	        rule_create_option = "add";
+          strict_enforcement = true;
+          resolver_set = "dnsmasq.nftset";
+          resolver_instance = [ "*" ];
+          ipv6_enabled = true;
+          ignored_interface = "vpnserver";
+          rule_create_option = "add";
           procd_boot_trigger_delay = 5000;
           procd_reload_delay = true;
           webui_show_ignore_target = false;
@@ -125,7 +126,13 @@
           nft_set_gc_interval = "";
           nft_set_policy = "performance";
           nft_set_timeout = "";
-	        webui_supported_protocol = ["all" "tcp" "udp" "tcp udp" "icmp"];
+          webui_supported_protocol = [
+            "all"
+            "tcp"
+            "udp"
+            "tcp udp"
+            "icmp"
+          ];
         };
         include = [
           {

@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, options, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  options,
+  ...
+}:
 
 {
   imports = [
@@ -18,7 +25,7 @@
         restartUnits = [ "v2ray.service" ];
       };
       p15_private_key = {
-        restartUnits = [ 
+        restartUnits = [
           "wg-quick-wg0.service"
           "wireguard-wg2.service"
         ];

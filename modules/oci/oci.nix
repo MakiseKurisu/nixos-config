@@ -1,6 +1,12 @@
 # Mostly based on <nixpkgs>/nixos/modules/virtualisation/oci-common.nix
 
-{ inputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -16,7 +22,8 @@
 
     # VNC console
     "console=tty1"
-  ] ++ lib.optional (pkgs.stdenv.hostPlatform.system == "x86_64-linux") "console=ttyS0"
+  ]
+  ++ lib.optional (pkgs.stdenv.hostPlatform.system == "x86_64-linux") "console=ttyS0"
   ++ lib.optional (pkgs.stdenv.hostPlatform.system == "aarch64-linux") "console=ttyAMA0,115200";
 
   services = {
@@ -25,7 +32,10 @@
       settings = {
         updates = {
           network = {
-            when = ["boot" "hotplug"];
+            when = [
+              "boot"
+              "hotplug"
+            ];
           };
         };
       };

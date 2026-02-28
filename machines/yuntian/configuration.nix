@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -35,7 +41,9 @@
     kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
   };
 
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
   hardware = {
     graphics = {
@@ -68,89 +76,97 @@
 
   services.btrfs.autoScrub.enable = false;
 
-  home-manager.users.excalibur = { pkgs, ... }: {
-    home.stateVersion = "22.11";
-    systemd.user = {
-      services = {
-        oci = {
-          Unit = {
-            Description = "Deploy OCI changes";
-            StartLimitIntervalSec = 0;
+  home-manager.users.excalibur =
+    { pkgs, ... }:
+    {
+      home.stateVersion = "22.11";
+      systemd.user = {
+        services = {
+          oci = {
+            Unit = {
+              Description = "Deploy OCI changes";
+              StartLimitIntervalSec = 0;
+            };
+            Install = {
+              # WantedBy = ["graphical-session.target"];
+            };
+            Service = {
+              Type = "oneshot";
+              Restart = "on-failure";
+              RestartSec = 5;
+              ExecStart = ''
+                ${lib.getExe pkgs.bash} -c \
+                  "cd /home/excalibur/Documents/GitHub/nixos-config/tofu && \
+                  ${
+                    lib.getExe (
+                      pkgs.opentofu.withPlugins (
+                        p: with p; [
+                          cloudflare_cloudflare
+                          integrations_github
+                          lxc_incus
+                          oracle_oci
+                          carlpett_sops
+                        ]
+                      )
+                    )
+                  } apply -auto-approve"
+              '';
+            };
           };
-          Install = {
-            # WantedBy = ["graphical-session.target"];
-          };
-          Service = {
-            Type = "oneshot";
-            Restart = "on-failure";
-            RestartSec = 5;
-            ExecStart = ''
-              ${lib.getExe pkgs.bash} -c \
-                "cd /home/excalibur/Documents/GitHub/nixos-config/tofu && \
-                ${lib.getExe (pkgs.opentofu.withPlugins (p: with p; [
-                  cloudflare_cloudflare
-                  integrations_github
-                  lxc_incus
-                  oracle_oci
-                  carlpett_sops
-                ]))} apply -auto-approve"
-            '';
+          lock-session = {
+            Unit = {
+              Description = "Lock current graphical session";
+            };
+            Service = {
+              Type = "oneshot";
+              ExecStart = ''
+                ${lib.getExe pkgs.bash} -c \
+                  "${lib.getExe' pkgs.systemd "loginctl"} lock-session \
+                    $$(${lib.getExe' pkgs.systemd "loginctl"} list-sessions | \
+                    ${lib.getExe pkgs.gnugrep} tty1 | \
+                    ${lib.getExe pkgs.gnugrep} active | \
+                    ${lib.getExe' pkgs.coreutils "tr"} -s ' ' | \
+                    ${lib.getExe' pkgs.coreutils "cut"} -d ' ' -f 2)"
+              '';
+            };
           };
         };
-        lock-session = {
-          Unit = {
-            Description = "Lock current graphical session";
-          };
-          Service = {
-            Type = "oneshot";
-            ExecStart = ''
-              ${lib.getExe pkgs.bash} -c \
-                "${lib.getExe' pkgs.systemd "loginctl"} lock-session \
-                  $$(${lib.getExe' pkgs.systemd "loginctl"} list-sessions | \
-                  ${lib.getExe pkgs.gnugrep} tty1 | \
-                  ${lib.getExe pkgs.gnugrep} active | \
-                  ${lib.getExe' pkgs.coreutils "tr"} -s ' ' | \
-                  ${lib.getExe' pkgs.coreutils "cut"} -d ' ' -f 2)"
-            '';
+        timers = {
+          lock-session = {
+            Unit = {
+              Description = "Lock current graphical session at given time";
+            };
+            Install = {
+              WantedBy = [ "timers.target" ];
+            };
+            Timer = {
+              OnCalendar = [
+                "*-*-* 09:30:00"
+                "*-*-* 12:00:00"
+                "*-*-* 19:00:00"
+                "*-*-* 19:30:00"
+                "*-*-* 20:30:00"
+              ];
+            };
           };
         };
       };
-      timers = {
-        lock-session = {
-          Unit = {
-            Description = "Lock current graphical session at given time";
-          };
-          Install = {
-            WantedBy = ["timers.target"];
-          };
-          Timer = {
-            OnCalendar = [
-              "*-*-* 09:30:00"
-              "*-*-* 12:00:00"
-              "*-*-* 19:00:00"
-              "*-*-* 19:30:00"
-              "*-*-* 20:30:00"
-            ];
-          };
+      wayland.windowManager.hyprland.settings = {
+        exec-once = [
+          "${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
+            Xft.dpi: 144
+          ''}"
+        ];
+        workspace = [
+          "r[1-20], monitor:DP-1"
+          "2, monitor:DP-1, default:yes"
+          "30, monitor:HDMI-A-2, default:yes"
+        ];
+        xwayland = {
+          force_zero_scaling = true;
         };
       };
     };
-    wayland.windowManager.hyprland.settings = {
-      exec-once = [
-        "${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
-          Xft.dpi: 144
-        ''}"
-      ];
-      workspace = [
-        "r[1-20], monitor:DP-1"
-        "2, monitor:DP-1, default:yes"
-        "30, monitor:HDMI-A-2, default:yes"
-      ];
-      xwayland = {
-        force_zero_scaling = true;
-      };
-    };
-  };
 
   powerManagement = {
     powertop.enable = false;
@@ -188,10 +204,10 @@
     };
     netdevs = {
       "20-br0" = {
-         netdevConfig = {
-           Kind = "bridge";
-           Name = "br0";
-         };
+        netdevConfig = {
+          Kind = "bridge";
+          Name = "br0";
+        };
         bridgeConfig = {
           STP = true;
           VLANFiltering = true;

@@ -1,11 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   environment = {
-    systemPackages =
-      with pkgs; [
-        virt-viewer
-      ];
+    systemPackages = with pkgs; [
+      virt-viewer
+    ];
   };
 
   programs.virt-manager.enable = true;

@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -34,9 +40,11 @@
 
   nixpkgs.config.allowUnsupportedSystem = true;
 
-  home-manager.users.excalibur = { pkgs, ... }: {
-    home.stateVersion = "25.05";
-  };
+  home-manager.users.excalibur =
+    { pkgs, ... }:
+    {
+      home.stateVersion = "25.05";
+    };
 
   hardware.radxa.cachix.enable = true;
 
@@ -45,10 +53,10 @@
   systemd.network = {
     netdevs = {
       "20-br0" = {
-         netdevConfig = {
-           Kind = "bridge";
-           Name = "br0";
-         };
+        netdevConfig = {
+          Kind = "bridge";
+          Name = "br0";
+        };
         bridgeConfig = {
           STP = true;
           VLANFiltering = true;
