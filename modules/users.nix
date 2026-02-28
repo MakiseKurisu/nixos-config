@@ -226,6 +226,7 @@
                 "diffEditor.maxComputationTime" = 30000;
                 "editor.fontFamily" =
                   "'Droid Sans Mono', 'monospace', monospace, 'NotoSans Nerd Font', 'Font Awesome 6 Free', 'RobotoMono Nerd Font'";
+                "editor.formatOnPaste" = true;
                 "editor.rulers" = [
                   80
                 ];
