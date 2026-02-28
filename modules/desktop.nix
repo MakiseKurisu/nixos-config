@@ -129,6 +129,7 @@
       muse-sounds-manager
       naps2
       networkmanagerapplet
+      nixfmt
       nixpkgs-review
       nomacs
       nss

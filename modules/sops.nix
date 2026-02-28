@@ -29,6 +29,7 @@
       clash_provider = {
         restartUnits = [ "mihomo.service" ];
       };
+      minimax_auth_token = { };
     };
     templates = {
       "v2ray.json" = {

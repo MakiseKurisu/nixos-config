@@ -146,6 +146,7 @@
             enableExtensionUpdateCheck = false;
             enableUpdateCheck = false;
             extensions = with pkgs.vscode-extensions; [
+              anthropic.claude-code
               github.vscode-github-actions
               github.vscode-pull-request-github
               jnoortheen.nix-ide
@@ -169,6 +170,41 @@
               unifiedjs.vscode-mdx
             ];
             userSettings = {
+              "claudeCode.environmentVariables" = [
+                {
+                  name = "ANTHROPIC_BASE_URL";
+                  value = "https://api.minimaxi.com/anthropic";
+                }
+                {
+                  name = "API_TIMEOUT_MS";
+                  value = 3000000;
+                }
+                {
+                  name = "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC";
+                  value = 1;
+                }
+                {
+                  name = "ANTHROPIC_MODEL";
+                  value = "MiniMax-M2.5";
+                }
+                {
+                  name = "ANTHROPIC_SMALL_FAST_MODEL";
+                  value = "MiniMax-M2.5";
+                }
+                {
+                  name = "ANTHROPIC_DEFAULT_SONNET_MODEL";
+                  value = "MiniMax-M2.5";
+                }
+                {
+                  name = "ANTHROPIC_DEFAULT_OPUS_MODEL";
+                  value = "MiniMax-M2.5";
+                }
+                {
+                  name = "ANTHROPIC_DEFAULT_HAIKU_MODEL";
+                  value = "MiniMax-M2.5";
+                }
+              ];
+              "claudeCode.selectedModel" = "MiniMax-M2.5";
               "debug.javascript.unmapMissingSources" = true;
               "diffEditor.ignoreTrimWhitespace" = false;
               "diffEditor.maxComputationTime" = 30000;
@@ -186,10 +222,16 @@
               "git.enableSmartCommit" = true;
               "git.replaceTagsWhenPull" = true;
               "makefile.configureOnOpen" = true;
+              "nix.enableLanguageServer" = true;
+              "nix.serverPath" = "nixd";
               "terminal.integrated.scrollback" = 5000;
               "update.showReleaseNotes" = false;
               "window.titleBarStyle" = "custom";
+              "workbench.secondarySideBar.defaultVisibility" = "hidden";
               "workbench.welcomePage.walkthroughs.openOnInstall" = false;
+              "[nix]" = {
+                "editor.formatOnSave" = true;
+              };
             };
           };
         };
