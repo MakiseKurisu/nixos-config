@@ -187,6 +187,10 @@
                     value = "https://api.minimaxi.com/anthropic";
                   }
                   {
+                      name = "ANTHROPIC_AUTH_TOKEN";
+                      value = "<MINIMAX_API_KEY>";
+                  }
+                  {
                     name = "API_TIMEOUT_MS";
                     value = 3000000;
                   }
