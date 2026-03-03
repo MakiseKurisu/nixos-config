@@ -317,6 +317,12 @@
     seahorse.enable = true;
     steam = {
       enable = (pkgs.stdenv.hostPlatform.system == "x86_64-linux");
+      package = pkgs.steam.override {
+        extraEnv = {
+          MANGOHUD = 1;
+          GAMEMODERUN = 1;
+        };
+      };
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true;

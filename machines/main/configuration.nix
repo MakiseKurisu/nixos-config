@@ -19,6 +19,7 @@
     #../../modules/intel.nix
     ../../modules/kernel.nix
     ../../modules/network.nix
+    ../../modules/amdgpu.nix
     # ../../modules/nvidia.nix
     ../../modules/packages.nix
     ../../modules/users.nix
