@@ -192,11 +192,11 @@
                   }
                   {
                     name = "API_TIMEOUT_MS";
-                    value = 3000000;
+                    value = "3000000";
                   }
                   {
                     name = "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC";
-                    value = 1;
+                    value = "1";
                   }
                   {
                     name = "ANTHROPIC_MODEL";
@@ -226,6 +226,11 @@
                     url = "https://api.poe.com/v1/";
                     name = "Claude-Sonnet-4.5";
                     requiresAPIKey = true;
+                    toolCalling = true;
+                    vision = true;
+                    thinking = false;
+                    maxInputTokens = 128000;
+                    maxOutputTokens = 16000;
                   };
                 };
                 "debug.javascript.unmapMissingSources" = true;
