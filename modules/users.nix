@@ -187,8 +187,8 @@
                     value = "https://api.minimaxi.com/anthropic";
                   }
                   {
-                      name = "ANTHROPIC_AUTH_TOKEN";
-                      value = "<MINIMAX_API_KEY>";
+                    name = "ANTHROPIC_AUTH_TOKEN";
+                    value = "<MINIMAX_API_KEY>";
                   }
                   {
                     name = "API_TIMEOUT_MS";
@@ -221,6 +221,13 @@
                 ];
                 "claudeCode.preferredLocation" = "sidebar";
                 "claudeCode.selectedModel" = "MiniMax-M2.5";
+                "github.copilot.chat.customOAIModels" = {
+                  "Claude-Sonnet-4.5" ={
+                    url = "https://api.poe.com/v1/";
+                    name = "Claude-Sonnet-4.5";
+                    requiresAPIKey = true;
+                  };
+                };
                 "debug.javascript.unmapMissingSources" = true;
                 "diffEditor.ignoreTrimWhitespace" = false;
                 "diffEditor.maxComputationTime" = 30000;
