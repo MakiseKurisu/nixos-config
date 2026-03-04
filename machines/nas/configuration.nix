@@ -202,6 +202,10 @@
       };
     };
 
+    collabora-online = {
+      enable = false;
+    };
+
     jellyfin.enable = true;
 
     home-assistant = {
@@ -342,6 +346,20 @@
             };
           };
           "beszel.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:8090/"; };
+          "co.protoducer.com" = https { locations = {
+            "^~ /browser".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+            "^~ /hosting/discovery".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+            "^~ /hosting/capabilities".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+            "~ ^/cool/(.*)/ws$" = {
+              proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+              proxyWebsockets = true;
+            };
+            "~ ^/cool".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+            "^~ /cool/adminws" = {
+              proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+              proxyWebsockets = true;
+            };
+          }; };
           "jf.protoducer.com" = http_https {
             locations."/" = {
               proxyWebsockets = true;
@@ -370,7 +388,8 @@
               proxyPass = "https://127.0.0.1:4430/";
             };
           };
-          "nc.protoducer.com" = https { };
+          "${config.services.nextcloud.hostName}" = https { };
+          "oc.protoducer.com" = https { locations."/".proxyPass = "https://${config.services.opencloud.address}:${toString config.services.opencloud.port}/"; };
           "pico.protoducer.com" = https {
             locations."/" = {
               proxyWebsockets = true;
@@ -379,6 +398,20 @@
           };
           "uptime.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:3001/"; };
         };
+    };
+
+    opencloud = {
+      enable = true;
+      url = "https://oc.protoducer.com";
+      environment = {
+        STORAGE_USERS_POSIX_WATCH_FS = "true";
+        IDM_ADMIN_PASSWORD = "admin";
+        COLLABORATION_APP_NAME = "CollaboraOnline";
+        COLLABORATION_APP_PRODUCT = "Collabora";
+        COLLABORATION_APP_ADDR = "https://co.protoducer.com";
+        COLLABORATION_APP_INSECURE = "true";
+        COLLABORATION_WOPI_SRC = "https://wopi.protoducer.com";
+      };
     };
 
     pipewire = {
@@ -435,6 +468,9 @@
         Type = "oneshot";
       };
       wantedBy = [ "sys-subsystem-net-devices-eno1.device" ];
+    };
+    opencloud = {
+      path = [ pkgs.inotify-tools ];
     };
     openlist = {
       after = [

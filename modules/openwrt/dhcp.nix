@@ -53,6 +53,10 @@
           }
           {
             ip = service_ip;
+            name = "co";
+          }
+          {
+            ip = service_ip;
             name = "dns";
           }
           {
@@ -66,6 +70,10 @@
           {
             ip = service_ip;
             name = "nc";
+          }
+          {
+            ip = service_ip;
+            name = "oc";
           }
           {
             ip = service_ip;
