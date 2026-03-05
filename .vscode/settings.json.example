@@ -1,8 +1,0 @@
-{
-    "claudeCode.environmentVariables": [
-        {
-            "name": "ANTHROPIC_AUTH_TOKEN",
-            "value": "<MINIMAX_API_KEY>"
-        }
-    ]
-}

@@ -15,7 +15,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.excalibur =
-      { pkgs, ... }:
+      { pkgs, ... }@inputs':
       {
         imports = [
           inputs.nixos-vscode-server.homeModules.default
@@ -60,6 +60,13 @@
           };
         };
         home = {
+          file = {
+            ".claude/settings.json" = {
+              source =
+                inputs'.config.lib.file.mkOutOfStoreSymlink
+                  config.sops.templates."claude-settings.json".path;
+            };
+          };
           username = "excalibur";
           homeDirectory = "/home/excalibur";
           stateVersion = lib.mkDefault config.system.stateVersion;
@@ -133,9 +140,9 @@
           };
           obs-studio = {
             enable = true;
-            plugins = with pkgs.obs-studio-plugins; [
+            plugins = with inputs'.pkgs.obs-studio-plugins; [
               input-overlay
-              (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") looking-glass-obs)
+              (lib.mkIf (inputs'.pkgs.stdenv.hostPlatform.system == "x86_64-linux") looking-glass-obs)
               obs-pipewire-audio-capture
               wlrobs
               obs-vaapi
@@ -147,7 +154,7 @@
           vscode = {
             enable = true;
             package = (
-              pkgs.vscode.override (previous: {
+              inputs'.pkgs.vscode.override (previous: {
                 commandLineArgs =
                   (previous.commandLineArgs or "")
                   + " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3 --password-store=gnome --disable-gpu-sandbox";
@@ -156,7 +163,7 @@
             profiles.default = {
               enableExtensionUpdateCheck = false;
               enableUpdateCheck = false;
-              extensions = with pkgs.vscode-extensions; [
+              extensions = with inputs'.pkgs.vscode-extensions; [
                 anthropic.claude-code
                 github.vscode-github-actions
                 github.vscode-pull-request-github
@@ -181,58 +188,8 @@
                 unifiedjs.vscode-mdx
               ];
               userSettings = {
-                "claudeCode.environmentVariables" = [
-                  {
-                    name = "ANTHROPIC_BASE_URL";
-                    value = "https://api.minimaxi.com/anthropic";
-                  }
-                  {
-                    name = "ANTHROPIC_AUTH_TOKEN";
-                    value = "<MINIMAX_API_KEY>";
-                  }
-                  {
-                    name = "API_TIMEOUT_MS";
-                    value = "3000000";
-                  }
-                  {
-                    name = "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC";
-                    value = "1";
-                  }
-                  {
-                    name = "ANTHROPIC_MODEL";
-                    value = "MiniMax-M2.5";
-                  }
-                  {
-                    name = "ANTHROPIC_SMALL_FAST_MODEL";
-                    value = "MiniMax-M2.5";
-                  }
-                  {
-                    name = "ANTHROPIC_DEFAULT_SONNET_MODEL";
-                    value = "MiniMax-M2.5";
-                  }
-                  {
-                    name = "ANTHROPIC_DEFAULT_OPUS_MODEL";
-                    value = "MiniMax-M2.5";
-                  }
-                  {
-                    name = "ANTHROPIC_DEFAULT_HAIKU_MODEL";
-                    value = "MiniMax-M2.5";
-                  }
-                ];
                 "claudeCode.preferredLocation" = "sidebar";
                 "claudeCode.selectedModel" = "MiniMax-M2.5";
-                "github.copilot.chat.customOAIModels" = {
-                  "Claude-Sonnet-4.5" ={
-                    url = "https://api.poe.com/v1/";
-                    name = "Claude-Sonnet-4.5";
-                    requiresAPIKey = true;
-                    toolCalling = true;
-                    vision = true;
-                    thinking = false;
-                    maxInputTokens = 128000;
-                    maxOutputTokens = 16000;
-                  };
-                };
                 "debug.javascript.unmapMissingSources" = true;
                 "diffEditor.ignoreTrimWhitespace" = false;
                 "diffEditor.maxComputationTime" = 30000;
@@ -252,6 +209,18 @@
                 "git.confirmSync" = false;
                 "git.enableSmartCommit" = true;
                 "git.replaceTagsWhenPull" = true;
+                "github.copilot.chat.customOAIModels" = {
+                  "Claude-Sonnet-4.5" = {
+                    url = "https://api.poe.com/v1/";
+                    name = "Claude-Sonnet-4.5";
+                    requiresAPIKey = true;
+                    toolCalling = true;
+                    vision = true;
+                    thinking = false;
+                    maxInputTokens = 128000;
+                    maxOutputTokens = 16000;
+                  };
+                };
                 "makefile.configureOnOpen" = true;
                 "nix.enableLanguageServer" = true;
                 "nix.serverPath" = "nixd";
@@ -291,8 +260,8 @@
                 follow = "mouse";
                 origin = "top-center";
                 offset = "(0, 50)";
-                dmenu = "${lib.getExe pkgs.tofi} --prompt-text dunst";
-                browser = "${lib.getExe' pkgs.xdg-utils "xdg-open"}";
+                dmenu = "${lib.getExe inputs'.pkgs.tofi} --prompt-text dunst";
+                browser = "${lib.getExe' inputs'.pkgs.xdg-utils "xdg-open"}";
               };
             };
           };

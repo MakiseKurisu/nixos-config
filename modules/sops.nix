@@ -129,6 +129,25 @@
               - clash
         '';
       };
+      "claude-settings.json" = {
+        mode = "0444";
+        content = ''
+          {
+            "env": {
+              "ANTHROPIC_BASE_URL": "https://api.minimaxi.com/anthropic",
+              "ANTHROPIC_AUTH_TOKEN": "${config.sops.placeholder.minimax_auth_token}",
+              "API_TIMEOUT_MS": "3000000",
+              "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1,
+              "ANTHROPIC_MODEL": "MiniMax-M2.5",
+              "ANTHROPIC_SMALL_FAST_MODEL": "MiniMax-M2.5-highspeed",
+              "ANTHROPIC_DEFAULT_SONNET_MODEL": "MiniMax-M2.5",
+              "ANTHROPIC_DEFAULT_OPUS_MODEL": "MiniMax-M2.5",
+              "ANTHROPIC_DEFAULT_HAIKU_MODEL": "MiniMax-M2.5"
+            },
+            "hasCompletedOnboarding": true
+          }
+        '';
+      };
     };
   };
 }
