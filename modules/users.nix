@@ -248,6 +248,7 @@
                 "files.autoGuessEncoding" = true;
                 "files.autoSave" = "afterDelay";
                 "git.autofetch" = true;
+                "git.branchProtectionPrompt" = "alwaysCommit";
                 "git.confirmSync" = false;
                 "git.enableSmartCommit" = true;
                 "git.replaceTagsWhenPull" = true;
