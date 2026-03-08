@@ -349,20 +349,24 @@
             };
           };
           "beszel.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:8090/"; };
-          "co.protoducer.com" = https { locations = {
-            "^~ /browser".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
-            "^~ /hosting/discovery".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
-            "^~ /hosting/capabilities".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
-            "~ ^/cool/(.*)/ws$" = {
-              proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
-              proxyWebsockets = true;
+          "co.protoducer.com" = https {
+            locations = {
+              "^~ /browser".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+              "^~ /hosting/discovery".proxyPass =
+                "http://127.0.0.1:${toString config.services.collabora-online.port}";
+              "^~ /hosting/capabilities".proxyPass =
+                "http://127.0.0.1:${toString config.services.collabora-online.port}";
+              "~ ^/cool/(.*)/ws$" = {
+                proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+                proxyWebsockets = true;
+              };
+              "~ ^/cool".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+              "^~ /cool/adminws" = {
+                proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
+                proxyWebsockets = true;
+              };
             };
-            "~ ^/cool".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
-            "^~ /cool/adminws" = {
-              proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
-              proxyWebsockets = true;
-            };
-          }; };
+          };
           "jf.protoducer.com" = http_https {
             locations."/" = {
               proxyWebsockets = true;
@@ -392,7 +396,10 @@
             };
           };
           "${config.services.nextcloud.hostName}" = https { };
-          "oc.protoducer.com" = https { locations."/".proxyPass = "https://${config.services.opencloud.address}:${toString config.services.opencloud.port}/"; };
+          "oc.protoducer.com" = https {
+            locations."/".proxyPass =
+              "https://${config.services.opencloud.address}:${toString config.services.opencloud.port}/";
+          };
           "pico.protoducer.com" = https {
             locations."/" = {
               proxyWebsockets = true;
