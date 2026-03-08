@@ -76,6 +76,9 @@
     enable = true;
     mode = "netserver";
     openFirewall = true;
+    package = pkgs.nut.override {
+      withApcModbus = true;
+    };
     users = {
       admin = {
         actions = [
@@ -93,12 +96,12 @@
     };
     ups = {
       SMT1500I = {
-        driver = "usbhid-ups";
+        driver = "apc_modbus";
         port = "auto";
         directives = [
           "vendorid = 051d"
           "productid = 0003"
-          "serial = AS1048210050"
+          "serial = AS1844233579"
         ];
       };
     };
