@@ -71,16 +71,16 @@ in
           mmx_mask = "0x3F00";
         };
         interface = {
-          pppoe = mwanInterface;
+          wan = mwanInterface;
           wwan0 = mwanInterface;
         };
-        member = (mwanMembers "pppoe") // (mwanMembers "wwan0");
-        policy = mwanPolicies "pppoe" "wwan0";
+        member = (mwanMembers "wan") // (mwanMembers "wwan0");
+        policy = mwanPolicies "wan" "wwan0";
         rule = {
           default = {
             proto = "all";
             sticky = false;
-            use_policy = "pppoe_wwan0";
+            use_policy = "wan_wwan0";
             family = "ipv4";
           };
           unreachable = {
