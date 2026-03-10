@@ -356,6 +356,7 @@
             #", XF86Sleep, exec, hyprlock"
             ", XF86HomePage, exec, firefox"
             "$mainMod ALT, space, exec, pkill -SIGUSR1 waybar"
+            ", Print, exec, grim -o \"$(hyprctl activeworkspace -j | jq -r '.monitor')\" - | wl-copy"
           ];
           binde = [
             "$mainMod CTRL, right, resizeactive, 10 0"
