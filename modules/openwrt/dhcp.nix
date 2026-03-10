@@ -135,6 +135,12 @@
           }
           {
             dns = true;
+            ip = "192.168.9.12";
+            mac = "08:D0:9F:6B:36:1F";
+            name = "cisco";
+          }
+          {
+            dns = true;
             ip = "ignore";
             mac = "70:85:c2:bf:37:bc";
             name = "main-wol";
