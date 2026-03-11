@@ -86,6 +86,7 @@
       }))
       discord
       element-desktop
+      ente-auth
       (feishu.override (previous: {
         commandLineArgs =
           (previous.commandLineArgs or "")
