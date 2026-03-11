@@ -22,8 +22,6 @@
           wan = {
             device = "br-lan.10";
             proto = "dhcp";
-            defaultroute = false;
-            peerdns = false;
             metric = 10;
             dns_metric = 10;
           };
@@ -32,8 +30,6 @@
             proto = "dhcpv6";
             reqaddress = "try";
             reqprefix = "auto";
-            defaultroute = false;
-            peerdns = false;
             norelease = true;
             metric = 10;
             dns_metric = 10;
