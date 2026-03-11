@@ -12,6 +12,10 @@
     })
   ];
 
+  services = {
+    statistics.enable = true;
+  };
+
   packages = [
     "luci-app-ddns"
     "luci-app-sqm"
