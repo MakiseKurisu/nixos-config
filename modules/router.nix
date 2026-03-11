@@ -2,8 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
-  options,
   ...
 }:
 
@@ -20,6 +18,24 @@
   };
 
   services = {
+    dante = {
+      enable = true;
+      config = ''
+        internal: vlan20 port = 7899
+        external: vlan20
+        clientmethod: none
+        socksmethod: none
+        client pass {
+          from: 0/0 to: 0/0
+          log: connect disconnect error
+        }
+        socks pass {
+          from: 0/0 to: 0/0
+          log: connect disconnect error
+        }
+      '';
+    };
+
     # Must configure to NOT listen on 0.0.0.0:53 but 192.168.xxx.yyy:53
     # As systemd-resolved would listen on 127.0.0.53:53
     technitium-dns-server.enable = true;
@@ -68,20 +84,6 @@
             // {
               forceSSL = true;
             };
-          http =
-            host:
-            host
-            // ssl
-            // {
-              rejectSSL = true;
-            };
-          http_https =
-            host:
-            host
-            // ssl
-            // {
-              addSSL = true;
-            };
         in
         {
           "_" = https { locations."/".return = "404"; };
@@ -113,7 +115,7 @@
         80 # nginx
         443 # nginx
         1080 # wg2 dante
-        7899 # v2ray
+        7899 # v2ray / dante
         9090 # mihomo
       ];
       allowedTCPPortRanges = [
