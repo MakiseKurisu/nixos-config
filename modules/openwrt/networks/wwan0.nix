@@ -74,7 +74,7 @@
     "crontabs/root".text = ''
       * * * * * sh /etc/wwan/keep_alive wwan0
       * * * * * sh /etc/wwan/keep_alive wwan0_4 wwan0
-      * * * * * bash /etc/wwan/lte_fallback wwan0_4 /dev/cdc-wdm0
+      #* * * * * bash /etc/wwan/lte_fallback wwan0_4 /dev/cdc-wdm0
     '';
   };
 
@@ -87,7 +87,7 @@
             device = lib.mkDefault "/dev/cdc-wdm0";
             apn = "CBNET";
             auth = "none";
-            pdptype = "ipv4v6";
+            pdptype = "ipv4";
             metric = 20;
             dns_metric = 20;
             dhcp = true;
