@@ -138,13 +138,28 @@
               "ANTHROPIC_AUTH_TOKEN": "${config.sops.placeholder.minimax_auth_token}",
               "API_TIMEOUT_MS": "3000000",
               "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1,
-              "ANTHROPIC_MODEL": "MiniMax-M2.5",
+              "ANTHROPIC_MODEL": "MiniMax-M2.5-highspeed",
               "ANTHROPIC_SMALL_FAST_MODEL": "MiniMax-M2.5-highspeed",
-              "ANTHROPIC_DEFAULT_SONNET_MODEL": "MiniMax-M2.5",
-              "ANTHROPIC_DEFAULT_OPUS_MODEL": "MiniMax-M2.5",
-              "ANTHROPIC_DEFAULT_HAIKU_MODEL": "MiniMax-M2.5"
+              "ANTHROPIC_DEFAULT_SONNET_MODEL": "MiniMax-M2.5-highspeed",
+              "ANTHROPIC_DEFAULT_OPUS_MODEL": "MiniMax-M2.5-highspeed",
+              "ANTHROPIC_DEFAULT_HAIKU_MODEL": "MiniMax-M2.5-highspeed"
             },
-            "hasCompletedOnboarding": true
+            "hasCompletedOnboarding": true,
+            "mcpServers": {
+              "minimax-coding-plan-mcp": {
+                "args": [
+                  "tool",
+                  "run",
+                  "minimax-coding-plan-mcp",
+                  "-y"
+                ],
+                "command": "${lib.getExe pkgs.uv}",
+                "env": {
+                  "MINIMAX_API_KEY": "${config.sops.placeholder.minimax_auth_token}",
+                  "MINIMAX_API_HOST": "https://api.minimaxi.com"
+                }
+              }
+            }
           }
         '';
       };
