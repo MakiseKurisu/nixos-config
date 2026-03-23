@@ -6,6 +6,8 @@
   android-system-bin-list,
 }:
 
+# Get your android-system-bin.list from adb shell
+
 stdenvNoCC.mkDerivation rec {
   name = "android-system-bin-wrapper";
   installPhase = ''

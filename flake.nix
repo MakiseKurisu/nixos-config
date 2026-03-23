@@ -98,27 +98,6 @@
           };
         };
 
-        nixOnDroidConfigurations = {
-          davinci = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-            pkgs = inputs.nixpkgs-droid.legacyPackages."aarch64-linux";
-            modules = [
-              ./machines/davinci/nix-on-droid.nix
-            ];
-          };
-          bla-al00 = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-            pkgs = inputs.nixpkgs-droid.legacyPackages."aarch64-linux";
-            modules = [
-              ./machines/bla-al00
-            ];
-          };
-          p027 = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-            pkgs = inputs.nixpkgs-droid.legacyPackages."aarch64-linux";
-            modules = [
-              ./machines/p027
-            ];
-          };
-        };
-
         checks = builtins.mapAttrs (
           system: deployLib: deployLib.deployChecks self.deploy
         ) inputs.deploy-rs.lib;
