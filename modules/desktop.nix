@@ -321,8 +321,12 @@
       enable = (pkgs.stdenv.hostPlatform.system == "x86_64-linux");
       package = pkgs.steam.override {
         extraEnv = {
-          MANGOHUD = 1;
           GAMEMODERUN = 1;
+          MANGOHUD = 1;
+          PROTON_DLSS_UPGRADE = 1;
+          PROTON_FSR3_UPGRADE = 1;
+          PROTON_FSR4_UPGRADE = 1;
+          PROTON_XESS_UPGRADE = 1;
         };
       };
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
