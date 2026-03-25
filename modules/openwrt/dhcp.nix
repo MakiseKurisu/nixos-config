@@ -85,6 +85,10 @@
           }
           {
             ip = service_ip;
+            name = "speed";
+          }
+          {
+            ip = service_ip;
             name = "kms";
           }
           {

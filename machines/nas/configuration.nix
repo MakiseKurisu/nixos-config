@@ -281,6 +281,15 @@
       ];
     };
 
+    librespeed = {
+      enable = true;
+      domain = "speed.protoducer.com";
+      frontend = {
+        enable = true;
+        contactEmail = "admin@protoducer.com";
+      };
+    };
+
     meshcentral = {
       enable = true;
       settings = {
@@ -406,6 +415,7 @@
               proxyPass = "http://127.0.0.1:14500/";
             };
           };
+          "speed.protoducer.com" = https { };
           "uptime.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:3001/"; };
         };
     };
