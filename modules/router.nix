@@ -103,6 +103,19 @@
           };
         };
     };
+
+    tor = {
+      enable = true;
+      client = {
+        enable = true;
+        socksListenAddress = {
+          IsolateDestAddr = true;
+          addr = "192.168.9.3";
+          port = 9050;
+        };
+      };
+      settings.Socks5Proxy = "127.0.0.1:7891";
+    };
   };
 
   networking = {
@@ -116,6 +129,7 @@
         443 # nginx
         1080 # wg2 dante
         7899 # v2ray / dante
+        9050 # tor
         9090 # mihomo
       ];
       allowedTCPPortRanges = [
