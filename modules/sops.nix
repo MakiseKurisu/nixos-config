@@ -15,6 +15,9 @@
   sops = {
     defaultSopsFile = "${inputs.secrets}/nixos.yaml";
     secrets = {
+      cloudflare_ddns = {
+        restartUnits = [ "cloudflare-ddns.service" ];
+      };
       v2ray_address = {
         restartUnits = [ "v2ray.service" ];
       };
@@ -39,6 +42,12 @@
       minimax_auth_token = { };
     };
     templates = {
+      "cloudflare_ddns.env" = {
+        mode = "0444";
+        content = ''
+          CLOUDFLARE_API_TOKEN=${config.sops.placeholder.cloudflare_ddns}
+        '';
+      };
       "v2ray.json" = {
         mode = "0444";
         content = ''

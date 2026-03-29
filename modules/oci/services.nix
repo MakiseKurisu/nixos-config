@@ -20,6 +20,14 @@
   };
 
   services = {
+    cloudflare-ddns = {
+      enable = true;
+      domains = [
+        "${config.networking.hostName}.protoducer.com"
+      ];
+      credentialsFile = config.sops.templates."cloudflare_ddns.env".path;
+    };
+
     dante = {
       enable = true;
       config =

@@ -18,6 +18,7 @@
           sshUser = "excalibur";
           user = "root";
           hostname = "10.0.0.10";
+          confirmTimeout = 180;
           profiles.system.path =
             let
               cfg = inputs.self.nixosConfigurations.amd0;
@@ -34,6 +35,7 @@
           sshUser = "excalibur";
           user = "root";
           hostname = "10.0.0.11";
+          confirmTimeout = 180;
           profiles.system.path =
             let
               cfg = inputs.self.nixosConfigurations.amd1;
@@ -50,6 +52,7 @@
           sshUser = "excalibur";
           user = "root";
           hostname = "10.0.0.20";
+          confirmTimeout = 180;
           profiles.system.path =
             let
               cfg = inputs.self.nixosConfigurations.arm0;
@@ -66,6 +69,7 @@
           sshUser = "excalibur";
           user = "root";
           hostname = "10.0.0.21";
+          confirmTimeout = 180;
           profiles.system.path =
             let
               cfg = inputs.self.nixosConfigurations.arm1;
