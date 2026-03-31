@@ -136,6 +136,12 @@
               interval: 300
               use:
               - clash
+            - name: "FALLBACK"
+              type: fallback
+              url: "https://www.gstatic.com/generate_204"
+              interval: 300
+              use:
+              - clash
         '';
       };
       "claude-settings.json" = {
