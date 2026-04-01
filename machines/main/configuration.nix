@@ -40,7 +40,6 @@
     kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
     kernelModules = [
       "nct6775"
-      "ntsync"
     ];
   };
 

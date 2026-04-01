@@ -28,6 +28,9 @@
         (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") "i686-windows")
       ];
     };
+    kernelModules = [
+      "ntsync"
+    ];
   };
 
   environment = {
