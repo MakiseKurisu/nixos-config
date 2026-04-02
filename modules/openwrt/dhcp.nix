@@ -27,6 +27,7 @@
               "/time.android.com/203.107.6.88"
               "/*.mcdn.bilivideo.cn/"
               "/*.szbdyd.com/"
+              "/use-application-dns.net/"
             ];
             server = [
               "/vamrs.org/192.168.2.1"
