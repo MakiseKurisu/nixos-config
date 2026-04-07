@@ -63,7 +63,7 @@
       permittedInsecurePackages = [
         "intel-media-sdk-23.2.2"
         "openssl-1.1.1w"
-        "ventoy-1.1.07"
+        "ventoy-1.1.10"
       ];
     };
   };
