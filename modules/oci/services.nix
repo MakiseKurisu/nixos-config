@@ -11,11 +11,20 @@
     firewall = {
       allowedTCPPorts = [
         53 # systemd-resolved
+        80 # nginx
+        443 # nginx
         1080 # dante
       ];
       allowedUDPPorts = [
         53 # systemd-resolved
       ];
+    };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults = {
+      email = "admin@protoducer.com";
     };
   };
 
@@ -53,6 +62,48 @@
     iperf3 = {
       enable = true;
       openFirewall = true;
+    };
+
+    librespeed = {
+      enable = true;
+      domain = "${config.networking.hostName}.protoducer.com";
+      frontend = {
+        enable = true;
+        contactEmail = "admin@protoducer.com";
+      };
+    };
+
+    nginx = {
+      enable = true;
+      recommendedOptimisation = true;
+      recommendedTlsSettings = true;
+      recommendedBrotliSettings = true;
+      recommendedGzipSettings = true;
+      recommendedProxySettings = true;
+      virtualHosts =
+        let
+          ssl = {
+            enableACME = true;
+            kTLS = true;
+          };
+          http =
+            host:
+            host
+            // {
+              rejectSSL = true;
+            };
+          https =
+            host:
+            host
+            // ssl
+            // {
+              forceSSL = true;
+            };
+        in
+        {
+          "_" = http { locations."/".return = "404"; };
+          "${config.networking.hostName}.protoducer.com" = https { };
+        };
     };
 
     resolved = {
