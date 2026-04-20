@@ -125,6 +125,7 @@
       kdePackages.dolphin-plugins
       kdePackages.kcalc
       kdePackages.kdegraphics-thumbnailers
+      kdePackages.kde-cli-tools
       kdePackages.kio
       kdePackages.kio-admin
       kdePackages.kio-extras
