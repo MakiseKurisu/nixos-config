@@ -32,6 +32,10 @@
             server = [
               "/vamrs.org/192.168.2.1"
               "/vpndns.net/192.99.42.52"
+              "/amd0.protoducer.com/1.1.1.1"
+              "/amd1.protoducer.com/1.1.1.1"
+              "/arm0.protoducer.com/1.1.1.1"
+              "/arm1.protoducer.com/1.1.1.1"
               service_ip
             ];
             rebind_domain = [

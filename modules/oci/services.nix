@@ -70,6 +70,24 @@
       frontend = {
         enable = true;
         contactEmail = "admin@protoducer.com";
+        servers = [
+          {
+            name = "amd0";
+            server = "//amd0.protoducer.com";
+          }
+          {
+            name = "amd1";
+            server = "//amd1.protoducer.com";
+          }
+          {
+            name = "arm0";
+            server = "//arm0.protoducer.com";
+          }
+          {
+            name = "arm1";
+            server = "//arm1.protoducer.com";
+          }
+        ];
       };
     };
 
