@@ -19,6 +19,9 @@
     (import ./tun1.nix {
       inherit service_ip;
     })
+    (import ./tun2.nix {
+      inherit service_ip;
+    })
     ./wg1.nix
     ./wg3.nix
     ./wg4.nix
@@ -75,6 +78,7 @@
               "wg4"
               "tun0"
               "tun1"
+              "tun2"
             ];
             input = "ACCEPT";
             output = "ACCEPT";
