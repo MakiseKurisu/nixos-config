@@ -75,6 +75,12 @@
     ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="1a86", GROUP="wheel"
     # Allow user access for Qualcomm QDL devices
     ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="05c6", ENV{ID_USB_MODEL_ID}=="9008", GROUP="wheel"
+    # Allow user access for Fx2lafw devices
+    ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="1d50", ENV{ID_USB_MODEL_ID}=="608c", GROUP="wheel"
+    # Allow user access for DreamSource devices
+    ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="2a0e", ENV{ID_USB_MODEL_ID}=="0020", GROUP="wheel"
+    # Allow user access for Kingst devices
+    ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="77a1", ENV{ID_USB_MODEL_ID}=="01a2", GROUP="wheel"
   '';
   powerManagement = {
     enable = true;
