@@ -198,7 +198,6 @@
           windowrulev2 = [
             "idleinhibit fullscreen, class:^(.*)$, title:^(.*)$"
             "nofocus, class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$, title:^(win1)$"
-            "stayfocused, class:^(com\.DreamSourceLab\.www\.)$, title:^(DSView)$"
             "float, class:^(com\.DreamSourceLab\.www\.)$, title:^(DSView)$"
             "float, class:^(.*)$, title:^(Open File)$"
             "float, class:^(.*)$, title:^(Open Folder)$"
