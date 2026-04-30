@@ -187,6 +187,12 @@
                 ms-vsliveshare.vsliveshare
                 unifiedjs.vscode-mdx
               ];
+              keybindings = [
+                {
+                  key = "ctrl+j";
+                  command = "-workbench.action.togglePanel";
+                }
+              ];
               userSettings = {
                 "claudeCode.preferredLocation" = "sidebar";
                 "claudeCode.selectedModel" = "MiniMax-M2.5";
