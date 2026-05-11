@@ -69,6 +69,44 @@
           };
           username = "excalibur";
           homeDirectory = "/home/excalibur";
+          sessionVariables = {
+            # desktop
+            KDEHOME = "${inputs'.config.xdg.configHome}/kde";
+            XCOMPOSECACHE = "${inputs'.config.xdg.cacheHome}/X11/xcompose";
+            ERRFILE = "${inputs'.config.xdg.cacheHome}/X11/xsession-errors";
+            WINEPREFIX = "${inputs'.config.xdg.dataHome}/wine";
+
+            # programs
+            GNUPGHOME = "${inputs'.config.xdg.dataHome}/gnupg";
+            LESSHISTFILE = "${inputs'.config.xdg.dataHome}/less/history";
+            CUDA_CACHE_PATH = "${inputs'.config.xdg.cacheHome}/nv";
+            STEPPATH = "${inputs'.config.xdg.dataHome}/step";
+            WAKATIME_HOME = "${inputs'.config.xdg.configHome}/wakatime";
+            INPUTRC = "${inputs'.config.xdg.configHome}/readline/inputrc";
+            PLATFORMIO_CORE_DIR = "${inputs'.config.xdg.dataHome}/platformio";
+            DOTNET_CLI_HOME = "${inputs'.config.xdg.dataHome}/dotnet";
+            NUGET_PACKAGES = "${inputs'.config.xdg.cacheHome}/NuGetPackages";
+            OMNISHARPHOME = "${inputs'.config.xdg.configHome}/omnisharp";
+            MPLAYER_HOME = "${inputs'.config.xdg.configHome}/mplayer";
+            SQLITE_HISTORY = "${inputs'.config.xdg.cacheHome}/sqlite_history";
+
+            # programming
+            ANDROID_HOME = "${inputs'.config.xdg.dataHome}/android";
+            ANDROID_USER_HOME = "${inputs'.config.xdg.dataHome}/android";
+            GRADLE_USER_HOME = "${inputs'.config.xdg.dataHome}/gradle";
+            IPYTHONDIR = "${inputs'.config.xdg.configHome}/ipython";
+            JUPYTER_CONFIG_DIR = "${inputs'.config.xdg.configHome}/jupyter";
+            GOPATH = "${inputs'.config.xdg.dataHome}/go";
+            M2_HOME = "${inputs'.config.xdg.dataHome}/m2";
+            CARGO_HOME = "${inputs'.config.xdg.dataHome}/cargo";
+            RUSTUP_HOME = "${inputs'.config.xdg.dataHome}/rustup";
+            STACK_ROOT = "${inputs'.config.xdg.dataHome}/stack";
+            STACK_XDG = 1;
+            NODE_REPL_HISTORY = "${inputs'.config.xdg.dataHome}/node_repl_history";
+            NPM_CONFIG_CACHE = "${inputs'.config.xdg.cacheHome}/npm";
+            NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
+            NPM_CONFIG_USERCONFIG = "${inputs'.config.xdg.configHome}/npm/config";
+          };
           stateVersion = lib.mkDefault config.system.stateVersion;
         };
         programs = {
