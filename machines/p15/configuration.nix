@@ -121,12 +121,7 @@
       "50-br0" = {
         matchConfig.Name = "br0";
         networkConfig = {
-          LinkLocalAddressing = false;
-          DHCP = false;
-          LLDP = false;
-          EmitLLDP = false;
-          IPv6AcceptRA = false;
-          IPv6SendRA = false;
+          DHCP = true;
         };
         bridgeConfig = { };
         bridgeVLANs = [
