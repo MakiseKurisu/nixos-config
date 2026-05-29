@@ -64,6 +64,7 @@
       NIX_AUTO_RUN = "1";
     };
     systemPackages = with pkgs; [
+      ardour
       audacity
       nur.repos.xddxdd.baidunetdisk
       (bottles.override (previous: {
