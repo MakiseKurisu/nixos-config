@@ -136,10 +136,8 @@
               interval: 300
               use:
               - clash
-            - name: "FALLBACK"
-              type: fallback
-              url: "https://www.gstatic.com/generate_204"
-              interval: 300
+            - name: "SELECT"
+              type: select
               use:
               - clash
         '';
