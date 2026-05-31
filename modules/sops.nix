@@ -88,7 +88,7 @@
           allow-lan: true
           mode: Global
           find-process-mode: off
-          log-level: info
+          log-level: warning
           unified-delay: true
           tcp-concurrent: true
           global-client-fingerprint: random
