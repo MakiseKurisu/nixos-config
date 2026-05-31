@@ -517,6 +517,11 @@
   networking.interfaces.eno1.useDHCP = false;
   networking.interfaces.eno2.useDHCP = false;
   networking.interfaces.enp7s0.useDHCP = false;
+
+  # only enable those for xiaomi_home login
+  # services.avahi.hostName = "homeassistant";
+  # networking.firewall.allowedTCPPorts = [ 8123 ];
+
   systemd.network = {
     netdevs = {
       "20-br0" = {
