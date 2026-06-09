@@ -20,9 +20,9 @@
   etc = {
     "firewall.user".text = ''
       # create nftset
-      GFW_MARK=439
-      GAME_MARK=439
-      DNS_PORT=5054
+      GFW_MARK=600
+      GAME_MARK=603
+      DNS_PORT=5500
       nft "add rule inet fw4 dstnat udp dport 5353 redirect to :$DNS_PORT"
       nft "add chain inet fw4 output_nat { type nat hook output priority -100; }"
       nft "add rule inet fw4 output_nat ip daddr 127.0.0.1 udp dport 5353 dnat to 192.168.9.1:$DNS_PORT"

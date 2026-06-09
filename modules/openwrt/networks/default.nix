@@ -13,14 +13,41 @@
     ./wan.nix
     ./wwan0.nix
     ./pppoe.nix
-    (import ./tun0.nix {
-      inherit service_ip;
+    (import ./socks5-tunnel.nix {
+      tun_name = "tun0";
+      subnet = 50;
+      proxy_ip = service_ip;
+      proxy_port = 7891;
+      proxy_mark = 500;
+      dns_port = 5500;
+      route_mark = 600;
     })
-    (import ./tun1.nix {
-      inherit service_ip;
+    (import ./socks5-tunnel.nix {
+      tun_name = "tun1";
+      subnet = 51;
+      proxy_ip = service_ip;
+      proxy_port = 1080;
+      proxy_mark = 501;
+      dns_port = 5501;
+      route_mark = 601;
     })
-    (import ./tun2.nix {
-      inherit service_ip;
+    (import ./socks5-tunnel.nix {
+      tun_name = "tun2";
+      subnet = 52;
+      proxy_ip = "10.0.21.1";
+      proxy_port = 1080;
+      proxy_mark = 502;
+      dns_port = 5502;
+      route_mark = 602;
+    })
+    (import ./socks5-tunnel.nix {
+      tun_name = "tun3";
+      subnet = 53;
+      proxy_ip = "192.168.2.4";
+      proxy_port = 7891;
+      proxy_mark = 503;
+      dns_port = 5503;
+      route_mark = 603;
     })
     ./wg1.nix
     ./wg3.nix
@@ -79,6 +106,7 @@
               "tun0"
               "tun1"
               "tun2"
+              "tun3"
             ];
             input = "ACCEPT";
             output = "ACCEPT";
