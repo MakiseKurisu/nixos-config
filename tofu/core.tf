@@ -40,7 +40,7 @@ resource oci_core_instance amd0 {
 
   source_details {
     source_type = "image"
-    source_id   = local.ubuntu_images.amd64.id
+    source_id   = local.amd64_source_id # local.ubuntu_images.amd64.id
     boot_volume_size_in_gbs = 50
     boot_volume_vpus_per_gb = 120
   }
@@ -81,7 +81,7 @@ resource oci_core_instance amd1 {
 
   source_details {
     source_type = "image"
-    source_id   = local.ubuntu_images.amd64.id
+    source_id   = local.amd64_source_id # local.ubuntu_images.amd64.id
     boot_volume_size_in_gbs = 50
     boot_volume_vpus_per_gb = 120
   }
@@ -127,7 +127,7 @@ resource oci_core_instance arm0 {
 
   source_details {
     source_type = "image"
-    source_id   = local.ubuntu_images.arm64.id
+    source_id   = local.arm64_source_id # local.ubuntu_images.arm64.id
     boot_volume_size_in_gbs = 50
     boot_volume_vpus_per_gb = 120
   }
@@ -145,8 +145,8 @@ resource "oci_core_vnic_attachment" arm0_eth1 {
     hostname_label   = local.arm0_name2
     private_ip       = "${substr(oci_core_subnet.secondary_subnet.cidr_block, 0, length(oci_core_subnet.secondary_subnet.cidr_block) - length("0/24"))}20"
     ipv6address_ipv6subnet_cidr_pair_details {
-      ipv6_subnet_cidr = oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]
-      ipv6_address = "${substr(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]) - length("0000/64"))}20"
+      ipv6subnet_cidr = oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]
+      ipv6address = "${substr(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]) - length("0000/64"))}20"
     }
   }
 }
@@ -191,7 +191,7 @@ resource oci_core_instance arm1 {
 
   source_details {
     source_type = "image"
-    source_id   = local.ubuntu_images.arm64.id
+    source_id   = local.arm64_source_id # local.ubuntu_images.arm64.id
     boot_volume_size_in_gbs = 50
     boot_volume_vpus_per_gb = 120
   }
@@ -209,8 +209,8 @@ resource "oci_core_vnic_attachment" arm1_eth1 {
     hostname_label   = local.arm1_name2
     private_ip       = "${substr(oci_core_subnet.secondary_subnet.cidr_block, 0, length(oci_core_subnet.secondary_subnet.cidr_block) - length("0/24"))}21"
     ipv6address_ipv6subnet_cidr_pair_details {
-      ipv6_subnet_cidr = oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]
-      ipv6_address = "${substr(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]) - length("0000/64"))}21"
+      ipv6subnet_cidr = oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]
+      ipv6address = "${substr(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0], 0, length(oci_core_subnet.secondary_subnet.ipv6cidr_blocks[0]) - length("0000/64"))}21"
     }
   }
 }

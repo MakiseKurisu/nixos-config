@@ -2,15 +2,15 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.opentofu.org/carlpett/sops" {
-  version = "1.3.0"
+  version = "1.4.1"
   hashes = [
-    "h1:ZQQykL5RoEHKI/w5IlLlaSo8ARGMlHHu5cugPzkEgH8=",
+    "h1:z9qaGd23wdVpbEDDoLQpmA/UEPvuADbVldyOb41I3og=",
   ]
 }
 
 provider "registry.opentofu.org/oracle/oci" {
-  version = "7.27.0"
+  version = "8.14.0"
   hashes = [
-    "h1:D1K41joylKqeGLglHzUE+z//Dx9nLBFRYjR57ca3lCg=",
+    "h1:W7S3N+vz8sTN498SEFqo/XFks7jlWwoEp1jp7HPsRv0=",
   ]
 }
