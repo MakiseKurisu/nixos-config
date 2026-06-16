@@ -503,6 +503,7 @@
             enable = true;
             associations.added = {
               "application/json" = [ "code.desktop" ];
+              "application/vnd.ms-excel.sheet.macroEnabled.12" = [ "calc.desktop" ];
               "application/x-shellscript" = [ "code.desktop" ];
               "video/mpeg" = [ "vlc.desktop" ];
             };
@@ -512,6 +513,7 @@
               "application/json" = [ "code.desktop" ];
               "application/pdf" = [ "chromium-browser.desktop" ];
               "application/rss+xml" = [ "thunderbird.desktop" ];
+              "application/vnd.ms-excel.sheet.macroEnabled.12" = [ "calc.desktop" ];
               "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
               "application/x-extension-ics" = [ "thunderbird.desktop" ];
               "application/x-extension-rss" = [ "thunderbird.desktop" ];
