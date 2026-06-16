@@ -47,18 +47,18 @@
       "nvidia"
     ];
     llama-cpp = {
-      package = pkgs.unstable.llama-cpp.override {
+      package = pkgs.llama-cpp.override {
         cudaSupport = true;
       };
     };
     comfyui = {
       acceleration = "cuda";
     };
-    sunshine.package = pkgs.unstable.sunshine.override {
+    sunshine.package = pkgs.sunshine.override {
       cudaSupport = true;
     };
     wivrn = {
-      package = pkgs.unstable.wivrn.override {
+      package = pkgs.wivrn.override {
         cudaSupport = true;
       };
     };

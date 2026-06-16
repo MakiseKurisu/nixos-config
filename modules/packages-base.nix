@@ -65,6 +65,7 @@
         help.autocorrect = "prompt";
         format.signOff = true;
       };
+      lfs.enable = true;
     };
     nano = {
       nanorc = ''

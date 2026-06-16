@@ -126,10 +126,12 @@
 
     resolved = {
       enable = true;
-      extraConfig = ''
-        DNSStubListenerExtra=10.0.20.1
-        DNSStubListenerExtra=fd20::1
-      '';
+      settings.Resolve = {
+        DNSStubListenerExtra = [
+          "10.0.20.1"
+          "fd20::1"
+        ];
+      };
     };
   };
 }

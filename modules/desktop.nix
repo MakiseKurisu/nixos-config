@@ -64,6 +64,7 @@
       NIX_AUTO_RUN = "1";
     };
     systemPackages = with pkgs; [
+      android-tools
       ardour
       audacity
       nur.repos.xddxdd.baidunetdisk
@@ -73,16 +74,13 @@
       brightnessctl
       cachix
       calibre
-      (unstable.chromium.override (previous: {
-        commandLineArgs =
-          (previous.commandLineArgs or "")
-          + " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
-      }))
+      chromium
       cliphist
+      crosspipe
       darktable
       dbeaver-bin
       deploy-rs
-      pkgs.unstable.devenv
+      devenv
       (nur.repos.xddxdd.dingtalk.overrideAttrs (previous: {
         postFixup = (previous.postFixup or "") + ''
           echo "9.9.99-Release.9999999" > $out/version
@@ -91,11 +89,7 @@
       discord
       element-desktop
       ente-auth
-      (feishu.override (previous: {
-        commandLineArgs =
-          (previous.commandLineArgs or "")
-          + " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3";
-      }))
+      feishu
       filezilla
       flashrom
       font-manager
@@ -110,7 +104,6 @@
       gsettings-desktop-schemas
       gtk3
       guvcview
-      helvum
       (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") heroic)
       hyprcursor
       jq
@@ -172,7 +165,7 @@
       pinentry-qt
       piper
       pre-commit
-      pkgs.unstable.protonplus
+      protonplus
       pwvucontrol
       qq
       qrencode
@@ -263,7 +256,7 @@
             withNonFreePlugins = true;
           }
         ))
-        hplipWithPlugin
+        pkgs.unstable.hplipWithPlugin
         sane-airscan
       ];
     };
@@ -298,7 +291,6 @@
   ];
 
   programs = {
-    adb.enable = true;
     apt = {
       enable = true;
       package = pkgs.pr-mmdebstrap.apt;
@@ -341,10 +333,13 @@
       extest.enable = true;
       extraPackages = with pkgs; [
         mangohud
-        gamescope
+        gamescope-wsi
         gamemode
       ];
-      extraCompatPackages = [ pkgs.unstable.proton-ge-bin ];
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+        pkgs.dwproton-bin
+      ];
       protontricks.enable = true;
     };
     system-config-printer.enable = true;
@@ -378,22 +373,24 @@
       settings = {
         default_session.command =
           let
-            greetdConfig = pkgs.writeText "greetd-config" ''
-              exec-once = ${lib.getExe config.programs.regreet.package}; hyprctl dispatch exit
-              animations {
-                  enabled = off
-              }
-              misc {
-                  force_default_wallpaper = 2
-              }
-              $mainMod=SUPER
-              bind=$mainMod, M, exit,
-              env=GSK_RENDERER,ngl
-              monitor=VGA-1,disable
-              monitor=HDMI-A-2,disable
+            greetdConfig = pkgs.writeText "greetd-config.lua" ''
+              hl.on("hyprland.start", function () 
+                hl.exec_cmd("${lib.getExe config.programs.regreet.package}; hyprctl dispatch exit")
+              end)
+              hl.animation({ leaf = "global", enabled = false })
+              hl.config({
+                misc = {
+                    force_default_wallpaper = 2
+                },
+              })
+              local mainMod = "SUPER"
+              hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+              hl.env("GSK_RENDERER", "ngl")
+              hl.monitor({ output = "VGA-1", disabled = true })
+              hl.monitor({ output = "HDMI-A-2", disabled = true })
             '';
           in
-          "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.hyprland} --config ${greetdConfig}";
+          "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe' pkgs.hyprland "start-hyprland"} -- --config ${greetdConfig}";
       };
     };
     gvfs.enable = true;
@@ -418,8 +415,9 @@
       enable = true;
       drivers = with pkgs; [
         gutenprint
-        hplipWithPlugin
+        pkgs.unstable.hplipWithPlugin
         epson-escpr
+        epson-escpr2
       ];
     };
     ratbagd.enable = true;
@@ -462,16 +460,16 @@
         programs = {
           lutris = {
             enable = (pkgs.stdenv.hostPlatform.system == "x86_64-linux");
-            winePackages = [
-              pkgs.unstable.wineWowPackages.full
-              pkgs.unstable.wineWow64Packages.full
+            protonPackages = with pkgs; [
+              proton-ge-bin
+              dwproton-bin
             ];
-            protonPackages = [ pkgs.unstable.proton-ge-bin ];
             steamPackage = osConfig.programs.steam.package;
             extraPackages = with pkgs; [
               mangohud
+              protontricks
               winetricks
-              gamescope
+              gamescope-wsi
               gamemode
               umu-launcher
             ];

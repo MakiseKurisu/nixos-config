@@ -50,4 +50,8 @@
       };
     };
   };
+  systemd.services = {
+    wg-quick-wg0.enable = false;
+    wireguard-wg2.enable = false;
+  };
 }

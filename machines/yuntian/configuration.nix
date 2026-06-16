@@ -154,7 +154,7 @@
       };
       wayland.windowManager.hyprland.settings = {
         exec-once = [
-          "${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
+          "${pkgs.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
             Xft.dpi: 144
           ''}"
         ];

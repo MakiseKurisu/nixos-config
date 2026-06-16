@@ -270,14 +270,14 @@
       };
       configWritable = true;
       customComponents = with pkgs.home-assistant-custom-components; [
-        pkgs.unstable.home-assistant-custom-components.xiaomi_home
+        pkgs.home-assistant-custom-components.xiaomi_home
         tuya_local
         ntfy
         bodymiscale
         smartir
         midea_ac_lan
         xiaomi_gateway3
-        pkgs.unstable.home-assistant-custom-components.xiaomi_miot
+        pkgs.home-assistant-custom-components.xiaomi_miot
       ];
     };
 
@@ -498,7 +498,7 @@
       ];
       script = ''
         set -eu
-        ${lib.getExe pkgs.unstable.openlist} server --data /var/lib/openlist
+        ${lib.getExe pkgs.openlist} server --data /var/lib/openlist
       '';
       serviceConfig = {
         Type = "simple";

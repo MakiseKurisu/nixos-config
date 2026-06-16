@@ -12,7 +12,7 @@
     ./sops.nix
   ];
 
-  documentation.man.generateCaches = true;
+  documentation.man.cache.enable = true;
 
   environment.enableAllTerminfo = true;
 

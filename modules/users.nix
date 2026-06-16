@@ -57,6 +57,7 @@
           userDirs = {
             enable = true;
             createDirectories = true;
+            setSessionVariables = false;
           };
         };
         home = {
@@ -70,6 +71,9 @@
           username = "excalibur";
           homeDirectory = "/home/excalibur";
           sessionVariables = {
+            QT_IM_MODULE = "fcitx";
+            QT_IM_MODULES = "wayland;fcitx;ibus";
+
             # desktop
             KDEHOME = "${inputs'.config.xdg.configHome}/kde";
             XCOMPOSECACHE = "${inputs'.config.xdg.cacheHome}/X11/xcompose";
@@ -191,13 +195,6 @@
           };
           vscode = {
             enable = true;
-            package = (
-              inputs'.pkgs.vscode.override (previous: {
-                commandLineArgs =
-                  (previous.commandLineArgs or "")
-                  + " --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation --gtk-version=4 --enable-features=WaylandPerSurfaceScale,WaylandUiScale --enable-wayland-ime --wayland-text-input-version=3 --password-store=gnome --disable-gpu-sandbox";
-              })
-            );
             profiles.default = {
               enableExtensionUpdateCheck = false;
               enableUpdateCheck = false;
@@ -232,6 +229,9 @@
                 }
               ];
               userSettings = {
+                "[nix]" = {
+                  "editor.formatOnSave" = true;
+                };
                 "claudeCode.preferredLocation" = "sidebar";
                 "claudeCode.selectedModel" = "MiniMax-M2.5";
                 "debug.javascript.unmapMissingSources" = true;
@@ -271,11 +271,9 @@
                 "terminal.integrated.scrollback" = 5000;
                 "update.showReleaseNotes" = false;
                 "window.titleBarStyle" = "custom";
+                "workbench.colorTheme" = "Dark Modern";
                 "workbench.secondarySideBar.defaultVisibility" = "hidden";
                 "workbench.welcomePage.walkthroughs.openOnInstall" = false;
-                "[nix]" = {
-                  "editor.formatOnSave" = true;
-                };
               };
             };
           };

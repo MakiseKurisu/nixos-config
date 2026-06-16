@@ -116,15 +116,14 @@
         hyprpaper = {
           enable = true;
           settings = {
-            ipc = "on";
+            ipc = true;
             splash = false;
 
-            preload = [
-              "~/.config/hypr/wallpaper.jpg"
-            ];
-
             wallpaper = [
-              ", ~/.config/hypr/wallpaper.jpg"
+              {
+                monitor = "";
+                path = "~/.config/hypr/wallpaper.jpg";
+              }
             ];
           };
         };
@@ -150,9 +149,10 @@
         };
       };
       wayland.windowManager.hyprland = {
+        configType = "hyprlang";
         enable = true;
         plugins = [
-          pkgs.hyprlandPlugins.hyprgrass
+          # pkgs.hyprlandPlugins.hyprgrass
         ];
         systemd = {
           enable = true;
@@ -186,7 +186,6 @@
             enabled = "no";
           };
           dwindle = {
-            pseudotile = "yes";
             smart_split = "yes";
           };
           misc = {
@@ -195,84 +194,84 @@
             allow_session_lock_restore = true;
             render_unfocused_fps = 30;
           };
-          windowrulev2 = [
-            "idleinhibit fullscreen, class:^(.*)$, title:^(.*)$"
-            "nofocus, class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$, title:^(win1)$"
-            "float, class:^(com\.DreamSourceLab\.www\.)$, title:^(DSView)$"
-            "float, class:^(.*)$, title:^(Open File)$"
-            "float, class:^(.*)$, title:^(Open Folder)$"
-            "float, class:^(.*)$, title:^(Picture)$" # Feishu
-            "float, class:^(\.scrcpy-wrapped)$, title:^(.*)$"
-            "float, class:^(com\.alibabainc\.dingtalk)$, title:^(com\.alibabainc\.dingtalk)$"
-            "float, class:^(file-.*)$, title:^(Export Image as .*)$"
-            "float, class:^(file-.*)$, title:^(Load .* Image)$"
-            "float, class:^(heroic)$, title:^(Heroic Games Launcher)$"
-            "float, class:^(org\.kde\.kcalc)$, title:^(KCalc)$"
-            "float, class:^(thunderbird)$, title:^(Authentication Required - Mozilla Thunderbird)$"
-            "float, class:^(thunderbird)$, title:^(Write\: .*)$"
-            "float, class:^(thunderbird)$, title:^(Calendar Reminders)$"
-            "float, class:^(thunderbird)$, title:^(Edit Item)$"
-            "float, class:^(\.virt-manager-wrapped)$, title:^(.* on QEMU/KVM)$"
-            "float, class:^(Bytedance-feishu)$, title:^()$"
-            "float, class:^(org\.gnome\.Calculator)$, title:^(Calculator)$"
-            "float, class:^(nwg-displays)$, title:^(nwg-displays)$"
-            "float, class:^(net\.lutris\.Lutris)$, title:^(Select an EXE or MSI file)$"
-            "float, class:^(zenity)$, title:^(.*)$"
-            "float, class:^(battle\.net\.exe)$, title:^(Battle\.net.*)$"
-            "float, class:^(steam_app_default)$, title:^(Heroesprofile\.com Uploader v.*)$"
-            "float, class:^(heroesprofile\.uploader\.exe)$, title:^(Heroesprofile\.com Uploader v.*)$"
-            "float, class:^(xdg-desktop-portal-gtk)$, title:^(.*)$"
-            "float, class:^(steam)$, title:^(.*)$"
-            "float, class:^(stove\.exe)$, title:^(STOVE)$"
-            "stayfocused, class:^(Pinentry)$"
-            "fullscreen, class:^(Waydroid)$, title:^(Waydroid)$"
-            "fullscreen, class:^(heroesofthestorm_x64\.exe)$, title:^(Heroes of the Storm)$"
-            "fullscreen, class:^(steam_app_default)$, title:^(Heroes of the Storm)$"
-            "workspace 1 silent, class:^(steam_app_0)$, title:^(二重螺旋  )$"
-            "workspace 1 silent, class:^(steam_app_0)$, title:^(MainWnd)$"
-            "workspace 1 silent, class:^(steam_app_0)$, title:^(Endfield)$"
-            "workspace 1 silent, class:^(heroesofthestorm_x64\.exe)$, title:^(Heroes of the Storm)$"
-            "workspace 1 silent, class:^(steam_app_default)$, title:^(Heroes of the Storm)$"
-            "workspace 1 silent, class:^(steam_app_default)$, title:^(异环  )$"
-            "workspace 3 silent, class:^(battle\.net\.exe)$, title:^(Battle\.net)$"
-            "workspace 3 silent, class:^(steam_app_default)$, title:^(Battle\.net)$"
-            "workspace 3 silent, class:^(battle\.net\.exe)$, title:^(Battle\.net Login)$"
-            "workspace 3 silent, class:^(steam_app_default)$, title:^(Battle\.net Login)$"
-            "workspace 3 silent, class:^(ssr-stove-shield\.exe)$, title:^(Chaos Zero Nightmare)$"
-            "workspace 3 silent, class:^(steam_app_default)$, title:^(Chaos Zero Nightmare)$"
-            "workspace 3 silent, class:^(stove\.exe)$, title:^(STOVE)$"
-            "workspace 3 silent, class:^(steam_app_default)$, title:^(STOVE)$"
-            "workspace 3 silent, class:^(steam_app_0)$, title:^(鹰角启动器)$"
-            "workspace 3 silent, class:^(steam_app_0)$, title:^(更新程序)$"
-            "workspace 3 silent, class:^(steam_app_0)$, title:^(Dialog - 鹰角启动器)$"
-            "workspace 3 silent, class:^(steam_app_default)$, title:^(异环启动器)$"
-            "workspace 3 silent, class:^(steam_app_default)$, title:^(异环启动器 更新)$"
-            "renderunfocused, class:^(ssr-stove-shield\.exe)$, title:^(Chaos Zero Nightmare)$"
-            "renderunfocused, class:^(steam_app_default)$, title:^(Chaos Zero Nightmare)$"
-            "renderunfocused, class:^(steam_app_0)$, title:^(二重螺旋  )$"
-            "renderunfocused, class:^(steam_app_default)$, title:^(异环  )$"
-            "workspace 4 silent, class:^(battle\.net\.exe)$, title:^(Battle\.net - Chats and Groups)$"
-            "workspace 4 silent, class:^(steam_app_default)$, title:^(Battle\.net - Chats and Groups)$"
-            "workspace 10 silent, class:^(com\.alibabainc\.dingtalk)$, title:^(升级提醒)$"
-            "workspace 10 silent, class:^(explorer\.exe)$, title:^()$"
-            "workspace 10 silent, class:^(explorer\.exe)$, title:^(Wine System Tray)$"
-            "workspace 10 silent, class:^(steam_app_0)$, title:^()$"
-            "workspace 10 silent, class:^(steam_app_0)$, title:^(TransparentWind)$"
-            "workspace 10 silent, class:^(steam_app_0)$, title:^(FloatingStripWnd)$"
-            "workspace 10 silent, class:^(steam_app_default)$, title:^()$"
-            "workspace 10 silent, class:^(steam_app_default)$, title:^(Heroesprofile\.com Uploader v.*)$"
-            "workspace 10 silent, class:^(heroesprofile\.uploader\.exe)$, title:^(Heroesprofile\.com Uploader v.*)$"
-            "workspace 10 silent, class:^(steam_app_0)$, title:^(Form)$"
-            "workspace 11 silent, class:^(.*)$, title:^(Feishu)$"
-            "workspace 13 silent, class:^(Waydroid)$, title:^(Waydroid)$"
-            "workspace 16 silent, class:^(com\.alibabainc\.dingtalk)$, title:^(钉钉)$"
-            "workspace 17 silent, class:^(QQ)$, title:^(QQ)$"
-            "workspace 18 silent, class:^(wechat)$, title:^(Weixin)$"
-            "workspace 18 silent, class:^(wechat)$, title:^(微信)$"
-            "workspace 19 silent, class:^(steam)$, title:^(Sign in to Steam)$"
-            "workspace 19 silent, class:^(steam)$, title:^(Special Offers)$"
-            "workspace 19 silent, class:^(steam)$, title:^(Steam)$"
-            "workspace 19 silent, class:^()$, title:^(Steam)$"
+          windowrule = [
+            "idle_inhibit fullscreen, match:class ^(.*)$, match:title ^(.*)$"
+            "no_focus yes, match:class ^(com-eteks-sweethome3d-SweetHome3DBootstrap)$, match:title ^(win1)$"
+            "float yes, match:class ^(com\.DreamSourceLab\.www\.)$, match:title ^(DSView)$"
+            "float yes, match:class ^(.*)$, match:title ^(Open File)$"
+            "float yes, match:class ^(.*)$, match:title ^(Open Folder)$"
+            "float yes, match:class ^(.*)$, match:title ^(Picture)$" # Feishu
+            "float yes, match:class ^(\.scrcpy-wrapped)$, match:title ^(.*)$"
+            "float yes, match:class ^(com\.alibabainc\.dingtalk)$, match:title ^(com\.alibabainc\.dingtalk)$"
+            "float yes, match:class ^(file-.*)$, match:title ^(Export Image as .*)$"
+            "float yes, match:class ^(file-.*)$, match:title ^(Load .* Image)$"
+            "float yes, match:class ^(heroic)$, match:title ^(Heroic Games Launcher)$"
+            "float yes, match:class ^(org\.kde\.kcalc)$, match:title ^(KCalc)$"
+            "float yes, match:class ^(thunderbird)$, match:title ^(Authentication Required - Mozilla Thunderbird)$"
+            "float yes, match:class ^(thunderbird)$, match:title ^(Write\: .*)$"
+            "float yes, match:class ^(thunderbird)$, match:title ^(Calendar Reminders)$"
+            "float yes, match:class ^(thunderbird)$, match:title ^(Edit Item)$"
+            "float yes, match:class ^(\.virt-manager-wrapped)$, match:title ^(.* on QEMU/KVM)$"
+            "float yes, match:class ^(Bytedance-feishu)$, match:title ^()$"
+            "float yes, match:class ^(org\.gnome\.Calculator)$, match:title ^(Calculator)$"
+            "float yes, match:class ^(nwg-displays)$, match:title ^(nwg-displays)$"
+            "float yes, match:class ^(net\.lutris\.Lutris)$, match:title ^(Select an EXE or MSI file)$"
+            "float yes, match:class ^(zenity)$, match:title ^(.*)$"
+            "float yes, match:class ^(battle\.net\.exe)$, match:title ^(Battle\.net.*)$"
+            "float yes, match:class ^(steam_app_default)$, match:title ^(Heroesprofile\.com Uploader v.*)$"
+            "float yes, match:class ^(heroesprofile\.uploader\.exe)$, match:title ^(Heroesprofile\.com Uploader v.*)$"
+            "float yes, match:class ^(xdg-desktop-portal-gtk)$, match:title ^(.*)$"
+            "float yes, match:class ^(steam)$, match:title ^(.*)$"
+            "float yes, match:class ^(stove\.exe)$, match:title ^(STOVE)$"
+            "stay_focused yes, match:class ^(Pinentry)$"
+            "fullscreen yes, match:class ^(Waydroid)$, match:title ^(Waydroid)$"
+            "fullscreen yes, match:class ^(heroesofthestorm_x64\.exe)$, match:title ^(Heroes of the Storm)$"
+            "fullscreen yes, match:class ^(steam_app_default)$, match:title ^(Heroes of the Storm)$"
+            "workspace 1 silent, match:class ^(steam_app_0)$, match:title ^(二重螺旋  )$"
+            "workspace 1 silent, match:class ^(steam_app_0)$, match:title ^(MainWnd)$"
+            "workspace 1 silent, match:class ^(steam_app_0)$, match:title ^(Endfield)$"
+            "workspace 1 silent, match:class ^(heroesofthestorm_x64\.exe)$, match:title ^(Heroes of the Storm)$"
+            "workspace 1 silent, match:class ^(steam_app_default)$, match:title ^(Heroes of the Storm)$"
+            "workspace 1 silent, match:class ^(steam_app_default)$, match:title ^(异环  )$"
+            "workspace 3 silent, match:class ^(battle\.net\.exe)$, match:title ^(Battle\.net)$"
+            "workspace 3 silent, match:class ^(steam_app_default)$, match:title ^(Battle\.net)$"
+            "workspace 3 silent, match:class ^(battle\.net\.exe)$, match:title ^(Battle\.net Login)$"
+            "workspace 3 silent, match:class ^(steam_app_default)$, match:title ^(Battle\.net Login)$"
+            "workspace 3 silent, match:class ^(ssr-stove-shield\.exe)$, match:title ^(Chaos Zero Nightmare)$"
+            "workspace 3 silent, match:class ^(steam_app_default)$, match:title ^(Chaos Zero Nightmare)$"
+            "workspace 3 silent, match:class ^(stove\.exe)$, match:title ^(STOVE)$"
+            "workspace 3 silent, match:class ^(steam_app_default)$, match:title ^(STOVE)$"
+            "workspace 3 silent, match:class ^(steam_app_0)$, match:title ^(鹰角启动器)$"
+            "workspace 3 silent, match:class ^(steam_app_0)$, match:title ^(更新程序)$"
+            "workspace 3 silent, match:class ^(steam_app_0)$, match:title ^(Dialog - 鹰角启动器)$"
+            "workspace 3 silent, match:class ^(steam_app_default)$, match:title ^(异环启动器)$"
+            "workspace 3 silent, match:class ^(steam_app_default)$, match:title ^(异环启动器 更新)$"
+            "render_unfocused yes, match:class ^(ssr-stove-shield\.exe)$, match:title ^(Chaos Zero Nightmare)$"
+            "render_unfocused yes, match:class ^(steam_app_default)$, match:title ^(Chaos Zero Nightmare)$"
+            "render_unfocused yes, match:class ^(steam_app_0)$, match:title ^(二重螺旋  )$"
+            "render_unfocused yes, match:class ^(steam_app_default)$, match:title ^(异环  )$"
+            "workspace 4 silent, match:class ^(battle\.net\.exe)$, match:title ^(Battle\.net - Chats and Groups)$"
+            "workspace 4 silent, match:class ^(steam_app_default)$, match:title ^(Battle\.net - Chats and Groups)$"
+            "workspace 10 silent, match:class ^(com\.alibabainc\.dingtalk)$, match:title ^(升级提醒)$"
+            "workspace 10 silent, match:class ^(explorer\.exe)$, match:title ^()$"
+            "workspace 10 silent, match:class ^(explorer\.exe)$, match:title ^(Wine System Tray)$"
+            "workspace 10 silent, match:class ^(steam_app_0)$, match:title ^()$"
+            "workspace 10 silent, match:class ^(steam_app_0)$, match:title ^(TransparentWind)$"
+            "workspace 10 silent, match:class ^(steam_app_0)$, match:title ^(FloatingStripWnd)$"
+            "workspace 10 silent, match:class ^(steam_app_default)$, match:title ^()$"
+            "workspace 10 silent, match:class ^(steam_app_default)$, match:title ^(Heroesprofile\.com Uploader v.*)$"
+            "workspace 10 silent, match:class ^(heroesprofile\.uploader\.exe)$, match:title ^(Heroesprofile\.com Uploader v.*)$"
+            "workspace 10 silent, match:class ^(steam_app_0)$, match:title ^(Form)$"
+            "workspace 11 silent, match:class ^(.*)$, match:title ^(Feishu)$"
+            "workspace 13 silent, match:class ^(Waydroid)$, match:title ^(Waydroid)$"
+            "workspace 16 silent, match:class ^(com\.alibabainc\.dingtalk)$, match:title ^(钉钉)$"
+            "workspace 17 silent, match:class ^(QQ)$, match:title ^(QQ)$"
+            "workspace 18 silent, match:class ^(wechat)$, match:title ^(Weixin)$"
+            "workspace 18 silent, match:class ^(wechat)$, match:title ^(微信)$"
+            "workspace 19 silent, match:class ^(steam)$, match:title ^(Sign in to Steam)$"
+            "workspace 19 silent, match:class ^(steam)$, match:title ^(Special Offers)$"
+            "workspace 19 silent, match:class ^(steam)$, match:title ^(Steam)$"
+            "workspace 19 silent, match:class ^()$, match:title ^(Steam)$"
           ];
           "$mainMod" = "SUPER";
           "$menu" = "nwg-drawer -i breeze -term kitty -nofs";
@@ -285,7 +284,6 @@
             "$mainMod, V, togglefloating,"
             "$mainMod, R, exec, $menu"
             "$mainMod, P, pseudo, # dwindle"
-            "$mainMod, J, togglesplit, # dwindle"
             "$mainMod, L, exec, loginctl lock-session"
             "$mainMod SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
             "$mainMod SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"

@@ -57,7 +57,10 @@
         files = [
           "/etc/adjtime"
           "/etc/machine-id"
-          "/etc/nixos/flake.nix"
+          {
+            file = "/etc/nixos/flake.nix";
+            method = "symlink";
+          }
         ];
       };
       "/persistent/user/excalibur" = {
@@ -134,29 +137,69 @@
     ];
   };
 
-  boot.initrd.postResumeCommands = lib.mkAfter ''
-    mkdir -p /impermanence
-    mount -o compress=zstd,subvol=/ /dev/disk/by-partlabel/disk-main-root /impermanence
+  boot.initrd.systemd = {
+    services.impermance-btrfs-rolling-root = {
+      description = "Archiving existing BTRFS root subvolume and creating a fresh one";
+      # Specify dependencies explicitly
+      unitConfig.DefaultDependencies = false;
+      # The script needs to run to completion before this service is done
+      serviceConfig = {
+        Type = "oneshot";
+        # NOTE: to be able to see errors in your script do this
+        StandardOutput = "journal+console";
+        StandardError = "journal+console";
+      };
+      # This service is required for boot to succeed
+      requiredBy = [ "initrd.target" ];
+      # Should complete before any file systems are mounted
+      before = [ "sysroot.mount" ];
 
-    if [[ -e /impermanence/@ ]]; then
-      timestamp=$(date --date="@$(stat -c %Y /impermanence/@)" "+%Y-%m-%d_%H:%M:%S")
-      mkdir -p "/impermanence/snapshots/$timestamp"
-      for i in /impermanence/@*; do
-        btrfs subvolume snapshot "$i" "/impermanence/snapshots/$timestamp"
-      done
-    fi
+      # Wait until the root device is available
+      # If you're altering a different device, specify its device unit explicitly.
+      # see: systemd-escape(1)
+      requires = [ "initrd-root-device.target" ];
+      after = [
+        "initrd-root-device.target"
+        # Allow hibernation to resume before trying to alter any data
+        "local-fs-pre.target"
+      ];
 
-    for i in $(find /impermanence/snapshots/ -mindepth 1 -maxdepth 1 -mtime +30); do
-      for j in "$i"/@*; do
-          btrfs subvolume delete --recursive "$j"
-      done
-      rm -rf "$i"
-    done
+      # The body of the script. Make your changes to data here
+      script = ''
+        mkdir -p /impermanence
+        mount -o compress=zstd,subvol=/ /dev/disk/by-partlabel/disk-main-root /impermanence
 
-    btrfs subvolume delete --recursive /impermanence/@
-    btrfs subvolume create /impermanence/@
-    umount /impermanence
-  '';
+        if [[ -e /impermanence/@ ]]; then
+          timestamp=$(date --date="@$(stat -c %Y /impermanence/@)" "+%Y-%m-%d_%H:%M:%S")
+          mkdir -p "/impermanence/snapshots/$timestamp"
+          for i in /impermanence/@*; do
+            btrfs subvolume snapshot "$i" "/impermanence/snapshots/$timestamp"
+          done
+        fi
+
+        for i in $(find /impermanence/snapshots/ -mindepth 1 -maxdepth 1 -mtime +30); do
+          for j in "$i"/@*; do
+              btrfs subvolume delete --recursive "$j"
+          done
+          rm -rf "$i"
+        done
+
+        btrfs subvolume delete --recursive /impermanence/@
+        btrfs subvolume create /impermanence/@
+        umount /impermanence
+      '';
+    };
+    extraBin = {
+      # "mkfs.ext4" = "${pkgs.e2fsprogs}/bin/mkfs.ext4";
+      "mkdir" = "${pkgs.coreutils}/bin/mkdir";
+      "date" = "${pkgs.coreutils}/bin/date";
+      "stat" = "${pkgs.coreutils}/bin/stat";
+      "mv" = "${pkgs.coreutils}/bin/mv";
+      "find" = "${pkgs.findutils}/bin/find";
+      "btrfs" = "${pkgs.btrfs-progs}/bin/btrfs";
+      # mount & umount already exist
+    }; # NOTE: path = [...]; doesnt work for initrd, use full paths in your script or extraBin
+  };
 
   users = {
     mutableUsers = false;

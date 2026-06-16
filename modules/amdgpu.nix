@@ -15,7 +15,7 @@
 
   services = {
     llama-cpp = {
-      package = pkgs.unstable.llama-cpp.override {
+      package = pkgs.llama-cpp.override {
         rocmSupport = true;
       };
     };
