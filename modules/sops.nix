@@ -40,6 +40,8 @@
         restartUnits = [ "mihomo.service" ];
       };
       minimax_auth_token = { };
+      sub2api_openai = { };
+      sub2api_anthropic = { };
     };
     templates = {
       "cloudflare_ddns.env" = {
@@ -175,6 +177,23 @@
             }
           }
         '';
+      };
+      "opencode-auth.json" = {
+        mode = "0444";
+        content = builtins.toJSON {
+          deepseek = {
+            type = "api";
+            key = config.sops.placeholder.sub2api_anthropic;
+          };
+          minimax-cn-coding-plan = {
+            type = "api";
+            key = config.sops.placeholder.sub2api_anthropic;
+          };
+          openai = {
+            type = "api";
+            key = config.sops.placeholder.sub2api_openai;
+          };
+        };
       };
     };
   };

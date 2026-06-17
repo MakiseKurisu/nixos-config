@@ -67,6 +67,11 @@
                 inputs'.config.lib.file.mkOutOfStoreSymlink
                   config.sops.templates."claude-settings.json".path;
             };
+            ".local/share/opencode/auth.json" = {
+              source =
+                inputs'.config.lib.file.mkOutOfStoreSymlink
+                  config.sops.templates."opencode-auth.json".path;
+            };
           };
           username = "excalibur";
           homeDirectory = "/home/excalibur";
@@ -114,7 +119,6 @@
           stateVersion = lib.mkDefault config.system.stateVersion;
         };
         programs = {
-          home-manager.enable = true;
           bash = {
             enable = true;
             historyControl = [
@@ -132,18 +136,6 @@
             '';
           };
           bashmount.enable = true;
-          starship = {
-            enable = true;
-            enableBashIntegration = true;
-            settings = {
-              shlvl = {
-                disabled = false;
-                threshold = 1;
-              };
-              cmd_duration.show_notifications = true;
-              status.disabled = false;
-            };
-          };
           direnv = {
             enable = true;
             enableBashIntegration = true;
@@ -153,6 +145,9 @@
             enable = true;
             enableBashIntegration = true;
             tmux.enableShellIntegration = true;
+          };
+          home-manager = {
+            enable = true;
           };
           htop = {
             enable = true;
@@ -166,11 +161,6 @@
               column_meter_modes_1 = "1 2 2 2 2";
             };
           };
-          tmux = {
-            enable = true;
-            mouse = true;
-            newSession = true;
-          };
           kitty = {
             enable = true;
             settings = {
@@ -179,6 +169,9 @@
               scrollback_pager_history_size = 128;
             };
             shellIntegration.enableBashIntegration = true;
+          };
+          mcp = {
+            enable = true;
           };
           obs-studio = {
             enable = true;
@@ -192,6 +185,78 @@
               obs-multi-rtmp
               obs-backgroundremoval
             ];
+          };
+          opencode = {
+            enable = true;
+            enableMcpIntegration = true;
+            settings = {
+              autoupdate = false;
+              lsp = true;
+              model = "openai/gpt-5.5";
+              plugin = [
+                "@mohak34/opencode-notifier@latest"
+                "oh-my-openagent"
+                "opencode-mem"
+                "opencode-pty"
+                "opencode-wakatime"
+              ];
+              provider = {
+                deepseek = {
+                  options = {
+                    baseURL = "http://sub2api.vamrs.org:8080/v1";
+                    headerTimeout = 60000;
+                    chunkTimeout = 60000;
+                  };
+                };
+                minimax-cn-coding-plan = {
+                  options = {
+                    baseURL = "http://sub2api.vamrs.org:8080/v1";
+                    headerTimeout = 60000;
+                    chunkTimeout = 60000;
+                  };
+                };
+                openai = {
+                  options = {
+                    baseURL = "http://sub2api.vamrs.org:8080/v1";
+                    headerTimeout = 60000;
+                    chunkTimeout = 60000;
+                  };
+                };
+              };
+            };
+          };
+          starship = {
+            enable = true;
+            enableBashIntegration = true;
+            settings = {
+              shlvl = {
+                disabled = false;
+                threshold = 1;
+              };
+              cmd_duration.show_notifications = true;
+              status.disabled = false;
+            };
+          };
+          thunderbird = {
+            enable = true;
+            settings = {
+              "calendar.events.defaultActionEdit" = true;
+              "mail.default_send_format" = 1; # plain text
+              "mail.identity.default.compose_html" = false;
+              "mail.identity.default.doCc" = true; # enable Cc field by default
+              "privacy.donottrackheader.enabled" = true;
+            };
+            profiles = {
+              default = {
+                isDefault = true;
+                withExternalGnupg = true;
+              };
+            };
+          };
+          tmux = {
+            enable = true;
+            mouse = true;
+            newSession = true;
           };
           vscode = {
             enable = true;
@@ -274,22 +339,6 @@
                 "workbench.colorTheme" = "Dark Modern";
                 "workbench.secondarySideBar.defaultVisibility" = "hidden";
                 "workbench.welcomePage.walkthroughs.openOnInstall" = false;
-              };
-            };
-          };
-          thunderbird = {
-            enable = true;
-            settings = {
-              "calendar.events.defaultActionEdit" = true;
-              "mail.default_send_format" = 1; # plain text
-              "mail.identity.default.compose_html" = false;
-              "mail.identity.default.doCc" = true; # enable Cc field by default
-              "privacy.donottrackheader.enabled" = true;
-            };
-            profiles = {
-              default = {
-                isDefault = true;
-                withExternalGnupg = true;
               };
             };
           };
