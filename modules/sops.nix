@@ -193,6 +193,14 @@
             type = "api";
             key = config.sops.placeholder.sub2api_openai;
           };
+          volcengine-plan = {
+            type = "api";
+            key = config.sops.placeholder.sub2api_anthropic;
+          };
+          xiaomi-token-plan-cn = {
+            type = "api";
+            key = config.sops.placeholder.sub2api_anthropic;
+          };
         };
       };
     };

@@ -222,6 +222,39 @@
                     chunkTimeout = 60000;
                   };
                 };
+                volcengine-plan = {
+                  models = {
+                    "GLM-5.2" = {
+                      name = "GLM-5.2";
+                      limit = {
+                        context = 1024000;
+                        output = 4096;
+                      };
+                      modalities = {
+                        input = [
+                          "text"
+                        ];
+                        output = [
+                          "text"
+                        ];
+                      };
+                    };
+                  };
+                  name = "Volcano Engine";
+                  npm = "@ai-sdk/openai-compatible";
+                  options = {
+                    baseURL = "http://sub2api.vamrs.org:8080/v1";
+                    headerTimeout = 60000;
+                    chunkTimeout = 60000;
+                  };
+                };
+                xiaomi-token-plan-cn = {
+                  options = {
+                    baseURL = "http://sub2api.vamrs.org:8080/v1";
+                    headerTimeout = 60000;
+                    chunkTimeout = 60000;
+                  };
+                };
               };
             };
           };
