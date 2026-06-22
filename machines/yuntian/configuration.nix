@@ -19,7 +19,7 @@
     ../../modules/intel.nix
     ../../modules/kernel.nix
     ../../modules/network.nix
-    ../../modules/nvidia.nix
+    # ../../modules/nvidia.nix
     ../../modules/packages.nix
     ../../modules/users.nix
     ../../modules/vfio.nix
@@ -65,14 +65,6 @@
         # intel-media-sdk
       ];
     };
-    nvidia = {
-      open = false;
-      package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-      prime = {
-        intelBusId = "PCI:0@0:2:0";
-        nvidiaBusId = "PCI:1@0:0:0";
-      };
-    };
   };
 
   services.btrfs.autoScrub.enable = false;
@@ -83,37 +75,6 @@
       home.stateVersion = "22.11";
       systemd.user = {
         services = {
-          oci = {
-            Unit = {
-              Description = "Deploy OCI changes";
-              StartLimitIntervalSec = 0;
-            };
-            Install = {
-              # WantedBy = ["graphical-session.target"];
-            };
-            Service = {
-              Type = "oneshot";
-              Restart = "on-failure";
-              RestartSec = 5;
-              ExecStart = ''
-                ${lib.getExe pkgs.bash} -c \
-                  "cd /home/excalibur/Documents/GitHub/nixos-config/tofu && \
-                  ${
-                    lib.getExe (
-                      pkgs.opentofu.withPlugins (
-                        p: with p; [
-                          cloudflare_cloudflare
-                          integrations_github
-                          lxc_incus
-                          oracle_oci
-                          carlpett_sops
-                        ]
-                      )
-                    )
-                  } apply -auto-approve"
-              '';
-            };
-          };
           lock-session = {
             Unit = {
               Description = "Lock current graphical session";
@@ -161,18 +122,13 @@
         workspace = [
           "r[1-20], monitor:DP-1"
           "2, monitor:DP-1, default:yes"
-          "30, monitor:HDMI-A-2, default:yes"
+          "30, monitor:DP-2, default:yes"
         ];
         xwayland = {
           force_zero_scaling = true;
         };
       };
     };
-
-  powerManagement = {
-    powertop.enable = false;
-    cpuFreqGovernor = "performance";
-  };
 
   programs = {
     git = {
@@ -196,10 +152,19 @@
       "40-eth0" = {
         matchConfig = {
           OriginalName = lib.mkForce "e*";
-          MACAddress = "d8:5e:d3:a6:72:b5";
+          MACAddress = "8c:3b:4a:35:d4:c8";
         };
         linkConfig = {
           Name = "eth0";
+        };
+      };
+      "40-eth1" = {
+        matchConfig = {
+          OriginalName = lib.mkForce "e*";
+          MACAddress = "8c:3b:4a:35:d4:c9";
+        };
+        linkConfig = {
+          Name = "eth1";
         };
       };
     };
@@ -218,6 +183,19 @@
     networks = {
       "30-eth0" = {
         matchConfig.Name = "eth0";
+        networkConfig = {
+          Bridge = "br0";
+          LinkLocalAddressing = false;
+          DHCP = false;
+          LLDP = false;
+          EmitLLDP = false;
+          IPv6AcceptRA = false;
+          IPv6SendRA = false;
+        };
+        linkConfig.RequiredForOnline = "enslaved";
+      };
+      "30-eth1" = {
+        matchConfig.Name = "eth1";
         networkConfig = {
           Bridge = "br0";
           LinkLocalAddressing = false;

@@ -223,6 +223,12 @@
         dina-font
         proggyfonts
         font-awesome
+        nur.repos.DzmingLi.windows-fonts
+        nur.repos.chillcicada.font-office
+        nur.repos.chillcicada.font-typst-math
+        nur.repos.chillcicada.ttf-ms-win10
+        nur.repos.chillcicada.ttf-ms-win10-sc-sup
+        nur.repos.chillcicada.ttf-wps-fonts
         wqy_zenhei
         wqy_microhei
       ]
