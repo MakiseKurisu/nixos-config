@@ -191,6 +191,7 @@
       wireguard-tools
       wofi
       wsmancli
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.wxwork
       xdg-utils
       xxd
       yarn

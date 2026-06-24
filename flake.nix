@@ -82,6 +82,7 @@
                 inherit lib inputs;
               }
             );
+            wxwork = pkgs.callPackage ./pkgs/wxwork { };
             default = self'.packages.dewclaw-env;
           };
         };
