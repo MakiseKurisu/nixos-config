@@ -131,7 +131,7 @@
                 env picocom -b ''${1:-1500000} /dev/ttyUSB0
               }
               flashrom() {
-                env flashrom -p ch347_spi -w "$@"
+                env flashrom -p ch347_spi:spispeed=15M -w "$@"
               }
             '';
           };
