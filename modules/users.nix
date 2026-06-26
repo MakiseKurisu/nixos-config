@@ -224,8 +224,8 @@
                 };
                 volcengine-plan = {
                   models = {
-                    "GLM-5.2" = {
-                      name = "GLM-5.2";
+                    "glm-5.2" = {
+                      name = "glm-5.2";
                       limit = {
                         context = 1024000;
                         output = 4096;
@@ -237,6 +237,16 @@
                         output = [
                           "text"
                         ];
+                      };
+                      options = {
+                        thinking = {
+                          type = "enabled";
+                        };
+                      };
+                      variants = {
+                        max = {
+                          reasoningEngine = "max";
+                        };
                       };
                     };
                   };

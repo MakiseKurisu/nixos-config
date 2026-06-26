@@ -72,7 +72,14 @@
   home-manager.users.excalibur =
     { pkgs, ... }:
     {
-      home.stateVersion = "22.11";
+      home = {
+        sessionVariables = {
+          DEBEMAIL = "dev@radxa.com";
+          DEBFULLNAME = "Radxa Computer Co., Ltd";
+          EMAIL = "yt@radxa.com";
+        };
+        stateVersion = "22.11";
+      };
       systemd.user = {
         services = {
           lock-session = {
