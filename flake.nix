@@ -59,6 +59,7 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./machines
+        ./modules/nix-on-droid.flake-module.nix
       ];
       systems = [
         "x86_64-linux"
