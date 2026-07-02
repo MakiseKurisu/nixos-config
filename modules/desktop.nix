@@ -73,13 +73,13 @@
       }))
       brightnessctl
       cachix
-      calibre
       chromium
       cliphist
       crosspipe
       darktable
       dbeaver-bin
       deploy-rs
+      devcontainer
       devenv
       (nur.repos.xddxdd.dingtalk.overrideAttrs (previous: {
         postFixup = (previous.postFixup or "") + ''
@@ -92,23 +92,17 @@
       feishu
       filezilla
       flashrom
-      font-manager
-      fsearch
       freecad
       gimp-with-plugins
       ghidra
       ghidra-extensions.machinelearning
       ghidra-extensions.gnudisassembler
-      wlgreet
       grim
       gsettings-desktop-schemas
-      gtk3
-      guvcview
       (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") heroic)
       hyprcursor
       jq
       kicad
-      krita
       libreoffice-qt
       kdePackages.ark
       kdePackages.baloo-widgets
@@ -126,8 +120,6 @@
       kdePackages.kio-fuse
       kdePackages.konsole
       kdePackages.qtwayland
-      libwebp
-      lingot
       lmms
       mako
       mattermost-desktop
@@ -139,10 +131,7 @@
       naps2
       networkmanagerapplet
       nixd
-      nixfmt
-      nixpkgs-review
       nomacs
-      nss
       nwg-bar
       nwg-menu
       nwg-look
@@ -164,14 +153,10 @@
       ))
       pinentry-qt
       piper
-      pre-commit
       protonplus
       pwvucontrol
       qq
-      qrencode
       remmina
-      rs-tftpd
-      rstudio
       sc-controller
       selectdefaultapplication
       shotcut
@@ -187,6 +172,7 @@
       wechat
       wemeet
       wev
+      wlgreet
       wlr-randr
       wireguard-tools
       wofi
@@ -194,7 +180,6 @@
       nur.repos.DzmingLi.wxwork
       xdg-utils
       xxd
-      yarn
     ];
   };
 
@@ -263,7 +248,7 @@
             withNonFreePlugins = true;
           }
         ))
-        pkgs.unstable.hplipWithPlugin
+        hplipWithPlugin
         sane-airscan
       ];
     };
@@ -422,7 +407,7 @@
       enable = true;
       drivers = with pkgs; [
         gutenprint
-        pkgs.unstable.hplipWithPlugin
+        hplipWithPlugin
         epson-escpr
         epson-escpr2
       ];

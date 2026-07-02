@@ -192,7 +192,7 @@
             settings = {
               autoupdate = false;
               lsp = true;
-              model = "openai/gpt-5.5";
+              model = "openai/gpt-5.4";
               plugin = [
                 "@mohak34/opencode-notifier@latest"
                 "oh-my-openagent"
