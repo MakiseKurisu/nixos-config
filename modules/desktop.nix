@@ -94,6 +94,7 @@
       flashrom
       freecad
       gimp-with-plugins
+      git-repo
       ghidra
       ghidra-extensions.machinelearning
       ghidra-extensions.gnudisassembler
