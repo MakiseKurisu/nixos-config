@@ -499,6 +499,7 @@
               "application/vnd.ms-excel.sheet.macroEnabled.12" = [ "calc.desktop" ];
               "application/x-shellscript" = [ "code.desktop" ];
               "video/mpeg" = [ "vlc.desktop" ];
+              "x-scheme-handler/net.thunderbird" = [ "thunderbird.desktop" ];
             };
             defaultApplications = {
               # find /run/current-system/sw/share/applications/ -name "**"
@@ -533,6 +534,7 @@
               "x-scheme-handler/mailto" = [ "thunderbird.desktop" ];
               "x-scheme-handler/mid" = [ "thunderbird.desktop" ];
               "x-scheme-handler/msteams" = [ "teams-for-linux.desktop" ];
+              "x-scheme-handler/net.thunderbird" = [ "thunderbird.desktop" ];
               "x-scheme-handler/news" = [ "thunderbird.desktop" ];
               "x-scheme-handler/nntp" = [ "thunderbird.desktop" ];
               "x-scheme-handler/snews" = [ "thunderbird.desktop" ];

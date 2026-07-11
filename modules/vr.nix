@@ -8,10 +8,11 @@
 }:
 
 {
-  services.wivrn = {
-    enable = true;
-    openFirewall = true;
-    defaultRuntime = true;
-    autoStart = true;
+  services = {
+    wivrn = {
+      enable = true;
+      openFirewall = true;
+      autoStart = true;
+    };
   };
 }
