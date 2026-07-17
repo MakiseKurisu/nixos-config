@@ -192,7 +192,7 @@
             settings = {
               autoupdate = false;
               lsp = true;
-              model = "openai/gpt-5.4";
+              model = "openai/gpt-5.6-sol";
               plugin = [
                 "@mohak34/opencode-notifier@latest"
                 "oh-my-openagent"
@@ -202,6 +202,13 @@
               ];
               provider = {
                 deepseek = {
+                  options = {
+                    baseURL = "http://sub2api.vamrs.org:8080/v1";
+                    headerTimeout = 60000;
+                    chunkTimeout = 60000;
+                  };
+                };
+                kimi-for-coding = {
                   options = {
                     baseURL = "http://sub2api.vamrs.org:8080/v1";
                     headerTimeout = 60000;
