@@ -185,7 +185,15 @@
             type = "api";
             key = config.sops.placeholder.sub2api_anthropic;
           };
+          kimi-for-coding = {
+            type = "api";
+            key = config.sops.placeholder.sub2api_anthropic;
+          };
           minimax-cn-coding-plan = {
+            type = "api";
+            key = config.sops.placeholder.sub2api_anthropic;
+          };
+          moonshotai-cn = {
             type = "api";
             key = config.sops.placeholder.sub2api_anthropic;
           };
