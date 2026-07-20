@@ -39,6 +39,7 @@
     optimise = {
       automatic = true;
     };
+    package = pkgs.lixPackageSets.stable.lix;
     settings = {
       auto-optimise-store = true;
       builders-use-substitutes = true;
@@ -83,6 +84,11 @@
         };
       };
     };
+    overlays = [
+      (final: prev: {
+        inherit (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgs.lixPackageSets.stable) ;
+      })
+    ];
   };
 
   programs = {

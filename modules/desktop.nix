@@ -273,16 +273,6 @@
     };
   };
 
-  nix = {
-    package = pkgs.lixPackageSets.stable.lix;
-  };
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      inherit (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgs.lixPackageSets.stable) ;
-    })
-  ];
-
   programs = {
     apt = {
       enable = true;
