@@ -343,6 +343,7 @@
                 ms-vscode-remote.vscode-remote-extensionpack
                 ms-vsliveshare.vsliveshare
                 unifiedjs.vscode-mdx
+                woberg.godot-dotnet-tools
               ];
               keybindings = [
                 {

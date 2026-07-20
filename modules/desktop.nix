@@ -99,6 +99,8 @@
       ghidra
       ghidra-extensions.machinelearning
       ghidra-extensions.gnudisassembler
+      godot-mcp
+      godot-mono
       grim
       gsettings-desktop-schemas
       (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") heroic)
