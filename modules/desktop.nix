@@ -62,6 +62,7 @@
       BROWSER = "firefox";
       TERMINAL = "kitty";
       NIX_AUTO_RUN = "1";
+      ARRPC_NO_PROCESS_SCANNING = "1";
     };
     systemPackages = with pkgs; [
       android-tools
