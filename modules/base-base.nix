@@ -8,10 +8,6 @@
 }:
 
 {
-  imports = [
-    ./sops.nix
-  ];
-
   documentation.man.cache.enable = true;
 
   environment.enableAllTerminfo = true;

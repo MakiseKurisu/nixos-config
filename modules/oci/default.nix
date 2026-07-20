@@ -15,6 +15,7 @@
     ./wg.nix
     ../base-base.nix
     ../kernel.nix
+    ../sops.nix
     ../users-base.nix
     inputs.nixos-facter-modules.nixosModules.facter
   ];

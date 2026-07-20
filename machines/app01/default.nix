@@ -9,6 +9,7 @@
 {
   imports = [
     ../../modules/base.nix
+    ../../modules/sops.nix
     ../../modules/file-share.nix
     #../../modules/desktop.nix
     ../../modules/podman.nix

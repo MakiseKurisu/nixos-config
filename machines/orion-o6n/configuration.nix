@@ -12,6 +12,7 @@
 
     inputs.home-manager.nixosModules.home-manager
     ../../modules/base.nix
+    ../../modules/sops.nix
     ../../modules/desktop.nix
     ../../modules/desktop-autostart.nix
     ../../modules/podman.nix
