@@ -22,6 +22,7 @@
       # create nftset
       GFW_MARK=600
       GAME_MARK=603
+      GAME_MARK=${GAME_MARK:-$GFW_MARK}
       DNS_PORT=5500
       nft "add rule inet fw4 dstnat udp dport 5353 redirect to :$DNS_PORT"
       nft "add chain inet fw4 output_nat { type nat hook output priority -100; }"
@@ -33,6 +34,9 @@
       nft "add set inet fw4 proxy_force { type ipv4_addr; flags interval; auto-merge; }"
       nft "add set inet fw4 game { type ipv4_addr; flags interval; auto-merge; }"
       nft "add set inet fw4 game6 { type ipv6_addr; flags interval; auto-merge; }"
+
+      # force all traffic to be proxied
+      # nft "add element inet fw4 proxy_force { 192.168.9.20 }"
       # add telegram ip
       nft "add element inet fw4 gfwlist { 91.108.4.0/22, 91.108.8.0/22, 91.108.56.0/22, 109.239.140.0/24, 149.154.160.0/20 }"
       # add cloudflare ip
