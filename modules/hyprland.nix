@@ -258,7 +258,6 @@
             "workspace 10 silent, match:class ^(steam_app_0)$, match:title ^()$"
             "workspace 10 silent, match:class ^(steam_app_0)$, match:title ^(TransparentWind)$"
             "workspace 10 silent, match:class ^(steam_app_0)$, match:title ^(FloatingStripWnd)$"
-            "workspace 10 silent, match:class ^(steam_app_default)$, match:title ^()$"
             "workspace 10 silent, match:class ^(steam_app_default)$, match:title ^(Heroesprofile\.com Uploader v.*)$"
             "workspace 10 silent, match:class ^(heroesprofile\.uploader\.exe)$, match:title ^(Heroesprofile\.com Uploader v.*)$"
             "workspace 10 silent, match:class ^(steam_app_0)$, match:title ^(Form)$"
