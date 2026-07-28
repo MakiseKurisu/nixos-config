@@ -313,13 +313,6 @@
                     chunkTimeout = 60000;
                   };
                 };
-                minimax-cn-coding-plan = {
-                  options = {
-                    baseURL = "http://sub2api.vamrs.org:8080/v1";
-                    headerTimeout = 60000;
-                    chunkTimeout = 60000;
-                  };
-                };
                 moonshotai-cn = {
                   options = {
                     baseURL = "http://sub2api.vamrs.org:8080/v1";

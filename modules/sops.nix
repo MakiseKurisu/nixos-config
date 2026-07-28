@@ -159,7 +159,7 @@
           };
           minimax-cn-coding-plan = {
             type = "api";
-            key = config.sops.placeholder.sub2api_anthropic;
+            key = config.sops.placeholder.minimax_auth_token;
           };
           moonshotai-cn = {
             type = "api";
