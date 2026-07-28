@@ -43,6 +43,7 @@
       sub2api_openai = { };
       sub2api_anthropic = { };
       nvidia_token = { };
+      poe_auth_token = { };
     };
     templates = {
       "cloudflare_ddns.env" = {
@@ -205,6 +206,10 @@
           openai = {
             type = "api";
             key = config.sops.placeholder.sub2api_openai;
+          };
+          poe = {
+            type = "api";
+            key = config.sops.placeholder.poe_auth_token;
           };
           volcengine-plan = {
             type = "api";
