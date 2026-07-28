@@ -142,7 +142,7 @@
                     kimi-for-coding = 20;
                     minimax-cn-coding-plan = 20;
                     moonshotai-cn = 20;
-                    nvidia = 20;
+                    nvidia = 3;
                     openai = 3;
                     opencode = 20;
                     volcengine-plan = 20;
