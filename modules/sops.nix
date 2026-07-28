@@ -42,6 +42,7 @@
       minimax_auth_token = { };
       sub2api_openai = { };
       sub2api_anthropic = { };
+      nvidia_token = { };
     };
     templates = {
       "cloudflare_ddns.env" = {
@@ -196,6 +197,10 @@
           moonshotai-cn = {
             type = "api";
             key = config.sops.placeholder.sub2api_anthropic;
+          };
+          nvidia = {
+            type = "api";
+            key = config.sops.placeholder.nvidia_token;
           };
           openai = {
             type = "api";
