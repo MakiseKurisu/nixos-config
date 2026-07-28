@@ -165,11 +165,6 @@
         };
         home = {
           file = {
-            ".claude/settings.json" = {
-              source =
-                inputs'.config.lib.file.mkOutOfStoreSymlink
-                  config.sops.templates."claude-settings.json".path;
-            };
             ".local/share/opencode/auth.json" = {
               source =
                 inputs'.config.lib.file.mkOutOfStoreSymlink
@@ -424,7 +419,6 @@
               enableExtensionUpdateCheck = false;
               enableUpdateCheck = false;
               extensions = with inputs'.pkgs.vscode-extensions; [
-                anthropic.claude-code
                 github.vscode-github-actions
                 github.vscode-pull-request-github
                 jnoortheen.nix-ide
@@ -458,8 +452,6 @@
                 "[nix]" = {
                   "editor.formatOnSave" = true;
                 };
-                "claudeCode.preferredLocation" = "sidebar";
-                "claudeCode.selectedModel" = "MiniMax-M2.5";
                 "debug.javascript.unmapMissingSources" = true;
                 "diffEditor.ignoreTrimWhitespace" = false;
                 "diffEditor.maxComputationTime" = 30000;
