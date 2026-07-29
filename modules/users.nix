@@ -479,6 +479,7 @@
                 "makefile.configureOnOpen" = true;
                 "nix.enableLanguageServer" = true;
                 "nix.serverPath" = "nixd";
+                "terminal.integrated.enableMultiLinePasteWarning" = "never";
                 "terminal.integrated.scrollback" = 5000;
                 "update.showReleaseNotes" = false;
                 "window.titleBarStyle" = "custom";
