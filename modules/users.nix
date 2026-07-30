@@ -56,96 +56,18 @@
             "opencode/oh-my-openagent.json" = {
               text = builtins.toJSON {
                 "$schema" = "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json";
-
-                agents = {
-                  # Main orchestrator: Claude Opus or Kimi K3 work best
-                  sisyphus = {
-                    model = "kimi-for-coding/k3";
-                    variant = "max";
-                    ultrawork = {
-                      model = "kimi-for-coding/k3";
-                      variant = "max";
-                    };
-                  };
-
-                  # Research agents: cheap fast models are fine
-                  librarian = {
-                    model = "deepseek/deepseek-v4-flash";
-                    variant = "max";
-                  };
-                  explore = {
-                    model = "deepseek/deepseek-v4-flash";
-                    variant = "max";
-                  };
-
-                  # Architecture consultation: GPT-5.6 Sol or Claude Opus
-                  oracle = {
-                    model = "kimi-for-coding/k3";
-                    variant = "max";
-                  };
-
-                  hephaestus = {
-                    model = "kimi-for-coding/k3";
-                    variant = "max";
-                  };
-                  prometheus = {
-                    model = "kimi-for-coding/k3";
-                    variant = "max";
-                  };
-                };
-
-                categories = {
-                  # quick - trivial tasks
-                  quick = {
-                    model = "deepseek/deepseek-v4-flash";
-                    variant = "max";
-                  };
-
-                  # unspecified-low - moderate tasks
-                  unspecified-low = {
-                    model = "kimi-for-coding/k3";
-                    variant = "max";
-                  };
-
-                  # unspecified-high - complex work
-                  unspecified-high = {
-                    model = "kimi-for-coding/k3";
-                    variant = "max";
-                  };
-
-                  # writing - docs/prose
-                  writing = {
-                    model = "kimi-for-coding/k3";
-                    variant = "max";
-                  };
-
-                  # visual-engineering - Gemini dominates visual tasks
-                  visual-engineering = {
-                    model = "google/gemini-3.1-pro";
-                    variant = "high";
-                  };
-
-                  # Custom category for git operations
-                  git = {
-                    model = "deepseek/deepseek-v4-flash";
-                    variant = "max";
-                    description = "All git operations";
-                    prompt_append = "Focus on atomic commits, clear messages, and safe operations.";
-                  };
-                };
-
                 # Limit expensive providers; let cheap ones run freely
                 background_task = {
                   providerConcurrency = {
                     anthropic = 3;
-                    deepseek = 20;
-                    kimi-for-coding = 20;
+                    deepseek = 3;
+                    kimi-for-coding = 3;
                     minimax-cn-coding-plan = 20;
-                    moonshotai-cn = 20;
+                    moonshotai-cn = 3;
                     nvidia = 3;
                     openai = 3;
                     opencode = 20;
-                    volcengine-plan = 20;
+                    xai = 20;
                     xiaomi-token-plan-cn = 20;
                   };
                 };
@@ -168,7 +90,7 @@
             ".local/share/opencode/auth.json" = {
               source =
                 inputs'.config.lib.file.mkOutOfStoreSymlink
-                  config.sops.templates."opencode-auth.json".path;
+                  inputs'.config.sops.templates."opencode-auth.json".path;
             };
           };
           username = "excalibur";
@@ -290,7 +212,7 @@
             settings = {
               autoupdate = false;
               lsp = true;
-              model = "kimi-for-coding/k3";
+              model = "xai/grok-4.5";
               plugin = [
                 "@mohak34/opencode-notifier@latest"
                 "oh-my-openagent"
@@ -327,36 +249,7 @@
                     chunkTimeout = 60000;
                   };
                 };
-                volcengine-plan = {
-                  models = {
-                    "glm-5.2" = {
-                      name = "glm-5.2";
-                      limit = {
-                        context = 1024000;
-                        output = 4096;
-                      };
-                      modalities = {
-                        input = [
-                          "text"
-                        ];
-                        output = [
-                          "text"
-                        ];
-                      };
-                      options = {
-                        thinking = {
-                          type = "enabled";
-                        };
-                      };
-                      variants = {
-                        max = {
-                          reasoningEngine = "max";
-                        };
-                      };
-                    };
-                  };
-                  name = "Volcano Engine";
-                  npm = "@ai-sdk/openai-compatible";
+                xai = {
                   options = {
                     baseURL = "http://sub2api.vamrs.org:8080/v1";
                     headerTimeout = 60000;
