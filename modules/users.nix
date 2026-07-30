@@ -56,6 +56,15 @@
             "opencode/oh-my-openagent.json" = {
               text = builtins.toJSON {
                 "$schema" = "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json";
+                agents = {
+                  sisyphus-junior = {
+                    model = "xai/grok-4.5";
+                    fallback_models = [
+                      { model = "minimax-cn-coding-plan/MiniMax-M3"; }
+                    ];
+                  };
+                };
+
                 # Limit expensive providers; let cheap ones run freely
                 background_task = {
                   providerConcurrency = {
