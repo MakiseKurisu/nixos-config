@@ -493,6 +493,8 @@
               "application/x-shellscript" = [ "code.desktop" ];
               "video/mpeg" = [ "vlc.desktop" ];
               "x-scheme-handler/net.thunderbird" = [ "thunderbird.desktop" ];
+              "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
+              "x-scheme-handler/tonsite" = [ "org.telegram.desktop.desktop" ];
             };
             defaultApplications = {
               # find /run/current-system/sw/share/applications/ -name "**"
@@ -531,6 +533,8 @@
               "x-scheme-handler/news" = [ "thunderbird.desktop" ];
               "x-scheme-handler/nntp" = [ "thunderbird.desktop" ];
               "x-scheme-handler/snews" = [ "thunderbird.desktop" ];
+              "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
+              "x-scheme-handler/tonsite" = [ "org.telegram.desktop.desktop" ];
               "x-scheme-handler/unknown" = [ "firefox.desktop" ];
               "x-scheme-handler/webcal" = [ "thunderbird.desktop" ];
               "x-scheme-handler/webcals" = [ "thunderbird.desktop" ];
