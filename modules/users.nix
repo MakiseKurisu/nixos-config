@@ -222,6 +222,7 @@
               autoupdate = false;
               lsp = true;
               model = "xai/grok-4.5";
+              small_model = "opencode/deepseek-v4-flash-free";
               plugin = [
                 "@mohak34/opencode-notifier@latest"
                 "oh-my-openagent"
