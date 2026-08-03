@@ -26,6 +26,7 @@
         "realtime"
         "render"
         "scanner"
+        "tty"
         "video"
         "wheel"
         "wireshark"
