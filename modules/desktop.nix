@@ -491,6 +491,7 @@
               "application/json" = [ "code.desktop" ];
               "application/vnd.ms-excel.sheet.macroEnabled.12" = [ "calc.desktop" ];
               "application/x-shellscript" = [ "code.desktop" ];
+              "audio/vnd.wave" = [ "vlc.desktop" ];
               "video/mpeg" = [ "vlc.desktop" ];
               "x-scheme-handler/net.thunderbird" = [ "thunderbird.desktop" ];
               "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
@@ -506,6 +507,7 @@
               "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
               "application/x-extension-ics" = [ "thunderbird.desktop" ];
               "application/x-extension-rss" = [ "thunderbird.desktop" ];
+              "audio/vnd.wave" = [ "vlc.desktop" ];
               "image/bmp" = [ "org.nomacs.ImageLounge.desktop" ];
               "image/gif" = [ "org.nomacs.ImageLounge.desktop" ];
               "image/jpeg" = [ "org.nomacs.ImageLounge.desktop" ];
