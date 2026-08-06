@@ -81,6 +81,10 @@
     ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="2a0e", ENV{ID_USB_MODEL_ID}=="0020", GROUP="wheel"
     # Allow user access for Kingst devices
     ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="77a1", ENV{ID_USB_MODEL_ID}=="01a2", GROUP="wheel"
+    # Allow user access for SemiDrive devices
+    ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="18d1", ENV{ID_USB_MODEL_ID}=="4d00", GROUP="wheel"
+    ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="3273", ENV{ID_USB_MODEL_ID}=="0001", GROUP="wheel"
+    ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="3273", ENV{ID_USB_MODEL_ID}=="0002", GROUP="wheel"
   '';
   powerManagement = {
     enable = true;
