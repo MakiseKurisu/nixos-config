@@ -338,9 +338,18 @@
     polkit.enable = true;
     rtkit.enable = true;
     pam.services = {
-      greetd.enableGnomeKeyring = true;
-      greetd-password.enableGnomeKeyring = true;
-      login.enableGnomeKeyring = true;
+      greetd = {
+        enableGnomeKeyring = true;
+        kwallet.enable = true;
+      };
+      greetd-password = {
+        enableGnomeKeyring = true;
+        kwallet.enable = true;
+      };
+      login = {
+        enableGnomeKeyring = true;
+        kwallet.enable = true;
+      };
     };
   };
 
