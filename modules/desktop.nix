@@ -134,6 +134,7 @@
       naps2
       networkmanagerapplet
       nixd
+      nixfmt
       nomacs
       nwg-bar
       nwg-menu
