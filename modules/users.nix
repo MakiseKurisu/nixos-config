@@ -55,7 +55,8 @@
             };
             "opencode/oh-my-openagent.json" = {
               text = builtins.toJSON {
-                "$schema" = "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json";
+                "$schema" =
+                  "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json";
                 agents = {
                   sisyphus-junior = {
                     model = "xai/grok-4.5";
@@ -216,6 +217,11 @@
             ];
           };
           opencode = {
+            context = ''
+              # Global OpenCode Rules
+
+              When a command is missing from the shell, use `nix run nixpkgs#<package> -- <arguments>` to launch it, instead of installing it locally.
+            '';
             enable = true;
             enableMcpIntegration = true;
             settings = {
