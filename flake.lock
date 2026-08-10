@@ -336,6 +336,21 @@
         "type": "github"
       }
     },
+    "multiverse": {
+      "locked": {
+        "lastModified": 1786341869,
+        "narHash": "sha256-x5znipkXo5Mr/PM/343VQF7JcoRLTm6InfvMPZs9NHw=",
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
+        "rev": "9a471c11260c47a679be09039fac67f7aa8a6dbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
+        "type": "github"
+      }
+    },
     "nix-formatter-pack": {
       "inputs": {
         "nixpkgs": [
@@ -536,38 +551,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-master": {
-      "locked": {
-        "lastModified": 1783748159,
-        "narHash": "sha256-7VS65zBU24TBBUCiK9NBUzrH0IifzcvJc1AJaIl9WC8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "55611cc97194b1260d752e1dcd204a3002ef4d70",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1783522502,
-        "narHash": "sha256-iffAls3iaNTyJC2faYcUXSI+Gp02cDjYl+MygxKl2GI=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "0bb7ec54c8483066ec9d7720e780a5caa71f8612",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1749285348,
@@ -759,6 +742,7 @@
         "home-manager": "home-manager",
         "home-manager-droid": "home-manager-droid",
         "impermanence": "impermanence",
+        "multiverse": "multiverse",
         "nix-on-droid": "nix-on-droid",
         "nixified-ai": "nixified-ai",
         "nixos-facter-modules": "nixos-facter-modules",
@@ -766,8 +750,6 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-droid": "nixpkgs-droid",
-        "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-unstable": "nixpkgs-unstable",
         "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
         "pr-pico-rpa": "pr-pico-rpa",

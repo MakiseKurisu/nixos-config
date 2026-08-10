@@ -66,14 +66,6 @@
     config = {
       allowUnfree = true;
       packageOverrides = pkgs: {
-        unstable = import inputs.nixpkgs-unstable {
-          config = config.nixpkgs.config;
-          system = pkgs.stdenv.hostPlatform.system;
-        };
-        master = import inputs.nixpkgs-master {
-          config = config.nixpkgs.config;
-          system = pkgs.stdenv.hostPlatform.system;
-        };
         nur = import inputs.NUR {
           inherit pkgs;
           nurpkgs = pkgs;

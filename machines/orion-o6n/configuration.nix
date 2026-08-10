@@ -115,7 +115,8 @@
   specialisation = {
     upstream.configuration = {
       hardware.cix.sky1.bspRelease = "none";
-      boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
+      boot.kernelPackages =
+        inputs.multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
     };
   };
 

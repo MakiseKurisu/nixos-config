@@ -39,7 +39,9 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+    kernelPackages =
+      lib.mkForce
+        inputs.multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
   };
 
   environment.sessionVariables = {

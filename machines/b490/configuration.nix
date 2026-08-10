@@ -38,7 +38,9 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = lib.mkForce pkgs.unstable.linuxPackages_latest;
+  boot.kernelPackages =
+    lib.mkForce
+      inputs.multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
 
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "i965";
