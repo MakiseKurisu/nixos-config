@@ -195,7 +195,15 @@
             context = ''
               # Global OpenCode Rules
 
-              When a command is missing from the shell, use `nix run nixpkgs#<package> -- <arguments>` to launch it, instead of installing it locally.
+              When a command is missing from the shell, use
+              `nix run nixpkgs#<package> -- <arguments>`to launch it, instead of
+              installing it locally.
+
+              Try identify if a repository is for a Radxa Debian package. They
+              usually have origin remote under GitHub radxa-pkg orginazation,
+              provide `deb` target in the root Makefile, and contain devcontainer
+              configuration. For those repository, use `radxa-deb-package` skill
+              to build the package.
             '';
             enable = true;
             enableMcpIntegration = true;
