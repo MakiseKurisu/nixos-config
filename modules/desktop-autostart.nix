@@ -20,7 +20,8 @@
             "[workspace 15 silent] teams-for-linux"
             "[workspace 16 silent] dingtalk"
             "[workspace 17 silent] qq"
-            "[workspace 18 silent] wechat & wxwork"
+            "[workspace 18 silent] wechat"
+            "[workspace 18 silent] wxwork"
             "[workspace 19 silent] steam"
           ];
         };
