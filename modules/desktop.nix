@@ -131,6 +131,7 @@
       moonlight-qt
       musescore
       muse-sounds-manager
+      inputs.multiverse.packages.${pkgs.stdenv.hostPlatform.system}.mvs
       naps2
       networkmanagerapplet
       nixd
