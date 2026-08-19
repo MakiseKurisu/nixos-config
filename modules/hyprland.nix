@@ -170,7 +170,6 @@
             numlock_by_default = "yes";
           };
           exec-once = [
-            "fcitx5"
             "wl-paste --type text --watch cliphist store"
             "wl-paste --type image --watch cliphist store"
             "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"

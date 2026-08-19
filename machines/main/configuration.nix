@@ -50,6 +50,18 @@
     { pkgs, ... }:
     {
       home.stateVersion = "22.11";
+      i18n.inputMethod.fcitx5.settings = {
+        addons.classicui.globalSection = {
+          Font = "Sans 14";
+          MenuFont = "Sans 14";
+          TrayFont = "Sans Bold 14";
+        };
+        globalOptions = {
+          "Hotkey/TriggerKeys" = {
+            "0" = "Control+Alt+KP_0";
+          };
+        };
+      };
       wayland.windowManager.hyprland.settings = {
         workspace = [
           "r[1-20], monitor:DP-2"

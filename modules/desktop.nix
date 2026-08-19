@@ -259,24 +259,6 @@
     };
   };
 
-  i18n = {
-    inputMethod = {
-      enable = true;
-      type = "fcitx5";
-      fcitx5 = {
-        waylandFrontend = true;
-        addons =
-          with pkgs;
-          with qt6Packages;
-          [
-            fcitx5-gtk
-            fcitx5-chinese-addons
-            fcitx5-qt
-          ];
-      };
-    };
-  };
-
   programs = {
     apt = {
       enable = true;
@@ -475,6 +457,62 @@
           enable = true;
           name = "phinger-cursors-light";
           package = pkgs.phinger-cursors;
+        };
+        i18n = {
+          inputMethod = {
+            enable = true;
+            type = "fcitx5";
+            fcitx5 = {
+              addons =
+                with pkgs;
+                with qt6Packages;
+                [
+                  fcitx5-gtk
+                  fcitx5-chinese-addons
+                  fcitx5-qt
+                ];
+              ignoreUserConfig = true;
+              settings = {
+                addons = {
+                  chttrans = {
+                    globalSection = {
+                      Hotkey = "";
+                    };
+                  };
+                  pinyin = {
+                    globalSection = {
+                      CloudPinyinEnabled = "True";
+                      CloudPinyinIndex = 5;
+                      PageSize = 5;
+                    };
+                  };
+                };
+                globalOptions = {
+                  "Hotkey/AltTriggerKeys" = {
+                    "0" = "Shift_L";
+                    "1" = "Shift_R";
+                  };
+                };
+                inputMethod = {
+                  GroupOrder = {
+                    "0" = "Default";
+                  };
+                  "Groups/0" = {
+                    "Default Layout" = "us";
+                    DefaultIM = "pinyin";
+                    Name = "Default";
+                  };
+                  "Groups/0/Items/0" = {
+                    Name = "keyboard-us";
+                  };
+                  "Groups/0/Items/1" = {
+                    Name = "pinyin";
+                  };
+                };
+              };
+              waylandFrontend = true;
+            };
+          };
         };
         xdg = {
           portal = {

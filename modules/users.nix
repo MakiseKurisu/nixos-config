@@ -31,28 +31,6 @@
               source = ../configs/LarkShell;
               recursive = true;
             };
-            "gtk-3.0/settings.ini" = {
-              text = ''
-                [Settings]
-                gtk-im-module=fcitx
-                gtk-theme-name=Breeze
-                gtk-icon-theme-name=breeze
-                gtk-font-name=Adwaita Sans 11
-                gtk-cursor-theme-name=Breeze_Light
-                gtk-cursor-theme-size=24
-              '';
-            };
-            "gtk-4.0/settings.ini" = {
-              text = ''
-                [Settings]
-                gtk-im-module=fcitx
-                gtk-theme-name=Breeze
-                gtk-icon-theme-name=breeze
-                gtk-font-name=Adwaita Sans 11
-                gtk-cursor-theme-name=Breeze_Light
-                gtk-cursor-theme-size=24
-              '';
-            };
             "opencode/oh-my-openagent.json" = {
               text = builtins.toJSON {
                 "$schema" =
@@ -106,9 +84,6 @@
           username = "excalibur";
           homeDirectory = "/home/excalibur";
           sessionVariables = {
-            QT_IM_MODULE = "fcitx";
-            QT_IM_MODULES = "wayland;fcitx;ibus";
-
             # desktop
             KDEHOME = "${inputs'.config.xdg.configHome}/kde";
             XCOMPOSECACHE = "${inputs'.config.xdg.cacheHome}/X11/xcompose";
