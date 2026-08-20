@@ -37,7 +37,7 @@
                   "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json";
                 agents = {
                   sisyphus-junior = {
-                    model = "xai/grok-4.5";
+                    model = "xai/grok-4.6";
                     fallback_models = [
                       { model = "minimax-cn-coding-plan/MiniMax-M3"; }
                     ];
@@ -210,7 +210,7 @@
             settings = {
               autoupdate = false;
               lsp = true;
-              model = "xai/grok-4.5";
+              model = "xai/grok-4.6";
               small_model = "opencode/deepseek-v4-flash-free";
               plugin = [
                 "@mohak34/opencode-notifier@latest"
