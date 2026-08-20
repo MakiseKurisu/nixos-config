@@ -63,6 +63,9 @@
       TERMINAL = "kitty";
       NIX_AUTO_RUN = "1";
       ARRPC_NO_PROCESS_SCANNING = "1";
+
+      QT_IM_MODULE = "fcitx";
+      QT_IM_MODULES = "wayland;fcitx;ibus";
     };
     systemPackages = with pkgs; [
       android-tools
