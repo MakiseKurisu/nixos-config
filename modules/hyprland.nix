@@ -152,7 +152,8 @@
         configType = "hyprlang";
         enable = true;
         plugins = [
-          # pkgs.hyprlandPlugins.hyprgrass
+          (inputs.multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.at "2026-07-18")
+          .hyprlandPlugins.hyprgrass
         ];
         systemd = {
           enable = true;
