@@ -231,6 +231,8 @@
     };
   };
 
+  zramSwap.memoryPercent = 100;
+
   networking.hostName = "yuntian";
   system.stateVersion = "25.05";
 }
