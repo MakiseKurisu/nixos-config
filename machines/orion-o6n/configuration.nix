@@ -34,7 +34,7 @@
     # ../../modules/thinkpad.nix
 
     inputs.nixos-hardware.nixosModules.radxa-orion-o6
-    inputs.disko.nixosModules.disko
+    inputs.omniflake.flakes.disko.nixosModules.disko
     ./disko.nix
     ./hardware-configuration.nix
   ];
@@ -116,7 +116,7 @@
     upstream.configuration = {
       hardware.cix.sky1.bspRelease = "none";
       boot.kernelPackages =
-        inputs.multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
+        inputs.omniflake.flakes.nixpkgs-multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
     };
   };
 

@@ -8,7 +8,7 @@
 
 {
   imports = [
-    inputs.disko.nixosModules.disko
+    inputs.omniflake.flakes.disko.nixosModules.disko
   ];
 
   disko.devices = {

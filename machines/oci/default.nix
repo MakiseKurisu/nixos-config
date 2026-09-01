@@ -18,13 +18,13 @@
           sshUser = "excalibur";
           user = "root";
           hostname = "10.0.0.10";
-          confirmTimeout = 180;
+          confirmTimeout = 3600;
           profiles.system.path =
             let
               cfg = inputs.self.nixosConfigurations.amd0;
               system = cfg.config.nixpkgs.hostPlatform.system;
             in
-            inputs.deploy-rs.lib.${system}.activate.nixos cfg;
+            inputs.omniflake.flakes.deploy-rs.lib.${system}.activate.nixos cfg;
         };
 
         amd1 = {
@@ -35,13 +35,13 @@
           sshUser = "excalibur";
           user = "root";
           hostname = "10.0.0.11";
-          confirmTimeout = 180;
+          confirmTimeout = 3600;
           profiles.system.path =
             let
               cfg = inputs.self.nixosConfigurations.amd1;
               system = cfg.config.nixpkgs.hostPlatform.system;
             in
-            inputs.deploy-rs.lib.${system}.activate.nixos cfg;
+            inputs.omniflake.flakes.deploy-rs.lib.${system}.activate.nixos cfg;
         };
 
         arm0 = {
@@ -52,13 +52,13 @@
           sshUser = "excalibur";
           user = "root";
           hostname = "10.0.0.20";
-          confirmTimeout = 180;
+          confirmTimeout = 3600;
           profiles.system.path =
             let
               cfg = inputs.self.nixosConfigurations.arm0;
               system = cfg.config.nixpkgs.hostPlatform.system;
             in
-            inputs.deploy-rs.lib.${system}.activate.nixos cfg;
+            inputs.omniflake.flakes.deploy-rs.lib.${system}.activate.nixos cfg;
         };
 
         arm1 = {
@@ -69,13 +69,13 @@
           sshUser = "excalibur";
           user = "root";
           hostname = "10.0.0.21";
-          confirmTimeout = 180;
+          confirmTimeout = 3600;
           profiles.system.path =
             let
               cfg = inputs.self.nixosConfigurations.arm1;
               system = cfg.config.nixpkgs.hostPlatform.system;
             in
-            inputs.deploy-rs.lib.${system}.activate.nixos cfg;
+            inputs.omniflake.flakes.deploy-rs.lib.${system}.activate.nixos cfg;
         };
       };
     };

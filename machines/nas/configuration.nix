@@ -33,7 +33,7 @@
 
     ../../modules/pr/pico-rpa.nix
 
-    inputs.disko.nixosModules.disko
+    inputs.omniflake.flakes.disko.nixosModules.disko
     ./disko.nix
     ./hardware-configuration.nix
   ];

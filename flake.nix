@@ -2,50 +2,36 @@
   description = "NixOS configurations";
 
   inputs = {
-    secrets = {
-      url = "git+file:secrets";
-      flake = false;
-    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-droid.url = "github:MakiseKurisu/nixpkgs/nixos-24.05";
-    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
-    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixpkgs-droid.url = "github:MakiseKurisu/nixpkgs/nixos-24.05";
     home-manager-droid = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-droid";
     };
-    nixos-hardware.url = "github:RadxaYuntian/nixos-hardware/radxa-clean-up";
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-droid";
       inputs.home-manager.follows = "home-manager-droid";
     };
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
-    nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
-    NUR.url = "github:nix-community/NUR";
-    dewclaw.url = "github:MakiseKurisu/dewclaw";
+
+    omniflake = {
+      url = "github:fzakaria/omniflake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    secrets = {
+      url = "git+file:secrets";
+      flake = false;
+    };
     gfwlist2dnsmasq = {
       url = "github:docker-geph/gfwlist2dnsmasq";
       flake = false;
     };
-    impermanence.url = "github:nix-community/impermanence";
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixified-ai.url = "github:nixified-ai/flake";
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Work In Progress PRs
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
@@ -55,7 +41,7 @@
 
   outputs =
     { self, ... }@inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+    inputs.omniflake.flakes.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./machines
         ./modules/nix-on-droid.flake-module.nix
@@ -77,7 +63,7 @@
         {
           formatter = pkgs.nixfmt-tree;
           packages = {
-            dewclaw-env = pkgs.callPackage inputs.dewclaw (
+            dewclaw-env = pkgs.callPackage inputs.omniflake.flakes.dewclaw (
               import ./pkgs/dewclaw {
                 inherit lib inputs;
               }
@@ -100,7 +86,7 @@
 
         checks = builtins.mapAttrs (
           system: deployLib: deployLib.deployChecks self.deploy
-        ) inputs.deploy-rs.lib;
+        ) inputs.omniflake.flakes.deploy-rs.lib;
       };
     };
 }

@@ -33,14 +33,14 @@
 
     # ../../modules/thinkpad.nix
 
-    inputs.disko.nixosModules.disko
+    inputs.omniflake.flakes.disko.nixosModules.disko
     ./disko.nix
     ./hardware-configuration.nix
   ];
 
   boot.kernelPackages =
     lib.mkForce
-      inputs.multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
+      inputs.omniflake.flakes.nixpkgs-multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
 
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "i965";

@@ -9,7 +9,7 @@
   config = lib.optionalAttrs (options ? home-manager) {
     home-manager = {
       sharedModules = [
-        inputs.sops-nix.homeManagerModules.sops
+        inputs.omniflake.flakes.sops-nix.homeManagerModules.sops
       ];
       users.excalibur =
         { ... }@inputs':

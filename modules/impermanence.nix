@@ -19,7 +19,7 @@
 
 {
   imports = [
-    inputs.impermanence.nixosModules.impermanence
+    inputs.omniflake.flakes.impermanence.nixosModules.impermanence
   ];
 
   fileSystems = {

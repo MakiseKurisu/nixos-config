@@ -65,17 +65,12 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      packageOverrides = pkgs: {
-        nur = import inputs.NUR {
-          inherit pkgs;
-          nurpkgs = pkgs;
-        };
-      };
     };
     overlays = [
       (final: prev: {
         inherit (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgs.lixPackageSets.stable) ;
       })
+      inputs.omniflake.flakes.nur.overlays.default
     ];
   };
 

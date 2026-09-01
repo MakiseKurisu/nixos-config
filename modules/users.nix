@@ -18,7 +18,7 @@
       { pkgs, ... }@inputs':
       {
         imports = [
-          inputs.nixos-vscode-server.homeModules.default
+          inputs.omniflake.flakes.nixos-vscode-server.homeModules.default
         ];
         xdg = {
           enable = true;

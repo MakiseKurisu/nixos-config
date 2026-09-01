@@ -10,7 +10,7 @@
   boot = {
     kernelPackages =
       lib.mkOverride 990
-        inputs.multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
+        inputs.omniflake.flakes.nixpkgs-multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
     kernelModules = [ "tcp_bbr" ];
     kernel.sysctl = {
       "kernel.dmesg_restrict" = 1;

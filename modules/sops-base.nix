@@ -9,7 +9,7 @@
 
 {
   imports = [
-    inputs.sops-nix.nixosModules.sops
+    inputs.omniflake.flakes.sops-nix.nixosModules.sops
   ];
 
   sops = {

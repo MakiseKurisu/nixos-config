@@ -17,6 +17,6 @@
     ../kernel.nix
     ../sops.nix
     ../users-base.nix
-    inputs.nixos-facter-modules.nixosModules.facter
+    inputs.omniflake.flakes.nixos-facter-modules.nixosModules.facter
   ];
 }

@@ -85,7 +85,7 @@
       deploy-rs
       devcontainer
       devenv
-      (nur.repos.xddxdd.dingtalk.overrideAttrs (previous: {
+      (nur.repos.jeffguorg.dingtalk.overrideAttrs (previous: {
         postFixup = (previous.postFixup or "") + ''
           echo "9.9.99-Release.9999999" > $out/version
         '';
@@ -134,7 +134,8 @@
       moonlight-qt
       musescore
       muse-sounds-manager
-      inputs.multiverse.packages.${pkgs.stdenv.hostPlatform.system}.mvs
+      inputs.omniflake.flakes.nixpkgs-multiverse.packages.${pkgs.stdenv.hostPlatform.system}.mvs
+
       naps2
       networkmanagerapplet
       nixd
