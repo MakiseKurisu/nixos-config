@@ -76,6 +76,7 @@
         removeWarningPopup = true;
       }))
       brightnessctl
+      bun
       cachix
       chromium
       cliphist
@@ -149,6 +150,7 @@
       nwg-displays
       nwg-launchers
       nwg-dock-hyprland
+      opencode-desktop
       (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") openscad-unstable)
       (opentofu.withPlugins (
         p: with p; [
