@@ -31,7 +31,6 @@
       url = "github:docker-geph/gfwlist2dnsmasq";
       flake = false;
     };
-    nixified-ai.url = "github:nixified-ai/flake";
 
     # Work In Progress PRs
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";

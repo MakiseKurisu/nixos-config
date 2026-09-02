@@ -12,7 +12,7 @@
     ./pr/mmdebstrap.nix
     ./hyprland.nix
     ./waybar.nix
-    inputs.nixified-ai.nixosModules.comfyui
+    inputs.omniflake.flakes.nixified-ai.nixosModules.comfyui
   ];
 
   boot = {
@@ -135,7 +135,6 @@
       musescore
       muse-sounds-manager
       inputs.omniflake.flakes.nixpkgs-multiverse.packages.${pkgs.stdenv.hostPlatform.system}.mvs
-
       naps2
       networkmanagerapplet
       nixd
