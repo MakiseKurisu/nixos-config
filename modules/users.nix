@@ -398,43 +398,59 @@
           vscode-server.enable = true;
         };
         accounts.email.accounts = {
-          "yt@radxa.com" = {
-            realName = "ZHANG Yuntian";
-            userName = "yt@radxa.com";
-            address = "yt@radxa.com";
-            primary = true;
-            imap = {
-              host = "imap.exmail.qq.com";
-              port = 993;
-            };
-            smtp = {
-              host = "smtp.exmail.qq.com";
-              port = 465;
-            };
-            gpg = {
-              key = "26CE4D9E745813BE33E6154757116E87EF0460A7";
-              signByDefault = true;
-            };
-            signature = {
-              showSignature = "append";
-              text = ''
-                Best regards,
+          "yt@radxa.com" =
+            let
+              # Home Manager hashes alias identities as sha256(address + realName).
+              supportAlias = {
+                realName = "ZHANG Yuntian";
+                address = "yt@radxa.com";
+              };
+              supportId = builtins.hashString "sha256" (supportAlias.address + supportAlias.realName);
+            in
+            {
+              realName = "ZHANG Yuntian";
+              userName = "yt@radxa.com";
+              address = "yt@radxa.com";
+              aliases = [ supportAlias ];
+              primary = true;
+              imap = {
+                host = "imap.exmail.qq.com";
+                port = 993;
+              };
+              smtp = {
+                host = "smtp.exmail.qq.com";
+                port = 465;
+              };
+              gpg = {
+                key = "26CE4D9E745813BE33E6154757116E87EF0460A7";
+                signByDefault = true;
+              };
+              signature = {
+                showSignature = "append";
+                text = ''
+                  Best regards,
 
-                ZHANG, Yuntian
+                  ZHANG, Yuntian
 
-                Operating System Developer
-                Radxa Computer (Shenzhen) Co., Ltd
-                Shenzhen, China
-              '';
-            };
-            thunderbird = {
-              enable = true;
-              perIdentitySettings = id: {
-                "mail.identity.id_${id}.fcc" = false; # do not save sent mail to "Sent" folder
-                "mail.identity.id_${id}.reply_to" = "yt@radxa.com";
+                  Operating System Developer
+                  Radxa Computer (Shenzhen) Co., Ltd
+                  Shenzhen, China
+                '';
+              };
+              thunderbird = {
+                enable = true;
+                perIdentitySettings = id: {
+                  "mail.identity.id_${id}.fcc" = false; # do not save sent mail to "Sent" folder
+                  "mail.identity.id_${id}.reply_to" = "yt@radxa.com";
+                };
+                # settings is merged after identities, so this overrides the support identity only.
+                settings = _: {
+                  "mail.identity.id_${supportId}.identityName" = "ZHANG Yuntian";
+                  "mail.identity.id_${supportId}.fcc" = false;
+                  "mail.identity.id_${supportId}.reply_to" = "support@radxa.com";
+                };
               };
             };
-          };
         };
       };
   };
