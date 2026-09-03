@@ -204,6 +204,10 @@
               provide `deb` target in the root Makefile, and contain devcontainer
               configuration. For those repository, use `radxa-deb-package` skill
               to build the package.
+
+              Radxa Debian package repo usually has source code under `src`. It
+              is either a normal source dump, a git submodule, or a folder
+              containing multiple git submodules.
             '';
             enable = true;
             enableMcpIntegration = true;
