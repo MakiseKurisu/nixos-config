@@ -335,6 +335,7 @@
               ];
               userSettings = {
                 "[nix]" = {
+                  "editor.defaultFormatter" = "jnoortheen.nix-ide";
                   "editor.formatOnSave" = true;
                 };
                 "debug.javascript.unmapMissingSources" = true;
@@ -369,6 +370,25 @@
                   };
                 };
                 "makefile.configureOnOpen" = true;
+                # nixd writes the buffer to the formatter, waitpid()s, then
+                # reads stdout. nixfmt blocks on a full pipe, so format-on-save
+                # hangs forever. nil drains stdout while the child runs.
+                "nix.enableLanguageServer" = true;
+                "nix.formatterPath" = [
+                  (lib.getExe pkgs.nixfmt)
+                  "-"
+                ];
+                "nix.serverPath" = lib.getExe pkgs.nil;
+                "nix.serverSettings" = {
+                  nil = {
+                    formatting = {
+                      command = [
+                        (lib.getExe pkgs.nixfmt)
+                        "-"
+                      ];
+                    };
+                  };
+                };
                 "terminal.integrated.enableMultiLinePasteWarning" = "never";
                 "terminal.integrated.scrollback" = 5000;
                 "update.showReleaseNotes" = false;
