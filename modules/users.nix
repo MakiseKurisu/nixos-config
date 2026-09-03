@@ -215,7 +215,18 @@
               autoupdate = false;
               lsp = true;
               model = "xai/grok-4.6";
-              small_model = "opencode/deepseek-v4-flash-free";
+              mcp = {
+                konnect = {
+                  type = "local";
+                  command = [
+                    "/home/excalibur/.local/share/kicad/10.0/3rdparty/plugins/com_github_mixelpixx_konnect/bin/konnect"
+                  ];
+                  enabled = true;
+                  environment = {
+                    RUST_LOG = "info";
+                  };
+                };
+              };
               plugin = [
                 "@mohak34/opencode-notifier@latest"
                 "oh-my-openagent"
