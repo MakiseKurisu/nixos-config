@@ -446,6 +446,8 @@
                   "mail.identity.id_${supportId}.identityName" = "ZHANG Yuntian";
                   "mail.identity.id_${supportId}.fcc" = false;
                   "mail.identity.id_${supportId}.reply_to" = "support@radxa.com";
+                  "mail.identity.id_${supportId}.doCc" = true;
+                  "mail.identity.id_${supportId}.doCcList" = "support@radxa.com";
                 };
               };
             };
