@@ -27,6 +27,15 @@
               source = ../configs/discord;
               recursive = true;
             };
+            "konnect/config.toml" = {
+              source  = (pkgs.formats.toml {}).generate "config.toml" {
+                kicad_cli = "/run/current-system/sw/bin/kicad-cli";
+                kicad_binary = "/run/current-system/sw/bin/kicad";
+                # KiCad 10's IPC socket on macOS (enable it in KiCad:;
+                # Preferences → Plugins → "Enable KiCad API");
+                ipc_address = "ipc:///tmp/kicad/api.sock";
+              };
+            };
             "LarkShell" = {
               source = ../configs/LarkShell;
               recursive = true;
