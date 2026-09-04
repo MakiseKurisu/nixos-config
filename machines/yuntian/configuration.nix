@@ -83,6 +83,13 @@
         };
         stateVersion = "22.11";
       };
+      i18n.inputMethod.fcitx5.settings = {
+        addons.classicui.globalSection = {
+          Font = "Sans 14";
+          MenuFont = "Sans 14";
+          TrayFont = "Sans Bold 14";
+        };
+      };
       systemd.user = {
         services = {
           lock-session = {
