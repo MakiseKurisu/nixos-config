@@ -225,6 +225,20 @@
               lsp = true;
               model = "xai/grok-4.6";
               mcp = {
+                ghidra = {
+                  type = "local";
+                  command = [
+                    (lib.getExe inputs'.pkgs.pr-ghidra-mcp.ghidra-mcp)
+                  ];
+                  enabled = true;
+                };
+                godot = {
+                  type = "local";
+                  command = [
+                    (lib.getExe inputs'.pkgs.godot-mcp)
+                  ];
+                  enabled = true;
+                };
                 konnect = {
                   type = "local";
                   command = [

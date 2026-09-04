@@ -36,6 +36,7 @@
     pr-mmdebstrap.url = "github:MakiseKurisu/nixpkgs/mmdebstrap";
     pr-mdevctl.url = "github:MakiseKurisu/nixpkgs/2db3f670641f422ebdd5ed5d1a071565742a1f2f";
     pr-pico-rpa.url = "github:MakiseKurisu/nixpkgs/pico-rpa";
+    pr-ghidra-mcp.url = "github:RadxaYuntian/nixpkgs/ghidra-mcp";
   };
 
   outputs =

@@ -317,6 +317,22 @@
         "type": "github"
       }
     },
+    "pr-ghidra-mcp": {
+      "locked": {
+        "lastModified": 1788516617,
+        "narHash": "sha256-X1M9OVSBThcvpd40IyKfDtxEad0whTAwXzjDmen9irQ=",
+        "owner": "RadxaYuntian",
+        "repo": "nixpkgs",
+        "rev": "6b773f3a6202a34fadcaa179569b63e4274e3895",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RadxaYuntian",
+        "ref": "ghidra-mcp",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pr-mdevctl": {
       "locked": {
         "lastModified": 1740668788,
@@ -374,6 +390,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-droid": "nixpkgs-droid",
         "omniflake": "omniflake",
+        "pr-ghidra-mcp": "pr-ghidra-mcp",
         "pr-mdevctl": "pr-mdevctl",
         "pr-mmdebstrap": "pr-mmdebstrap",
         "pr-pico-rpa": "pr-pico-rpa",

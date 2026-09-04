@@ -10,6 +10,7 @@
 {
   imports = [
     ./pr/mmdebstrap.nix
+    ./pr/ghidra-mcp.nix
     ./hyprland.nix
     ./waybar.nix
     inputs.omniflake.flakes.nixified-ai.nixosModules.comfyui
@@ -100,10 +101,15 @@
       freecad
       gimp-with-plugins
       git-repo
-      ghidra
-      ghidra-extensions.machinelearning
-      ghidra-extensions.gnudisassembler
-      godot-mcp
+      (pkgs.pr-ghidra-mcp.ghidra.withExtensions (
+        p: with p; [
+          findcrypt
+          ghidra-firmware-utils
+          ghidra-mcp
+          gnudisassembler
+          machinelearning
+        ]
+      ))
       grim
       gsettings-desktop-schemas
       (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") heroic)
