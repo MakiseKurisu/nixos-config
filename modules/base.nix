@@ -70,7 +70,7 @@
 
   services.udev.extraRules = ''
     # disable USB auto suspend for Logitech, Inc. products
-    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", TEST=="power/control", ATTR{power/control}="on"
+    ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="046d", TEST=="power/control", ATTR{power/control}="on"
     # Allow user access for WinChipHead devices
     ACTION=="bind", SUBSYSTEM=="usb", ENV{ID_USB_VENDOR_ID}=="1a86", GROUP="wheel"
     # Allow user access for Qualcomm QDL devices
