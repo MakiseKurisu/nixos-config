@@ -20,6 +20,7 @@
             secrets = {
               minimax_auth_token = { };
               sub2api_openai = { };
+              sub2api_xai = { };
               sub2api_anthropic = { };
               nvidia_token = { };
               poe_auth_token = { };
