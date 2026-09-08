@@ -57,7 +57,7 @@
                   };
                   xai = {
                     type = "api";
-                    key = inputs'.config.sops.placeholder.sub2api_openai;
+                    key = inputs'.config.sops.placeholder.sub2api_xai;
                   };
                   xiaomi-token-plan-cn = {
                     type = "api";
