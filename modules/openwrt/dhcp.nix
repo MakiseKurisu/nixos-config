@@ -90,6 +90,18 @@
           }
           {
             ip = service_ip;
+            name = "s3admin";
+          }
+          {
+            ip = service_ip;
+            name = "s3api";
+          }
+          {
+            ip = service_ip;
+            name = "s3web";
+          }
+          {
+            ip = service_ip;
             name = "speed";
           }
           {

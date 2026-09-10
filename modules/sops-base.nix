@@ -39,6 +39,9 @@
       clash_provider = {
         restartUnits = [ "mihomo.service" ];
       };
+      garage_rpc_secret_file = {
+        restartUnits = [ "garage.service" ];
+      };
     };
     templates = {
       "cloudflare_ddns.env" = {

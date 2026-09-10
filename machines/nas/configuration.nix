@@ -210,6 +210,25 @@
       enable = false;
     };
 
+    garage = {
+      enable = true;
+      package = pkgs.garage_2;
+      settings = {
+        replication_factor = 1;
+        rpc_bind_addr = "127.0.0.1:3901";
+        rpc_secret_file = config.sops.secrets.garage_rpc_secret_file.path;
+        s3_api = {
+          api_bind_addr = "127.0.0.1:3900";
+          root_domain = ".api.s3.protoducer.com";
+          s3_region = "garage";
+        };
+        s3_web = {
+          bind_addr = "127.0.0.1:3902";
+          root_domain = ".web.s3.protoducer.com";
+        };
+      };
+    };
+
     jellyfin.enable = true;
 
     home-assistant = {
@@ -416,6 +435,15 @@
               proxyPass = "http://127.0.0.1:14500/";
             };
           };
+          "s3admin.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:3903/"; };
+          "s3api.protoducer.com" = https {
+            serverAliases = [ "*.s3api.protoducer.com" ];
+            locations."/".proxyPass = "http://127.0.0.1:3900/";
+          };
+          "s3web.protoducer.com" = https {
+            serverAliases = [ "*.s3web.protoducer.com" ];
+            locations."/".proxyPass = "http://127.0.0.1:3902/";
+          };
           "speed.protoducer.com" = https { };
           "uptime.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:3001/"; };
         };
@@ -464,6 +492,12 @@
   };
 
   sops = {
+    secrets = {
+      garage_rpc_secret_file = {
+        owner = config.systemd.services.garage.serviceConfig.User;
+        group = config.systemd.services.garage.serviceConfig.Group;
+      };
+    };
     templates = {
       "mihomo.yaml" = {
         owner = config.systemd.services.mihomo.serviceConfig.User;
@@ -498,6 +532,12 @@
         Type = "oneshot";
       };
       wantedBy = [ "sys-subsystem-net-devices-eno1.device" ];
+    };
+    garage = {
+      serviceConfig = {
+        User = "garage";
+        Group = "garage";
+      };
     };
     mihomo = {
       serviceConfig = {
