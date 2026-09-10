@@ -22,7 +22,7 @@
       # create nftset
       GFW_MARK=600
       GAME_MARK=603
-      GAME_MARK=${GAME_MARK:-$GFW_MARK}
+      GAME_MARK=''${GAME_MARK:-$GFW_MARK}
       DNS_PORT=5500
       nft "add rule inet fw4 dstnat udp dport 5353 redirect to :$DNS_PORT"
       nft "add chain inet fw4 output_nat { type nat hook output priority -100; }"
