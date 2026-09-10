@@ -82,7 +82,7 @@
         '';
       };
       "mihomo.yaml" = {
-        mode = "0444";
+        restartUnits = [ "mihomo.service" ];
         content = ''
           allow-lan: true
           mode: Global
@@ -120,11 +120,19 @@
               url: "${config.sops.placeholder.clash_provider}"
               path: /var/lib/private/mihomo/clash.yaml
               interval: 300
+            backup:
+              type: file
+              path: /var/lib/private/mihomo/backup.yaml
 
           rule-providers:
             clash:
               type: file
               path: /var/lib/private/mihomo/clash.yaml
+              interval: 300
+              behavior: classical
+            backup:
+              type: file
+              path: /var/lib/private/mihomo/backup.yaml
               interval: 300
               behavior: classical
 
@@ -135,10 +143,40 @@
               interval: 300
               use:
               - clash
+              - backup
             - name: "SELECT"
               type: select
               use:
               - clash
+              - backup
+            - name: "CLASH_TEST"
+              type: url-test
+              url: "https://www.gstatic.com/generate_204"
+              interval: 300
+              use:
+              - clash
+            - name: "CLASH_SELECT"
+              type: select
+              use:
+              - clash
+            - name: "BACKUP_TEST"
+              type: url-test
+              url: "https://www.gstatic.com/generate_204"
+              interval: 300
+              use:
+              - backup
+            - name: "BACKUP_SELECT"
+              type: select
+              use:
+              - backup
+            - name: "LOAD_BALANCE"
+              type: load-balance
+              url: "https://www.gstatic.com/generate_204"
+              interval: 300
+              strategy: consistent-hashing
+              use:
+              - clash
+              - backup
         '';
       };
     };

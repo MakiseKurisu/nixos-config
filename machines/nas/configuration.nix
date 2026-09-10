@@ -463,6 +463,15 @@
     uptime-kuma.enable = true;
   };
 
+  sops = {
+    templates = {
+      "mihomo.yaml" = {
+        owner = config.systemd.services.mihomo.serviceConfig.User;
+        group = config.systemd.services.mihomo.serviceConfig.Group;
+      };
+    };
+  };
+
   systemd.services = {
     apt-cacher-ng = {
       script = ''
@@ -489,6 +498,12 @@
         Type = "oneshot";
       };
       wantedBy = [ "sys-subsystem-net-devices-eno1.device" ];
+    };
+    mihomo = {
+      serviceConfig = {
+        User = "mihomo";
+        Group = "mihomo";
+      };
     };
     opencloud = {
       path = [ pkgs.inotify-tools ];
