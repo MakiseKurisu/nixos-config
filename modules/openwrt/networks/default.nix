@@ -43,7 +43,7 @@
     (import ./socks5-tunnel.nix {
       tun_name = "tun3";
       subnet = 53;
-      proxy_ip = "192.168.2.4";
+      proxy_ip = "192.168.2.3";
       proxy_port = 7891;
       proxy_mark = 503;
       dns_port = 5503;
