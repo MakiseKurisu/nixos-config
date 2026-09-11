@@ -127,18 +127,6 @@
               type: file
               path: /var/lib/private/mihomo/backup.yaml
 
-          rule-providers:
-            clash:
-              type: file
-              path: /var/lib/private/mihomo/clash.yaml
-              interval: 300
-              behavior: classical
-            backup:
-              type: file
-              path: /var/lib/private/mihomo/backup.yaml
-              interval: 300
-              behavior: classical
-
           proxy-groups:
             - name: "DEFAULT"
               type: url-test
