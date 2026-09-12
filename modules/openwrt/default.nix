@@ -48,6 +48,18 @@
     + lib.optionalString (kver != null) ''
       src/gz openwrt_kmods https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/targets/${target}/kmods/${kver}
     '';
+    "apk/repositories.d/distfeeds.list".text = ''
+      https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/targets/${target}/packages/packages.adb
+      https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/base/packages.adb
+      https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/luci/packages.adb
+      https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/packages/packages.adb
+      https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/routing/packages.adb
+      https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/telephony/packages.adb
+      https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/packages/${arch}/video/packages.adb
+    ''
+    + lib.optionalString (kver != null) ''
+      https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/${release}/targets/${target}/kmods/${kver}/packages.adb
+    '';
     "sysctl.d/90-nf_conntrack_max.conf".text = ''
       # Increase maximum active connection count
       net.nf_conntrack_max=32768
@@ -55,6 +67,7 @@
   };
 
   sopsSecrets = "${inputs.secrets}/openwrt.yaml";
+  users.root.hashedPasswordSecret = "hashedPassword";
 
   uci = {
     # leave the ucitrack and firewall packages as they are, retaining defaults if
@@ -70,6 +83,18 @@
     ];
 
     settings = {
+      attendedsysupgrade = {
+        client.client = {
+          advanced_mode = true;
+          auto_search = true;
+          login_check_for_upgrades = true;
+          upgrade_packages = true;
+        };
+        owut.owut = { };
+        server.server = {
+          url = "https://sysupgrade.openwrt.org";
+        };
+      };
       dhcp = { };
 
       firewall = {
@@ -173,15 +198,17 @@
           {
             timezone = "CST-8";
             zonename = "Asia/Shanghai";
-            ttylogin = 0;
-            cronloglevel = 9;
+            ttylogin = false;
+            cronloglevel = 7;
             log_size = 1024;
             urandom_seed = 0;
             hostname = hostname;
+            zram_comp_algo = "zstd";
           }
         ];
 
         timeserver.ntp = {
+          enabled = true;
           server = [
             "0.openwrt.pool.ntp.org"
             "1.openwrt.pool.ntp.org"

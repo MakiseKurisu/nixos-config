@@ -6,10 +6,8 @@
 
 {
   imports = [
+    # New deployment needs to have mwan3 disabled to prevent network loss
     ./mwan3.nix
-    (import ./leigod.nix {
-      inherit arch;
-    })
   ];
 
   services = {

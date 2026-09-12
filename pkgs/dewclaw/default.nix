@@ -38,12 +38,12 @@
         };
       openwrt = import ./router {
         inherit lib inputs;
-        release = "24.10.2";
+        release = "25.12.5";
         target = "x86/64";
         arch = "x86_64";
         hostname = "OpenWrt";
         ip = "192.168.9.1";
-        kver = "6.6.93-1-1745ebad77278f5cdc8330d17a3f43d6";
+        kver = "6.12.94-1-a7bc15f451f9652701ba04af9cfb0b95";
         service_ip = "192.168.9.3";
       };
       m93p =
