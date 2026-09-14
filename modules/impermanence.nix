@@ -69,7 +69,6 @@
           directories = [
             "Desktop"
             "Documents"
-            "Downloads"
             "Games"
             "Music"
             "Pictures"
