@@ -38,12 +38,22 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages =
-    lib.mkForce
-      inputs.omniflake.flakes.nixpkgs-multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
+  boot = {
+    extraModulePackages = with config.boot.kernelPackages; [
+      amneziawg
+    ];
+    kernelPackages =
+      lib.mkForce
+        inputs.omniflake.flakes.nixpkgs-multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
+  };
 
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "i965";
+  environment = {
+    sessionVariables = {
+      LIBVA_DRIVER_NAME = "i965";
+    };
+    systemPackages = with pkgs; [
+      amneziawg-tools
+    ];
   };
 
   hardware = {
