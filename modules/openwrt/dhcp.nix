@@ -66,11 +66,23 @@
           }
           {
             ip = service_ip;
+            name = "docs";
+          }
+          {
+            ip = service_ip;
+            name = "drive";
+          }
+          {
+            ip = service_ip;
             name = "jf";
           }
           {
             ip = service_ip;
             name = "mc";
+          }
+          {
+            ip = service_ip;
+            name = "meet";
           }
           {
             ip = service_ip;

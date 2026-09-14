@@ -301,6 +301,30 @@
       ];
     };
 
+    lasuite-docs = {
+      enable = true;
+      domain = "docs.protoducer.com";
+      s3Url = "https://s3api.protoducer.com/lasuite-docs/";
+      postgresql.createLocally = true;
+      redis.createLocally = true;
+    };
+
+    lasuite-drive = {
+      enable = true;
+      domain = "drive.protoducer.com";
+      s3Url = "https://s3api.protoducer.com/lasuite-drive/";
+      postgresql.createLocally = true;
+      redis.createLocally = true;
+    };
+
+    lasuite-meet = {
+      enable = true;
+      domain = "meet.protoducer.com";
+      livekit.keyFile = config.sops.templates."livekit.yaml".path;
+      postgresql.createLocally = true;
+      redis.createLocally = true;
+    };
+
     librespeed = {
       enable = true;
       domain = "speed.protoducer.com";
@@ -396,6 +420,8 @@
               };
             };
           };
+          "docs.protoducer.com" = https { };
+          "drive.protoducer.com" = https { };
           "jf.protoducer.com" = http_https {
             locations."/" = {
               proxyWebsockets = true;
@@ -424,6 +450,7 @@
               proxyPass = "https://127.0.0.1:4430/";
             };
           };
+          "meet.protoducer.com" = https { };
           "${config.services.nextcloud.hostName}" = https { };
           "oc.protoducer.com" = https {
             locations."/".proxyPass =
@@ -499,6 +526,10 @@
       };
     };
     templates = {
+      "livekit.yaml" = {
+        owner = config.systemd.services.livekit.serviceConfig.User;
+        group = config.systemd.services.livekit.serviceConfig.Group;
+      };
       "mihomo.yaml" = {
         owner = config.systemd.services.mihomo.serviceConfig.User;
         group = config.systemd.services.mihomo.serviceConfig.Group;
@@ -537,6 +568,17 @@
       serviceConfig = {
         User = "garage";
         Group = "garage";
+      };
+    };
+    lasuite-docs = {
+      serviceConfig =  {
+        TimeoutStartSec = "10m";
+      };
+    };
+    livekit = {
+      serviceConfig = {
+        User = "livekit";
+        Group = "livekit";
       };
     };
     mihomo = {
