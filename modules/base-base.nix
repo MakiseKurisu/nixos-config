@@ -68,7 +68,13 @@
     };
     overlays = [
       (final: prev: {
-        inherit (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgs.lixPackageSets.stable) ;
+        inherit (prev.lixPackageSets.stable)
+          nil
+          nix-direnv
+          nixpkgs-review
+          nix-eval-jobs
+          nix-fast-build
+          colmena;
       })
       inputs.omniflake.flakes.nur.overlays.default
       (final: prev: {
