@@ -70,7 +70,6 @@
       (final: prev: {
         inherit (prev.lixPackageSets.stable)
           nil
-          nix-direnv
           nixpkgs-review
           nix-eval-jobs
           nix-fast-build
