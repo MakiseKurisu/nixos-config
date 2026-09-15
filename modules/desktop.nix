@@ -171,7 +171,7 @@
       piper
       protonplus
       pwvucontrol
-      qq
+      mvs.tip.qq
       remmina
       sc-controller
       selectdefaultapplication

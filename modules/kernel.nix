@@ -8,9 +8,7 @@
 
 {
   boot = {
-    kernelPackages =
-      lib.mkOverride 990
-        inputs.omniflake.flakes.nixpkgs-multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
+    kernelPackages = lib.mkOverride 990 pkgs.mvs.tip.linuxPackages_latest;
     kernelModules = [ "tcp_bbr" ];
     kernel.sysctl = {
       "kernel.dmesg_restrict" = 1;

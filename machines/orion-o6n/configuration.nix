@@ -115,8 +115,9 @@
   specialisation = {
     upstream.configuration = {
       hardware.cix.sky1.bspRelease = "none";
-      boot.kernelPackages =
-        inputs.omniflake.flakes.nixpkgs-multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
+      boot = {
+        kernelPackages = lib.mkForce pkgs.mvs.tip.linuxPackages_latest;
+      };
     };
   };
 

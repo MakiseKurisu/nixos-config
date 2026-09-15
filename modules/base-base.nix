@@ -71,6 +71,12 @@
         inherit (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgs.lixPackageSets.stable) ;
       })
       inputs.omniflake.flakes.nur.overlays.default
+      (final: prev: {
+        mvs = inputs.omniflake.flakes.nixpkgs-multiverse.lib.mkMultiverse {
+          system = final.stdenv.hostPlatform.system;
+          config.allowUnfree = true;
+        };
+      })
     ];
   };
 

@@ -38,9 +38,7 @@
   ];
 
   boot = {
-    kernelPackages =
-      lib.mkForce
-        inputs.omniflake.flakes.nixpkgs-multiverse.multiverse.${pkgs.stdenv.hostPlatform.system}.tip.linuxPackages_latest;
+    kernelPackages = lib.mkForce pkgs.mvs.tip.linuxPackages_latest;
     kernelModules = [
       "nct6775"
     ];
