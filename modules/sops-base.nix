@@ -42,6 +42,9 @@
       garage_rpc_secret_file = {
         restartUnits = [ "garage.service" ];
       };
+      keycloak_db_password = {
+        restartUnits = [ "keycloak.service" ];
+      };
     };
     templates = {
       "cloudflare_ddns.env" = {

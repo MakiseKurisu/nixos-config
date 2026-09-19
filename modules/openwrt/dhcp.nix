@@ -78,6 +78,10 @@
           }
           {
             ip = service_ip;
+            name = "keycloak";
+          }
+          {
+            ip = service_ip;
             name = "mc";
           }
           {

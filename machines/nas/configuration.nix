@@ -301,6 +301,22 @@
       ];
     };
 
+    keycloak = {
+      enable = true;
+      database = {
+        createLocally = true;
+        passwordFile = config.sops.secrets.keycloak_db_password.path;
+      };
+      settings = {
+        hostname = "keycloak.protoducer.com";
+        http-enabled = true;
+        http-host = "127.0.0.1";
+        http-port = 8081;
+        https-port = 0;
+        proxy-headers = "xforwarded";
+      };
+    };
+
     lasuite-docs = {
       enable = true;
       domain = "docs.protoducer.com";
@@ -435,6 +451,7 @@
               proxyPass = "http://127.0.0.1:8123/";
             };
           };
+          "keycloak.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:8081/"; };
           "dls.protoducer.com" = https { locations."/".proxyPass = "https://127.0.0.1:8001/"; };
           "downloads.protoducer.com" = http_https {
             locations."/" = {
@@ -524,6 +541,10 @@
         owner = config.systemd.services.garage.serviceConfig.User;
         group = config.systemd.services.garage.serviceConfig.Group;
       };
+      keycloak_db_password = {
+        owner = config.systemd.services.keycloak.serviceConfig.User;
+        group = config.systemd.services.keycloak.serviceConfig.Group;
+      };
     };
     templates = {
       "livekit.yaml" = {
@@ -568,6 +589,11 @@
       serviceConfig = {
         User = "garage";
         Group = "garage";
+      };
+    };
+    keycloak = {
+      serviceConfig = {
+        TimeoutStartSec = "10m";
       };
     };
     lasuite-docs = {
