@@ -17,6 +17,14 @@
     ];
   };
 
+  nixpkgs = {
+    overlays = [
+      (final: prev: {
+        amneziawg-tools = final.mvs.tip.amneziawg-tools;
+      })
+    ];
+  };
+
   services = {
     dante = {
       enable = true;
