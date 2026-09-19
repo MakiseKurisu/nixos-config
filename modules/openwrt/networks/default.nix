@@ -77,9 +77,9 @@
               "wwan0"
               "pppoe"
             ];
-            input = "DROP";
+            input = "REJECT";
             output = "ACCEPT";
-            forward = "DROP";
+            forward = "REJECT";
             masq = true;
             mtu_fix = true;
           }
@@ -95,7 +95,7 @@
             network = [ "mgmt" ];
             input = "ACCEPT";
             output = "ACCEPT";
-            forward = "DROP";
+            forward = "REJECT";
           }
           {
             name = "wg";
@@ -257,7 +257,7 @@
             name = "Block Guest Access";
             proto = "tcp";
             src = "guest";
-            target = "DROP";
+            target = "REJECT";
           }
           {
             dest = "lan";
@@ -270,7 +270,7 @@
             name = "Ban hacker IP";
             src = "wan";
             src_ip = "185.137.36.69";
-            target = "DROP";
+            target = "REJECT";
           }
           {
             name = "Allow WAN SSH";

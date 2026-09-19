@@ -100,8 +100,8 @@
       firewall = {
         defaults = [
           {
-            forward = "DROP";
-            input = "DROP";
+            forward = "REJECT";
+            input = "REJECT";
             output = "ACCEPT";
             synflood_protect = true;
             flow_offloading = false;
