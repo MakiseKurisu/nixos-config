@@ -184,7 +184,7 @@
             {
               publicKey = "mM6UKv/6OJW0re4/R24TGnxhA5g+7XHIkM/iGCSR7Tk=";
               persistentKeepalive = 25;
-              endpoint = "140.245.83.173:51820";
+              endpoint = "amd0.protoducer.com:51820";
               allowedIPs = [
                 "10.0.20.0/24"
                 "fd20::/64"
