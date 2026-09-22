@@ -45,9 +45,48 @@
                 "$schema" =
                   "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json";
                 agents = {
-                  sisyphus-junior = {
-                    model = "xai/grok-4.6";
+                  explore = {
+                    model = "xiaomi-token-plan-cn/mimo-v2.6-pro";
+                    reasoning = "high";
                     fallback_models = [
+                      { model = "xiaomi-token-plan-cn/mimo-v2.6-flash"; reasoning = "high"; }
+                      { model = "deepseek/deepseek-v4.1-flash"; reasoning = "high"; }
+                      { model = "minimax-cn-coding-plan/MiniMax-M3"; }
+                    ];
+                  };
+                  librarian = {
+                    model = "xiaomi-token-plan-cn/mimo-v2.6-pro";
+                    reasoning = "high";
+                    fallback_models = [
+                      { model = "xiaomi-token-plan-cn/mimo-v2.6-flash"; reasoning = "high"; }
+                      { model = "deepseek/deepseek-v4.1-flash"; reasoning = "high"; }
+                      { model = "minimax-cn-coding-plan/MiniMax-M3"; }
+                    ];
+                  };
+                  plan-consultant = {
+                    model = "xiaomi-token-plan-cn/mimo-v2.6-pro";
+                    reasoning = "high";
+                    fallback_models = [
+                      { model = "xiaomi-token-plan-cn/mimo-v2.6-flash"; reasoning = "high"; }
+                      { model = "deepseek/deepseek-v4.1-flash"; reasoning = "high"; }
+                      { model = "minimax-cn-coding-plan/MiniMax-M3"; }
+                    ];
+                  };
+                  plan-reviewer = {
+                    model = "xiaomi-token-plan-cn/mimo-v2.6-pro";
+                    reasoning = "high";
+                    fallback_models = [
+                      { model = "xiaomi-token-plan-cn/mimo-v2.6-flash"; reasoning = "high"; }
+                      { model = "deepseek/deepseek-v4.1-flash"; reasoning = "high"; }
+                      { model = "minimax-cn-coding-plan/MiniMax-M3"; }
+                    ];
+                  };
+                  sisyphus-junior = {
+                    model = "xiaomi-token-plan-cn/mimo-v2.6-pro";
+                    reasoning = "high";
+                    fallback_models = [
+                      { model = "xiaomi-token-plan-cn/mimo-v2.6-flash"; reasoning = "high"; }
+                      { model = "deepseek/deepseek-v4.1-flash"; reasoning = "high"; }
                       { model = "minimax-cn-coding-plan/MiniMax-M3"; }
                     ];
                   };
@@ -223,7 +262,7 @@
             settings = {
               autoupdate = false;
               lsp = true;
-              model = "xai/grok-4.6";
+              model = "xiaomi-token-plan-cn/mimo-v2.6-pro";
               mcp = {
                 ghidra = {
                   type = "local";
