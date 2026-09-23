@@ -41,6 +41,7 @@
               recursive = true;
             };
             "opencode/oh-my-openagent.json" = {
+              force = true;
               text = builtins.toJSON {
                 "$schema" =
                   "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json";
