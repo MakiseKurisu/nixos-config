@@ -127,6 +127,7 @@
             ];
           };
         };
+        hyprpolkitagent.enable = true;
         hypridle = {
           enable = true;
           settings = {
