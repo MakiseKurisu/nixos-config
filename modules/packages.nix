@@ -35,7 +35,6 @@
         with pkgs;
         [
           android-tools
-          asciinema
           binutils
           brightnessctl
           cmake

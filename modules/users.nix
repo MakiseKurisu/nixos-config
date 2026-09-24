@@ -173,6 +173,9 @@
           stateVersion = lib.mkDefault config.system.stateVersion;
         };
         programs = {
+          asciinema = {
+            enable = true;
+          };
           bash = {
             enable = true;
             historyControl = [
