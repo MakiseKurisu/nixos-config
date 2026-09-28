@@ -68,8 +68,6 @@
     };
   };
 
-  services.btrfs.autoScrub.enable = false;
-
   home-manager.users.excalibur =
     { pkgs, ... }:
     {
@@ -157,6 +155,22 @@
         };
       };
     };
+  };
+
+  services = {
+    beszel = {
+      agent = {
+        enable = true;
+        environment = {
+          KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILiNtTrLcIU6MR+VbYVU9lO26tqgPUGzUj7lFErHHsP0";
+          TOKEN = "366e59f8-ab73-4796-bf32-b9fb0a6e9ec9";
+          HUB_URL = "https://beszel.vamrs.org";
+        };
+        smartmon.enable = true;
+      };
+    };
+
+    btrfs.autoScrub.enable = false;
   };
 
   networking.interfaces.eth0.useDHCP = false;
