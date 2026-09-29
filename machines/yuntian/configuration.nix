@@ -166,6 +166,7 @@
           TOKEN = "366e59f8-ab73-4796-bf32-b9fb0a6e9ec9";
           HUB_URL = "https://beszel.vamrs.org";
         };
+        openFirewall = true;
         smartmon.enable = true;
       };
     };
