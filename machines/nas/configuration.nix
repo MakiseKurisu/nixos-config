@@ -417,7 +417,11 @@
               };
             };
           };
-          "beszel.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:8090/"; };
+          "beszel.protoducer.com" = https { locations."/" = {
+              proxyPass = "http://127.0.0.1:8090/";
+              proxyWebsockets = true;
+            };
+          };
           "co.protoducer.com" = https {
             locations = {
               "^~ /browser".proxyPass = "http://127.0.0.1:${toString config.services.collabora-online.port}";
