@@ -214,9 +214,10 @@
       enable = true;
       package = pkgs.garage_2;
       settings = {
+        allow_world_readable_secrets = true;
         replication_factor = 1;
         rpc_bind_addr = "127.0.0.1:3901";
-        rpc_secret_file = config.sops.secrets.garage_rpc_secret_file.path;
+        rpc_secret_file = "/run/credentials/garage.service/rpc_secret";
         s3_api = {
           api_bind_addr = "127.0.0.1:3900";
           root_domain = ".api.s3.protoducer.com";
@@ -417,7 +418,8 @@
               };
             };
           };
-          "beszel.protoducer.com" = https { locations."/" = {
+          "beszel.protoducer.com" = https {
+            locations."/" = {
               proxyPass = "http://127.0.0.1:8090/";
               proxyWebsockets = true;
             };
@@ -539,29 +541,6 @@
     uptime-kuma.enable = true;
   };
 
-  sops = {
-    secrets = {
-      garage_rpc_secret_file = {
-        owner = config.systemd.services.garage.serviceConfig.User;
-        group = config.systemd.services.garage.serviceConfig.Group;
-      };
-      keycloak_db_password = {
-        owner = config.systemd.services.keycloak.serviceConfig.User;
-        group = config.systemd.services.keycloak.serviceConfig.Group;
-      };
-    };
-    templates = {
-      "livekit.yaml" = {
-        owner = config.systemd.services.livekit.serviceConfig.User;
-        group = config.systemd.services.livekit.serviceConfig.Group;
-      };
-      "mihomo.yaml" = {
-        owner = config.systemd.services.mihomo.serviceConfig.User;
-        group = config.systemd.services.mihomo.serviceConfig.Group;
-      };
-    };
-  };
-
   systemd.services = {
     apt-cacher-ng = {
       script = ''
@@ -591,8 +570,9 @@
     };
     garage = {
       serviceConfig = {
-        User = "garage";
-        Group = "garage";
+        LoadCredential = [
+          "rpc_secret:${config.sops.secrets.garage_rpc_secret_file.path}"
+        ];
       };
     };
     keycloak = {
@@ -601,20 +581,8 @@
       };
     };
     lasuite-docs = {
-      serviceConfig =  {
+      serviceConfig = {
         TimeoutStartSec = "10m";
-      };
-    };
-    livekit = {
-      serviceConfig = {
-        User = "livekit";
-        Group = "livekit";
-      };
-    };
-    mihomo = {
-      serviceConfig = {
-        User = "mihomo";
-        Group = "mihomo";
       };
     };
     opencloud = {

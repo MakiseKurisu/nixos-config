@@ -42,6 +42,9 @@
       garage_rpc_secret_file = {
         restartUnits = [ "garage.service" ];
       };
+      lasuite_meet_livekit_keyfile = {
+        restartUnits = [ "livekit.service" ];
+      };
       keycloak_db_password = {
         restartUnits = [ "keycloak.service" ];
       };
@@ -52,6 +55,12 @@
         content = ''
           CLOUDFLARE_API_TOKEN=${config.sops.placeholder.cloudflare_ddns}
         '';
+      };
+      "livekit.yaml" = {
+        restartUnits = [ "livekit.service" ];
+        content = builtins.toJSON {
+          lasuite-meet = config.sops.placeholder.lasuite_meet_livekit_keyfile;
+        };
       };
       "v2ray.json" = {
         mode = "0444";
