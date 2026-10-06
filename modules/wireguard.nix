@@ -22,14 +22,8 @@
             publicKey = "WVcdwHDpBQq2bg4bJE6zHRdWuPG7mptkuF48HxNFNw4=";
 
             allowedIPs = [
-              "10.0.32.0/24"
-              "fd32::/64"
-              "192.168.2.0/24"
-              "fd02::/64"
-              "192.168.9.0/24"
-              "fd09::/64"
-              "10.0.21.0/24"
-              "fd21::/64"
+              "0.0.0.0/0"
+              "::/0"
             ];
 
             endpoint = "vamrs.vpndns.net:51820";
@@ -50,8 +44,12 @@
       };
     };
   };
-  systemd.services = {
-    wg-quick-wg0.enable = false;
-    wireguard-wg2.enable = false;
+  systemd = {
+    services = {
+      wg-quick-wg0.wantedBy = lib.mkForce [ ];
+    };
+    targets = {
+      wireguard-wg2.enable = lib.mkForce false;
+    };
   };
 }
