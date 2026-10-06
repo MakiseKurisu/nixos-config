@@ -381,6 +381,7 @@
           };
           vscode = {
             enable = true;
+            mutableExtensionsDir = false;
             profiles.default = {
               enableExtensionUpdateCheck = false;
               enableUpdateCheck = false;
