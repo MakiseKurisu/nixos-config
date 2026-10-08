@@ -19,7 +19,6 @@
     #../../modules/nvidia.nix
     ../../modules/packages-base.nix
     ../../modules/users-base.nix
-    #../../modules/vfio.nix
     ../../modules/virtualization-base.nix
     ../../modules/impermanence.nix
     ../../modules/wwan.nix

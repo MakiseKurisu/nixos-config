@@ -184,6 +184,7 @@
       telegram-desktop
       teams-for-linux
       ventoy-full
+      virt-viewer
       vlc
       wechat
       wemeet
@@ -323,6 +324,7 @@
       protontricks.enable = true;
     };
     system-config-printer.enable = true;
+    virt-manager.enable = true;
     wireshark = {
       enable = true;
       package = pkgs.wireshark;

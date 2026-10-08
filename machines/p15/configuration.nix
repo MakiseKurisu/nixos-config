@@ -21,7 +21,6 @@
     ../../modules/nvidia.nix
     ../../modules/packages.nix
     ../../modules/users.nix
-    ../../modules/vfio.nix
     ../../modules/virtualization.nix
     # ../../modules/impermanence.nix
     # ../../modules/wwan.nix

@@ -33,5 +33,17 @@
         };
       };
     };
+    libvirtd = {
+      enable = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+      qemu = {
+        swtpm.enable = true;
+        vhostUserPackages = with pkgs; [
+          virtiofsd
+        ];
+      };
+    };
+    spiceUSBRedirection.enable = true;
   };
 }
