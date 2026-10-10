@@ -77,6 +77,13 @@ in
         member = (mwanMembers "wan") // (mwanMembers "wwan0");
         policy = mwanPolicies "wan" "wwan0";
         rule = {
+          bnet_kr = {
+            proto = "all";
+            dest_ip = "117.52.34.0/22";
+            sticky = true;
+            use_policy = "wan_wwan0";
+            family = "ipv4";
+          };
           default = {
             proto = "all";
             sticky = false;

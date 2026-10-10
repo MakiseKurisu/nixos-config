@@ -34,6 +34,7 @@
       nft "add set inet fw4 proxy_force { type ipv4_addr; flags interval; auto-merge; }"
       nft "add set inet fw4 game { type ipv4_addr; flags interval; auto-merge; }"
       nft "add set inet fw4 game6 { type ipv6_addr; flags interval; auto-merge; }"
+      nft "add set inet fw4 blackhole { type ipv4_addr; flags interval; auto-merge; }"
 
       # force all traffic to be proxied
       # nft "add element inet fw4 proxy_force { 192.168.9.20 }"
@@ -42,13 +43,20 @@
       # add cloudflare ip
       nft "add element inet fw4 gfwlist { $(curl https://www.cloudflare.com/ips-v4/ | tr '\n' ',') }"
       nft "add element inet fw4 gfwlist6 { $(curl https://www.cloudflare.com/ips-v6/ | tr '\n' ',') }"
+      # add blizzard korean IP
+      nft "add element inet fw4 proxy_bypass { 117.52.34.0/22 }"
+      # add blizzard taiwan IP
+      nft "add element inet fw4 blackhole { 5.42.160.0/21 }"
       # add routing rules
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter ct mark set $GFW_MARK"
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip daddr @gfwlist counter meta mark set ct mark"
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip6 daddr @gfwlist6 counter ct mark set $GFW_MARK"
       nft "add rule inet fw4 mangle_output meta l4proto tcp ip6 daddr @gfwlist6 counter meta mark set ct mark"
 
-      nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_bypass counter accept"
+      nft "add rule inet fw4 mangle_prerouting ip saddr @proxy_bypass counter accept"
+      nft "add rule inet fw4 mangle_prerouting ip daddr @proxy_bypass counter accept"
+      nft "add rule inet fw4 mangle_prerouting ip saddr @blackhole counter reject"
+      nft "add rule inet fw4 mangle_prerouting ip daddr @blackhole counter reject"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter ct mark set $GFW_MARK"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip saddr @proxy_force counter meta mark set ct mark"
       nft "add rule inet fw4 mangle_prerouting meta l4proto tcp ip daddr @game counter ct mark set $GAME_MARK"
