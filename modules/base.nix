@@ -61,7 +61,7 @@
   nixpkgs = {
     config = {
       permittedInsecurePackages = [
-        "electron-41.9.1"
+        "electron-41.10.7"
         "intel-media-sdk-23.2.2"
         "openssl-1.1.1w"
         "ventoy-1.1.12"
