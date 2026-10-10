@@ -14,7 +14,7 @@
         settings = {
           exec-once = [
             "[workspace 1 silent] discord --start-minimized"
-            "[workspace 11 silent] gtk-launch bytedance-feishu"
+            "[workspace 11 silent] bytedance-feishu"
             "[workspace 12 silent] thunderbird"
             "[workspace 14 silent] element-desktop"
             "[workspace 15 silent] teams-for-linux"
