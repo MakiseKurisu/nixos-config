@@ -77,34 +77,34 @@ in
         member = (mwanMembers "wan") // (mwanMembers "wwan0");
         policy = mwanPolicies "wan" "wwan0";
         rule = {
-          "00-bnet_kr" = {
+          "00_bnet_kr" = {
             proto = "all";
             dest_ip = "117.52.34.0/22";
             sticky = true;
             use_policy = "wan_wwan0";
             family = "ipv4";
           };
-          "01-mwan_fast" = {
+          "01_mwan_fast" = {
             proto = "all";
             src_ip = "192.168.9.4";
             sticky = true;
             use_policy = "wwan0_wan";
             family = "ipv4";
           };
-          "01-mwan_slow" = {
+          "01_mwan_slow" = {
             proto = "all";
             src_ip = "192.168.9.5";
             sticky = true;
             use_policy = "wan_wwan0";
             family = "ipv4";
           };
-          "99-default" = {
+          "99_default" = {
             proto = "all";
             sticky = false;
             use_policy = "wan_wwan0";
             family = "ipv4";
           };
-          "99-unreachable" = {
+          "99_unreachable" = {
             proto = "all";
             sticky = false;
             use_policy = "unreachable";
