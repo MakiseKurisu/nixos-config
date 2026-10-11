@@ -59,7 +59,6 @@ in
           services = {
             mihomo = {
               enable = true;
-              tunMode = true;
               configFile = "${mihomo}";
               webui = pkgs.metacubexd;
             };
@@ -139,6 +138,7 @@ in
                 };
                 linkConfig = {
                   RequiredForOnline = false;
+                  MACAddress = "a6:80:59:cd:08:08";
                 };
               };
             };

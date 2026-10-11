@@ -146,6 +146,7 @@ in
                 };
                 linkConfig = {
                   RequiredForOnline = false;
+                  MACAddress = "f2:83:95:be:e4:40";
                 };
               };
             };
