@@ -160,6 +160,18 @@
           }
           {
             dns = true;
+            ip = "192.168.9.4";
+            mac = "a6:80:59:cd:08:08";
+            name = "mwan-fast";
+          }
+          {
+            dns = true;
+            ip = "192.168.9.5";
+            mac = "f2:83:95:be:e4:40";
+            name = "mwan-slow";
+          }
+          {
+            dns = true;
             ip = "192.168.9.10";
             mac = "C4:41:1E:F8:17:7E";
             name = "rt3200";

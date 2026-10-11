@@ -32,6 +32,8 @@
 
     ../../modules/pr/pico-rpa.nix
 
+    ./mwan-fast.nix
+    ./mwan-slow.nix
     inputs.omniflake.flakes.disko.nixosModules.disko
     ./disko.nix
     ./hardware-configuration.nix
@@ -159,31 +161,6 @@
           "force group" = "users";
           "acl allow execute always" = "yes";
         };
-      };
-    };
-
-    aria2 = {
-      enable = true;
-      rpcSecretFile = pkgs.writeText "aria2-rpc-token.txt" "P3TERX";
-      openPorts = true;
-      serviceUMask = "0007";
-      settings = {
-        bt-prioritize-piece = "head,tail";
-        bt-remove-unselected-file = true;
-        continue = true;
-        dir = "/media/raid/aria2";
-        file-allocation = "falloc";
-        http-accept-gzip = true;
-        input-file = "/var/lib/aria2/aria2.session";
-        max-concurrent-downloads = 100;
-        max-connection-per-server = 10;
-        max-overall-upload-limit = "64K";
-        rpc-listen-all = true;
-        save-session-interval = 10;
-        seed-ratio = 0.1;
-        seed-time = 0;
-        show-console-readout = false;
-        summary-interval = 0;
       };
     };
 
@@ -410,7 +387,7 @@
             locations = {
               "/".root = "${pkgs.ariang}/share/ariang/";
               "/jsonrpc" = {
-                proxyPass = "http://127.0.0.1:6800/jsonrpc";
+                proxyPass = "http://mwan-slow.protoducer.com:6800/jsonrpc";
                 extraConfig = ''
                   add_header 'Access-Control-Allow-Origin' '*' always;
                 '';

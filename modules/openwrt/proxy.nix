@@ -85,7 +85,7 @@
     "proxy/update_gfwlist".text = ''
       #!/usr/bin/env sh
       set -euo pipefail
-      export https_proxy="socks5h://192.168.9.3:7891"
+      export https_proxy="socks5h://mwan-fast.protoducer.com:7891"
       touch /root/whitelist.conf /root/gfwlist.conf /root/blocklist.conf
       cp /root/whitelist.conf /root/gfwlist.conf /root/blocklist.conf /tmp/
       echo | tee -a /tmp/whitelist.conf | tee -a /tmp/gfwlist.conf | tee -a /tmp/blocklist.conf

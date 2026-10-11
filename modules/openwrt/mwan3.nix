@@ -84,6 +84,20 @@ in
             use_policy = "wan_wwan0";
             family = "ipv4";
           };
+          mwan_fast = {
+            proto = "all";
+            src_ip = "192.168.9.4";
+            sticky = true;
+            use_policy = "wwan0_wan";
+            family = "ipv4";
+          };
+          mwan_slow = {
+            proto = "all";
+            src_ip = "192.168.9.5";
+            sticky = true;
+            use_policy = "wan_wwan0";
+            family = "ipv4";
+          };
           default = {
             proto = "all";
             sticky = false;

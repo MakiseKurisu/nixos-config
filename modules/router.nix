@@ -48,18 +48,6 @@
     # As systemd-resolved would listen on 127.0.0.53:53
     technitium-dns-server.enable = true;
 
-    mihomo = {
-      enable = true;
-      tunMode = true;
-      configFile = "${config.sops.templates."mihomo.yaml".path}";
-      webui = pkgs.metacubexd;
-    };
-
-    v2ray = {
-      enable = false;
-      configFile = "${config.sops.templates."v2ray.json".path}";
-    };
-
     iperf3 = {
       enable = true;
       openFirewall = true;
@@ -106,7 +94,7 @@
           "proxy.protoducer.com" = https {
             locations."/" = {
               proxyWebsockets = true;
-              proxyPass = "http://127.0.0.1:9090/";
+              proxyPass = "http://mwan-fast.protoducer.com:9090/";
             };
           };
         };
@@ -122,7 +110,7 @@
           port = 9050;
         };
       };
-      settings.Socks5Proxy = "127.0.0.1:7891";
+      settings.Socks5Proxy = "mwan-fast.protoducer.com:7891";
     };
   };
 

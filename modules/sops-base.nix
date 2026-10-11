@@ -19,13 +19,13 @@
         restartUnits = [ "cloudflare-ddns.service" ];
       };
       v2ray_address = {
-        restartUnits = [ "v2ray.service" ];
+        restartUnits = [ "container@mwan-fast.service" ];
       };
       v2ray_port = {
-        restartUnits = [ "v2ray.service" ];
+        restartUnits = [ "container@mwan-fast.service" ];
       };
       v2ray_id = {
-        restartUnits = [ "v2ray.service" ];
+        restartUnits = [ "container@mwan-fast.service" ];
       };
       p15_private_key = {
         restartUnits = [
@@ -37,7 +37,7 @@
         restartUnits = [ "wireguard-wg2.service" ];
       };
       clash_provider = {
-        restartUnits = [ "mihomo.service" ];
+        restartUnits = [ "container@mwan-fast.service" ];
       };
       garage_rpc_secret_file = {
         restartUnits = [ "garage.service" ];
@@ -63,124 +63,149 @@
         };
       };
       "v2ray.json" = {
-        mode = "0444";
-        content = ''
-          {
-            "inbounds":[
-              {
-                "port": 7899,
-                "protocol": "socks",
-                "settings": { "udp": true }
-              }
-            ],
-            "outbounds": [
-              {
-                "protocol": "vmess",
-                "settings":
-                {
-                  "udp": true,
-                  "vnext": [
-                    {
-                      "address": "${config.sops.placeholder.v2ray_address}",
-                      "port": ${config.sops.placeholder.v2ray_port},
-                      "users": [
-                          {
-                              "id": "${config.sops.placeholder.v2ray_id}"
-                          }
-                        ]
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        '';
+        restartUnits = [ "container@mwan-fast.service" ];
+        content = builtins.toJSON {
+          inbounds =[
+            {
+              port = 7899;
+              protocol = "socks";
+              settings = { udp = true; };
+            }
+          ];
+          outbounds = [
+            {
+              protocol = "vmess";
+              settings = {
+                udp = true;
+                vnext = [
+                  {
+                    address = config.sops.placeholder.v2ray_address;
+                    port = config.sops.placeholder.v2ray_port;
+                    users = [
+                      {
+                          id = config.sops.placeholder.v2ray_id;
+                      }
+                    ];
+                  }
+                ];
+              };
+            }
+          ];
+        };
       };
       "mihomo.yaml" = {
-        restartUnits = [ "mihomo.service" ];
-        content = ''
-          allow-lan: true
-          mode: Global
-          find-process-mode: off
-          log-level: warning
-          unified-delay: true
-          tcp-concurrent: true
-          global-client-fingerprint: random
-          geodata-mode: true
-          geodata-loader: standard
-          geo-auto-update: true
+        restartUnits = [ "container@mwan-fast.service" ];
+        content = builtins.toJSON {
+          allow-lan = true;
+          mode = "Global";
+          find-process-mode = "off";
+          log-level = "warning";
+          unified-delay = true;
+          tcp-concurrent = true;
+          global-client-fingerprint = "random";
+          geodata-mode = true;
+          geodata-loader = "standard";
+          geo-auto-update = true;
 
-          external-controller: 0.0.0.0:9090
-          external-controller-cors:
-            allow-origins:
-              - "*"
-            allow-private-network: true
+          external-controller = "0.0.0.0:9090";
+          external-controller-cors = {
+            allow-origins = ["*"];
+            allow-private-network = true;
+          };
 
-          profile:
-            store-selected: true
-            store-fake-ip: true
+          profile = {
+            store-selected = true;
+            store-fake-ip = true;
+          };
 
-          dns:
-            enable: false
+          dns = {
+            enable = false;
+          };
 
-          port: 7890
-          socks-port: 7891
-          mixed-port: 7892
-          redir-port: 7893
-          tproxy-port: 7894
+          port = 7890;
+          socks-port = 7891;
+          mixed-port = 7892;
+          redir-port = 7893;
+          tproxy-port = 7894;
 
-          proxy-providers:
-            clash:
-              type: http
-              url: "${config.sops.placeholder.clash_provider}"
-              path: /var/lib/private/mihomo/clash.yaml
-              interval: 300
-            backup:
-              type: file
-              path: /var/lib/private/mihomo/backup.yaml
+          proxy-providers = {
+            clash = {
+              type = "http";
+              url = config.sops.placeholder.clash_provider;
+              path = "/var/lib/private/mihomo/clash.yaml";
+              interval = 300;
+            };
+            backup = {
+              type = "file";
+              path = "/var/lib/private/mihomo/backup.yaml";
+            };
+          };
 
-          proxy-groups:
-            - name: "DEFAULT"
-              type: url-test
-              url: "https://www.gstatic.com/generate_204"
-              interval: 300
-              use:
-              - clash
-              - backup
-            - name: "SELECT"
-              type: select
-              use:
-              - clash
-              - backup
-            - name: "CLASH_TEST"
-              type: url-test
-              url: "https://www.gstatic.com/generate_204"
-              interval: 300
-              use:
-              - clash
-            - name: "CLASH_SELECT"
-              type: select
-              use:
-              - clash
-            - name: "BACKUP_TEST"
-              type: url-test
-              url: "https://www.gstatic.com/generate_204"
-              interval: 300
-              use:
-              - backup
-            - name: "BACKUP_SELECT"
-              type: select
-              use:
-              - backup
-            - name: "LOAD_BALANCE"
-              type: load-balance
-              url: "https://www.gstatic.com/generate_204"
-              interval: 300
-              strategy: consistent-hashing
-              use:
-              - clash
-              - backup
-        '';
+          proxy-groups = [
+            {
+              name = "DEFAULT";
+              type = "url-test";
+              url = "https://www.gstatic.com/generate_204";
+              interval = 300;
+              use = [
+                "clash"
+                "backup"
+              ];
+            }
+            {
+              name = "SELECT";
+              type = "select";
+              use = [
+                "clash"
+                "backup"
+              ];
+            }
+            {
+              name = "CLASH_TEST";
+              type = "url-test";
+              url = "https://www.gstatic.com/generate_204";
+              interval = 300;
+              use = [
+                "clash"
+              ];
+            }
+            {
+              name = "CLASH_SELECT";
+              type = "select";
+              use = [
+                "clash"
+                "backup"
+              ];
+            }
+            {
+              name = "BACKUP_TEST";
+              type = "url-test";
+              url = "https://www.gstatic.com/generate_204";
+              interval = 300;
+              use = [
+                "backup"
+              ];
+            }
+            {
+              name = "BACKUP_SELECT";
+              type = "select";
+              use = [
+                "backup"
+              ];
+            }
+            {
+              name = "LOAD_BALANCE";
+              type = "load-balance";
+              url = "https://www.gstatic.com/generate_204";
+              interval = 300;
+              strategy = "consistent-hashing";
+              use = [
+                "clash"
+                "backup"
+              ];
+            }
+          ];
+        };
       };
     };
   };

@@ -16,7 +16,7 @@
     (import ./socks5-tunnel.nix {
       tun_name = "tun0";
       subnet = 50;
-      proxy_ip = service_ip;
+      proxy_ip = "192.168.9.4";
       proxy_port = 7891;
       proxy_mark = 500;
       dns_port = 5500;
