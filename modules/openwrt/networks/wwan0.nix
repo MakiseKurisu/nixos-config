@@ -98,6 +98,6 @@
     };
   };
   services.statistics.monitors.interfaces.targets = [
-    "wwan10"
+    "eth1"
   ];
 }
