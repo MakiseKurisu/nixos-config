@@ -295,7 +295,7 @@
               };
               plugin = [
                 "@mohak34/opencode-notifier@latest"
-                "oh-my-openagent"
+                "oh-my-opencode-slim"
                 "opencode-mem"
                 "opencode-pty"
                 "opencode-wakatime"
