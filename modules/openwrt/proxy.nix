@@ -21,7 +21,7 @@
     "firewall.user".text = ''
       # create nftset
       GFW_MARK=600
-      GAME_MARK=603
+      # GAME_MARK=603
       GAME_MARK=''${GAME_MARK:-$GFW_MARK}
       DNS_PORT=5500
       nft "add rule inet fw4 dstnat udp dport 5353 redirect to :$DNS_PORT"
