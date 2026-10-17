@@ -74,6 +74,8 @@
     "crontabs/root".text = ''
       * * * * * sh /etc/wwan/keep_alive wwan0
       * * * * * sh /etc/wwan/keep_alive wwan0_4 wwan0
+      0 7 * * * sh /etc/wwan/keep_alive wan
+      0 7 * * * sh /etc/wwan/keep_alive wan6
       #* * * * * bash /etc/wwan/lte_fallback wwan0_4 /dev/cdc-wdm0
     '';
   };
