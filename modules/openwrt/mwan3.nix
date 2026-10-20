@@ -77,9 +77,16 @@ in
         member = (mwanMembers "wan") // (mwanMembers "wwan0");
         policy = mwanPolicies "wan" "wwan0";
         rule = {
-          "00_bnet_kr" = {
+          "00_bnet_kr_login" = {
             proto = "all";
-            dest_ip = "117.52.34.0/22";
+            dest_ip = "117.52.34.0/23";
+            sticky = true;
+            use_policy = "wan_wwan0";
+            family = "ipv4";
+          };
+          "00_bnet_kr_game" = {
+            proto = "all";
+            dest_ip = "117.52.36.0/23";
             sticky = true;
             use_policy = "wan_wwan0";
             family = "ipv4";
