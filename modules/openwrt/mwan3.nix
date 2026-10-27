@@ -81,14 +81,14 @@ in
             proto = "all";
             dest_ip = "117.52.34.0/23";
             sticky = true;
-            use_policy = "wan_wwan0";
+            use_policy = "wwan0_wan";
             family = "ipv4";
           };
           "00_bnet_kr_game" = {
             proto = "all";
             dest_ip = "117.52.36.0/23";
             sticky = true;
-            use_policy = "wan_wwan0";
+            use_policy = "wwan0_wan";
             family = "ipv4";
           };
           "01_mwan_fast" = {
