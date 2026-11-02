@@ -194,7 +194,7 @@
       wireguard-tools
       wofi
       wsmancli
-      nur.repos.DzmingLi.wxwork
+      # nur.repos.DzmingLi.wxwork
       xdg-utils
       xxd
     ];
