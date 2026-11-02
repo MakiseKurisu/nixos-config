@@ -27,6 +27,8 @@
     git = {
       enable = true;
       config = {
+        am.threeWay = true;
+        apply.ignoreWhitespace  = "change";
         credential = {
           "https://github.com/MakiseKurisu".username = "MakiseKurisu";
         };
