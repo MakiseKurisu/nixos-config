@@ -388,6 +388,25 @@
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
     hypridle.enable = true;
+    keyd = {
+      enable = true;
+      keyboards.default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            "leftmeta+leftshift+f23" = "layer(fn)";
+          };
+          fn = {
+            f9 = "playpause";
+            f10 = "mute";
+            f11 = "volumedown";
+            f12 = "volumeup";
+            pageup = "home";
+            pagedown = "end";
+          };
+        };
+      };
+    };
     locate.enable = true;
     logind.settings.Login.HandleLidSwitch = "ignore";
     mpd = {
