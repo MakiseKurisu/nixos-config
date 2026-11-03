@@ -152,6 +152,8 @@
       wayland.windowManager.hyprland = {
         configType = "hyprlang";
         enable = true;
+        package = pkgs.mvs.tip.hyprland;
+        portalPackage = pkgs.mvs.tip.xdg-desktop-portal-hyprland;
         plugins = [
           # pkgs.hyprlandPlugins.hyprgrass
         ];
