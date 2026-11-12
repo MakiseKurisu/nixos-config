@@ -91,6 +91,13 @@ in
             use_policy = "wwan0_wan";
             family = "ipv4";
           };
+          "00_vivox" = {
+            proto = "all";
+            dest_ip = "85.236.96.0/23";
+            sticky = true;
+            use_policy = "wwan0_wan";
+            family = "ipv4";
+          };
           "01_mwan_fast" = {
             proto = "all";
             src_ip = "192.168.9.4";
