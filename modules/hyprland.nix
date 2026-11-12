@@ -226,6 +226,8 @@
             "float yes, match:class ^(steam)$, match:title ^(.*)$"
             "float yes, match:class ^(stove\.exe)$, match:title ^(STOVE)$"
             "stay_focused yes, match:class ^(Pinentry)$, match:title ^(.*)$"
+            "stay_focused yes, match:class ^(heroesofthestorm_x64\.exe)$, match:title ^(Heroes of the Storm)$"
+            "stay_focused yes, match:class ^(steam_app_default)$, match:title ^(Heroes of the Storm)$"
             "fullscreen yes, match:class ^(Waydroid)$, match:title ^(Waydroid)$"
             "fullscreen yes, match:class ^(heroesofthestorm_x64\.exe)$, match:title ^(Heroes of the Storm)$"
             "fullscreen yes, match:class ^(steam_app_default)$, match:title ^(Heroes of the Storm)$"
