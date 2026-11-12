@@ -128,6 +128,24 @@
     };
   };
 
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "yuntian@protoducer.com";
+    certs."protoducer.com" = {
+      dnsProvider = "cloudflare";
+      # LAN DNS serves protoducer.com locally without its public SOA record.
+      dnsResolver = "1.1.1.1:53";
+      # The existing token needs Zone:Read and DNS:Edit for protoducer.com.
+      credentialFiles.CF_DNS_API_TOKEN_FILE = config.sops.secrets.cloudflare_ddns.path;
+      extraDomainNames = [
+        "*.protoducer.com"
+        "*.s3api.protoducer.com"
+        "*.s3web.protoducer.com"
+      ];
+      group = config.services.nginx.group;
+    };
+  };
+
   services = {
     nfs.server = {
       exports = ''
@@ -355,8 +373,7 @@
       virtualHosts =
         let
           ssl = {
-            sslCertificate = "/var/lib/nginx/cert.pem";
-            sslCertificateKey = "/var/lib/nginx/key.pem";
+            useACMEHost = "protoducer.com";
             kTLS = true;
           };
           https =
@@ -369,7 +386,6 @@
           http =
             host:
             host
-            // ssl
             // {
               rejectSSL = true;
             };

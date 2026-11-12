@@ -69,8 +69,7 @@
       virtualHosts =
         let
           ssl = {
-            sslCertificate = "/var/lib/nginx/cert.pem";
-            sslCertificateKey = "/var/lib/nginx/key.pem";
+            useACMEHost = "protoducer.com";
             kTLS = true;
           };
           https =
