@@ -17,8 +17,13 @@
 
   systemd.network = {
     enable = true;
-    config.networkConfig = {
-      SpeedMeter = true;
+    config = {
+      networkConfig = {
+        SpeedMeter = true;
+      };
+      dhcpV6Config = {
+        DUIDType = "link-layer";
+      };
     };
     netdevs = {
       "20-vlan1" = {
