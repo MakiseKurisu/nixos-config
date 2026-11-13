@@ -372,34 +372,18 @@
     nginx = {
       virtualHosts =
         let
-          ssl = {
-            useACMEHost = "protoducer.com";
-            kTLS = true;
-          };
           https =
             host:
             host
-            // ssl
             // {
+              useACMEHost = "protoducer.com";
+              kTLS = true;
               forceSSL = true;
-            };
-          http =
-            host:
-            host
-            // {
-              rejectSSL = true;
-            };
-          http_https =
-            host:
-            host
-            // ssl
-            // {
-              addSSL = true;
             };
         in
         {
-          "apt.protoducer.com" = http { locations."/".proxyPass = "http://127.0.0.1:3142/"; };
-          "aria.protoducer.com" = http {
+          "apt.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:3142/"; };
+          "aria.protoducer.com" = https {
             locations = {
               "/".root = "${pkgs.ariang}/share/ariang/";
               "/jsonrpc" = {
@@ -436,14 +420,14 @@
           };
           "docs.protoducer.com" = https { };
           "drive.protoducer.com" = https { };
-          "jf.protoducer.com" = http_https {
+          "jf.protoducer.com" = https {
             locations."/" = {
               proxyWebsockets = true;
               proxyPass = "http://127.0.0.1:8096/";
             };
           };
           "ol.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:5244/"; };
-          "ha.protoducer.com" = http_https {
+          "ha.protoducer.com" = https {
             locations."/" = {
               proxyWebsockets = true;
               proxyPass = "http://127.0.0.1:8123/";
@@ -451,7 +435,7 @@
           };
           "keycloak.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:8081/"; };
           "dls.protoducer.com" = https { locations."/".proxyPass = "https://127.0.0.1:8001/"; };
-          "downloads.protoducer.com" = http_https {
+          "downloads.protoducer.com" = https {
             locations."/" = {
               root = "/media/raid/downloads.protoducer.com";
               extraConfig = ''

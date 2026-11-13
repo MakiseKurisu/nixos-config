@@ -100,26 +100,17 @@
       recommendedProxySettings = true;
       virtualHosts =
         let
-          ssl = {
-            enableACME = true;
-            kTLS = true;
-          };
-          http =
-            host:
-            host
-            // {
-              rejectSSL = true;
-            };
           https =
             host:
             host
-            // ssl
             // {
+              enableACME = true;
+              kTLS = true;
               forceSSL = true;
             };
         in
         {
-          "_" = http { locations."/".return = "404"; };
+          "_" = https { locations."/".return = "404"; };
           "${config.networking.hostName}.protoducer.com" = https { };
         };
     };
