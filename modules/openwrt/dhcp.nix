@@ -9,20 +9,23 @@
       dhcp = {
         dnsmasq = [
           {
-            authoritative = 1;
+            authoritative = true;
             confdir = "/etc/dnsmasq.d";
             domain = "protoducer.com";
             local = "/protoducer.com/";
-            domainneeded = 1;
+            domainneeded = true;
             leasefile = "/tmp/dhcp.leases";
-            rebind_localhost = 1;
-            rebind_protection = 1;
-            localservice = 1;
-            localise_queries = 1;
-            expandhosts = 1;
-            readethers = 1;
+            rebind_localhost = true;
+            rebind_protection = true;
+            localservice = true;
+            localise_queries = true;
+            expandhosts = true;
+            readethers = true;
             dnsforwardmax = 1000;
             cachesize = 10000;
+            strictorder = true;
+            noresolv = false;
+            allservers = false;
             address = [
               "/time.android.com/203.107.6.88"
               "/*.mcdn.bilivideo.cn/"
@@ -36,7 +39,7 @@
               "/amd1.protoducer.com/1.1.1.1"
               "/arm0.protoducer.com/1.1.1.1"
               "/arm1.protoducer.com/1.1.1.1"
-              service_ip
+              "9.9.9.9"
             ];
             rebind_domain = [
               "vamrs.org"
