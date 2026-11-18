@@ -422,7 +422,8 @@
           };
           "dns.protoducer.com" = https {
             locations."/" = {
-              proxyPass = "http://technitium.protoducer.com:5380/";
+              # technitium.protoducer.com confuses nginx with different VLANs
+              proxyPass = "http://192.168.9.7:5380/";
               extraConfig = ''
                 client_max_body_size 512M;
               '';
