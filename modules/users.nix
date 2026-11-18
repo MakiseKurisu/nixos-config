@@ -388,6 +388,7 @@
               extensions = with inputs'.pkgs.vscode-extensions; [
                 github.vscode-github-actions
                 github.vscode-pull-request-github
+                inputs'.pkgs.pr-vscode-jsonnet.vscode-extensions.Grafana.vscode-jsonnet
                 jnoortheen.nix-ide
                 ms-azuretools.vscode-containers
                 ms-dotnettools.csdevkit

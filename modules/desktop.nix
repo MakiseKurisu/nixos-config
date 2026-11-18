@@ -11,6 +11,7 @@
   imports = [
     ./pr/mmdebstrap.nix
     ./pr/ghidra-mcp.nix
+    ./pr/vscode-jsonnet.nix
     ./hyprland.nix
     ./waybar.nix
     inputs.omniflake.flakes.nixified-ai.nixosModules.comfyui
@@ -115,6 +116,8 @@
       (lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux") heroic)
       hyprcursor
       jq
+      jsonnet
+      jsonnet-language-server
       kicad
       libreoffice-qt
       kdePackages.ark
