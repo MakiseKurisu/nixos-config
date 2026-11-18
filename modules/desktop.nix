@@ -189,7 +189,16 @@
       ventoy-full
       virt-viewer
       vlc
-      wechat
+      (symlinkJoin {
+        name = "wechat-${wechat.version}";
+        paths = [ wechat ];
+        nativeBuildInputs = [ makeWrapper ];
+        postBuild = ''
+          # Resolve symbols before WeChat protects a page shared with its GOT.
+          wrapProgram "$out/bin/wechat" --set LD_BIND_NOW 1
+        '';
+        inherit (wechat) meta;
+      })
       wemeet
       wev
       wlgreet
