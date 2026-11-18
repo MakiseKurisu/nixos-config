@@ -16,6 +16,7 @@
 
   packages = [
     "dnsproxy"
+    "drill"
     "luci-app-ddns"
     "luci-app-sqm"
     "luci-proto-wireguard"
