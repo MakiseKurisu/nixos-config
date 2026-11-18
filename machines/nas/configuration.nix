@@ -34,6 +34,7 @@
 
     ./mwan-fast.nix
     ./mwan-slow.nix
+    ./technitium.nix
     inputs.omniflake.flakes.disko.nixosModules.disko
     ./disko.nix
     ./hardware-configuration.nix
@@ -382,6 +383,7 @@
             };
         in
         {
+          "_" = https { locations."/".return = "404"; };
           "apt.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:3142/"; };
           "aria.protoducer.com" = https {
             locations = {
@@ -418,6 +420,14 @@
               };
             };
           };
+          "dns.protoducer.com" = https {
+            locations."/" = {
+              proxyPass = "http://technitium.protoducer.com:5380/";
+              extraConfig = ''
+                client_max_body_size 512M;
+              '';
+            };
+          };
           "docs.protoducer.com" = https { };
           "drive.protoducer.com" = https { };
           "jf.protoducer.com" = https {
@@ -427,6 +437,12 @@
             };
           };
           "ol.protoducer.com" = https { locations."/".proxyPass = "http://127.0.0.1:5244/"; };
+          "proxy.protoducer.com" = https {
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://mwan-fast.protoducer.com:9090/";
+            };
+          };
           "ha.protoducer.com" = https {
             locations."/" = {
               proxyWebsockets = true;

@@ -24,7 +24,7 @@
     ../../modules/virtualization.nix
     # ../../modules/impermanence.nix
     # ../../modules/wwan.nix
-    ../../modules/router.nix
+    # ../../modules/router.nix
 
     #../../modules/nfs-nas.nix
     #../../modules/nfs-app01.nix

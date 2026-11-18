@@ -22,6 +22,8 @@
         leasetime = "12h";
         dhcpv4 = "server";
         dhcpv6 = "server";
+        dhcp_option = [ "6,192.168.9.7" ];
+        dns = [ "fd09::7" ];
         ra = "server";
         ra_slaac = 1;
         ra_flags = [

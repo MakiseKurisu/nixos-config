@@ -188,6 +188,12 @@
           }
           {
             dns = true;
+            ip = "192.168.9.7";
+            mac = "2a:10:68:9f:0d:10";
+            name = "technitium";
+          }
+          {
+            dns = true;
             ip = "192.168.9.10";
             mac = "C4:41:1E:F8:17:7E";
             name = "rt3200";
@@ -239,6 +245,12 @@
             ip = "192.168.8.3";
             mac = "de:e6:f8:67:fa:fb";
             name = "nas";
+          }
+          {
+            dns = true;
+            ip = "192.168.8.7";
+            mac = "2a:10:68:9f:0d:10";
+            name = "technitium";
           }
           {
             dns = true;

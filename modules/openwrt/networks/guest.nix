@@ -6,6 +6,7 @@
         start = 50;
         limit = 200;
         leasetime = "12h";
+        dhcp_option = [ "6,192.168.8.7" ];
       };
       network = {
         interface = {

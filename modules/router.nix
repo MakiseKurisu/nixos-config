@@ -44,10 +44,6 @@
       '';
     };
 
-    # Must configure to NOT listen on 0.0.0.0:53 but 192.168.xxx.yyy:53
-    # As systemd-resolved would listen on 127.0.0.53:53
-    technitium-dns-server.enable = true;
-
     iperf3 = {
       enable = true;
       openFirewall = true;
@@ -82,14 +78,6 @@
         in
         {
           "_" = https { locations."/".return = "404"; };
-          "dns.protoducer.com" = https {
-            locations."/" = {
-              proxyPass = "http://127.0.0.1:5380/";
-              extraConfig = ''
-                client_max_body_size 512M;
-              '';
-            };
-          };
           "proxy.protoducer.com" = https {
             locations."/" = {
               proxyWebsockets = true;
@@ -115,11 +103,7 @@
 
   networking = {
     firewall = {
-      allowedUDPPorts = [
-        53 # technitium-dns-server
-      ];
       allowedTCPPorts = [
-        53 # technitium-dns-server
         80 # nginx
         443 # nginx
         1080 # wg2 dante
