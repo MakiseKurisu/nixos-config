@@ -15,6 +15,7 @@
   };
 
   packages = [
+    "dnsproxy"
     "luci-app-ddns"
     "luci-app-sqm"
     "luci-proto-wireguard"

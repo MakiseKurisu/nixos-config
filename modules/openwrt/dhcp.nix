@@ -6,6 +6,19 @@
 {
   uci = {
     settings = {
+      dnsproxy.dnsproxy = {
+        global = {
+          enabled = 1;
+          listen_addr = [ "127.0.0.1" ];
+          listen_port = [ "5354" ];
+          timeout = "3s";
+        };
+        servers = {
+          # DoQ stamp for 9.9.9.9:853 with TLS name dns.quad9.net.
+          # The literal address avoids a bootstrap DNS lookup.
+          upstream = [ "sdns://BAAAAAAAAAAACzkuOS45Ljk6ODUzABFkbnMucXVhZDkubmV0Ojg1Mw" ];
+        };
+      };
       dhcp = {
         dnsmasq = [
           {
@@ -39,7 +52,7 @@
               "/amd1.protoducer.com/1.1.1.1"
               "/arm0.protoducer.com/1.1.1.1"
               "/arm1.protoducer.com/1.1.1.1"
-              "9.9.9.9"
+              "127.0.0.1#5354"
             ];
             rebind_domain = [
               "vamrs.org"
