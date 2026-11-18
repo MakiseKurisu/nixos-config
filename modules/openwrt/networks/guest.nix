@@ -7,6 +7,14 @@
         limit = 200;
         leasetime = "12h";
         dhcp_option = [ "6,192.168.8.7" ];
+        dhcpv6 = "server";
+        dns = [ "fd09:0:0:30::7" ];
+        ra = "server";
+        ra_slaac = 1;
+        ra_flags = [
+          "managed-config"
+          "other-config"
+        ];
       };
       network = {
         interface = {

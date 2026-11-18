@@ -6,6 +6,13 @@
         start = 50;
         limit = 200;
         leasetime = "12h";
+        dhcpv6 = "server";
+        ra = "server";
+        ra_slaac = 1;
+        ra_flags = [
+          "managed-config"
+          "other-config"
+        ];
       };
       network = {
         interface = {
