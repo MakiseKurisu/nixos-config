@@ -20,6 +20,12 @@
         };
       };
       dhcp = {
+        odhcpd.odhcpd = {
+          maindhcp = false;
+          leasefile = "/tmp/odhcpd.leases";
+          hostsdir = "/tmp/hosts";
+          leasetrigger = "/usr/sbin/odhcpd-update";
+        };
         dnsmasq = [
           {
             authoritative = true;
