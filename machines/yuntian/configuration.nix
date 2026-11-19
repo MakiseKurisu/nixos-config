@@ -156,6 +156,41 @@
   };
 
   services = {
+    thermald.configFile = (pkgs.formats.xml { }).generate "thermald.xml" {
+      ThermalConfiguration.Platform = {
+        Name = "ThinkStation P3 Ultra";
+        ProductName = "30HBA07MCW";
+        Preference = "QUIET";
+        PollingInterval = 1;
+        # PPCC power is in mW; time windows are in ms.
+        PPCC = {
+          PowerLimitMaximum = 65000;
+          PowerLimitMinimum = 15000;
+          TimeWindowMinimum = 1000;
+          TimeWindowMaximum = 1000;
+          StepSize = 2000;
+        };
+        ThermalZones.ThermalZone = {
+          Type = "TCPU";
+          # Update the existing passive trip, retaining its controls.
+          TripPoints.TripPoint = {
+            Temperature = 85000;
+            Hyst = 5000;
+            Type = "passive";
+          };
+        };
+        CoolingDevices.CoolingDevice = {
+          Type = "rapl_controller";
+          # RAPL states are in uW; more cooling means less power.
+          MinState = 65000000;
+          MaxState = 15000000;
+          DebouncePeriod = 0;
+          # Release the restriction when the passive trip clears.
+          AutoOffMode = 1;
+        };
+      };
+    };
+
     beszel = {
       agent = {
         enable = true;

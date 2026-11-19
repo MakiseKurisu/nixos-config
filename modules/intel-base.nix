@@ -13,5 +13,8 @@
     ];
   };
 
-  services.thermald.enable = lib.mkDefault true;
+  services.thermald = {
+    debug = false;
+    enable = lib.mkDefault true;
+  };
 }
