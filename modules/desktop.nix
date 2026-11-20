@@ -71,6 +71,7 @@
     };
     systemPackages = with pkgs; [
       android-tools
+      apache-directory-studio
       ardour
       audacity
       nur.repos.xddxdd.baidunetdisk

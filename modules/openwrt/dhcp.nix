@@ -31,7 +31,6 @@
             authoritative = true;
             confdir = "/etc/dnsmasq.d";
             domain = "protoducer.com";
-            local = "/protoducer.com/";
             domainneeded = true;
             leasefile = "/tmp/dhcp.leases";
             rebind_localhost = true;
@@ -52,6 +51,7 @@
               "/use-application-dns.net/"
             ];
             server = [
+              "/protoducer.com/192.168.9.6"
               "/vamrs.org/192.168.2.1"
               "/vpndns.net/192.99.42.52"
               "/amd0.protoducer.com/1.1.1.1"
@@ -61,6 +61,7 @@
               "127.0.0.1#5354"
             ];
             rebind_domain = [
+              "protoducer.com"
               "vamrs.org"
             ];
           }
@@ -191,6 +192,12 @@
             ip = "192.168.9.5";
             mac = "f2:83:95:be:e4:40";
             name = "mwan-slow";
+          }
+          {
+            dns = true;
+            ip = "192.168.9.6";
+            mac = "ae:8d:c3:47:29:c1";
+            name = "dc01";
           }
           {
             dns = true;

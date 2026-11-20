@@ -35,6 +35,7 @@
     ./mwan-fast.nix
     ./mwan-slow.nix
     ./technitium.nix
+    ./samba-ad.nix
     inputs.omniflake.flakes.disko.nixosModules.disko
     ./disko.nix
     ./hardware-configuration.nix
