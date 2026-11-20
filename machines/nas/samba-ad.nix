@@ -254,17 +254,41 @@ in
             "cache directory" = "/var/lib/samba/cache";
             "lock directory" = "/var/lib/samba";
             "binddns dir" = "/var/lib/samba/bind-dns";
-            "idmap_ldb:use rfc2307" = "yes";
+            "idmap_ldb:use rfc2307" = true;
             "dns forwarder" = "192.168.9.7";
+            "tls enabled" = true;
             "tls cafile" = "";
+            "restrict anonymous" = 2;
+            "disable netbios" = true;
+            "smb ports" = [ 445 ];
+            "printcap name" = "/dev/null";
+            "load printers" = false;
+            "disable spoolss" = true;
+            printing = "bsd";
+            "ntlm auth" = "mschapv2-and-ntlmv2-only";
+            "password hash userPassword schemes" = [
+              "CryptSHA256"
+              "CryptSHA512"
+            ];
+            "full_audit:failure" = "none";
+            "full_audit:success" = [
+              "pwrite"
+              "write"
+              "renameat"
+            ];
+            "full_audit:prefix" = "IP=%I|USER=%u|MACHINE=%m|VOLUME=%S";
+            "full_audit:facility" = "local7";
+            "full_audit:priority" = "NOTICE";
           };
           sysvol = {
             path = "/var/lib/samba/state/sysvol";
-            "read only" = "no";
+            "read only" = false;
+            "vfs objects" = [ "dfs_samba4" "acl_xattr" "full_audit" ];
           };
           netlogon = {
             path = "/var/lib/samba/state/sysvol/protoducer.com/scripts";
-            "read only" = "no";
+            "read only" = false;
+            "vfs objects" = [ "dfs_samba4" "acl_xattr" "full_audit" ];
           };
         };
       };
