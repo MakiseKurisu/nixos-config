@@ -31,6 +31,7 @@
 
 let
   certificateDir = config.security.acme.certs."protoducer.com".directory;
+  ntpSigndDir = "/run/ntp_signd";
 in
 {
   security.acme.certs."protoducer.com".postRun = ''
@@ -95,6 +96,7 @@ in
           allowedUDPPorts = [
             53
             88
+            123
             137
             138
             389
@@ -187,6 +189,7 @@ in
       };
 
       systemd.tmpfiles.rules = [
+        "d ${ntpSigndDir} 0750 root chrony -"
         # The Samba module creates private/; tighten its permissions afterwards.
         "z /var/lib/samba/private 0700 root root -"
         "d /var/lib/samba/state 0755 root root -"
@@ -211,6 +214,18 @@ in
       };
 
       services.resolved.enable = lib.mkForce false;
+      services.chrony = {
+        enable = true;
+        servers = config.networking.timeServers;
+        extraFlags = [ "-x" ];
+        enableRTCTrimming = false;
+        extraConfig = ''
+          allow 192.168.9.0/24
+          allow fd09::/64
+          ntpsigndsocket ${ntpSigndDir}
+        '';
+      };
+      systemd.services.chronyd.after = [ "samba-ad-dc.service" ];
       services.samba = {
         enable = true;
         package = pkgs.samba4Full;
@@ -234,6 +249,7 @@ in
             ];
             "bind interfaces only" = true;
             "private dir" = "/var/lib/samba/private";
+            "ntp signd socket directory" = ntpSigndDir;
             "state directory" = "/var/lib/samba/state";
             "cache directory" = "/var/lib/samba/cache";
             "lock directory" = "/var/lib/samba";
