@@ -7,9 +7,8 @@
 #   --host-ip=192.168.9.6 \
 #   --host-ip6=fd09::6 \
 #   --use-rfc2307
-# sudo nixos-container run samba-ad -- samba-tool domain passwordsettings set --min-pwd-age=0
-# sudo nixos-container run samba-ad -- samba-tool domain passwordsettings set --max-pwd-age=0
-# sudo nixos-container run samba-ad -- samba-tool domain passwordsettings set --account-lockout-threshold=10
+# sudo nixos-container run samba-ad -- samba-tool domain passwordsettings set \
+#   --min-pwd-age=0 --max-pwd-age=0 --account-lockout-threshold=10 --complexity=off
 # sudo nixos-container run samba-ad -- samba-tool user create keycloak
 #
 # Keycloak integration:
@@ -266,10 +265,7 @@ in
             "disable spoolss" = true;
             printing = "bsd";
             "ntlm auth" = "mschapv2-and-ntlmv2-only";
-            "password hash userPassword schemes" = [
-              "CryptSHA256"
-              "CryptSHA512"
-            ];
+            "password hash userPassword schemes" = [ "CryptSHA512" ];
             "full_audit:failure" = "none";
             "full_audit:success" = [
               "pwrite"
