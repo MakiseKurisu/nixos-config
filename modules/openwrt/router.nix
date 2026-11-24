@@ -74,7 +74,7 @@
             netlink_buffer_size = 524288;
             commit_interval = "10m";
             refresh_interval = "30s";
-            database_directory = "/usr/lib/nlbwmon";
+            database_directory = "/var/lib/nlbwmon";
             database_generations = 12;
             database_interval = 1;
             database_limit = 100000;
