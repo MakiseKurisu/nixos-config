@@ -411,6 +411,7 @@
         "pr-mmdebstrap": "pr-mmdebstrap",
         "pr-pico-rpa": "pr-pico-rpa",
         "pr-vscode-jsonnet": "pr-vscode-jsonnet",
+        "sddownload": "sddownload",
         "secrets": "secrets"
       }
     },
@@ -427,6 +428,26 @@
       "original": {
         "owner": "andreymatin",
         "repo": "scss-reset",
+        "type": "github"
+      }
+    },
+    "sddownload": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793345591,
+        "narHash": "sha256-RNa/+FFVuWEzOzXncMttUXMthFw81gpvFetMb5GZdac=",
+        "owner": "radxa",
+        "repo": "sddownload",
+        "rev": "14969f0cc18d54b22546a83a2b2cae2ad57fe86e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "radxa",
+        "repo": "sddownload",
         "type": "github"
       }
     },

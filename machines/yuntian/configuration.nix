@@ -41,8 +41,13 @@
     kernelPackages = lib.mkForce pkgs.mvs.tip.linuxPackages_latest;
   };
 
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
+  environment = {
+    sessionVariables = {
+      LIBVA_DRIVER_NAME = "iHD";
+    };
+    systemPackages = with pkgs; [
+      inputs.sddownload.packages.${pkgs.stdenv.hostPlatform.system}.sddownload
+    ];
   };
 
   hardware = {
