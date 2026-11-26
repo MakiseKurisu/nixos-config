@@ -286,6 +286,10 @@
   };
 
   programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
     apt = {
       enable = true;
       package = pkgs.pr-mmdebstrap.apt;
@@ -372,6 +376,7 @@
     };
     blueman.enable = true;
     envfs.enable = true;
+    flatpak.enable = true;
     fwupd.enable = true;
     greetd = {
       enable = true;
